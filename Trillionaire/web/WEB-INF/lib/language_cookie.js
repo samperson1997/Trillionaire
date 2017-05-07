@@ -9,7 +9,7 @@ function SetCookie(name, value) {
     var Days = 30; //此 cookie 将被保存 30 天
     var exp = new Date();    //new Date("December 31, 9998");
     exp.setTime(exp.getTime() + Days * 24 * 60 * 60 * 1000);
-    document.cookie = name + "=" + encodeURI(value) + ";expires=" + exp.toGMTString();
+    document.cookie = name + "=" + encodeURI(value) + ";expires=" + exp.toUTCString();
 }
 
 function getCookie(name){    //取cookies函数
@@ -20,26 +20,26 @@ function getCookie(name){    //取cookies函数
 
 $(function () {
 
-    var brlanguage = (navigator.language || navigator.browserLanguage).toLowerCase();
+    var brlanguage = (navigator.language || navigator.userLanguage).toLowerCase();
 
     if (brlanguage.indexOf("en") > -1) {
 
-        $("[data-localize]").localize("text", {language: "en"});
+        $("[data-localize]").localize("text", {  language: "en"});
     }
     else if (brlanguage.indexOf("ja") > -1) {
 
-        $("[data-localize]").localize("text", {language: "ja"});
+        $("[data-localize]").localize("text", {  language: "ja"});
 
     } else {
 
-        $("[data-localize]").localize("text", {language: "en"});
+        $("[data-localize]").localize("text", { language: "en"});
     }
     if (getCookie(name) !== "") {
         if (getCookie(name) === "ja") {
-            $("[data-localize]").localize("text", {language: "ja"});
+            $("[data-localize]").localize("text", {  language: "ja"});
         }
         if (getCookie(name) === "en") {
-            $("[data-localize]").localize("text", {language: "en"});
+            $("[data-localize]").localize("text", { language: "en"});
 
         }
 
