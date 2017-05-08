@@ -1,7 +1,7 @@
-.button-big{
-    font-family: "PingFang SC", sans-serif;
+.button-big {
+    font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, "PingFang SC", sans-serif;
     color: #FFF;
-    background-color: transparent;  
+    background-color: transparent;
     cursor: pointer;
     display: inline;
     margin: 10px;
@@ -10,23 +10,22 @@
     border-color: #FFF;
     border-width: 1px;
     border-style: solid;
-    
+
     font-size: 15px;
-    
 }
 
 .button-big:focus {
     outline: none;
 }
 
-.button-big:hover{
-    color: rgb(16,32,58);  
+.button-big:hover {
+    color: rgb(16, 32, 58);
     background-color: #FFF;
 }
 
-.button-big:active{
+.button-big:active {
     color: #FFF;
-    background-color: rgb(16,32,58);  
+    background-color: rgb(16, 32, 58);
 }
 
 .button-big a {
@@ -36,7 +35,7 @@
 }
 
 .button-big a:hover {
-    color: rgb(16,32,58); 
+    color: rgb(16, 32, 58);
     font-style: normal;
     text-decoration-line: none;
 }
