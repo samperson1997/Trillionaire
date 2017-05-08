@@ -1,0 +1,48 @@
+.button-big{
+    font-family: "PingFang SC", sans-serif;
+    color: #FFF;
+    background-color: transparent;  
+    cursor: pointer;
+    display: inline;
+    margin: 10px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border-color: #FFF;
+    border-width: 1px;
+    border-style: solid;
+    
+    font-size: 15px;
+    
+}
+
+.button-big:focus {
+    outline: none;
+}
+
+.button-big:hover{
+    color: rgb(16,32,58);  
+    background-color: #FFF;
+}
+
+.button-big:active{
+    color: #FFF;
+    background-color: rgb(16,32,58);  
+}
+
+.button-big a {
+    color: #FFF;
+    font-style: normal;
+    text-decoration-line: none;
+}
+
+.button-big a:hover {
+    color: rgb(16,32,58); 
+    font-style: normal;
+    text-decoration-line: none;
+}
+
+.button-big a::after {
+    color: #FFF;
+    font-style: normal;
+    text-decoration: none;
+}

@@ -1,0 +1,79 @@
+#title{
+    background-image: url("../img/background1.png");
+    font-family: "PingFang SC", sans-serif;
+    padding: 170px 5px;
+    color: #FFF;
+    background-size:110% 110%;
+    background-position: 25% 45%;
+}
+
+#main-title{
+    font-size: 50px;
+}
+
+#sub-title{
+    font-size: 25px;
+    padding-bottom: 70px;
+    font-weight: lighter;
+}
+
+#help-button{
+    margin-right: 30px;
+}
+
+#introduce{
+    background-color: rgb(102,102,255);
+    text-align: center;
+    color: #FFF;
+    font-family: "PingFang SC", sans-serif;
+    padding: 50px 100px 0px 100px;
+    
+    font-weight: lighter;
+}
+
+#introduce-function{
+    float: left;
+    background-color: rgb(102,102,255);
+    margin-top: -50px;
+    text-align: center;
+    color: #FFF;
+    font-family: "PingFang SC", sans-serif;
+    font-weight: lighter;
+    
+    width: 100%;
+}
+
+#introduce-function li{
+    float: left;
+    width: 18%;
+    font-size: 18px;
+    color: #FFF;
+    display: inline;
+    margin: 30px;
+    padding: 0px;
+}
+
+#introduce-function h1{
+    border-radius: 100px;
+    border-style: solid;
+    border-color: white;
+    border-width: 5px;
+    background-color: white;
+    color: rgb(102,102,255);
+    
+    font-size: 300%;
+    
+}
+
+#introduce-function h4{
+    margin-top: -20px;
+    margin-bottom: -15px;
+}
+
+#introduce-end {
+    background-color: rgb(102,102,255);
+    text-align: center;
+    font-family: "PingFang SC", sans-serif;
+    font-weight: lighter;
+    padding-bottom: 20px;
+}

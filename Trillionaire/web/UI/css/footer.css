@@ -1,0 +1,10 @@
+#footer{
+    background-color: rgb(16,32,58);  
+    font-family: "PingFang SC", sans-serif;
+    text-align: center;
+    color: #FFF;
+    font-size: 80%;
+    font-weight: lighter;
+    
+    padding: 5px;
+}

@@ -1,0 +1,22 @@
+body{
+    margin: 0px;
+    padding: 0px;
+}
+
+a {
+    color: #FFF;
+    font-style: normal;
+    text-decoration-line: none;
+}
+
+a:hover {
+    color: #FFF;
+    font-style: normal;
+    text-decoration-line: none;
+}
+
+a::after {
+    color: #FFF;
+    font-style: normal;
+    text-decoration: none;
+}
