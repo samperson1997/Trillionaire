@@ -1,11 +1,12 @@
-figure.effect h2 {
+.effect h2 {
     transition: transform 0.35s;
     font-size: 30px;
     -webkit-transform: translate3d(0, 40px, 0);
     transform: translate3d(0, 40px, 0);
 }
 
-figure.effect p {
+.effect p {
+    margin-top: 20px;
     opacity: 0;
     font-weight: 300;
     transform: translate3d(0, 40px, 0);
@@ -13,8 +14,8 @@ figure.effect p {
     transition: opacity 0.35s, transform 0.35s;
 }
 
-figure.effect:hover h2,
-figure.effect:hover p {
+.effect:hover h2,
+.effect:hover p {
     opacity: 1;
     -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
@@ -24,13 +25,11 @@ figure.effect:hover p {
 }
 
 .grid {
-
     text-align: center;
-    margin-top: 100px;
 }
 
 .grid h1 {
-    margin-top: 10px;
+    margin-top: 100px;
     color: #000;
     font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, "PingFang SC", sans-serif;
     font-size: 25px;
@@ -38,15 +37,17 @@ figure.effect:hover p {
 
 .grid h2 {
     font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, "PingFang SC", sans-serif;
-    font-size: 15px;
+    font-size: 150%;
     font-weight: normal;
 }
 
-.grid figure {
-    float: left;
+.effect {
+    display: inline-block;
     overflow: hidden;
-
     width: 25%;
+    margin: 2%;
+    padding: 4% 1%;
+
     border-color: #000;
     border-style: solid;
     border-width: 1px;
@@ -58,7 +59,7 @@ figure.effect:hover p {
     color: #000;
 }
 
-.grid figure:hover {
+.effect:hover {
     border-color: rgb(102, 102, 255);
     border-style: solid;
     border-width: 1px;
@@ -67,20 +68,21 @@ figure.effect:hover p {
 
 #next-grid {
     background-color: rgb(214, 237, 237);
-    padding: 50px 0px 50px 0px;
+    padding: 3%;
 }
 
-.grid ul {
-    margin-left: -60px;
+.grid h3 {
+    font-size: 90%;
+    margin-bottom: 2%;
 }
 
 .grid li {
     font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, "PingFang SC", sans-serif;
-    font-size: 20px;
+    font-size: 110%;
     color: #000;
     cursor: pointer;
     display: inline;
-    margin: 20px;
+    margin: 2%;
 }
 
 #next-grid li:hover {

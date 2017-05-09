@@ -1,10 +1,10 @@
 #title {
-    background-image: url("../img/background1.png");
-    font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, "PingFang SC", sans-serif;
-    padding: 170px 5px;
-    color: #FFF;
+    background-image: url("../img/background.jpg");
     background-size: 110% 110%;
     background-position: 25% 45%;
+    font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, "PingFang SC", sans-serif;
+    padding: 15% 2%;
+    color: #FFF;
 }
 
 #main-title {
@@ -19,43 +19,43 @@
 #sub-title {
     font-size: 25px;
     padding-bottom: 70px;
-    font-weight: lighter;
+    font-weight: 400;
 }
 
 #help-button {
-    margin-right: 30px;
+    margin-right: 3%;
 }
+
 
 #introduce {
     background-color: rgb(102, 102, 255);
     text-align: center;
     color: #FFF;
     font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, "PingFang SC", sans-serif;
-    padding: 50px 100px 0px 100px;
+    padding: 5% 10% 0% 10%;
 
     font-weight: lighter;
 }
 
+#introduce h2 {
+    margin-bottom: 3%;
+}
+
 #introduce-function {
-    float: left;
     background-color: rgb(102, 102, 255);
-    margin-top: -50px;
+    margin: 0 auto;
     text-align: center;
     color: #FFF;
     font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, "PingFang SC", sans-serif;
     font-weight: lighter;
-
-    width: 100%;
 }
 
 #introduce-function li {
-    float: left;
-    width: 18%;
+    display: inline-block;
+    width: 15%;
     font-size: 18px;
     color: #FFF;
-    display: inline;
-    margin: 30px;
-    padding: 0px;
+    margin: 3%;
 }
 
 #introduce-function h1 {
@@ -67,11 +67,11 @@
     color: rgb(102, 102, 255);
 
     font-size: 300%;
+    margin-top: 20%;
 }
 
 #introduce-function h4 {
-    margin-top: -20px;
-    margin-bottom: -15px;
+    margin: 4% 0 0.5% 0;
 }
 
 #introduce-end {
@@ -79,5 +79,5 @@
     text-align: center;
     font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, "PingFang SC", sans-serif;
     font-weight: lighter;
-    padding-bottom: 20px;
+    padding: 2%;
 }

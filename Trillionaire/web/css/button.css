@@ -11,7 +11,7 @@
     border-width: 1px;
     border-style: solid;
 
-    font-size: 15px;
+    font-size: 110%;
 }
 
 .button-big:focus {
@@ -44,4 +44,34 @@
     color: #FFF;
     font-style: normal;
     text-decoration: none;
+}
+
+.button-blue {
+    font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, "PingFang SC", sans-serif;
+    color: #FFF;
+    background-color: rgb(102, 102, 255);
+    cursor: pointer;
+    display: inline;
+    margin: 10px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border-color: #FFF;
+    border-width: 1px;
+    border-style: solid;
+
+    font-size: 110%;
+}
+
+.button-blue:focus {
+    outline: none;
+}
+
+.button-blue:hover {
+    color: rgb(102, 102, 255);
+    background-color: #FFF;
+}
+
+.button-blue:active {
+    color: #FFF;
+    background-color: rgb(102, 102, 255);
 }
