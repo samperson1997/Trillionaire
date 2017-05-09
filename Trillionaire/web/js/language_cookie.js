@@ -24,22 +24,22 @@ $(function () {
 
     if (brlanguage.indexOf("en") > -1) {
 
-        $("[data-localize]").localize("text", {  language: "en"});
+        $("[data-localize]").localize("text", {pathPrefix: "json", language: "en"});
     }
     else if (brlanguage.indexOf("ja") > -1) {
 
-        $("[data-localize]").localize("text", {  language: "ja"});
+        $("[data-localize]").localize("text", {pathPrefix: "json",  language: "ja"});
 
     } else {
 
-        $("[data-localize]").localize("text", { language: "en"});
+        $("[data-localize]").localize("text", {pathPrefix: "json", language: "en"});
     }
     if (getCookie(name) !== "") {
         if (getCookie(name) === "ja") {
-            $("[data-localize]").localize("text", {  language: "ja"});
+            $("[data-localize]").localize("text", {pathPrefix: "json",  language: "ja"});
         }
         if (getCookie(name) === "en") {
-            $("[data-localize]").localize("text", { language: "en"});
+            $("[data-localize]").localize("text", {pathPrefix: "js", language: "en"});
 
         }
 

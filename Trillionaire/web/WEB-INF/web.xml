@@ -27,6 +27,10 @@
         <servlet-name>spring</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
+    <!--防止Spring内存溢出监听器 -->
+    <listener>
+        <listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
+    </listener>
     <!-- 多语言配置文件 -->
     <servlet-mapping>
         <servlet-name>default</servlet-name>
