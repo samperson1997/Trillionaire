@@ -12,6 +12,7 @@
 
     <link href="css/font-awesome.css" rel="stylesheet" type="text/css">
 
+    <script src="js/jquery/jquery.js"></script>
 </head>
 
 <body>
@@ -24,13 +25,11 @@
             </ul>
         </div>
 
-        <div class="signInUp" ng-app="myApp" id="whole-page" onselectstart="return false;">
+        <div id="whole-page" onselectstart="return false;">
             <div id="log-part">
                 <h1 data-scroll-reveal="enter from the top over 1s">登录Trillionaire</h1>
                 <p data-scroll-reveal="enter from the top over 1s">与我们一起，成为夜幕下最闪亮的明灯</p>
-                <a href="register.html">
-                    <h5 id="log-label" data-scroll-reveal="enter from the bottom over 1s but wait 1.5s">没有账号？去注册>></h5>
-                </a>
+                <h5 id="log-label" data-scroll-reveal="enter from the bottom over 1s but wait 1.5s">没有账号？去注册>></h5>
 
                 <fieldset data-scroll-reveal="enter from bottom over 1s but wait 0.5s">
                     <p><input id="username" type="text" name="username" placeholder="账号"></p>
@@ -38,6 +37,24 @@
                     <div>
                         <div>
                             <button class="button-big" id="login-button" type="button" ng-click="verify()">登录</button>
+                            <a href="main.html"><button class="button-big" id="back-button" type="button">取消</button></a>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+
+            <div id="register-part" style="display: none;">
+                <h1 data-scroll-reveal="enter from the top over 1s">注册Trillionaire</h1>
+                <p data-scroll-reveal="enter from the top over 1s">与我们一起，成为夜幕下最闪亮的明灯</p>
+                <h5 id="register-label" data-scroll-reveal="enter from the bottom over 1s but wait 1.5s">已有账号？去登录>></h5>
+
+
+                <fieldset data-scroll-reveal="enter from bottom over 1s but wait 0.5s">
+                    <p><input id="username" type="text" name="username" placeholder="账号"></p>
+                    <p><input id="password" type="password" name="password" placeholder="密码"></p>
+                    <div>
+                        <div>
+                            <button class="button-big" id="register-button" type="button" ng-click="verify()">注册</button>
                             <a href="main.html"><button class="button-big" id="back-button" type="button">取消</button></a>
                         </div>
                     </div>
@@ -59,6 +76,7 @@
     </footer>
 </body>
 
+<script src="js/log-register.js"></script>
 <script src="js/scrollReveal.js"></script>
 <script>
     (function() {

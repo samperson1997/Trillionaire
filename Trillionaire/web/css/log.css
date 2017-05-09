@@ -17,7 +17,8 @@
     border-color: transparent;
 }
 
-#log-part {
+#log-part,
+#register-part {
     margin: 0 30%;
     padding: 1%;
     border-color: #FFF;
@@ -26,11 +27,11 @@
     border-width: 2px;
 
     background-color: rgba(255, 255, 255, 0.2);
+    position: relative;
 }
 
 #whole-page h1 {
     font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, "PingFang SC", sans-serif;
-    fantasy;
 }
 
 #whole-page input {
@@ -46,4 +47,9 @@
 
 #whole-page input:focus {
     outline: none;
+}
+
+#log-label,
+#register-label {
+    cursor: pointer;
 }
