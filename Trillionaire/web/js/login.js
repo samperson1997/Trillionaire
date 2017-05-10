@@ -23,10 +23,10 @@ angular.module("mainapp",[])
         	this.password = password;
         	$.ajax({
         		type:"POST",
-        		url:"/login",
+        		url:"/login/login",
         		data:{"username":this.username,"password":this.password},
         		contentType:"application/x-www-form-urlencoded",
-        		dataType:"json",
+        		dataType:"text",
         		success:function(data){
                     console.log(data);
                     $scope.$apply(function(){

@@ -1,5 +1,5 @@
 angular.module("mainapp",[])  
-.controller("UserController",function($scope){
+.controller("RegisterController",function($scope){
     $scope.inputUsername = "";  
     $scope.inputPassword = "";  
     $scope.inputEmail = "";  
@@ -19,8 +19,8 @@ angular.module("mainapp",[])
             if(checkFirst() != false){  
                 $scope.inputPassword = hex_md5($scope.inputPassword);  
                 $.ajax({  
-                    type:"POST",  
-                    url:"/register",
+                    type:"POST",
+                    url:"/login/register",
                     data:{"username":$scope.inputUsername,"password":$scope.inputPassword,"tel":$scope.inputTel,"email":$scope.inputEmail},  
                     contentType:"application/x-www-form-urlencoded",  
                     dataType:"json",  

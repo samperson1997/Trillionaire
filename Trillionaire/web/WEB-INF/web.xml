@@ -31,11 +31,7 @@
     <listener>
         <listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
     </listener>
-    <!-- 多语言配置文件 -->
-    <servlet-mapping>
-        <servlet-name>default</servlet-name>
-        <url-pattern>*.json</url-pattern>
-    </servlet-mapping>
+
     <!-- 强制 UTF-8 编码 -->
     <filter>
         <filter-name>CharacterEncodingFilter</filter-name>
@@ -51,6 +47,7 @@
     </filter-mapping>
 
     <welcome-file-list>
+        <welcome-file>login.html</welcome-file>
         <welcome-file>web.html</welcome-file>
         <welcome-file>main.html</welcome-file>
     </welcome-file-list>

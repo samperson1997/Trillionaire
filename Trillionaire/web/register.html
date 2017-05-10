@@ -25,7 +25,7 @@
         </div>
 
         <div id="whole-page" onselectstart="return false;" ng-app="mainapp">
-            <div id="register-part" ng-controller="UserController">
+            <div id="register-part" ng-controller="RegisterController">
                 <h1 data-scroll-reveal="enter from the top over 1s">注册Trillionaire</h1>
                 <p data-scroll-reveal="enter from the top over 1s">与我们一起，成为夜幕下最闪亮的明灯</p>
                 <a href="login.html">
@@ -38,7 +38,7 @@
                     <p><input id="reg-password" type="password" name="password" placeholder="密码"></p>
                     <div>
                         <div class="log-buttons">
-                            <button class="button-blue" id="register-button" type="button" ng-click="login()">注册</button>
+                            <button class="button-blue" id="register-button" type="submit" ng-click="register()">注册</button>
                             <a href="main.html"><button class="button-big" id="reg-back-button" type="button">取消</button></a>
                         </div>
                         <div id="reg-tip"></div>

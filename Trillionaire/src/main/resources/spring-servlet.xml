@@ -21,15 +21,10 @@
         RequestMappingHandlerMapping 替代了 DefaultAnnotationHandlerMapping-->
     <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping " />
 
-    <!--视图解析-->
-    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/jsp"/>
-        <property name="suffix" value=".jsp"/>
-    </bean>
-
     <!-- 用于将对象转换为 JSON  转换器-->
     <!-- 避免IE执行AJAX时,返回JSON出现下载文件 -->
-    <bean id="stringConverter" class="org.springframework.http.converter.StringHttpMessageConverter">
+    <bean id="stringConverter"
+          class="org.springframework.http.converter.StringHttpMessageConverter">
         <property name="supportedMediaTypes">
             <list>
                 <value>text/plain;charset=UTF-8</value>
@@ -43,7 +38,7 @@
             </list>
         </property>
     </bean>
-    <!--RequestMappingHandlerAdapter : 和上面的RequestMappingHandlerMapping配对使用-->
+    <!--RequestMappingHandlerAdapter :和上面的RequestMappingHandlerMapping配对使用-->
     <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter ">
         <property name="messageConverters">
             <list>
