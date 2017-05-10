@@ -12,7 +12,6 @@ import trillionaire.util.LoginState;
  * Created by michaeltan on 2017/5/6.
  */
 @Controller
-@RequestMapping("/login")
 public class UserController {
 
     @Autowired
@@ -20,19 +19,21 @@ public class UserController {
 
     @RequestMapping(value="/login",method= RequestMethod.POST)
     @ResponseBody
-    public String login(String id, String password){
-        if (id.equals("123")){
-            return LoginState.LOGIN_SUCCESS.toString();
+    public LoginState login(String username, String password){
+        if (username.equals("123")){
+            return LoginState.LOGIN_SUCCESS;
         }else {
-            return  LoginState.LOGIN_FAIL.toString();
+            return  LoginState.LOGIN_FAIL;
         }
     }
 
+    /*
     @RequestMapping(value="/register",method= RequestMethod.POST)
     @ResponseBody
     public LoginState register(String id, String username, String password){
         return LoginState.LOGIN_SUCCESS;
     }
+    */
 
 
 

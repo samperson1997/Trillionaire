@@ -20,7 +20,7 @@ angular.module("mainapp",[])
                 $scope.inputPassword = hex_md5($scope.inputPassword);  
                 $.ajax({  
                     type:"POST",  
-                    url:"/login/register",  
+                    url:"/register",
                     data:{"username":$scope.inputUsername,"password":$scope.inputPassword,"tel":$scope.inputTel,"email":$scope.inputEmail},  
                     contentType:"application/x-www-form-urlencoded",  
                     dataType:"json",  

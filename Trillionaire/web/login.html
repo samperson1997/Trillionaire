@@ -33,11 +33,11 @@
                 </a>
 
                 <fieldset data-scroll-reveal="enter from bottom over 1s but wait 0.5s">
-                    <p><input id="log-username" type="text" name="username" placeholder="账号"></p>
-                    <p><input id="log-password" type="password" name="password" placeholder="密码"></p>
+                    <p><input type="text" name="username" placeholder="用户名" class="form-username form-control" id="log-username" ng-model="inputUsername"></p>
+                    <p><input type="password" name="password" placeholder="密码" class="form-password form-control" id="log-password" ng-model="inputPassword"></p>
                     <div>
                         <div class="log-buttons">
-                            <button class="button-blue" id="login-button" type="button" ng-click="login()">登录</button>
+                            <button class="button-blue" id="login-button" type="submit" ng-click="login()">登录</button>
                             <a href="main.html"><button class="button-big" id="log-back-button" type="button">取消</button></a>
                         </div>
                     </div>
@@ -71,9 +71,8 @@
 </script>
 <script src="js/jquery.backstretch.min.js"></script>
 <script src="js/scripts.js"></script>
-<script src="js/jquery-3.2.1.min.js"></script>
 <script src="js/bootstrap/bootstrap.min.js"></script>
-<script src="js/angularjs/angular.js"></script>
+<script src="js/angular.js"></script>
 <script src="js/login.js"></script>
 
 </html>
