@@ -1,11 +1,7 @@
 #title {
-    background-image: url("../img/page-title-bg.png");
-    background-size: 110% 110%;
-    opacity: 0.8;
-    background-position: 25% 45%;
     font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, "PingFang SC", sans-serif;
     padding: 1% 2%;
-    color: #FFF;
+    color: #000;
 }
 
 .page-main-title {

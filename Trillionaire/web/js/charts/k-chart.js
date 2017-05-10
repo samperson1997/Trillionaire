@@ -129,12 +129,12 @@ option = {
     },
     toolbox: {
         // y: 'bottom',
-        feature: {
-            dataView: {},
-            saveAsImage: {
-                pixelRatio: 2
-            }
-        }
+        //        feature: {
+        //            dataView: {},
+        //            saveAsImage: {
+        //                pixelRatio: 2
+        //            }
+        //        }
     },
     tooltip: {
         trigger: 'axis',

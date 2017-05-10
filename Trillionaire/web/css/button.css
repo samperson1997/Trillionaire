@@ -77,6 +77,7 @@
 }
 
 .button-page {
+    cursor: pointer;
     font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, "PingFang SC", sans-serif;
     color: #FFF;
     border-radius: 5px;
@@ -96,9 +97,11 @@
 .button-page:hover {
     color: #0080ff;
     background-color: #FFF;
+    border: 1px solid #0080ff;
 }
 
 .button-page:active {
-    color: #0080ff;
-    background-color: rgb(102, 102, 255);
+    color: #FFF;
+    background-color: #0080ff;
+    border: 1px solid #0080ff;
 }
