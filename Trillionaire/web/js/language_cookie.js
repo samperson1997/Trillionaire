@@ -30,9 +30,13 @@ $(function () {
 
         $("[data-localize]").localize("text", {pathPrefix: "json",  language: "ja"});
 
+    }else if (brlanguage.indexOf("zh-cn") > -1) {
+
+        $("[data-localize]").localize("text", {pathPrefix: "json",  language: "zh"});
+
     } else {
 
-        $("[data-localize]").localize("text", {pathPrefix: "json", language: "en"});
+        $("[data-localize]").localize("text", {pathPrefix: "json", language: "zh-CN"});
     }
     if (getCookie(name) !== "") {
         if (getCookie(name) === "ja") {
@@ -40,7 +44,9 @@ $(function () {
         }
         if (getCookie(name) === "en") {
             $("[data-localize]").localize("text", {pathPrefix: "js", language: "en"});
-
+        }
+        if (getCookie(name) === "zh-cn") {
+            $("[data-localize]").localize("text", {pathPrefix: "json",  language: "zh-CN"});
         }
 
     }

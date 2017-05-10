@@ -1,9 +1,12 @@
 package trillionaire.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import trillionaire.service.UserService;
-import trillionaire.util.State;
+import trillionaire.util.LoginState;
 
 /**
  * Created by michaeltan on 2017/5/6.
@@ -11,15 +14,27 @@ import trillionaire.util.State;
 @Controller
 @RequestMapping("/login")
 public class UserController {
+
+    @Autowired
     private UserService userService;
 
-    public State login(String id, String password){
+    @RequestMapping(value="/login",method= RequestMethod.POST)
+    @ResponseBody
+    public String login(String id, String password){
         if (id.equals("123")){
-            return State.LOGIN_SUCCESS;
+            return LoginState.LOGIN_SUCCESS.toString();
         }else {
-            return  State.LOGIN_FAIL;
+            return  LoginState.LOGIN_FAIL.toString();
         }
     }
+
+    @RequestMapping(value="/register",method= RequestMethod.POST)
+    @ResponseBody
+    public LoginState register(String id, String username, String password){
+        return LoginState.LOGIN_SUCCESS;
+    }
+
+
 
 
 }

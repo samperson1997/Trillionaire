@@ -2,7 +2,7 @@ package trillionaire.service.impl;
 
 import org.springframework.stereotype.Service;
 import trillionaire.service.UserService;
-import trillionaire.util.State;
+import trillionaire.util.LoginState;
 
 /**
  * Created by michaeltan on 2017/5/9.
@@ -11,15 +11,15 @@ import trillionaire.util.State;
 public class UserServiceImpl implements UserService{
 
 
-    public State login(String id, String password) {
+    public LoginState login(String id, String password) {
         return null;
     }
 
-    public State logout(String id) {
+    public LoginState logout(String id) {
         return null;
     }
 
-    public State resetPassword(String id, String oldPassword, String newPassword) {
+    public LoginState resetPassword(String id, String oldPassword, String newPassword) {
         return null;
     }
 }

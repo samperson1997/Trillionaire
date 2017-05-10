@@ -1,5 +1,5 @@
 angular.module("mainapp",[])  
-.controller("maincontroller",function($scope){  
+.controller("UserController",function($scope){
     $scope.inputUsername = "";  
     $scope.inputPassword = "";  
     $scope.inputEmail = "";  
