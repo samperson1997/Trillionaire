@@ -17,10 +17,10 @@
 <body>
     <header>
         <div id="top-bar" onselectstart="return false;">
-            <img src="img/logo.png" width="15%">
+            <a href="main.html">
+                <img src="img/logo.png" width="15%"></a>
             <ul align="center">
-
-                <li style="opacity: 0"></li>
+                <li style="opacity:0;"></li>
             </ul>
         </div>
 
@@ -39,7 +39,7 @@
                     <div>
                         <div class="log-buttons">
                             <button class="button-blue" id="register-button" type="button" ng-click="login()">注册</button>
-                            <a href="main.html"><button class="button-big" id="reg-back-button" type="button">取消</button></a>
+                            <a href="#" onClick="javascript :history.back(-1);"><button class="button-big" id="reg-back-button" type="button">取消</button></a>
                         </div>
                         <div id="reg-tip"></div>
                     </div>
