@@ -75,3 +75,30 @@
     color: #FFF;
     background-color: rgb(102, 102, 255);
 }
+
+.button-page {
+    font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, "PingFang SC", sans-serif;
+    color: #FFF;
+    border-radius: 5px;
+    background-color: #0080ff;
+    cursor: pointer;
+    display: inline;
+    margin: 10px;
+    padding: 7.5px 10px;
+
+    font-size: 90%;
+}
+
+.button-page:focus {
+    outline: none;
+}
+
+.button-page:hover {
+    color: #0080ff;
+    background-color: #FFF;
+}
+
+.button-page:active {
+    color: #0080ff;
+    background-color: rgb(102, 102, 255);
+}

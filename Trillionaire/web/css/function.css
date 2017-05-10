@@ -14,8 +14,14 @@
     transition: opacity 0.35s, transform 0.35s;
 }
 
+.effect a {
+    color: #000;
+}
+
 .effect:hover h2,
-.effect:hover p {
+.effect:hover p,
+.effect a:hover h2,
+.effect a:hover p {
     opacity: 1;
     -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);

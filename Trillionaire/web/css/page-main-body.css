@@ -1,0 +1,133 @@
+.search-input {
+    font-size: 90%;
+    border: 1px solid #000;
+    border-radius: 5px;
+    margin: 0.6%;
+    padding: 0.4%;
+
+    color: #0080ff;
+    width: 15%;
+    outline: none;
+}
+
+.input-area {
+    margin: 1%;
+}
+
+.info-board {
+    float: right;
+    border-left: 1px solid #AAA;
+    width: 25%;
+    padding: 1%;
+    margin-bottom: 2%;
+}
+
+.stock-name {
+    margin-left: 1%;
+    font-size: 150%;
+}
+
+.stock-code {
+    font-size: 100%;
+    font-weight: 300;
+}
+
+.spec-figure p {
+    margin-top: 20%;
+    font-weight: 300;
+}
+
+.spec-figure {
+    color: #0080ff;
+    display: inline-block;
+    width: 45%;
+    background-color: transparent;
+    border: 1px solid #0080ff;
+    font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, "PingFang SC", sans-serif;
+    font-size: 85%;
+
+    margin: 0.8%;
+    padding: 3% 1%;
+    text-align: center;
+}
+
+#main-figure {
+    margin: 5% auto;
+}
+
+.spec-func {
+    font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, "PingFang SC", sans-serif;
+    margin: 5% 1%;
+    padding: 3% 1%;
+
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.spec-func h2 {
+    text-align: left;
+    font-size: 120%;
+    margin-left: 2%;
+    color: #FFF;
+}
+
+.spec-func p {
+    margin: 10% 5% 0 0;
+    font-weight: 300;
+    text-align: right;
+    color: #FFF;
+    font-size: 130%;
+
+    transform: translate3d(0, 20px, 0);
+    -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+    transition: opacity 0.35s, transform 0.35s;
+}
+
+.spec-func h5 {
+    opacity: 0;
+    margin: 0 5% 0 0;
+    font-weight: 350;
+    text-align: right;
+    color: #FFF;
+    font-size: 100%;
+    transform: translate3d(0, 20px, 0);
+    -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+    transition: opacity 0.35s, transform 0.35s;
+}
+
+.hot-func {
+    background-color: rgb(255, 153, 51);
+}
+
+.indu-func {
+    background-color: rgb(153, 204, 153);
+}
+
+.board-func {
+    background-color: rgb(204, 153, 102);
+}
+
+.comp-func {
+    background-color: rgb(153, 153, 255);
+}
+
+.other-function {
+    border-top: 1px solid #AAA;
+    padding-top: 5%;
+    margin: 5% auto;
+}
+
+.spec-func:hover h5,
+.spec-func a:hover h5,
+.spec-func:hover p,
+.spec-func a:hover p {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    -webkit-transition-delay: 0.15s;
+    transition-delay: 0.15s;
+}
+
+.spec-func: a {
+    color: #000;
+}
