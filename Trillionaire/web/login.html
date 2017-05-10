@@ -9,11 +9,9 @@
     <link rel="stylesheet" href="css/log.css">
     <link rel="stylesheet" href="css/button.css">
     <link rel="stylesheet" href="css/footer.css">
+    <script src="js/jquery-3.2.1.min.js"></script>
 
     <link href="css/font-awesome.css" rel="stylesheet" type="text/css">
-
-    <script src="js/jquery/jquery.js"></script>
-    <script src="js/verify.js"></script>
 </head>
 
 <body>
@@ -26,8 +24,8 @@
             </ul>
         </div>
 
-        <div id="whole-page" onselectstart="return false;">
-            <div id="log-part">
+        <div id="whole-page" onselectstart="return false;" ng-app="mainapp">
+            <div id="log-part" ng-controller="maincontroller">
                 <h1 data-scroll-reveal="enter from the top over 1s">登录Trillionaire</h1>
                 <p data-scroll-reveal="enter from the top over 1s">与我们一起，成为夜幕下最闪亮的明灯</p>
                 <h5 id="log-label" data-scroll-reveal="enter from the bottom over 1s but wait 1.5s">没有账号？去注册>></h5>
@@ -37,14 +35,14 @@
                     <p><input id="password" type="password" name="password" placeholder="密码"></p>
                     <div>
                         <div class="log-buttons">
-                            <button class="button-blue" id="login-button" type="button" ng-click="verify()">登录</button>
+                            <button class="button-blue" id="login-button" type="button" ng-click="login()">登录</button>
                             <a href="main.html"><button class="button-big" id="back-button" type="button">取消</button></a>
                         </div>
                     </div>
                 </fieldset>
             </div>
 
-            <div id="register-part" style="display: none;">
+            <div id="register-part" style="display: none;" ng-controller="maincontroller">
                 <h1 data-scroll-reveal="enter from the top over 1s">注册Trillionaire</h1>
                 <p data-scroll-reveal="enter from the top over 1s">与我们一起，成为夜幕下最闪亮的明灯</p>
                 <h5 id="register-label" data-scroll-reveal="enter from the bottom over 1s but wait 1.5s">已有账号？去登录>></h5>
@@ -55,7 +53,7 @@
                     <p><input id="password" type="password" name="password" placeholder="密码"></p>
                     <div>
                         <div class="log-buttons">
-                            <button class="button-blue" id="register-button" type="button" ng-click="verify()">注册</button>
+                            <button class="button-blue" id="register-button" type="button" ng-click="login()">注册</button>
                             <a href="main.html"><button class="button-big" id="back-button" type="button">取消</button></a>
                         </div>
                     </div>
@@ -88,5 +86,11 @@
     })();
 
 </script>
+<script src="js/jquery.backstretch.min.js"></script>
+<script src="js/scripts.js"></script>
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="js/bootstrap/bootstrap.min.js"></script>
+<script src="js/angularjs/angular.js"></script>
+<script src="js/login.js"></script>
 
 </html>
