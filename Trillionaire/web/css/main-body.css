@@ -1,9 +1,9 @@
 #title {
-    background-image: url("../img/background.jpg");
+    background-image: url("../img/background.png");
     background-size: 110% 110%;
-    background-position: 25% 45%;
+    background-position: 30% 50%;
     font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, "PingFang SC", sans-serif;
-    padding: 18% 2%;
+    padding: 10% 2%;
     color: #FFF;
 }
 
@@ -25,7 +25,6 @@
 #help-button {
     margin-right: 3%;
 }
-
 
 #introduce {
     background-color: rgb(102, 102, 255);
