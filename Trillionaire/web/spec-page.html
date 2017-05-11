@@ -53,8 +53,8 @@
             <div class="input-area" onselectstart="return false;" style="display:inline-block;">
 
                 <!-- search box -->
-                <div style="display: inline;" id="searchbox" ng-app="mySearchApp" ng-controller="searchCtrl">
-                    <input style="display: inline;" type="search" id="search" class="form-control search-input" placeholder="请输入股票名称或代码" />
+                <div style="display: inline;" ng-app="mySearchApp" ng-controller="searchCtrl">
+                    <input style="display: inline;" id="search-box" class="form-control search-input" placeholder="请输入股票名称或代码" />
                     <ul style="display: inline;" id="results" class="search-results"></ul>
                     <!--<span class="input-group-btn"><button class="btn btn-default" type="button"><i class="fa fa-search"></i></button></span>-->
                 </div>
@@ -68,23 +68,23 @@
                 </div>
                 <div style="display: inline;"><input class="date-picker" type="text" id="start-filter" placeholder="开始日期" />—<input class="date-picker" type="text" id="end-filter" placeholder="截止日期" /></div>
 
-                <div style="display: inline;" class="button-page" id="search-button">开始检索</div>
+                <div style="display: inline-block;" class="button-page" id="search-button">开始检索</div>
             </div>
         </div>
 
         <div onselectstart="return false;">
 
             <!--        chart area-->
-            <div style="float: left;">
-                <div id="k-chart" style="width: 900%; height: 500%;"></div>
-                <div id="vol-chart" style="width: 100%; height: 300%;"></div>
+            <div style="float: left; width: 60%;">
+                <div id="k-chart" style="width:100%; height: 500%;"></div>
+                <div id="vol-chart" style="width:100%; height: 300%;"></div>
             </div>
 
             <!--        figure area-->
             <div class="info-board">
                 <div class="stock-name" style="display: inline;">深发展A</div>
                 <div class="stock-code" style="display: inline;">&nbsp;|&nbsp;股票代码：000001</div>
-                <div style="display: inline;" class="button-page"><i class="fa fa-plus"></i> 关注</div>
+                <div style="display: inline-block;" class="button-page"><i class="fa fa-plus"></i> 关注&nbsp;</div>
                 <div align="center" class="margin">
                     <h2><i class="fa fa-line-chart"></i> +9.20%</h2>
                 </div>

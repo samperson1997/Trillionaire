@@ -28,19 +28,19 @@
     background-color: rgb(16, 32, 58);
 }
 
-.button-big a {
+.button-big a:link {
     color: #FFF;
     font-style: normal;
-    text-decoration-line: none;
+    text-decoration: none;
 }
 
 .button-big a:hover {
     color: rgb(16, 32, 58);
     font-style: normal;
-    text-decoration-line: none;
+    text-decoration: none;
 }
 
-.button-big a::after {
+.button-big a:visited {
     color: #FFF;
     font-style: normal;
     text-decoration: none;
@@ -80,12 +80,13 @@
     cursor: pointer;
     font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, "PingFang SC", sans-serif;
     color: #FFF;
+    border: 1px solid #0080ff;
     border-radius: 5px;
     background-color: #0080ff;
     cursor: pointer;
     display: inline;
     margin: 10px;
-    padding: 7.5px 10px;
+    padding: 0.6% 1.2%;
 
     font-size: 90%;
 }

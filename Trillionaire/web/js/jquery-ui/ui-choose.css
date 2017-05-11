@@ -4,6 +4,8 @@ select.ui-choose {
 }
 
 ul.ui-choose {
+    font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, "PingFang SC", sans-serif;
+
     box-sizing: border-box;
     display: inline-block;
     border: 1px solid transparent;
