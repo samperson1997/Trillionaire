@@ -33,9 +33,9 @@
                 </a>
 
 
-                <fieldset data-scroll-reveal="enter from bottom over 1s but wait 0.5s">
-                    <p><input id="reg-username" type="text" name="username" placeholder="账号"></p>
-                    <p><input id="reg-password" type="password" name="password" placeholder="密码"></p>
+                <form method="post" data-scroll-reveal="enter from bottom over 1s but wait 0.5s">
+                    <p><input type="text" name="username" placeholder="用户名" class="form-username form-control" id="log-username" ng-model="inputUsername"></p>
+                    <p><input type="password" name="password" placeholder="密码" class="form-password form-control" id="log-password" ng-model="inputPassword"></p>
                     <div>
                         <div class="log-buttons">
                             <button class="button-blue" id="register-button" type="button" ng-click="login()">注册</button>
@@ -43,7 +43,7 @@
                         </div>
                         <div id="reg-tip"></div>
                     </div>
-                </fieldset>
+                </form>
             </div>
         </div>
     </header>

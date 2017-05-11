@@ -14,11 +14,11 @@ import javax.servlet.http.HttpServletRequest;
  * Created by michaeltan on 2017/5/6.
  */
 @Controller
-@RequestMapping("/login")
+@RequestMapping("/user")
 public class UserController {
 
 
-    @RequestMapping(value="/login",method= RequestMethod.POST)
+    @RequestMapping(value = "/login",method= RequestMethod.POST)
     @ResponseBody
     public String login(String username, String password){
         if (username.equals("123")){

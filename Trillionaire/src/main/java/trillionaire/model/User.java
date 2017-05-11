@@ -13,13 +13,13 @@ import static java.lang.String.copyValueOf;
 @Entity
 @Table(name = "user")
 public class User {
-
     @Id
     @GeneratedValue
 
     private int id;
     private String username;
     private String password;
+    private String email;
 
     public User(int id, String name, String password){
         this.id = id;

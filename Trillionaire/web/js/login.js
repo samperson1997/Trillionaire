@@ -23,15 +23,19 @@ angular.module("mainapp",[])
         	this.password = password;
         	$.ajax({
         		type:"POST",
-        		url:"/login/login",
+        		url:"/user/login",
         		data:{"username":this.username,"password":this.password},
         		contentType:"application/x-www-form-urlencoded",
         		dataType:"text",
         		success:function(data){
+        			alert(data);
                     console.log(data);
                     $scope.$apply(function(){
+                    	if (data == "success"){
+                    	    
+                        }
                         if(data == "fail"){
-                            $scope.inputUsername = "";$scope.inputPassword = "";
+                            $scope.inputPassword = "";
                             alert("用户名不存在或密码错误");
                         }
                         /*
@@ -48,8 +52,8 @@ angular.module("mainapp",[])
                              	alert("该用户不存在!");
                              }
                              */
-                         });  
-        		}  
-        	});  
-        };  
+                         });
+        		}
+        	});
+        };
     })  
