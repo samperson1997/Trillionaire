@@ -9,13 +9,9 @@ a {
     text-decoration-line: none;
 }
 
-a:hover {
-    color: #FFF;
-    font-style: normal;
-    text-decoration-line: none;
-}
-
-a::after {
+a:hover,
+a:link,
+a:visited {
     color: #FFF;
     font-style: normal;
     text-decoration: none;
