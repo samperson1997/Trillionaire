@@ -95,7 +95,7 @@
 .spec-func h5 {
     opacity: 0;
     margin: 0 5% 0 0;
-    font-weight: 350;
+    font-weight: 400;
     text-align: right;
     color: #FFF;
     font-size: 100%;
@@ -137,7 +137,7 @@
     transition-delay: 0.15s;
 }
 
-.spec-func: a {
+.spec-func a {
     color: #000;
 }
 
@@ -169,8 +169,7 @@
 .rank h5 {
     opacity: 0;
     margin: -3% 5% 0 0;
-    font-weight: 100;
-    font-weight: 350;
+    font-weight: 300;
     text-align: right;
     color: #FFF;
     font-size: 100%;
@@ -189,43 +188,133 @@
 }
 
 .index-fig {
-    border-top: 1px solid #AAA;
-    margin-top: 8%;
-    padding: 8%;
-}
-
-.index-spec-figure {
-    margin: 3% 0;
+    display: inline-block;
+    width: 30%;
+    border: 1px solid #AAA;
 }
 
 .index-spec-figure h2 {
-    border-bottom: 1px solid #555;
+    font-size: 80%;
 }
 
 .index-spec-figure p {
     color: red;
+    border-top: 1px solid #555;
+    padding-top: 5%;
+    font-size: 120%;
 }
 
 .rank-table {
+    text-align: center;
+}
+
+.rank-table li {
+    display: inline-block;
+    list-style: none;
+    margin: 2% 0.5%;
+    width: 16%;
+
+    border: 1px solid #AAA;
+}
+
+.rank-head {
+    font-size: 100%;
+    padding: 2% 15%;
+}
+
+.rank-margin {
+    font-size: 180%;
+    padding: 0 15%;
+}
+
+.rank-sta {
+    font-size: 80%;
+    padding: 5% 15%;
+    color: #000;
+}
+
+.rank-stock {
+    font-size: 100%;
+    padding: 5% 15% 0% 15%;
+    border-top: 1px solid #AAA;
+}
+
+.rank-stock-margin {
+    font-size: 90%;
+    padding: 5% 15%;
+}
+
+.rank-table-rise .rank-top {
+    cursor: pointer;
+    color: red;
+}
+
+.rank-table-rise .rank-top:hover {
+    background-color: red;
+    color: white;
+}
+
+.rank-table-rise .rank-bottom {
+    background-color: #EEE;
+    cursor: pointer;
+}
+
+.rank-table-rise .rank-bottom:hover {
+    background-color: red;
+    color: white;
+}
+
+.rank-table-fall .rank-top {
+    cursor: pointer;
+    color: green;
+}
+
+.rank-table-fall .rank-top:hover {
+    background-color: green;
+    color: white;
+}
+
+.rank-table-fall .rank-bottom {
+    background-color: #EEE;
+    cursor: pointer;
+}
+
+.rank-table-fall .rank-bottom:hover {
+    background-color: green;
+    color: white;
+}
+
+.whole-rank-div {
+    margin: 0 auto;
+}
+
+.whole-rank-table {
+    margin: 0.5%;
+    width: 40%;
     display: inline-table;
-    margin: 1.5%;
     border-collapse: collapse;
     text-align: center;
-    width: 40%;
-
-    border-left: 1px solid #AAA;
-    border-right: 1px solid #AAA;
 }
 
-td {
-    padding: 1%;
-}
-
-th {
+.whole-rank-table th {
     color: #AAA;
-    padding: 2% 0;
+    font-size: 80%;
+    font-weight: 400;
 }
 
-.rank-table-div {
-    margin: 0 auto;
+.page-content {
+    position: fixed;
+    top: 26%;
+    background-color: rgb(25, 44, 72);
+    padding: 3% 3%;
+    border: 1px solid rgb(25, 44, 72);
+    border-top-right-radius: 8%;
+    border-bottom-right-radius: 8%;
+    color: #FFF;
+}
+
+.page-content li {
+    list-style: square;
+    cursor: pointer;
+    margin: 20% 0;
 }

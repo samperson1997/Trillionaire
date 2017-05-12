@@ -53,559 +53,671 @@
             </div>
         </div>
 
-        <div onselectstart="return false;">
-            <!--        figure area-->
-            <div style="float: left; width:30%; padding:1%; border-right:1px solid #AAA; margin:1%;">
-                <div class="stock-name" style="display: inline;">2017年5月12日</div>
-                <div class="stock-code" style="display: inline;">&nbsp;|&nbsp;星期五</div>
-                <div align="center" class="margin">
-                    <h2>总交易量 <span style="font-weight: lighter; font-size: 80%;">337248470</span></h2>
-                </div>
+        <div class="page-content">
+            <ul>
+                <a href="#index-fig">
+                    <li>沪深行情</li>
+                </a>
+                <a href="#whole-rank">
+                    <li>大盘涨跌</li>
+                </a>
+                <a href="#indu-rank">
+                    <li>行业板块涨跌</li>
+                </a>
+                <a href="#area-rank">
+                    <li>地域板块涨跌</li>
+                </a>
+                <a href="#con-rank">
+                    <li>概念板块涨跌</li>
+                </a>
+            </ul>
+        </div>
 
-                <div align="center" id="main-figure">
+        <div style="float: right; width: 85%;">
+            <div align="center" id="main-figure">
 
-                    <div class="index-fig">
-                        <p>上证指数&nbsp;&nbsp;<span style="font-weight: bold; font-size: 150%; color: red;">+3061.50</span></p>
-                        <div>
-                            <div class="index-spec-figure">
-                                <h2>涨跌额</h2>
-                                <p>+8.72</p>
-                            </div>
-
-                            <div class="index-spec-figure">
-                                <h2>涨跌幅</h2>
-                                <p>+0.29%</p>
-                            </div>
-
-                            <div class="index-spec-figure">
-                                <h2>交易量</h2>
-                                <p>1976.04亿</p>
-                            </div>
+                <div class="index-fig" id="index-fig">
+                    <p>上证指数&nbsp;&nbsp;<span style="font-weight: bold; font-size: 150%; color: red;">+3061.50</span></p>
+                    <div>
+                        <div class="index-spec-figure">
+                            <h2>涨跌额</h2>
+                            <p>+8.72</p>
                         </div>
 
-                        <div>
-                            <ul class="ui-choose" id="#k-choose">
-                                <li class="selected">日K</li>
-                                <li>周K</li>
-                                <li>月K</li>
-                            </ul>
-                            <div id="k-chart-szzs" style="width:100%; height: 200%;"></div>
-                        </div>
-                    </div>
-
-                    <div class="index-fig">
-                        <p>深证成指&nbsp;&nbsp;<span style="font-weight: bold; font-size: 150%; color: red;">+9776.45</span></p>
-                        <div>
-                            <div class="index-spec-figure">
-                                <h2>涨跌额</h2>
-                                <p>+8.72</p>
-                            </div>
-
-                            <div class="index-spec-figure">
-                                <h2>涨跌幅</h2>
-                                <p>+0.29%</p>
-                            </div>
-
-                            <div class="index-spec-figure">
-                                <h2>交易量</h2>
-                                <p>1976.04亿</p>
-                            </div>
+                        <div class="index-spec-figure">
+                            <h2>涨跌幅</h2>
+                            <p>+0.29%</p>
                         </div>
 
-                        <div>
-                            <ul class="ui-choose" id="#k-choose">
-                                <li class="selected">日K</li>
-                                <li>周K</li>
-                                <li>月K</li>
-                            </ul>
-                            <div id="k-chart-szcz" style="width:100%; height: 300%;"></div>
+                        <div class="index-spec-figure">
+                            <h2>交易量(亿)</h2>
+                            <p>1976.04</p>
                         </div>
                     </div>
 
-                    <div class="index-fig">
-                        <p>沪深300&nbsp;&nbsp;<span style="font-weight: bold; font-size: 150%; color: red;">+3356.65</span></p>
-                        <div>
-                            <div class="index-spec-figure">
-                                <h2>涨跌额</h2>
-                                <p>+8.72</p>
-                            </div>
-
-                            <div class="index-spec-figure">
-                                <h2>涨跌幅</h2>
-                                <p>+0.29%</p>
-                            </div>
-
-                            <div class="index-spec-figure">
-                                <h2>交易量</h2>
-                                <p>1976.04亿</p>
-                            </div>
-                        </div>
-
-                        <div>
-                            <ul class="ui-choose" id="#k-choose">
-                                <li class="selected">日K</li>
-                                <li>周K</li>
-                                <li>月K</li>
-                            </ul>
-                            <div id="k-chart-hssb" style="width:100%; height: 300%;"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div style="float: right; width: 65%;">
-                <div data-scroll-reveal="enter from bottom over 1s" class="rank comp-func">
-                    <h2><i class="fa fa-pie-chart"></i> 大盘涨跌</h2>
-                    <h5>查看所有股票信息>></h5>
-                </div>
-
-                <div class="rank-table-div" align="center">
                     <div>
                         <ul class="ui-choose">
-                            <li class="selected">深A涨跌</li>
-                            <li>上A涨跌</li>
-                            <li>中小板涨跌</li>
-                            <li>创业板涨跌</li>
+                            <li class="selected">日K</li>
+                            <li>周K</li>
+                            <li>月K</li>
                         </ul>
+                        <div id="k-chart-szzs" style="width:100%; height: 200%;"></div>
                     </div>
-                    <table class="rank-table">
-                        <caption>领涨股票</caption>
-                        <tr>
-                            <th>排名</th>
-                            <th>股票代码</th>
-                            <th>股票名称</th>
-                            <th>涨幅</th>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>000001</td>
-                            <td>深发展A</td>
-                            <td>+10.0%</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>000001</td>
-                            <td>深发展A</td>
-                            <td>+10.4%</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>000001</td>
-                            <td>深发展A</td>
-                            <td>+10.4%</td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>000001</td>
-                            <td>深发展A</td>
-                            <td>+10.4%</td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td>000001</td>
-                            <td>深发展A</td>
-                            <td>+10.4%</td>
-                        </tr>
-                        <tr>
-                            <td>6</td>
-                            <td>000001</td>
-                            <td>深发展A</td>
-                            <td>+10.4%</td>
-                        </tr>
-                        <tr>
-                            <td>7</td>
-                            <td>000001</td>
-                            <td>深发展A</td>
-                            <td>+10.4%</td>
-                        </tr>
-                        <tr>
-                            <td>8</td>
-                            <td>000001</td>
-                            <td>深发展A</td>
-                            <td>+10.4%</td>
-                        </tr>
-                        <tr>
-                            <td>9</td>
-                            <td>000001</td>
-                            <td>深发展A</td>
-                            <td>+10.4%</td>
-                        </tr>
-                        <tr>
-                            <td>10</td>
-                            <td>000001</td>
-                            <td>深发展A</td>
-                            <td>+10.4%</td>
-                        </tr>
-                    </table>
-
-                    <table class="rank-table">
-                        <caption>领跌股票</caption>
-                        <tr>
-                            <th>排名</th>
-                            <th>股票代码</th>
-                            <th>股票名称</th>
-                            <th>跌幅</th>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>000001</td>
-                            <td>深发展A</td>
-                            <td>+10.0%</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>000001</td>
-                            <td>深发展A</td>
-                            <td>+10.4%</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>000001</td>
-                            <td>深发展A</td>
-                            <td>+10.4%</td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>000001</td>
-                            <td>深发展A</td>
-                            <td>+10.4%</td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td>000001</td>
-                            <td>深发展A</td>
-                            <td>+10.4%</td>
-                        </tr>
-                        <tr>
-                            <td>6</td>
-                            <td>000001</td>
-                            <td>深发展A</td>
-                            <td>+10.4%</td>
-                        </tr>
-                        <tr>
-                            <td>7</td>
-                            <td>000001</td>
-                            <td>深发展A</td>
-                            <td>+10.4%</td>
-                        </tr>
-                        <tr>
-                            <td>8</td>
-                            <td>000001</td>
-                            <td>深发展A</td>
-                            <td>+10.4%</td>
-                        </tr>
-                        <tr>
-                            <td>9</td>
-                            <td>000001</td>
-                            <td>深发展A</td>
-                            <td>+10.4%</td>
-                        </tr>
-                        <tr>
-                            <td>10</td>
-                            <td>000001</td>
-                            <td>深发展A</td>
-                            <td>+10.4%</td>
-                        </tr>
-                    </table>
-
                 </div>
 
-                <div data-scroll-reveal="enter from bottom over 1s" class="rank indu-func">
-                    <h2><i class="fa fa-industry"></i> 行业板块涨跌</h2>
-                    <h5>查看所有行业股票信息>></h5>
-                </div>
-                <div class="rank-table-div" align="center">
-                    <table class="rank-table">
-                        <caption>领涨行业</caption>
-                        <tr>
-                            <th>排名</th>
-                            <th>行业名称</th>
-                            <th>行业涨幅</th>
-                            <th>股票名称</th>
-                            <th>股票涨幅</th>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>金融业</td>
-                            <td>+1.73%</td>
-                            <td>宝硕股份</td>
-                            <td>+9.99%</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>金融业</td>
-                            <td>+1.73%</td>
-                            <td>宝硕股份</td>
-                            <td>+9.99%</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>金融业</td>
-                            <td>+1.73%</td>
-                            <td>宝硕股份</td>
-                            <td>+9.99%</td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>金融业</td>
-                            <td>+1.73%</td>
-                            <td>宝硕股份</td>
-                            <td>+9.99%</td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td>金融业</td>
-                            <td>+1.73%</td>
-                            <td>宝硕股份</td>
-                            <td>+9.99%</td>
-                        </tr>
-                    </table>
+                <div class="index-fig">
+                    <p>深证成指&nbsp;&nbsp;<span style="font-weight: bold; font-size: 150%; color: red;">+9776.45</span></p>
+                    <div>
+                        <div class="index-spec-figure">
+                            <h2>涨跌额</h2>
+                            <p>+8.72</p>
+                        </div>
 
-                    <table class="rank-table">
-                        <caption>领跌行业</caption>
-                        <tr>
-                            <th>排名</th>
-                            <th>行业名称</th>
-                            <th>行业跌幅</th>
-                            <th>股票名称</th>
-                            <th>股票跌幅</th>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>传媒艺术</td>
-                            <td>-1.48%</td>
-                            <td>姚记扑克</td>
-                            <td>-2.38%</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>金融业</td>
-                            <td>+1.73%</td>
-                            <td>宝硕股份</td>
-                            <td>+9.99%</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>金融业</td>
-                            <td>+1.73%</td>
-                            <td>宝硕股份</td>
-                            <td>+9.99%</td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>金融业</td>
-                            <td>+1.73%</td>
-                            <td>宝硕股份</td>
-                            <td>+9.99%</td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td>金融业</td>
-                            <td>+1.73%</td>
-                            <td>宝硕股份</td>
-                            <td>+9.99%</td>
-                        </tr>
-                    </table>
+                        <div class="index-spec-figure">
+                            <h2>涨跌幅</h2>
+                            <p>+0.29%</p>
+                        </div>
+
+                        <div class="index-spec-figure">
+                            <h2>交易量(亿)</h2>
+                            <p>1976.04</p>
+                        </div>
+                    </div>
+
+                    <div>
+                        <ul class="ui-choose">
+                            <li class="selected">日K</li>
+                            <li>周K</li>
+                            <li>月K</li>
+                        </ul>
+                        <div id="k-chart-szcz" style="width:100%; height: 200%;"></div>
+                    </div>
                 </div>
 
-                <div data-scroll-reveal="enter from bottom over 1s" class="rank board-func">
-                    <h2><i class="fa fa-location-arrow"></i> 地域板块涨跌</h2>
-                    <h5>查看所有地域股票信息>></h5>
-                </div>
-                <div class="rank-table-div" align="center">
-                    <table class="rank-table">
-                        <caption>领涨地域</caption>
-                        <tr>
-                            <th>排名</th>
-                            <th>地域名称</th>
-                            <th>地域涨幅</th>
-                            <th>股票名称</th>
-                            <th>股票涨幅</th>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>北京</td>
-                            <td>+1.73%</td>
-                            <td>宝硕股份</td>
-                            <td>+9.99%</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>河北</td>
-                            <td>+1.73%</td>
-                            <td>宝硕股份</td>
-                            <td>+9.99%</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>天津</td>
-                            <td>+1.73%</td>
-                            <td>宝硕股份</td>
-                            <td>+9.99%</td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>上海</td>
-                            <td>+1.73%</td>
-                            <td>宝硕股份</td>
-                            <td>+9.99%</td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td>重庆</td>
-                            <td>+1.73%</td>
-                            <td>宝硕股份</td>
-                            <td>+9.99%</td>
-                        </tr>
-                    </table>
+                <div class="index-fig">
+                    <p>沪深300&nbsp;&nbsp;<span style="font-weight: bold; font-size: 150%; color: red;">+3356.65</span></p>
+                    <div>
+                        <div class="index-spec-figure">
+                            <h2>涨跌额</h2>
+                            <p>+8.72</p>
+                        </div>
 
-                    <table class="rank-table">
-                        <caption>领跌地域</caption>
-                        <tr>
-                            <th>排名</th>
-                            <th>地域名称</th>
-                            <th>地域跌幅</th>
-                            <th>股票名称</th>
-                            <th>股票跌幅</th>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>宁夏</td>
-                            <td>-1.48%</td>
-                            <td>姚记扑克</td>
-                            <td>-2.38%</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>西藏</td>
-                            <td>+1.73%</td>
-                            <td>宝硕股份</td>
-                            <td>+9.99%</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>河南</td>
-                            <td>+1.73%</td>
-                            <td>宝硕股份</td>
-                            <td>+9.99%</td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>江西</td>
-                            <td>+1.73%</td>
-                            <td>宝硕股份</td>
-                            <td>+9.99%</td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td>四川</td>
-                            <td>+1.73%</td>
-                            <td>宝硕股份</td>
-                            <td>+9.99%</td>
-                        </tr>
-                    </table>
-                </div>
+                        <div class="index-spec-figure">
+                            <h2>涨跌幅</h2>
+                            <p>+0.29%</p>
+                        </div>
 
-                <div data-scroll-reveal="enter from bottom over 1s" class="rank hot-func">
-                    <h2><i class="fa fa-cubes"></i> 概念板块涨跌</h2>
-                    <h5>查看所有概念股票信息>></h5>
-                </div>
-                <div class="rank-table-div" align="center">
-                    <table class="rank-table">
-                        <caption>领涨概念</caption>
-                        <tr>
-                            <th>排名</th>
-                            <th>概念名称</th>
-                            <th>概念涨幅</th>
-                            <th>股票名称</th>
-                            <th>股票涨幅</th>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>金融业</td>
-                            <td>+1.73%</td>
-                            <td>宝硕股份</td>
-                            <td>+9.99%</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>金融业</td>
-                            <td>+1.73%</td>
-                            <td>宝硕股份</td>
-                            <td>+9.99%</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>金融业</td>
-                            <td>+1.73%</td>
-                            <td>宝硕股份</td>
-                            <td>+9.99%</td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>金融业</td>
-                            <td>+1.73%</td>
-                            <td>宝硕股份</td>
-                            <td>+9.99%</td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td>金融业</td>
-                            <td>+1.73%</td>
-                            <td>宝硕股份</td>
-                            <td>+9.99%</td>
-                        </tr>
-                    </table>
+                        <div class="index-spec-figure">
+                            <h2>交易量(亿)</h2>
+                            <p>1976.04</p>
+                        </div>
+                    </div>
 
-                    <table class="rank-table">
-                        <caption>领跌概念</caption>
-                        <tr>
-                            <th>排名</th>
-                            <th>概念名称</th>
-                            <th>概念跌幅</th>
-                            <th>股票名称</th>
-                            <th>股票跌幅</th>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>传媒艺术</td>
-                            <td>-1.48%</td>
-                            <td>姚记扑克</td>
-                            <td>-2.38%</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>金融业</td>
-                            <td>+1.73%</td>
-                            <td>宝硕股份</td>
-                            <td>+9.99%</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>金融业</td>
-                            <td>+1.73%</td>
-                            <td>宝硕股份</td>
-                            <td>+9.99%</td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>金融业</td>
-                            <td>+1.73%</td>
-                            <td>宝硕股份</td>
-                            <td>+9.99%</td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td>金融业</td>
-                            <td>+1.73%</td>
-                            <td>宝硕股份</td>
-                            <td>+9.99%</td>
-                        </tr>
-                    </table>
+                    <div>
+                        <ul class="ui-choose">
+                            <li class="selected">日K</li>
+                            <li>周K</li>
+                            <li>月K</li>
+                        </ul>
+                        <div id="k-chart-hssb" style="width:100%; height: 200%;"></div>
+                    </div>
                 </div>
+            </div>
+
+
+            <div data-scroll-reveal="enter from bottom over 1s" class="rank comp-func" id="whole-rank">
+                <h2><i class="fa fa-pie-chart"></i> 大盘涨跌</h2>
+                <h5>查看所有股票信息>></h5>
+            </div>
+
+            <div class="whole-rank-div" align="center">
+                <div>
+                    <ul class="ui-choose">
+                        <li class="selected">深A涨跌</li>
+                        <li>上A涨跌</li>
+                        <li>中小板涨跌</li>
+                        <li>创业板涨跌</li>
+                    </ul>
+                </div>
+                <table class="whole-rank-table" style="border-right: 1px solid #AAA;">
+                    <caption>领涨股票</caption>
+                    <tr>
+                        <th>排名</th>
+                        <th>股票代码</th>
+                        <th>股票名称</th>
+                        <th>涨幅</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>000001</td>
+                        <td>深发展A</td>
+                        <td>+10.0%</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>000001</td>
+                        <td>深发展A</td>
+                        <td>+10.4%</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>000001</td>
+                        <td>深发展A</td>
+                        <td>+10.4%</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>000001</td>
+                        <td>深发展A</td>
+                        <td>+10.4%</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>000001</td>
+                        <td>深发展A</td>
+                        <td>+10.4%</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>000001</td>
+                        <td>深发展A</td>
+                        <td>+10.4%</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>000001</td>
+                        <td>深发展A</td>
+                        <td>+10.4%</td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>000001</td>
+                        <td>深发展A</td>
+                        <td>+10.4%</td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td>000001</td>
+                        <td>深发展A</td>
+                        <td>+10.4%</td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td>000001</td>
+                        <td>深发展A</td>
+                        <td>+10.4%</td>
+                    </tr>
+                </table>
+
+                <table class="whole-rank-table">
+                    <caption>领跌股票</caption>
+                    <tr>
+                        <th>排名</th>
+                        <th>股票代码</th>
+                        <th>股票名称</th>
+                        <th>跌幅</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>000001</td>
+                        <td>深发展A</td>
+                        <td>+10.0%</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>000001</td>
+                        <td>深发展A</td>
+                        <td>+10.4%</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>000001</td>
+                        <td>深发展A</td>
+                        <td>+10.4%</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>000001</td>
+                        <td>深发展A</td>
+                        <td>+10.4%</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>000001</td>
+                        <td>深发展A</td>
+                        <td>+10.4%</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>000001</td>
+                        <td>深发展A</td>
+                        <td>+10.4%</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>000001</td>
+                        <td>深发展A</td>
+                        <td>+10.4%</td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>000001</td>
+                        <td>深发展A</td>
+                        <td>+10.4%</td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td>000001</td>
+                        <td>深发展A</td>
+                        <td>+10.4%</td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td>000001</td>
+                        <td>深发展A</td>
+                        <td>+10.4%</td>
+                    </tr>
+                </table>
 
             </div>
+
+            <div data-scroll-reveal="enter from bottom over 1s" class="rank indu-func" id="indu-rank">
+                <h2><i class="fa fa-industry"></i> 行业板块涨跌</h2>
+                <h5>查看所有行业股票信息>></h5>
+            </div>
+            <div class="rank-table-div" align="center">
+                <ul class="rank-table rank-table-rise">
+                    <div>领涨行业</div>
+                    <li>
+                        <div class="rank-top">
+                            <div class="rank-head">金融业</div>
+                            <div class="rank-margin">+1.73%</div>
+                            <div class="rank-sta"><i class="fa fa-arrow-up"></i>65&nbsp;&nbsp;<i class="fa fa-arrow-right"></i>3&nbsp;&nbsp;<i class="fa fa-arrow-down"></i>13</div>
+                        </div>
+                        <div class="rank-bottom">
+                            <div class="rank-stock">宝硕股份</div>
+                            <div class="rank-stock-margin">+9.99%</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="rank-top">
+                            <div class="rank-head">金融业</div>
+                            <div class="rank-margin">+1.73%</div>
+                            <div class="rank-sta"><i class="fa fa-arrow-up"></i>65&nbsp;&nbsp;<i class="fa fa-arrow-right"></i>3&nbsp;&nbsp;<i class="fa fa-arrow-down"></i>13</div>
+                        </div>
+                        <div class="rank-bottom">
+                            <div class="rank-stock">宝硕股份</div>
+                            <div class="rank-stock-margin">+9.99%</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="rank-top">
+                            <div class="rank-head">金融业</div>
+                            <div class="rank-margin">+1.73%</div>
+                            <div class="rank-sta"><i class="fa fa-arrow-up"></i>65&nbsp;&nbsp;<i class="fa fa-arrow-right"></i>3&nbsp;&nbsp;<i class="fa fa-arrow-down"></i>13</div>
+                        </div>
+                        <div class="rank-bottom">
+                            <div class="rank-stock">宝硕股份</div>
+                            <div class="rank-stock-margin">+9.99%</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="rank-top">
+                            <div class="rank-head">金融业</div>
+                            <div class="rank-margin">+1.73%</div>
+                            <div class="rank-sta"><i class="fa fa-arrow-up"></i>65&nbsp;&nbsp;<i class="fa fa-arrow-right"></i>3&nbsp;&nbsp;<i class="fa fa-arrow-down"></i>13</div>
+                        </div>
+                        <div class="rank-bottom">
+                            <div class="rank-stock">宝硕股份</div>
+                            <div class="rank-stock-margin">+9.99%</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="rank-top">
+                            <div class="rank-head">金融业</div>
+                            <div class="rank-margin">+1.73%</div>
+                            <div class="rank-sta"><i class="fa fa-arrow-up"></i>65&nbsp;&nbsp;<i class="fa fa-arrow-right"></i>3&nbsp;&nbsp;<i class="fa fa-arrow-down"></i>13</div>
+                        </div>
+                        <div class="rank-bottom">
+                            <div class="rank-stock">宝硕股份</div>
+                            <div class="rank-stock-margin">+9.99%</div>
+                        </div>
+                    </li>
+
+                </ul>
+
+                <ul class="rank-table rank-table-fall">
+                    <div>领跌行业</div>
+                    <li>
+                        <div class="rank-top">
+                            <div class="rank-head">传媒艺术</div>
+                            <div class="rank-margin">-1.73%</div>
+                            <div class="rank-sta"><i class="fa fa-arrow-up"></i>3&nbsp;&nbsp;<i class="fa fa-arrow-right"></i>0&nbsp;&nbsp;<i class="fa fa-arrow-down"></i>8</div>
+                        </div>
+                        <div class="rank-bottom">
+                            <div class="rank-stock">姚记扑克</div>
+                            <div class="rank-stock-margin">-9.99%</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="rank-top">
+                            <div class="rank-head">传媒艺术</div>
+                            <div class="rank-margin">-1.73%</div>
+                            <div class="rank-sta"><i class="fa fa-arrow-up"></i>3&nbsp;&nbsp;<i class="fa fa-arrow-right"></i>0&nbsp;&nbsp;<i class="fa fa-arrow-down"></i>8</div>
+                        </div>
+                        <div class="rank-bottom">
+                            <div class="rank-stock">姚记扑克</div>
+                            <div class="rank-stock-margin">-9.99%</div>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="rank-top">
+                            <div class="rank-head">传媒艺术</div>
+                            <div class="rank-margin">-1.73%</div>
+                            <div class="rank-sta"><i class="fa fa-arrow-up"></i>3&nbsp;&nbsp;<i class="fa fa-arrow-right"></i>0&nbsp;&nbsp;<i class="fa fa-arrow-down"></i>8</div>
+                        </div>
+                        <div class="rank-bottom">
+                            <div class="rank-stock">姚记扑克</div>
+                            <div class="rank-stock-margin">-9.99%</div>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="rank-top">
+                            <div class="rank-head">传媒艺术</div>
+                            <div class="rank-margin">-1.73%</div>
+                            <div class="rank-sta"><i class="fa fa-arrow-up"></i>3&nbsp;&nbsp;<i class="fa fa-arrow-right"></i>0&nbsp;&nbsp;<i class="fa fa-arrow-down"></i>8</div>
+                        </div>
+                        <div class="rank-bottom">
+                            <div class="rank-stock">姚记扑克</div>
+                            <div class="rank-stock-margin">-9.99%</div>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="rank-top">
+                            <div class="rank-head">传媒艺术</div>
+                            <div class="rank-margin">-1.73%</div>
+                            <div class="rank-sta"><i class="fa fa-arrow-up"></i>3&nbsp;&nbsp;<i class="fa fa-arrow-right"></i>0&nbsp;&nbsp;<i class="fa fa-arrow-down"></i>8</div>
+                        </div>
+                        <div class="rank-bottom">
+                            <div class="rank-stock">姚记扑克</div>
+                            <div class="rank-stock-margin">-9.99%</div>
+                        </div>
+                    </li>
+
+                </ul>
+
+
+            </div>
+
+            <div data-scroll-reveal="enter from bottom over 1s" class="rank board-func" id="area-rank">
+                <h2><i class="fa fa-location-arrow"></i> 地域板块涨跌</h2>
+                <h5>查看所有地域股票信息>></h5>
+            </div>
+            <div class="rank-table-div" align="center">
+                <ul class="rank-table rank-table-rise">
+                    <div>领涨地域</div>
+                    <li>
+                        <div class="rank-top">
+                            <div class="rank-head">金融业</div>
+                            <div class="rank-margin">+1.73%</div>
+                            <div class="rank-sta"><i class="fa fa-arrow-up"></i>65&nbsp;&nbsp;<i class="fa fa-arrow-right"></i>3&nbsp;&nbsp;<i class="fa fa-arrow-down"></i>13</div>
+                        </div>
+                        <div class="rank-bottom">
+                            <div class="rank-stock">宝硕股份</div>
+                            <div class="rank-stock-margin">+9.99%</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="rank-top">
+                            <div class="rank-head">金融业</div>
+                            <div class="rank-margin">+1.73%</div>
+                            <div class="rank-sta"><i class="fa fa-arrow-up"></i>65&nbsp;&nbsp;<i class="fa fa-arrow-right"></i>3&nbsp;&nbsp;<i class="fa fa-arrow-down"></i>13</div>
+                        </div>
+                        <div class="rank-bottom">
+                            <div class="rank-stock">宝硕股份</div>
+                            <div class="rank-stock-margin">+9.99%</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="rank-top">
+                            <div class="rank-head">金融业</div>
+                            <div class="rank-margin">+1.73%</div>
+                            <div class="rank-sta"><i class="fa fa-arrow-up"></i>65&nbsp;&nbsp;<i class="fa fa-arrow-right"></i>3&nbsp;&nbsp;<i class="fa fa-arrow-down"></i>13</div>
+                        </div>
+                        <div class="rank-bottom">
+                            <div class="rank-stock">宝硕股份</div>
+                            <div class="rank-stock-margin">+9.99%</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="rank-top">
+                            <div class="rank-head">金融业</div>
+                            <div class="rank-margin">+1.73%</div>
+                            <div class="rank-sta"><i class="fa fa-arrow-up"></i>65&nbsp;&nbsp;<i class="fa fa-arrow-right"></i>3&nbsp;&nbsp;<i class="fa fa-arrow-down"></i>13</div>
+                        </div>
+                        <div class="rank-bottom">
+                            <div class="rank-stock">宝硕股份</div>
+                            <div class="rank-stock-margin">+9.99%</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="rank-top">
+                            <div class="rank-head">金融业</div>
+                            <div class="rank-margin">+1.73%</div>
+                            <div class="rank-sta"><i class="fa fa-arrow-up"></i>65&nbsp;&nbsp;<i class="fa fa-arrow-right"></i>3&nbsp;&nbsp;<i class="fa fa-arrow-down"></i>13</div>
+                        </div>
+                        <div class="rank-bottom">
+                            <div class="rank-stock">宝硕股份</div>
+                            <div class="rank-stock-margin">+9.99%</div>
+                        </div>
+                    </li>
+
+                </ul>
+
+                <ul class="rank-table rank-table-fall">
+                    <div>领跌地域</div>
+                    <li>
+                        <div class="rank-top">
+                            <div class="rank-head">传媒艺术</div>
+                            <div class="rank-margin">-1.73%</div>
+                            <div class="rank-sta"><i class="fa fa-arrow-up"></i>3&nbsp;&nbsp;<i class="fa fa-arrow-right"></i>0&nbsp;&nbsp;<i class="fa fa-arrow-down"></i>8</div>
+                        </div>
+                        <div class="rank-bottom">
+                            <div class="rank-stock">姚记扑克</div>
+                            <div class="rank-stock-margin">-9.99%</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="rank-top">
+                            <div class="rank-head">传媒艺术</div>
+                            <div class="rank-margin">-1.73%</div>
+                            <div class="rank-sta"><i class="fa fa-arrow-up"></i>3&nbsp;&nbsp;<i class="fa fa-arrow-right"></i>0&nbsp;&nbsp;<i class="fa fa-arrow-down"></i>8</div>
+                        </div>
+                        <div class="rank-bottom">
+                            <div class="rank-stock">姚记扑克</div>
+                            <div class="rank-stock-margin">-9.99%</div>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="rank-top">
+                            <div class="rank-head">传媒艺术</div>
+                            <div class="rank-margin">-1.73%</div>
+                            <div class="rank-sta"><i class="fa fa-arrow-up"></i>3&nbsp;&nbsp;<i class="fa fa-arrow-right"></i>0&nbsp;&nbsp;<i class="fa fa-arrow-down"></i>8</div>
+                        </div>
+                        <div class="rank-bottom">
+                            <div class="rank-stock">姚记扑克</div>
+                            <div class="rank-stock-margin">-9.99%</div>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="rank-top">
+                            <div class="rank-head">传媒艺术</div>
+                            <div class="rank-margin">-1.73%</div>
+                            <div class="rank-sta"><i class="fa fa-arrow-up"></i>3&nbsp;&nbsp;<i class="fa fa-arrow-right"></i>0&nbsp;&nbsp;<i class="fa fa-arrow-down"></i>8</div>
+                        </div>
+                        <div class="rank-bottom">
+                            <div class="rank-stock">姚记扑克</div>
+                            <div class="rank-stock-margin">-9.99%</div>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="rank-top">
+                            <div class="rank-head">传媒艺术</div>
+                            <div class="rank-margin">-1.73%</div>
+                            <div class="rank-sta"><i class="fa fa-arrow-up"></i>3&nbsp;&nbsp;<i class="fa fa-arrow-right"></i>0&nbsp;&nbsp;<i class="fa fa-arrow-down"></i>8</div>
+                        </div>
+                        <div class="rank-bottom">
+                            <div class="rank-stock">姚记扑克</div>
+                            <div class="rank-stock-margin">-9.99%</div>
+                        </div>
+                    </li>
+
+                </ul>
+
+
+            </div>
+
+            <div data-scroll-reveal="enter from bottom over 1s" class="rank hot-func" id="con-rank">
+                <h2><i class="fa fa-cubes"></i> 概念板块涨跌</h2>
+                <h5>查看所有概念股票信息>></h5>
+            </div>
+            <div class="rank-table-div" align="center">
+                <ul class="rank-table rank-table-rise">
+                    <div>领涨概念</div>
+                    <li>
+                        <div class="rank-top">
+                            <div class="rank-head">金融业</div>
+                            <div class="rank-margin">+1.73%</div>
+                            <div class="rank-sta"><i class="fa fa-arrow-up"></i>65&nbsp;&nbsp;<i class="fa fa-arrow-right"></i>3&nbsp;&nbsp;<i class="fa fa-arrow-down"></i>13</div>
+                        </div>
+                        <div class="rank-bottom">
+                            <div class="rank-stock">宝硕股份</div>
+                            <div class="rank-stock-margin">+9.99%</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="rank-top">
+                            <div class="rank-head">金融业</div>
+                            <div class="rank-margin">+1.73%</div>
+                            <div class="rank-sta"><i class="fa fa-arrow-up"></i>65&nbsp;&nbsp;<i class="fa fa-arrow-right"></i>3&nbsp;&nbsp;<i class="fa fa-arrow-down"></i>13</div>
+                        </div>
+                        <div class="rank-bottom">
+                            <div class="rank-stock">宝硕股份</div>
+                            <div class="rank-stock-margin">+9.99%</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="rank-top">
+                            <div class="rank-head">金融业</div>
+                            <div class="rank-margin">+1.73%</div>
+                            <div class="rank-sta"><i class="fa fa-arrow-up"></i>65&nbsp;&nbsp;<i class="fa fa-arrow-right"></i>3&nbsp;&nbsp;<i class="fa fa-arrow-down"></i>13</div>
+                        </div>
+                        <div class="rank-bottom">
+                            <div class="rank-stock">宝硕股份</div>
+                            <div class="rank-stock-margin">+9.99%</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="rank-top">
+                            <div class="rank-head">金融业</div>
+                            <div class="rank-margin">+1.73%</div>
+                            <div class="rank-sta"><i class="fa fa-arrow-up"></i>65&nbsp;&nbsp;<i class="fa fa-arrow-right"></i>3&nbsp;&nbsp;<i class="fa fa-arrow-down"></i>13</div>
+                        </div>
+                        <div class="rank-bottom">
+                            <div class="rank-stock">宝硕股份</div>
+                            <div class="rank-stock-margin">+9.99%</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="rank-top">
+                            <div class="rank-head">金融业</div>
+                            <div class="rank-margin">+1.73%</div>
+                            <div class="rank-sta"><i class="fa fa-arrow-up"></i>65&nbsp;&nbsp;<i class="fa fa-arrow-right"></i>3&nbsp;&nbsp;<i class="fa fa-arrow-down"></i>13</div>
+                        </div>
+                        <div class="rank-bottom">
+                            <div class="rank-stock">宝硕股份</div>
+                            <div class="rank-stock-margin">+9.99%</div>
+                        </div>
+                    </li>
+
+                </ul>
+
+                <ul class="rank-table rank-table-fall">
+                    <div>领跌概念</div>
+                    <li>
+                        <div class="rank-top">
+                            <div class="rank-head">传媒艺术</div>
+                            <div class="rank-margin">-1.73%</div>
+                            <div class="rank-sta"><i class="fa fa-arrow-up"></i>3&nbsp;&nbsp;<i class="fa fa-arrow-right"></i>0&nbsp;&nbsp;<i class="fa fa-arrow-down"></i>8</div>
+                        </div>
+                        <div class="rank-bottom">
+                            <div class="rank-stock">姚记扑克</div>
+                            <div class="rank-stock-margin">-9.99%</div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="rank-top">
+                            <div class="rank-head">传媒艺术</div>
+                            <div class="rank-margin">-1.73%</div>
+                            <div class="rank-sta"><i class="fa fa-arrow-up"></i>3&nbsp;&nbsp;<i class="fa fa-arrow-right"></i>0&nbsp;&nbsp;<i class="fa fa-arrow-down"></i>8</div>
+                        </div>
+                        <div class="rank-bottom">
+                            <div class="rank-stock">姚记扑克</div>
+                            <div class="rank-stock-margin">-9.99%</div>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="rank-top">
+                            <div class="rank-head">传媒艺术</div>
+                            <div class="rank-margin">-1.73%</div>
+                            <div class="rank-sta"><i class="fa fa-arrow-up"></i>3&nbsp;&nbsp;<i class="fa fa-arrow-right"></i>0&nbsp;&nbsp;<i class="fa fa-arrow-down"></i>8</div>
+                        </div>
+                        <div class="rank-bottom">
+                            <div class="rank-stock">姚记扑克</div>
+                            <div class="rank-stock-margin">-9.99%</div>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="rank-top">
+                            <div class="rank-head">传媒艺术</div>
+                            <div class="rank-margin">-1.73%</div>
+                            <div class="rank-sta"><i class="fa fa-arrow-up"></i>3&nbsp;&nbsp;<i class="fa fa-arrow-right"></i>0&nbsp;&nbsp;<i class="fa fa-arrow-down"></i>8</div>
+                        </div>
+                        <div class="rank-bottom">
+                            <div class="rank-stock">姚记扑克</div>
+                            <div class="rank-stock-margin">-9.99%</div>
+                        </div>
+                    </li>
+
+                    <li>
+                        <div class="rank-top">
+                            <div class="rank-head">传媒艺术</div>
+                            <div class="rank-margin">-1.73%</div>
+                            <div class="rank-sta"><i class="fa fa-arrow-up"></i>3&nbsp;&nbsp;<i class="fa fa-arrow-right"></i>0&nbsp;&nbsp;<i class="fa fa-arrow-down"></i>8</div>
+                        </div>
+                        <div class="rank-bottom">
+                            <div class="rank-stock">姚记扑克</div>
+                            <div class="rank-stock-margin">-9.99%</div>
+                        </div>
+                    </li>
+
+                </ul>
+
+
+            </div>
+
+
+            <div style="margin-bottom: 10%;"></div>
         </div>
+
 
 
     </header>
