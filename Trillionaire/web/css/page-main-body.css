@@ -36,7 +36,8 @@
 
 
 
-.spec-figure {
+.spec-figure,
+.index-spec-figure {
     display: inline-block;
     width: 20%;
     background-color: transparent;
@@ -48,11 +49,13 @@
     text-align: center;
 }
 
-.spec-figure h2 {
+.spec-figure h2,
+.index-spec-figure h2 {
     font-weight: 400;
 }
 
-.spec-figure p {
+.spec-figure p,
+.index-spec-figure p {
     margin-top: 10%;
     font-weight: 200;
 }
@@ -145,4 +148,84 @@
 
     background-color: red;
     color: #FFF;
+}
+
+.rank {
+    font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, "PingFang SC", sans-serif;
+    margin: 5% 1%;
+    padding: 1.5% 1%;
+
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.rank h2 {
+    text-align: left;
+    font-size: 150%;
+    margin-left: 2%;
+    color: #FFF;
+}
+
+.rank h5 {
+    opacity: 0;
+    margin: -3% 5% 0 0;
+    font-weight: 100;
+    font-weight: 350;
+    text-align: right;
+    color: #FFF;
+    font-size: 100%;
+    transform: translate3d(0, 20px, 0);
+    -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+    transition: opacity 0.35s, transform 0.35s;
+}
+
+.rank:hover h5,
+.rank a:hover h5 {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    -webkit-transition-delay: 0.15s;
+    transition-delay: 0.15s;
+}
+
+.index-fig {
+    border-top: 1px solid #AAA;
+    margin-top: 8%;
+    padding: 8%;
+}
+
+.index-spec-figure {
+    margin: 3% 0;
+}
+
+.index-spec-figure h2 {
+    border-bottom: 1px solid #555;
+}
+
+.index-spec-figure p {
+    color: red;
+}
+
+.rank-table {
+    display: inline-table;
+    margin: 1.5%;
+    border-collapse: collapse;
+    text-align: center;
+    width: 40%;
+
+    border-left: 1px solid #AAA;
+    border-right: 1px solid #AAA;
+}
+
+td {
+    padding: 1%;
+}
+
+th {
+    color: #AAA;
+    padding: 2% 0;
+}
+
+.rank-table-div {
+    margin: 0 auto;
 }
