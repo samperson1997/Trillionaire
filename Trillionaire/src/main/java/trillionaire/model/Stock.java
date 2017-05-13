@@ -8,11 +8,7 @@ import javax.persistence.Table;
 /**
  * Created by michaeltan on 2017/5/6.
  */
-@Entity
-@Table(name = "stock")
 public class Stock {
-    @Id
-    @GeneratedValue
     private String date;
     private double open;
     private double high;

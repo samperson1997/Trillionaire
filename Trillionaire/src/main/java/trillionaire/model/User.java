@@ -11,27 +11,26 @@ import static java.lang.String.copyValueOf;
  * Created by michaeltan on 2017/5/9.
  */
 @Entity
-@Table(name = "user")
+@Table(name = "member")
 public class User {
-    @Id
-    @GeneratedValue
 
-    private int id;
+    @Id
+    private String id;
     private String username;
     private String password;
     private String email;
 
-    public User(int id, String name, String password){
+    public User(String id, String name, String password){
         this.id = id;
         this.username = name;
         this.password = password;
     }
 
-    public int getID() {
+    public String getID() {
         return this.id;
     }
 
-    public void setID(int ID) {
+    public void setID(String ID) {
         this.id = ID;
     }
 
