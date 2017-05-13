@@ -9,6 +9,7 @@ import trillionaire.service.UserService;
 import trillionaire.util.LoginState;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  * Created by michaeltan on 2017/5/6.
@@ -20,8 +21,10 @@ public class UserController {
 
     @RequestMapping(value = "/login",method= RequestMethod.POST)
     @ResponseBody
-    public String login(String username, String password){
+    public String login(HttpServletRequest request, String username, String password){
         if (username.equals("123")){
+            HttpSession session = request.getSession();
+            session.setAttribute("userId", username);
             return LoginState.LOGIN_SUCCESS.toString();
         }else {
             return  LoginState.LOGIN_FAIL.toString();
