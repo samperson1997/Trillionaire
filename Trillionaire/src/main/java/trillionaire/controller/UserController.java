@@ -22,8 +22,8 @@ public class UserController {
     public String login(HttpServletRequest request, String username, String password) {
         if (username.equals("123")) {
             HttpSession session = request.getSession();
-            session.setAttribute("userId", username);
-            return "redirect:/";
+            session.setAttribute("username", username);
+            return LoginState.LOGIN_SUCCESS.toString();
         } else {
             return LoginState.LOGIN_FAIL.toString();
         }
@@ -35,13 +35,14 @@ public class UserController {
         return LoginState.LOGIN_SUCCESS.toString();
     }
 
-    @RequestMapping(value = "/attention", method = RequestMethod.POST)
-    public void setAttention(String email, String code) {
+    @RequestMapping(value = "/follow", method = RequestMethod.POST)
+    public void setFollow(String email, String code) {
 
     }
 
     @RequestMapping(value = "/attention", method = RequestMethod.GET)
-    public void checkAttention(String email, String code) {
+    public void checkFollow(String email, String code) {
+
 
     }
 

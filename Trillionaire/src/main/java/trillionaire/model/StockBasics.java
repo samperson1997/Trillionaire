@@ -4,6 +4,7 @@ package trillionaire.model;
  * Created by michaeltan on 2017/5/14.
  */
 public class StockBasics {
+    private String code; //股票代码
     //盈利能力
     private double roe;   //净资产收益率
     private double netProfitRatio; //净利率

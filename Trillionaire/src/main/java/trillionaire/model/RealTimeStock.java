@@ -6,7 +6,6 @@ import javax.persistence.Id;
  * Created by michaeltan on 2017/5/14.
  */
 public class RealTimeStock {
-    @Id
     private String code; //代码
 
     private String name; //名称

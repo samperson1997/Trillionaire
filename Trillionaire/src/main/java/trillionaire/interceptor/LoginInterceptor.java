@@ -2,12 +2,10 @@ package trillionaire.interceptor;
 
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
-import trillionaire.model.User;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.util.Map;
 
 /**
  * Created by michaeltan on 2017/5/14.
@@ -17,7 +15,9 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
     public boolean preHandle(HttpServletRequest request,
                              HttpServletResponse response, Object handler) throws Exception {
         HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("now_user");
+        System.out.println("前置拦截器" + "      " + request.getHeader("x-requested-with"));
+        String username = (String) session.getAttribute("username");
+        System.out.println(username + " " + request.getContextPath());
         //用户掉线或被挤掉，保存当前链接并重定向到登录页面
         if (request.getHeader("x-requested-with") == null) {//非ajax(异步)请求，则保存当前访问链接
             String queryUrl = request.getQueryString() == null ? "" : ("?" + request.getQueryString());//获取参数
@@ -25,11 +25,16 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
             if (session.getAttribute("redirect_link") == null) {
                 session.setAttribute("redirect_link", requestUrl);
             }
-        }
-        if (user == null) {
-            response.sendRedirect(request.getContextPath() + "/other/toLogin");
+            if (username == null || username == "") {
+                response.sendRedirect(request.getContextPath() + "/login.html");
+                return false;
+            }
+        } else if (request.getHeader("x-requested-with") != null && request.getHeader("x-requested-with").equals("XMLHttpRequest")) {//如果是ajax类型，响应logout给前台
+            response.setHeader("sessionstatus", "logout");
             return false;
         }
+
+        /*
 
         //多用户登录限制判断,并给出提示信息
         boolean isLogin = false;
@@ -53,6 +58,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
             return false;
         }
 
+*/
         return super.preHandle(request, response, handler);
     }
 

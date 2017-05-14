@@ -21,8 +21,10 @@
 
     <script src="js/scrollReveal.js"></script>
     <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/angular/angular.js"></script>
     <script src="js/jquery-ui/jquery-ui.min.js"></script>
     <script src="js/jquery-ui/ui-choose.js"></script>
+    <script src="js/follow.js"></script>
 
 
 </head>
@@ -55,7 +57,7 @@
             <div class="input-area" onselectstart="return false;" style="display:inline-block;">
 
                 <!-- search box -->
-                <div style="display: inline;" ng-app="mySearchApp" ng-controller="searchCtrl">
+                <div style="display: inline;" >
                     <input style="display: inline;" id="search-box" class="form-control search-input" placeholder="请输入股票名称或代码" />
                     <ul style="display: inline;" id="results" class="search-results"></ul>
                     <!--<span class="input-group-btn"><button class="btn btn-default" type="button"><i class="fa fa-search"></i></button></span>-->
@@ -74,7 +76,7 @@
             </div>
         </div>
 
-        <div onselectstart="return false;">
+        <div onselectstart="return false;" ng-app="followApp">
 
             <!--        chart area-->
             <div style="float: left; width: 65%;">
@@ -83,10 +85,10 @@
             </div>
 
             <!--        figure area-->
-            <div class="info-board">
+            <div class="info-board" ng-controller="UserController">
                 <div class="stock-name" style="display: inline;">深发展A</div>
-                <div class="stock-code" style="display: inline;">&nbsp;|&nbsp;股票代码：000001</div>
-                <div style="display: inline-block;" class="button-page"><i class="fa fa-plus"></i> 关注&nbsp;</div>
+                <div class="stock-code" style="display: inline;">&nbsp;|&nbsp;000001</div>
+                <div style="display: inline-block;" class="button-page" ng-click="follow()"><i class="fa fa-plus"></i> 关注&nbsp;</div>
                 <div align="center" class="margin">
                     <h2><i class="fa fa-line-chart"></i> +9.20%</h2>
                 </div>
