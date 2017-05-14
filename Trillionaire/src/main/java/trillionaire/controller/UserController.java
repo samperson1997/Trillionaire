@@ -1,11 +1,9 @@
 package trillionaire.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import trillionaire.service.UserService;
 import trillionaire.util.LoginState;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,25 +17,33 @@ import javax.servlet.http.HttpSession;
 public class UserController {
 
 
-    @RequestMapping(value = "/login",method= RequestMethod.POST)
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody
-    public String login(HttpServletRequest request, String username, String password){
-        if (username.equals("123")){
+    public String login(HttpServletRequest request, String username, String password) {
+        if (username.equals("123")) {
             HttpSession session = request.getSession();
             session.setAttribute("userId", username);
-            return LoginState.LOGIN_SUCCESS.toString();
-        }else {
-            return  LoginState.LOGIN_FAIL.toString();
+            return "redirect:/";
+        } else {
+            return LoginState.LOGIN_FAIL.toString();
         }
     }
 
-    @RequestMapping(value="/register",method= RequestMethod.POST)
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
     @ResponseBody
-    public LoginState register(String id, String username, String password){
-        return LoginState.LOGIN_SUCCESS;
+    public String register(String email, String password) {
+        return LoginState.LOGIN_SUCCESS.toString();
     }
 
+    @RequestMapping(value = "/attention", method = RequestMethod.POST)
+    public void setAttention(String email, String code) {
 
+    }
+
+    @RequestMapping(value = "/attention", method = RequestMethod.GET)
+    public void checkAttention(String email, String code) {
+
+    }
 
 
 }

@@ -26,19 +26,19 @@ public class User {
         this.password = password;
     }
 
-    public String getID() {
+    public String getId() {
         return this.id;
     }
 
-    public void setID(String ID) {
+    public void setId(String ID) {
         this.id = ID;
     }
 
-    public String getUsername() {
+    public String getUserName() {
         return this.username;
     }
 
-    public void setUsername(String name) {
+    public void setUserName(String name) {
         this.username = name;
     }
 
