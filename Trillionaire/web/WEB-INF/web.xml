@@ -55,8 +55,7 @@
     </filter-mapping>
 
     <welcome-file-list>
-        <welcome-file>main.html</welcome-file>
-        <welcome-file>web.html</welcome-file>
+        <welcome-file>index.html</welcome-file>
         <welcome-file>login.html</welcome-file>
     </welcome-file-list>
 

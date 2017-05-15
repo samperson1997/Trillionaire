@@ -1,13 +1,13 @@
 package trillionaire.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import trillionaire.util.LoginState;
-
-import javax.servlet.http.HttpServletRequest;
+import trillionaire.util.MailUtil;
+import trillionaire.util.RandomCodeUtil;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * Created by michaeltan on 2017/5/6.
@@ -32,6 +32,12 @@ public class UserController {
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     @ResponseBody
     public String register(String email, String password) {
+        if(!email.matches("^\\w+@(\\w+\\.)+\\w+$")){  //验证是否符合邮箱格式
+            return "error";
+        }else {
+            String code = RandomCodeUtil.generateUniqueCode();
+            new Thread(new MailUtil(email, code)).start();
+        }
         return LoginState.LOGIN_SUCCESS.toString();
     }
 
@@ -46,5 +52,14 @@ public class UserController {
 
     }
 
+    @RequestMapping(value = "/verify", method = RequestMethod.GET)
+    public void verify(HttpServletResponse response, @RequestParam("code")String code) throws Exception{
+        System.out.println(code);
+        if (code.equals("123")) {
+            response.sendRedirect("/login.html");
+        } else {
+            response.sendRedirect("/index.html");
+        }
+    }
 
 }
