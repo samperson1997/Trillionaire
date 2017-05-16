@@ -30,7 +30,7 @@ public class StockController {
         return map;
     }
 
-    @RequestMapping(value = "history", method = RequestMethod.GET)
+    @RequestMapping(value = "/history", method = RequestMethod.GET)
     @ResponseBody
     public String getHistoryInfo(String code){
         String prefix = "http://hq.sinajs.cn/list=";
@@ -38,5 +38,10 @@ public class StockController {
         return "s";
     }
 
+    @RequestMapping(value = "/associate", method = RequestMethod.GET)
+    @ResponseBody
+    public Map<String, String> getSimilarStock(String input){
+        return null;
+    }
 
 }
