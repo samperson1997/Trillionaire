@@ -1,94 +1,120 @@
 package trillionaire.model;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
+import javax.persistence.Table;
+
 /**
  * Created by michaeltan on 2017/5/6.
  */
+@Entity
+@Table(name = "stock")
 public class Stock {
-    private String date;
-    private double open;
-    private double high;
-    private double low;
-    private double close;
-    private int volume; //成交量
-    private int turnover; //成交额
-    private double ma;
+
+    private int code;
+    private String name;
+    private String market;
+    private Area area;
+    private Industry industry;
+
+    private Set<Concept> concepts;
+
+    private Set<DayRecord> dayRecords;
+
 
     public Stock() {
 
     }
 
-    public Stock(String date, double open, double high, double low, double close, int volume, int turnover, double ma) {
-        this.date = date;
-        this.open = open;
-        this.high = high;
-        this.low = low;
-        this.close = close;
-        this.volume = volume;
-        this.turnover = turnover;
-        this.ma = ma;
+    public Stock(int code, String name, String market){
+        this.code = code;
+        this.name = name;
+        this.market = market;
     }
 
-    public String getDate() {
-        return date;
+    @Id
+    @Column(name = "code")
+    public int getCode(){
+
+        return code;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setCode(int code){
+
+        this.code = code;
     }
 
-    public double getOpen() {
-        return open;
+    @Column(name = "name")
+    public String getName(){
+
+        return name;
     }
 
-    public void setOpen(double open) {
-        this.open = open;
+    public void setName(String name){
+
+        this.name = name;
     }
 
-    public double getHigh() {
-        return high;
+    @Column(name = "market")
+    public String getMarket(){
+
+        return market;
     }
 
-    public void setHigh(double high) {
-        this.high = high;
+    public void setMarket(String market){
+
+        this.market = market;
+
     }
 
-    public double getLow() {
-        return low;
+
+
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "aid")
+    public Area getArea(){
+        return area;
     }
 
-    public void setLow(double low) {
-        this.low = low;
+    public void setArea(Area area){
+        this.area = area;
     }
 
-    public double getClose() {
-        return close;
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "iid")
+    public Industry getIndustry(){
+        return industry;
     }
 
-    public void setClose(double close) {
-        this.close = close;
+    public void setIndustry(Industry industry){
+        this.industry = industry;
     }
 
-    public int getVolume() {
-        return volume;
+    @OneToMany(cascade = CascadeType.MERGE)
+    @OrderBy("date ASC")
+    public Set<DayRecord> getDayRecords(){
+        return dayRecords;
     }
 
-    public void setVolume(int volume) {
-        this.volume = volume;
+    public void setDayRecords(Set<DayRecord> dayRecords){
+        this.dayRecords = dayRecords;
     }
 
-    public int getTurnover() {
-        return turnover;
+    @ManyToMany(cascade = CascadeType.MERGE)
+    public Set<Concept> getConcepts(){
+        return this.concepts;
     }
 
-    public void setTurnover(int turnover) {
-        this.turnover = turnover;
+    public void setConcepts(Set<Concept> concepts){
+        this.concepts = concepts;
     }
 
-    public double getMa() {
-        return ma;
-    }
-
-    public void setMa(double ma) {
-        this.ma = ma;
-    }
 }
