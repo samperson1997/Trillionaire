@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html style="width: 100%">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Trillionaire - 量化交易系统</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/top-bar.css">
+    <link rel="stylesheet" href="css/page-title.css">
+    <link rel="stylesheet" href="css/button.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/date-picker.css">
+    <link rel="stylesheet" href="css/page-main-body.css">
+
+    <link rel="stylesheet" href="js/jquery-ui/jquery-ui.min.css">
+    <link rel="stylesheet" href="js/jquery-ui/jquery-ui.theme.css">
+    <link rel="stylesheet" href="js/jquery-ui/jquery-ui.structure.min.css">
+
+    <link rel="stylesheet" href="js/jquery-ui/ui-choose.css">
+    <link href="css/font-awesome.css" rel="stylesheet" type="text/css">
+
+    <script src="js/scrollReveal.js"></script>
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/angular/angular.js"></script>
+    <script src="js/jquery-ui/jquery-ui.min.js"></script>
+    <script src="js/jquery-ui/ui-choose.js"></script>
+    <script src="js/user/follow.js"></script>
+
+
+</head>
+
+<body>
+    <header>
+        <div id="top-bar" onselectstart="return false;">
+            <a href="index.html">
+                <img src="img/logo.png" width="15%"></a>
+            <ul align="center">
+
+                <a href="stock.html">
+                    <li id="spec-button" class="head-button">个股信息</li>
+                </a>
+                <li id="compare-button" class="head-button">股票对比</li>
+                <a href="market.html">
+                    <li id="market-button" class="head-button">市场行情</li>
+                </a>
+                <li id="strategy-button" class="head-button">策略回测</li>
+                <li id="star-button" class="head-button">关注股票</li>
+                <a href="login.html">
+                    <li id="log-button" class="head-button" class="button-blue">用户登录</li>
+                </a>
+            </ul>
+        </div>
+        <div>
+            <div id="title" onselectstart="return false;" align="left" style="display:inline-block;">
+                <h1 class="page-main-title">个股信息<span class="page-sub-title">&nbsp;&nbsp;|&nbsp;&nbsp;轻松查看个股数据</span></h1>
+            </div>
+            <div class="input-area" onselectstart="return false;" style="display:inline-block;">
+
+                <!-- search box -->
+                <div style="display: inline;" >
+                    <input style="display: inline;" id="search-box" class="form-control search-input" placeholder="请输入股票名称或代码" />
+                    <ul style="display: inline;" id="results" class="search-results"></ul>
+                    <!--<span class="input-group-btn"><button class="btn btn-default" type="button"><i class="fa fa-search"></i></button></span>-->
+                </div>
+
+                <div style="display: inline;">
+                    <ul class="ui-choose" id="#k-choose">
+                        <li class="selected">日K</li>
+                        <li>周K</li>
+                        <li>月K</li>
+                    </ul>
+                </div>
+                <div style="display: inline;"><input class="date-picker" type="text" id="start-filter" placeholder="开始日期" />—<input class="date-picker" type="text" id="end-filter" placeholder="截止日期" /></div>
+
+                <div style="display: inline-block;" class="button-page" id="search-button">开始检索</div>
+            </div>
+        </div>
+
+        <div onselectstart="return false;" ng-app="followApp">
+
+            <!--        chart area-->
+            <div style="float: left; width: 65%;">
+                <div id="k-chart" style="width:100%; height: 500%;"></div>
+                <div id="vol-chart" style="width:100%; height: 300%;"></div>
+            </div>
+
+            <!--        figure area-->
+            <div class="info-board" ng-controller="UserController">
+                <div class="stock-name" style="display: inline;">深发展A</div>
+                <div class="stock-code" style="display: inline;">&nbsp;|&nbsp;000001</div>
+                <div style="display: inline-block;" class="button-page" ng-click="follow()"><i class="fa fa-plus"></i> 关注&nbsp;</div>
+                <div align="center" class="margin">
+                    <h2><i class="fa fa-line-chart"></i> +9.20%</h2>
+                </div>
+                <div align="center" id="main-figure">
+
+                    <div data-scroll-reveal="enter from bottom over 0.5s" class="spec-figure">
+                        <h2>最高价</h2>
+                        <p>12.50</p>
+                    </div>
+
+                    <div data-scroll-reveal="enter from bottom over 0.5s" class="spec-figure">
+                        <h2>最低价</h2>
+                        <p>10.03</p>
+                    </div>
+
+                    <div data-scroll-reveal="enter from bottom over 0.5s" class="spec-figure">
+                        <h2>开盘价</h2>
+                        <p>12.00</p>
+                    </div>
+                    <div data-scroll-reveal="enter from bottom over 0.5s" class="spec-figure">
+                        <h2>收盘价</h2>
+                        <p>13.91</p>
+                    </div>
+                    <div data-scroll-reveal="enter from bottom over 0.5s" class="spec-figure">
+                        <h2>成交量</h2>
+                        <p>2121221</p>
+                    </div>
+                    <div data-scroll-reveal="enter from bottom over 0.5s" class="spec-figure">
+                        <h2>成交额</h2>
+                        <p>22929121</p>
+                    </div>
+                    <div data-scroll-reveal="enter from bottom over 0.5s" class="spec-figure">
+                        <h2>换手率</h2>
+                        <p>22.9%</p>
+                    </div>
+                    <div data-scroll-reveal="enter from bottom over 0.5s" class="spec-figure">
+                        <h2>振幅</h2>
+                        <p>2.2%</p>
+                    </div>
+                </div>
+
+                <div class="other-function">
+                    <div data-scroll-reveal="enter from bottom over 1s" class="spec-func hot-func">
+                        <h2><i class="fa fa-fire"></i> 热度</h2>
+                        <p>1250人也在关注</p>
+                        <h5>查看我关注的股票>></h5>
+                    </div>
+
+                    <div data-scroll-reveal="enter from bottom over 1s" class="spec-func board-func">
+                        <h2><i class="fa fa-cubes"></i> 所属板块</h2>
+                        <p>主板</p>
+                        <h5>查看该板块股票信息>></h5>
+                    </div>
+
+                    <div data-scroll-reveal="enter from bottom over 1s" class="spec-func indu-func">
+                        <h2><i class="fa fa-industry"></i> 所属行业</h2>
+                        <p>金融、保险业-银行业</p>
+                        <h5>查看该行业股票信息>></h5>
+                    </div>
+                    <div data-scroll-reveal="enter from bottom over 1s" class="spec-func comp-func">
+                        <h2><i class="fa fa-balance-scale"></i> 股票对比</h2>
+                        <p>与其他股票一较高下</p>
+                        <h5>去股票对比界面>></h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </header>
+
+    <footer>
+        <div id="footer" onselectstart="return false;">
+            <div id="footer-div">
+                <div>
+                    <div class="big-li">
+                        <h4>关于</h4>
+                        <p><i class="fa fa-users"></i> 关于我们</p>
+                        <p><i class="fa fa-envelope"></i> 联系我们</p>
+                    </div>
+
+                    <div class="big-li">
+                        <h4>帮助</h4>
+                        <p><i class="fa fa-file-o"></i> API文档</p>
+                        <p><i class="fa fa-file-text-o"></i> 系统更新日志</p>
+                        <p><i class="fa fa-comments-o"></i> 反馈</p>
+                    </div>
+
+                    <div class="big-li">
+                        <h4>语言</h4>
+                        <p><i class="fa fa-language"></i> 简体中文</p>
+                        <p><i class="fa fa-language"></i> 繁體中文</p>
+                        <p><i class="fa fa-language"></i> English</p>
+                    </div>
+
+                </div>
+            </div>
+
+            <div id="cr">Copyright &copy; 2017 All Rights Reserved</div>
+        </div>
+    </footer>
+</body>
+
+<script src="js/date-picker.js"></script>
+<script src="js/echarts.js"></script>
+<script src="js/charts/k-chart.js"></script>
+<script src="js/charts/volume-chart.js"></script>
+
+<script>
+    (function() {
+        window.scrollReveal = new scrollReveal({
+            reset: false,
+            move: '50px'
+        });
+    })();
+
+</script>
+
+<script>
+    $('.ui-choose').ui_choose();
+
+    var uc = $('#k-choose').data('ui-choose');
+    uc.click = function(index, item) {
+        console.log('click', index, item.text())
+    }
+    uc.change = function(index, item) {
+        console.log('change', index, item.text())
+    }
+
+</script>
+
+</html>

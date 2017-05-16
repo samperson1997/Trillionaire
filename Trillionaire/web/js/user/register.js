@@ -31,7 +31,7 @@ angular.module("mainapp",[])
                                 $scope.inputUsername = "";$scope.inputPassword = "";  
                                 $scope.inputEmail = "";$scope.inputTel = "";  
                                 alert("注册成功!");  
-                                window.location.href = "login.html";  
+                                window.location.href = "../../login.html";
                             }else if(data.success == false && data.message == "该用户名已存在..."){  
                                 $scope.inputUsername = "";$scope.inputPassword = "";  
                                 $scope.inputEmail = "";$scope.inputTel = "";  

@@ -39,7 +39,7 @@ angular.module("followApp", [])
                     var sessionstatus = XMLHttpRequest.getResponseHeader("sessionstatus");
                     if (sessionstatus === "logout") {
                         //如果超时就处理 ，指定要跳转的页面
-                       window.location.href="login.html";
+                       window.location.href="../../login.html";
                     }
                 }
             });
