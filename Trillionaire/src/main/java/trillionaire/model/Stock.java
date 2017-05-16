@@ -1,10 +1,5 @@
 package trillionaire.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
 /**
  * Created by michaeltan on 2017/5/6.
  */
