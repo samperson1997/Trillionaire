@@ -45,13 +45,13 @@ ul.ui-choose > li:last-child {
     border-radius: 0 5px 5px 0;
 }
 
-ul.ui-choose > li.selected {
+ul.ui-choose > li:hover {
     z-index: 4;
-    border-color: #000;
+    border-color: #0080ff;
     color: #0080ff;
 }
 
-ul.ui-choose > li:hover {
+ul.ui-choose > li.selected {
     z-index: 3;
     border-color: #0080ff;
     background-color: #0080ff;

@@ -1,4 +1,4 @@
-package trillionaire.model;
+package trillionaire.vo;
 
 import trillionaire.util.DecimalUtil;
 

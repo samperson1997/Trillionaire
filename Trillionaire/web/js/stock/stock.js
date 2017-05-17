@@ -17,6 +17,17 @@ var getParam = function (name) {
     return items;
 };
 
+function dataAnalyze(data) {
+    var array = data;
+    var finalList;
+    for (var i = 0; i < array.length; i++) {
+        //对数组遍历
+        finalList = '';
+        $("#up-List").append(finalList);
+    }
+
+}
+
 function load() {
     var code = getParam('code');
     var loadInfo = $.ajax({
@@ -26,7 +37,7 @@ function load() {
         contentType: "application/x-www-form-urlencoded",
         dataType: "json",
         success: function (data) {
-            //dataAnalyze(data,"Concept");
+            //dataAnalyze(data);
         },
         error: function (request, status, err) {
             if (status == "timeout") {

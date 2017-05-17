@@ -7,10 +7,11 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
+import org.springframework.stereotype.Repository;
 import trillionaire.model.DayRecord;
 import trillionaire.model.Stock;
 import trillionaire.dao.DayRecordDao;
-
+@Repository
 public class DayRecordDaoImpl implements DayRecordDao{
 	
 	SessionFactory sessionFactory = null;

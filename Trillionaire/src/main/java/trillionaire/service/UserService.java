@@ -28,12 +28,43 @@ public interface UserService {
      * 重置密码
      *
      * @param email 用户账号
-     * @param oldPassword 旧的密码
      * @param newPassword 新的密码
-     * @return 返回的结果状态
+     * @return 重置是否成功
      */
-    public LoginState resetPassword(String email, String oldPassword, String newPassword);
+    public LoginState resetPassword(String email, String newPassword);
 
+    /**
+     * 查找用户是否存在
+     *
+     * @param email 用户账号
+     * @return 是否存在
+     */
+    public boolean find(String email);
 
+    /**
+     * 用户邮箱验证
+     *
+     * @param randomCode 验证码
+     * @return 验证是否成功
+     */
+    public boolean verify(String randomCode);
+
+    /**
+     * 关注股票
+     *
+     * @param email 用户邮箱
+     * @param code 股票代码
+     * @return 关注是否成功
+     */
+    public boolean follow(String email, String code);
+
+    /**
+     * 用户是否已关注股票
+     *
+     * @param email 用户邮箱
+     * @param code 股票代码
+     * @return 是否已关注
+     */
+    public boolean checkfollow(String email, String code);
 
 }

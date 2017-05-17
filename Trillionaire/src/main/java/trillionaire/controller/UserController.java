@@ -1,7 +1,9 @@
 package trillionaire.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import trillionaire.service.UserService;
 import trillionaire.util.LoginState;
 import trillionaire.util.MailUtil;
 import trillionaire.util.RandomCodeUtil;
@@ -15,7 +17,8 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 @RequestMapping("/user")
 public class UserController {
-
+    @Autowired
+    private UserService userService;
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody
@@ -34,11 +37,15 @@ public class UserController {
     public String register(String email, String password) {
         if(!email.matches("^\\w+@(\\w+\\.)+\\w+$")){  //验证是否符合邮箱格式
             return "error";
-        }else {
+        }
+        boolean ifexist = userService.find(email);
+        if (ifexist){
+            return "exists";
+        } else {
             String code = RandomCodeUtil.generateUniqueCode();
             new Thread(new MailUtil(email, code)).start();
+            return "success";
         }
-        return LoginState.LOGIN_SUCCESS.toString();
     }
 
     @RequestMapping(value = "/follow", method = RequestMethod.POST)

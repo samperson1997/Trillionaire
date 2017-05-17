@@ -19,6 +19,7 @@ public class User {
     private String username;
     private String password;
     private String email;
+    private String confirmCode;
 
     public User(String email, String name, String password){
         this.email = email;

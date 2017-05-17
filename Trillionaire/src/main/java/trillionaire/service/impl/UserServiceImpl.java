@@ -19,7 +19,27 @@ public class UserServiceImpl implements UserService{
         return null;
     }
 
+    public LoginState resetPassword(String email, String newPassword) {
+        return null;
+    }
+
     public LoginState resetPassword(String id, String oldPassword, String newPassword) {
         return null;
+    }
+
+    public boolean find(String email) {
+        return false;
+    }
+
+    public boolean verify(String randomCode) {
+        return false;
+    }
+
+    public boolean follow(String email, String code) {
+        return false;
+    }
+
+    public boolean checkfollow(String email, String code) {
+        return false;
     }
 }
