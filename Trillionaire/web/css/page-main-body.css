@@ -153,7 +153,7 @@
 .rank {
     font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, "PingFang SC", sans-serif;
     margin: 5% 1%;
-    padding: 1.5% 1%;
+    padding: 1% 1%;
 
     overflow: hidden;
     cursor: pointer;
@@ -168,7 +168,7 @@
 
 .rank h5 {
     opacity: 0;
-    margin: -3% 5% 0 0;
+    margin: -2% 5% 0 0;
     font-weight: 300;
     text-align: right;
     color: #FFF;
@@ -302,6 +302,26 @@
     font-weight: 400;
 }
 
+.whole-table {
+    margin: 0.5%;
+    width: 90%;
+    display: inline-table;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+.whole-table th {
+    color: #AAA;
+    font-size: 80%;
+    font-weight: 400;
+}
+
+.whole-table td {
+    border-bottom: 1px solid #AAA;
+    border-top: 1px solid #AAA;
+    padding: 0.5% 0;
+}
+
 .page-content {
     position: fixed;
     top: 26%;
@@ -317,4 +337,25 @@
     list-style: square;
     cursor: pointer;
     margin: 20% 0;
+}
+
+.page-content-fix {
+    width: 13%;
+    padding-left: 5%;
+    margin-bottom: 3%;
+    float: left;
+    border-right: 1px solid #AAA;
+}
+
+.page-content-fix li {
+    list-style: square;
+}
+
+.page-content-fix li ul li {
+    cursor: pointer;
+    list-style: none;
+}
+
+.page-content-fix li ul li:hover {
+    color: red;
 }

@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html style="width: 100%">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Trillionaire - 量化交易系统</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/top-bar.css">
+    <link rel="stylesheet" href="css/page-title.css">
+    <link rel="stylesheet" href="css/button.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/page-main-body.css">
+
+    <link rel="stylesheet" href="js/jquery-ui/jquery-ui.min.css">
+    <link rel="stylesheet" href="js/jquery-ui/jquery-ui.theme.css">
+    <link rel="stylesheet" href="js/jquery-ui/jquery-ui.structure.min.css">
+
+    <link rel="stylesheet" href="js/jquery-ui/ui-choose.css">
+    <link href="css/font-awesome.css" rel="stylesheet" type="text/css">
+
+    <script src="js/scrollReveal.js"></script>
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/jquery-ui/jquery-ui.min.js"></script>
+    <script src="js/jquery-ui/ui-choose.js"></script>
+    <script src="js/pagination.js"></script>
+
+
+</head>
+
+<body>
+    <header>
+        <div id="top-bar" onselectstart="return false;">
+            <a href="index.html">
+                <img src="img/logo.png" width="15%"></a>
+            <ul align="center">
+
+                <a href="stock.html">
+                    <li id="spec-button" class="head-button">个股信息</li>
+                </a>
+                <li id="compare-button" class="head-button">股票对比</li>
+                <a href="market.html">
+                    <li id="market-button" class="head-button">市场行情</li>
+                </a>
+                <li id="strategy-button" class="head-button">策略回测</li>
+                <li id="star-button" class="head-button">关注股票</li>
+                <a href="login.html">
+                    <li id="log-button" class="head-button" class="button-blue">用户登录</li>
+                </a>
+            </ul>
+        </div>
+        <div>
+            <div id="title" onselectstart="return false;" align="left" style="display:inline-block;">
+                <h1 class="page-main-title"><a href="market-page.html">市场行情</a><span class="page-sub-title">&nbsp;&nbsp;|&nbsp;&nbsp;行业板块数据</span></h1>
+            </div>
+        </div>
+
+        <div>
+            <ul>
+                <li>C
+                    <ul>
+                        <li>采矿业</li>
+                        <li>餐饮酒店</li>
+                        <li>茶酒饮料</li>
+                        <li>出版传媒</li>
+                        <li>传媒艺术</li>
+                    </ul>
+
+                </li>
+                <li>D
+                    <ul>
+                        <li>电器制造</li>
+                    </ul>
+                </li>
+                <li>F
+                    <ul>
+                        <li>房地产业</li>
+                        <li>纺织业</li>
+                        <li>非金属制品</li>
+                        <li>废品利用</li>
+                        <li>服装制造</li>
+                    </ul>
+                </li>
+                <li>H
+                    <ul>
+                        <li>黑色金属</li>
+                        <li>化纤制造</li>
+                        <li>化学制品</li>
+                    </ul>
+                </li>
+                <li>J
+                    <ul>
+                        <li>家具制造</li>
+                        <li>建筑业</li>
+                        <li>交通物流</li>
+                        <li>交运设备</li>
+                        <li>教育</li>
+                        <li>金融业</li>
+                        <li>金属制品</li>
+                    </ul>
+                </li>
+                <li>K
+                    <ul>
+                        <li>科研技术</li>
+                    </ul>
+                </li>
+                <li>L
+                    <ul>
+                        <li>粮食加工</li>
+                        <li>旅游环境</li>
+                    </ul>
+                </li>
+                <li>M
+                    <ul>
+                        <li>木材加工</li>
+                    </ul>
+                </li>
+                <li>N
+                    <ul>
+                        <li>农林牧渔</li>
+                    </ul>
+                </li>
+                <li>P
+                    <ul>
+                        <li>批发零售</li>
+                        <li>皮毛制鞋</li>
+                    </ul>
+                </li>
+                <li>Q
+                    <ul>
+                        <li>其他制造业</li>
+                        <li>汽车制造</li>
+                    </ul>
+                </li>
+                <li>S
+                    <ul>
+                        <li>石油加工</li>
+                        <li>食品制造</li>
+                        <li>水电燃气</li>
+                    </ul>
+                </li>
+                <li>T
+                    <ul>
+                        <li>通信设备</li>
+                        <li>通用设备制造</li>
+                    </ul>
+                </li>
+                <li>W
+                    <ul>
+                        <li>卫生</li>
+                    </ul>
+                </li>
+                <li>X
+                    <ul>
+                        <li>橡胶塑料</li>
+                        <li>信息技术</li>
+                    </ul>
+                </li>
+                <li>Y
+                    <ul>
+                        <li>医药制造</li>
+                        <li>仪器仪表</li>
+                        <li>有色金属</li>
+                    </ul>
+                </li>
+                <li>Z
+                    <ul>
+                        <li>造纸印刷</li>
+                        <li>专用设备制造</li>
+                        <li>综合</li>
+                        <li>租赁和商务</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <div style="float: right; width: 80%;">
+            <div class="whole-rank-div" align="center">
+                <table class="whole-table" id="whole-table">
+                    <tr>
+                        <th>排名</th>
+                        <th>股票代码</th>
+                        <th>股票名称</th>
+                        <th>涨跌幅</th>
+                        <th>涨跌额</th>
+                        <th>开盘价</th>
+                        <th>收盘价</th>
+                        <th>最高价</th>
+                        <th>最低价</th>
+                        <th>成交量(万)</th>
+                        <th>成交额(亿)</th>
+                        <th>换手率</th>
+                        <th>振幅</th>
+                        <th>市盈率</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>000001</td>
+                        <td>深发展A</td>
+                        <td>+10.0%</td>
+                        <td>1.46</td>
+                        <td>14.50</td>
+                        <td>14.61</td>
+                        <td>16.07</td>
+                        <td>14.38</td>
+                        <td>42.64</td>
+                        <td>6.53</td>
+                        <td>10.34%</td>
+                        <td>11.57%</td>
+                        <td>-94.5</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>000001</td>
+                        <td>深发展A</td>
+                        <td>+10.0%</td>
+                        <td>1.46</td>
+                        <td>14.50</td>
+                        <td>14.61</td>
+                        <td>16.07</td>
+                        <td>14.38</td>
+                        <td>42.64</td>
+                        <td>6.53</td>
+                        <td>10.34%</td>
+                        <td>11.57%</td>
+                        <td>-94.5</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>000001</td>
+                        <td>深发展A</td>
+                        <td>+10.0%</td>
+                        <td>1.46</td>
+                        <td>14.50</td>
+                        <td>14.61</td>
+                        <td>16.07</td>
+                        <td>14.38</td>
+                        <td>42.64</td>
+                        <td>6.53</td>
+                        <td>10.34%</td>
+                        <td>11.57%</td>
+                        <td>-94.5</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>000001</td>
+                        <td>深发展A</td>
+                        <td>+10.0%</td>
+                        <td>1.46</td>
+                        <td>14.50</td>
+                        <td>14.61</td>
+                        <td>16.07</td>
+                        <td>14.38</td>
+                        <td>42.64</td>
+                        <td>6.53</td>
+                        <td>10.34%</td>
+                        <td>11.57%</td>
+                        <td>-94.5</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>000001</td>
+                        <td>深发展A</td>
+                        <td>+10.0%</td>
+                        <td>1.46</td>
+                        <td>14.50</td>
+                        <td>14.61</td>
+                        <td>16.07</td>
+                        <td>14.38</td>
+                        <td>42.64</td>
+                        <td>6.53</td>
+                        <td>10.34%</td>
+                        <td>11.57%</td>
+                        <td>-94.5</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>000001</td>
+                        <td>深发展A</td>
+                        <td>+10.0%</td>
+                        <td>1.46</td>
+                        <td>14.50</td>
+                        <td>14.61</td>
+                        <td>16.07</td>
+                        <td>14.38</td>
+                        <td>42.64</td>
+                        <td>6.53</td>
+                        <td>10.34%</td>
+                        <td>11.57%</td>
+                        <td>-94.5</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>000001</td>
+                        <td>深发展A</td>
+                        <td>+10.0%</td>
+                        <td>1.46</td>
+                        <td>14.50</td>
+                        <td>14.61</td>
+                        <td>16.07</td>
+                        <td>14.38</td>
+                        <td>42.64</td>
+                        <td>6.53</td>
+                        <td>10.34%</td>
+                        <td>11.57%</td>
+                        <td>-94.5</td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>000001</td>
+                        <td>深发展A</td>
+                        <td>+10.0%</td>
+                        <td>1.46</td>
+                        <td>14.50</td>
+                        <td>14.61</td>
+                        <td>16.07</td>
+                        <td>14.38</td>
+                        <td>42.64</td>
+                        <td>6.53</td>
+                        <td>10.34%</td>
+                        <td>11.57%</td>
+                        <td>-94.5</td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td>000001</td>
+                        <td>深发展A</td>
+                        <td>+10.0%</td>
+                        <td>1.46</td>
+                        <td>14.50</td>
+                        <td>14.61</td>
+                        <td>16.07</td>
+                        <td>14.38</td>
+                        <td>42.64</td>
+                        <td>6.53</td>
+                        <td>10.34%</td>
+                        <td>11.57%</td>
+                        <td>-94.5</td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td>000001</td>
+                        <td>深发展A</td>
+                        <td>+10.0%</td>
+                        <td>1.46</td>
+                        <td>14.50</td>
+                        <td>14.61</td>
+                        <td>16.07</td>
+                        <td>14.38</td>
+                        <td>42.64</td>
+                        <td>6.53</td>
+                        <td>10.34%</td>
+                        <td>11.57%</td>
+                        <td>-94.5</td>
+                    </tr>
+
+                </table>
+            </div>
+
+            <div style="margin-bottom: 10%;"></div>
+        </div>
+
+        <div id="pagiDiv" align="right" style="width:1200px">
+            <span id="spanFirst">First</span>&nbsp;&nbsp;
+            <span id="spanPre">Pre</span>&nbsp;&nbsp;
+            <span id="spanNext">Next</span>&nbsp;&nbsp;
+            <span id="spanLast">Last</span>&nbsp;&nbsp; The&nbsp;
+            <span id="spanPageNum"></span>&nbsp;Page/Total&nbsp;<span id="spanTotalPage"></span>&nbsp;Page
+        </div>
+
+
+    </header>
+
+    <footer>
+        <div id="footer" onselectstart="return false;">
+            <div id="footer-div">
+                <div>
+                    <div class="big-li">
+                        <h4>关于</h4>
+                        <p><i class="fa fa-users"></i> 关于我们</p>
+                        <p><i class="fa fa-envelope"></i> 联系我们</p>
+                    </div>
+
+                    <div class="big-li">
+                        <h4>帮助</h4>
+                        <p><i class="fa fa-file-o"></i> API文档</p>
+                        <p><i class="fa fa-file-text-o"></i> 系统更新日志</p>
+                        <p><i class="fa fa-comments-o"></i> 反馈</p>
+                    </div>
+
+                    <div class="big-li">
+                        <h4>语言</h4>
+                        <p><i class="fa fa-language"></i> 简体中文</p>
+                        <p><i class="fa fa-language"></i> 繁體中文</p>
+                        <p><i class="fa fa-language"></i> English</p>
+                    </div>
+
+                </div>
+            </div>
+
+            <div id="cr">Copyright &copy; 2017 All Rights Reserved</div>
+        </div>
+    </footer>
+</body>
+
+
+<script>
+    (function() {
+        window.scrollReveal = new scrollReveal({
+            reset: false,
+            move: '50px'
+        });
+    })();
+
+</script>
+
+<script>
+    $('.ui-choose').ui_choose();
+
+    var uc = $('#k-choose').data('ui-choose');
+    uc.click = function(index, item) {
+        console.log('click', index, item.text())
+    }
+    uc.change = function(index, item) {
+        console.log('change', index, item.text())
+    }
+
+</script>
+
+<script>
+    //全局变量
+    var numCount; //数据总数量
+    var columnsCounts; //数据列数量
+    var pageCount; //每页显示的数量
+    var pageNum; //总页数
+    var currPageNum; //当前页数
+
+    //页面标签变量
+    var blockTable;
+    var preSpan;
+    var firstSpan;
+    var nextSpan;
+    var lastSpan;
+    var pageNumSpan;
+    var currPageSpan;
+
+
+
+    window.onload = function() {
+        //页面标签变量
+        blockTable = document.getElementById("whole-table");
+        preSpan = document.getElementById("spanPre");
+        firstSpan = document.getElementById("spanFirst");
+        nextSpan = document.getElementById("spanNext");
+        lastSpan = document.getElementById("spanLast");
+        pageNumSpan = document.getElementById("spanTotalPage");
+        currPageSpan = document.getElementById("spanPageNum");
+
+        numCount = document.getElementById("whole-table").rows.length - 1; //取table的行数作为数据总数量（减去标题行1）
+        alert(numCount)
+        columnsCounts = blockTable.rows[0].cells.length;
+        pageCount = 5;
+        pageNum = parseInt(numCount / pageCount);
+        if (0 != numCount % pageCount) {
+            pageNum += 1;
+        }
+
+        firstPage();
+    };
+
+</script>
+
+</html>

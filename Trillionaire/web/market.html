@@ -165,7 +165,7 @@
             </div>
 
 
-            <div data-scroll-reveal="enter from bottom over 1s" class="rank comp-func" id="whole-rank">
+            <div class="rank comp-func" id="whole-rank">
                 <h2><i class="fa fa-pie-chart"></i> 大盘涨跌</h2>
                 <h5>查看所有股票信息>></h5>
             </div>
@@ -321,10 +321,12 @@
 
             </div>
 
-            <div data-scroll-reveal="enter from bottom over 1s" class="rank indu-func" id="indu-rank">
-                <h2><i class="fa fa-industry"></i> 行业板块涨跌</h2>
-                <h5>查看所有行业股票信息>></h5>
-            </div>
+            <a href="industry.html">
+                <div class="rank indu-func" id="indu-rank">
+                    <h2><i class="fa fa-industry"></i> 行业板块涨跌</h2>
+                    <h5>查看所有行业股票信息>></h5>
+                </div>
+            </a>
             <div class="rank-table-div" align="center">
                 <ul class="rank-table rank-table-rise" id="upIndustry-List" style="text-align: left; margin-left: 10%">
                     <div style="text-align: center">领涨行业</div>
@@ -335,7 +337,7 @@
                 </ul>
             </div>
 
-            <div data-scroll-reveal="enter from bottom over 1s" class="rank board-func" id="area-rank">
+            <div class="rank board-func" id="area-rank">
                 <h2><i class="fa fa-location-arrow"></i> 地域板块涨跌</h2>
                 <h5>查看所有地域股票信息>></h5>
             </div>
@@ -349,7 +351,7 @@
                 </ul>
             </div>
 
-            <div data-scroll-reveal="enter from bottom over 1s" class="rank hot-func" id="con-rank">
+            <div class="rank hot-func" id="con-rank">
                 <h2><i class="fa fa-cubes"></i> 概念板块涨跌</h2>
                 <h5>查看所有概念股票信息>></h5>
             </div>
@@ -422,6 +424,7 @@
 </script>
 <script>
     $(document).ready(load);
+
 </script>
 <script>
     $('.ui-choose').ui_choose();
