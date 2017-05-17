@@ -79,10 +79,41 @@
         <div onselectstart="return false;" ng-app="followApp">
 
             <!--        chart area-->
-            <div style="float: left; width: 65%;">
+            <div style="float: left; width: 65%;" align="center">
                 <div id="k-chart" style="width:100%; height: 500%;"></div>
                 <div id="vol-chart" style="width:100%; height: 300%;"></div>
+                <div id="kdj-chart" style="width:100%; height: 300%;"></div>
+                <div class="other-function">
+                    <div data-scroll-reveal="enter from bottom over 1s" class="spec-func hot-func">
+                        <h2><i class="fa fa-fire"></i> 热度</h2>
+                        <p>1250人也在关注</p>
+                        <h5>查看我关注的股票>></h5>
+                    </div>
+
+
+                    <div data-scroll-reveal="enter from bottom over 1s" class="spec-func board-func">
+                        <h2><i class="fa fa-cubes"></i> 所属板块</h2>
+                        <p>主板</p>
+                        <h5>查看该板块股票信息>></h5>
+                    </div>
+
+                    <a href="industry.html">
+                        <div data-scroll-reveal="enter from bottom over 1s" class="spec-func indu-func">
+                            <h2><i class="fa fa-industry"></i> 所属行业</h2>
+                            <p>金融、保险业-银行业</p>
+                            <h5>查看该行业股票信息>></h5>
+                        </div>
+                    </a>
+
+                    <div data-scroll-reveal="enter from bottom over 1s" class="spec-func comp-func">
+                        <h2><i class="fa fa-balance-scale"></i> 股票对比</h2>
+                        <p>与其他股票一较高下</p>
+                        <h5>去股票对比界面>></h5>
+                    </div>
+                </div>
+
             </div>
+
 
             <!--        figure area-->
             <div class="info-board" ng-controller="UserController">
@@ -175,31 +206,6 @@
                     </div>
                 </div>
 
-                <div class="other-function">
-                    <div data-scroll-reveal="enter from bottom over 1s" class="spec-func hot-func">
-                        <h2><i class="fa fa-fire"></i> 热度</h2>
-                        <p>1250人也在关注</p>
-                        <h5>查看我关注的股票>></h5>
-                    </div>
-
-                    <div data-scroll-reveal="enter from bottom over 1s" class="spec-func board-func">
-                        <h2><i class="fa fa-cubes"></i> 所属板块</h2>
-                        <p>主板</p>
-                        <h5>查看该板块股票信息>></h5>
-                    </div>
-
-                    <div data-scroll-reveal="enter from bottom over 1s" class="spec-func indu-func">
-                        <h2><i class="fa fa-industry"></i> 所属行业</h2>
-                        <p>金融、保险业-银行业</p>
-                        <h5>查看该行业股票信息>></h5>
-                    </div>
-                    <div data-scroll-reveal="enter from bottom over 1s" class="spec-func comp-func">
-                        <h2><i class="fa fa-balance-scale"></i> 股票对比</h2>
-                        <p>与其他股票一较高下</p>
-                        <h5>去股票对比界面>></h5>
-                    </div>
-                </div>
-
             </div>
         </div>
 
@@ -241,6 +247,7 @@
 <script src="js/echarts.js"></script>
 <script src="js/charts/k-chart.js"></script>
 <script src="js/charts/volume-chart.js"></script>
+<script src="js/charts/kdj-line.js"></script>
 <script src="js/charts/ability-chart.js"></script>
 <script src="js/charts/earning-chart.js"></script>
 <script src="js/charts/recommend-trend.js"></script>

@@ -66,11 +66,14 @@
 
 .spec-func {
     font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, "PingFang SC", sans-serif;
-    margin: 5% 1%;
+    margin: 1% 1%;
     padding: 3% 1%;
 
     overflow: hidden;
     cursor: pointer;
+
+    width: 40%;
+    display: inline-block;
 }
 
 .spec-func h2 {
@@ -121,7 +124,6 @@
 }
 
 .other-function {
-    border-top: 1px solid #AAA;
     padding-top: 5%;
     margin: 5% auto;
 }
