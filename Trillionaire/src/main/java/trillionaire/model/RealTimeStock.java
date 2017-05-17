@@ -15,9 +15,9 @@ public class RealTimeStock {
     private double high; //最高价
     private double low; //最低价
     private double settlement; //昨日收盘价
-    private int volume; //成交量
+    private long volume; //成交量
     private double turnoverratio; //换手率
-    private int amount; //成交量
+    private long amount; //成交量
     private double per; //市盈率
     private double pb; //市净率
     private double mktcap; //总市值
@@ -25,6 +25,25 @@ public class RealTimeStock {
 
     public RealTimeStock() {
 
+    }
+
+    public RealTimeStock(String code, String name, double changepercent, double trade, double open, double high, double low, double settlement,
+                         long volume, double turnoverratio, long amount, double per, double pb, double mktcap, double nmc){
+        this.code = code;
+        this.name = name;
+        this.changepercent = changepercent;
+        this.trade = trade;
+        this.open = open;
+        this.high = high;
+        this.low = low;
+        this.settlement = settlement;
+        this.volume = volume;
+        this.turnoverratio = turnoverratio;
+        this.amount = amount;
+        this.per = per;
+        this.pb = pb;
+        this.mktcap = mktcap;
+        this.nmc = nmc;
     }
 
     public String getCode() {
@@ -59,7 +78,7 @@ public class RealTimeStock {
         return settlement;
     }
 
-    public int getVolume() {
+    public long getVolume() {
         return volume;
     }
 
@@ -67,7 +86,7 @@ public class RealTimeStock {
         return turnoverratio;
     }
 
-    public int getAmount() {
+    public long getAmount() {
         return amount;
     }
 
@@ -86,4 +105,8 @@ public class RealTimeStock {
     public double getNmc() {
         return nmc;
     }
+
+
+
+
 }
