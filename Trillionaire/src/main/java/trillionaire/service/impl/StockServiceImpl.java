@@ -1,13 +1,14 @@
 package trillionaire.service.impl;
 
+import org.apache.commons.math3.distribution.NormalDistribution;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import trillionaire.dao.DayRecordDao;
 import trillionaire.model.DayRecord;
+import trillionaire.service.StockService;
 import trillionaire.vo.Earnings;
 import trillionaire.vo.RecommendationTrends;
 import trillionaire.vo.StockAbility;
-import trillionaire.service.StockService;
 
 import java.util.List;
 import java.util.Map;
@@ -20,10 +21,39 @@ public class StockServiceImpl implements StockService {
     @Autowired
     private DayRecordDao dayRecordDao;
 
-    public List<DayRecord> getStockInfo(String code) {
+    public List<DayRecord> getDailyInfo(String code) {
         int stock = Integer.parseInt(code);
         List<DayRecord> list = dayRecordDao.getDayRecordsByCode(stock);
         return list;
+    }
+
+    public List<DayRecord> getWeeklyInfo(String code) {
+
+        return null;
+    }
+
+    public List<DayRecord> getMonthlyInfo(String code) {
+
+        return null;
+    }
+
+    public List<DayRecord> getAnnualInfo(String code) {
+
+        return null;
+    }
+
+    public List<DayRecord> getStockInfo(String code, String span) {
+
+        if (span.equals("daily")){
+
+        }else if (span.equals("weekly")){
+
+        }else if (span.equals("monthly")){
+
+        }else {
+
+        }
+        return null;
     }
 
     public Map<String, Object> getSimilarStock(String input) {
@@ -33,10 +63,11 @@ public class StockServiceImpl implements StockService {
 
     public StockAbility getStockAbility(String code) {
 
+
         return null;
     }
 
-    public Map<String, Earnings> getEarnings(String code) {
+    public List<Earnings> getEarnings(String code) {
 
         return null;
     }
@@ -52,6 +83,62 @@ public class StockServiceImpl implements StockService {
     }
 
     public double getPriceTarget(String code) {
+
+        return 0;
+    }
+
+    public String getOBV(String code) {
+
+        return null;
+    }
+
+    private double calculateProfitAbility() {
+        double result = 0;
+        double roe;   //净资产收益率
+        double netProfitRatio; //净利率
+        double grossProfitRate;  //毛利率
+        double netProfit;   //净利润(万元)
+        double esp;   //每股收益
+        double income;   //营业收入(百万元)
+        double bips;    //每股主营业务收入(元)
+        return 0;
+    }
+
+    private double calculateOperationAbility() {
+        double result = 0;
+        double arTurnover;  //应收账款周转率(次)
+        double arTurnDays;   //应收账款周转天数(天)
+        double inventoryTurnover; //存货周转率(次)
+        double inventoryDays;   //存货周转天数(天)
+        double currentAssetTurnover; //流动资产周转率(次)
+        double currentAssetDays;   //流动资产周转天数(天)
+
+
+        return 0;
+    }
+
+    private double calculateGrowthAbility() {
+        double result = 0;
+        double mbrg; //主营业务收入增长率(%)
+        double nprg; //净利润增长率(%)
+        double nav; //净资产增长率
+        double targ; //总资产增长率
+        double epsg; //每股收益增长率
+        double seg; //股东权益增长率
+
+
+        return 0;
+    }
+
+    private double calculateDebtPayingAbility() {
+        double result = 0;
+        double currentRatio; //流动比率
+        double quickRatio; //速动比率
+        double cashRatio; //现金比率
+        double icRatio; //利息支付倍数
+        double sheqRatio; //股东权益比率
+        double adRatio; //股东权益增长率
+
 
         return 0;
     }
