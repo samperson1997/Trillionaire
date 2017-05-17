@@ -1,6 +1,5 @@
 package trillionaire.service.impl;
 
-import org.apache.commons.math3.distribution.NormalDistribution;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import trillionaire.dao.DayRecordDao;
