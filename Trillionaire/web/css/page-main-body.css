@@ -124,7 +124,6 @@
 }
 
 .other-function {
-    padding-top: 5%;
     margin: 5% auto;
 }
 
@@ -322,6 +321,11 @@
     border-bottom: 1px solid #AAA;
     border-top: 1px solid #AAA;
     padding: 0.5% 0;
+}
+
+.whole-table tr td:first-child + td + td + td,
+.whole-table tr td:first-child + td + td + td + td {
+    color: red;
 }
 
 .page-content {

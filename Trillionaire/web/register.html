@@ -27,7 +27,9 @@
                     <li id="spec-button" class="head-button">个股信息</li>
                 </a>
                 <li id="compare-button" class="head-button">股票对比</li>
-                <li id="market-button" class="head-button">市场行情</li>
+                <a href="market.html">
+                    <li id="market-button" class="head-button">市场行情</li>
+                </a>
                 <li id="strategy-button" class="head-button">策略回测</li>
                 <li id="star-button" class="head-button">关注股票</li>
                 <a href="login.html">
@@ -46,8 +48,12 @@
 
 
                 <form method="post" data-scroll-reveal="enter from bottom over 1s but wait 0.5s">
-                    <p><input type="text" name="username" placeholder="用户名" class="form-username form-control" id="log-username" ng-model="inputUsername"></p>
-                    <p><input type="password" name="password" placeholder="密码" class="form-password form-control" id="log-password" ng-model="inputPassword"></p>
+                    <p><input type="text" name="username" placeholder="用户邮箱" class="form-username form-control" id="reg-username" ng-model="inputUsername"></p>
+                    <p><input type="password" name="password" placeholder="密码" class="form-password form-control" id="reg-password" ng-model="inputPassword"></p>
+                    <p><input type="password" name="password2" placeholder="确认密码" class="form-password form-control" id="reg-password2" ng-model="inputPassword2"></p>
+                    <div>
+                        <p id="reg-tip"></p>
+                    </div>
                     <div>
                         <div class="log-buttons">
                             <button class="button-blue" id="register-button" type="button" ng-click="login()">注册</button>

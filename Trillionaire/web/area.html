@@ -980,6 +980,23 @@
                 <span id="spanNext">下一页</span>
                 <span id="spanLast">最后一页</span>
             </div>
+
+            <div style="margin: 0 auto;">
+                <a href="industry.html">
+                    <div class="rank indu-func" id="con-rank" style="display: inline-block; width: 45%;">
+                        <h2><i class="fa fa-cubes"></i> 行业板块涨跌</h2>
+                        <h5>查看所有行业股票信息>></h5>
+                    </div>
+                </a>
+
+                <a href="concept.html">
+                    <div class="rank hot-func" id="con-rank" style="display: inline-block; width: 45%;">
+                        <h2><i class="fa fa-cubes"></i> 概念板块涨跌</h2>
+                        <h5>查看所有概念股票信息>></h5>
+                    </div>
+                </a>
+            </div>
+
             <div style="margin-bottom: 10%;">
             </div>
         </div>
@@ -1058,7 +1075,7 @@
 
         numCount = document.getElementById("whole-table").rows.length - 1; //取table的行数作为数据总数量（减去标题行1）
         columnsCounts = blockTable.rows[0].cells.length;
-        pageCount = 40;
+        pageCount = 20;
         pageNum = parseInt(numCount / pageCount);
         if (0 != numCount % pageCount) {
             pageNum += 1;

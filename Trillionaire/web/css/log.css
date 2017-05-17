@@ -63,10 +63,13 @@
 
 #log-tip {
     color: red;
+    font-size: 90%;
     font-weight: 350;
 }
 
 #reg-tip {
     color: red;
+
+    font-size: 90%;
     font-weight: 350;
 }
