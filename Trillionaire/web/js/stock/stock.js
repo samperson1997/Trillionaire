@@ -28,11 +28,11 @@ function dataAnalyze(data) {
 
 }
 
-function load() {
+function loadCandle(span) {
     var code = getParam('code');
     var loadInfo = $.ajax({
         type: "GET",
-        url: "/stock/" + code,
+        url: "/stock/" + code+"/"+span,
         timeout: 180000,
         contentType: "application/x-www-form-urlencoded",
         dataType: "json",
@@ -47,3 +47,8 @@ function load() {
         }
     })
 }
+
+function load() {
+    loadCandle("daily");
+}
+
