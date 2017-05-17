@@ -1,7 +1,3 @@
-/**
- * Created by mendez on 16/8/12.
- */
-
 function firstPage() {
     hide();
     currPageNum = 1;
@@ -10,11 +6,17 @@ function firstPage() {
     for (i = 1; i < pageCount + 1; i++) {
         blockTable.rows[i].style.display = "";
     }
-
-    firstText();
-    preText();
-    nextLink();
-    lastLink();
+    if (pageNum == 1) {
+        preText();
+        firstText();
+        nextText();
+        lastText();
+    } else {
+        firstText();
+        preText();
+        nextLink();
+        lastLink();
+    }
 }
 
 function prePage() {
@@ -28,7 +30,12 @@ function prePage() {
         blockTable.rows[i].style.display = "";
     }
 
-    if (1 == currPageNum) {
+    if (pageNum == 1) {
+        preText();
+        firstText();
+        nextText();
+        lastText();
+    } else if (1 == currPageNum) {
         firstText();
         preText();
         nextLink();
@@ -58,7 +65,12 @@ function nextPage() {
         blockTable.rows[i].style.display = "";
     }
 
-    if (1 == currPageNum) {
+    if (pageNum == 1) {
+        preText();
+        firstText();
+        nextText();
+        lastText();
+    } else if (1 == currPageNum) {
         firstText();
         preText();
         nextLink();
@@ -122,33 +134,33 @@ function hide() {
 
 //控制首页等功能的显示与不显示
 function firstLink() {
-    firstSpan.innerHTML = "<a href='javascript:firstPage();'>First</a>";
+    firstSpan.innerHTML = "<a href='javascript:firstPage();'>第一页</a>";
 }
 
 function firstText() {
-    firstSpan.innerHTML = "First";
+    firstSpan.innerHTML = "第一页";
 }
 
 function preLink() {
-    preSpan.innerHTML = "<a href='javascript:prePage();'>Pre</a>";
+    preSpan.innerHTML = "<a href='javascript:prePage();'>上一页</a>";
 }
 
 function preText() {
-    preSpan.innerHTML = "Pre";
+    preSpan.innerHTML = "上一页";
 }
 
 function nextLink() {
-    nextSpan.innerHTML = "<a href='javascript:nextPage();'>Next</a>";
+    nextSpan.innerHTML = "<a href='javascript:nextPage();'>下一页</a>";
 }
 
 function nextText() {
-    nextSpan.innerHTML = "Next";
+    nextSpan.innerHTML = "下一页";
 }
 
 function lastLink() {
-    lastSpan.innerHTML = "<a href='javascript:lastPage();'>Last</a>";
+    lastSpan.innerHTML = "<a href='javascript:lastPage();'>最后一页</a>";
 }
 
 function lastText() {
-    lastSpan.innerHTML = "Last";
+    lastSpan.innerHTML = "最后一页";
 }
