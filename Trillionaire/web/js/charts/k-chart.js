@@ -123,19 +123,6 @@ function calculateMA(dayCount) {
 
 
 option = {
-    title: {
-        text: '',
-        left: 0
-    },
-    toolbox: {
-        // y: 'bottom',
-        //        feature: {
-        //            dataView: {},
-        //            saveAsImage: {
-        //                pixelRatio: 2
-        //            }
-        //        }
-    },
     tooltip: {
         trigger: 'axis',
         axisPointer: {
@@ -144,11 +131,6 @@ option = {
     },
     legend: {
         data: ['日K', 'MA5', 'MA10', 'MA20', 'MA30']
-    },
-    grid: {
-        left: '10%',
-        right: '10%',
-        bottom: '15%'
     },
     xAxis: {
         type: 'category',

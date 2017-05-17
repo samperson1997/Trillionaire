@@ -10,11 +10,11 @@ option = {
         data: ['买入', '增持', '观望', '减持', '卖出']
     },
     xAxis: {
-        type: 'value'
-    },
-    yAxis: {
         type: 'category',
         data: ['二月', '三月', '四月', '五月']
+    },
+    yAxis: {
+        type: 'value'
     },
     series: [
         {

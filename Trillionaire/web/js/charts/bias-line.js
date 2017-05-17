@@ -18,9 +18,6 @@ option = {
     tooltip: {
         trigger: 'axis'
     },
-    legend: {
-        data: ['K', 'D', 'J']
-    },
     xAxis: {
         type: 'category',
         boundaryGap: false,
@@ -46,35 +43,17 @@ option = {
     ],
     series: [
         {
-            name: 'K',
+            name: 'BIAS',
             type: 'line',
             smooth: true,
             symbol: 'none',
             sampling: 'average',
 
             data: data1
-        },
-        {
-            name: 'D',
-            type: 'line',
-            smooth: true,
-            symbol: 'none',
-            sampling: 'average',
-
-            data: data2
-        },
-        {
-            name: 'J',
-            type: 'line',
-            smooth: true,
-            symbol: 'none',
-            sampling: 'average',
-
-            data: data3
         }
     ]
 };
 
 
-var kdjChart = echarts.init(document.getElementById('kdj-chart'));
-kdjChart.setOption(option);
+var biasChart = echarts.init(document.getElementById('bias-chart'));
+biasChart.setOption(option);

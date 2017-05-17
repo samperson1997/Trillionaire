@@ -23,8 +23,7 @@ function calculateMA(dayCount) {
 
 option = {
     legend: {
-        data: ['成交量', 'MA5', 'MA10', 'MA20', 'MA30'],
-        position: 'bottom'
+        data: ['MACD', 'DIFF', 'DEA']
     },
     tooltip: {
         trigger: 'axis',
@@ -63,12 +62,12 @@ option = {
     ],
     series: [
         {
-            name: '成交量',
+            name: 'MACD',
             type: 'bar',
             data: data1
         },
         {
-            name: 'MA5',
+            name: 'DIFF',
             type: 'line',
             data: calculateMA(5),
             smooth: true,
@@ -79,7 +78,7 @@ option = {
             }
         },
         {
-            name: 'MA10',
+            name: 'DEA',
             type: 'line',
             data: calculateMA(10),
             smooth: true,
@@ -88,32 +87,10 @@ option = {
                     opacity: 0.5
                 }
             }
-        },
-        {
-            name: 'MA20',
-            type: 'line',
-            data: calculateMA(20),
-            smooth: true,
-            lineStyle: {
-                normal: {
-                    opacity: 0.5
-                }
-            }
-        },
-        {
-            name: 'MA30',
-            type: 'line',
-            data: calculateMA(30),
-            smooth: true,
-            lineStyle: {
-                normal: {
-                    opacity: 0.5
-                }
-            }
-         }
+        }
     ]
 
 };
 
-var volChart = echarts.init(document.getElementById('vol-chart'));
-volChart.setOption(option);
+var macdChart = echarts.init(document.getElementById('macd-chart'));
+macdChart.setOption(option);

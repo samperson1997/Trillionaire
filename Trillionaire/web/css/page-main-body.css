@@ -66,8 +66,8 @@
 
 .spec-func {
     font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, "PingFang SC", sans-serif;
-    margin: 1% 1%;
-    padding: 3% 1%;
+    margin: 1%;
+    padding: 1%;
 
     overflow: hidden;
     cursor: pointer;
@@ -84,7 +84,7 @@
 }
 
 .spec-func p {
-    margin: 10% 5% 0 0;
+    margin: -8% 5% 0 0;
     font-weight: 300;
     text-align: right;
     color: #FFF;
@@ -98,7 +98,7 @@
 .spec-func h5 {
     opacity: 0;
     margin: 0 5% 0 0;
-    font-weight: 400;
+    font-weight: normal;
     text-align: right;
     color: #FFF;
     font-size: 100%;

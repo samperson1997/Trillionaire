@@ -80,9 +80,31 @@
 
             <!--        chart area-->
             <div style="float: left; width: 65%;" align="center">
-                <div id="k-chart" style="width:100%; height: 500%;"></div>
-                <div id="vol-chart" style="width:100%; height: 300%;"></div>
-                <div id="kdj-chart" style="width:100%; height: 300%;"></div>
+                <div style="padding-top: 2%;">
+                    <div class="stock-name" style="display: inline;">K线图</div>
+                    <div id="k-chart" style="width:100%; height: 300%;"></div>
+                </div>
+
+                <div style="padding-top: 5%;">
+                    <div class="stock-name" style="display: inline;">成交量</div>
+                    <div id="vol-chart" style="width:100%; height: 300%;"></div>
+
+                </div>
+
+                <div style="padding-top: 2%;">
+                    <div class="stock-name" style="display: inline;">KDJ</div>
+                    <div id="kdj-chart" style="width:100%; height: 300%;"></div>
+                </div>
+
+                <div style="padding-top: 2%;">
+                    <div class="stock-name" style="display: inline;">BIAS</div>
+                    <div id="bias-chart" style="width:100%; height: 300%;"></div>
+                </div>
+
+                <div style="padding-top: 2%;">
+                    <div class="stock-name" style="display: inline;">MACD</div>
+                    <div id="macd-chart" style="width:100%; height: 300%;"></div>
+                </div>
                 <div class="other-function">
                     <div data-scroll-reveal="enter from bottom over 1s" class="spec-func hot-func">
                         <h2><i class="fa fa-fire"></i> 热度</h2>
@@ -177,7 +199,7 @@
                 <div style="border-top: 1px solid #AAA; padding-top: 5%;">
                     <div class="stock-name" style="display: inline;">推荐趋势</div>
                     <div class="stock-code" style="display: inline;">&nbsp;|&nbsp;Recommendation Trends</div>
-                    <div id="reco-trend" style="width:100%; height: 400%;"></div>
+                    <div id="reco-trend" style="width:100%; height: 500%;"></div>
 
                     <div align="center" class="margin" style="background-color: yellowgreen;">
                         <h2>推荐：减持</h2>
@@ -252,6 +274,8 @@
 <script src="js/charts/ability-chart.js"></script>
 <script src="js/charts/earning-chart.js"></script>
 <script src="js/charts/recommend-trend.js"></script>
+<script src="js/charts/bias-line.js"></script>
+<script src="js/charts/macd-chart.js"></script>
 <script src="js/stock/stock.js"></script>
 
 <script>
