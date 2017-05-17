@@ -1,6 +1,6 @@
 var xAxisData = [];
 var data1 = [];
-for (var i = 0; i < 300; i++) {
+for (var i = 0; i < 100; i++) {
     xAxisData.push(i);
     data1.push(Math.random() * i);
 }
