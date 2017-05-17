@@ -12,6 +12,12 @@ public class DecimalUtil {
         return string;
     }
 
+    public static String RemainOneDecimal(double num){
+        DecimalFormat decimalFormat = new DecimalFormat("0.0");
+        String string = decimalFormat.format(num);
+        return string;
+    }
+
     public static String TransferToPercent(double num){
         DecimalFormat decimalFormat = new DecimalFormat("0.00");
         String string = decimalFormat.format(num);

@@ -1,10 +1,12 @@
 package trillionaire.service;
 
 
-import trillionaire.model.Earnings;
-import trillionaire.model.RecommendationTrends;
-import trillionaire.model.StockAbility;
+import trillionaire.model.DayRecord;
+import trillionaire.vo.Earnings;
+import trillionaire.vo.RecommendationTrends;
+import trillionaire.vo.StockAbility;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -17,7 +19,7 @@ public interface StockService {
      * @param code 股票代码
      * @return 不同指标的map映射
      */
-    public Map<String, Object> getStockInfo(String code);
+    public List<DayRecord> getStockInfo(String code);
 
     /**
      * 股票联想

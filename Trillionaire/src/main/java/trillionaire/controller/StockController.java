@@ -1,12 +1,15 @@
 package trillionaire.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import trillionaire.model.DayRecord;
 import trillionaire.model.Stock;
+import trillionaire.service.StockService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -15,17 +18,15 @@ import java.util.Map;
 @Controller
 @RequestMapping("/stock")
 public class StockController {
+    @Autowired
+    private StockService stockService;
 
     @RequestMapping(value = "/{code}", method = RequestMethod.GET)
     @ResponseBody
-    public Map<String, Object> getStockInfo(@PathVariable("code") String code) {
-        Stock stock = new Stock("2017/5/13", 1.0, 2.0, 3.0, 4.0, 5, 6, 7.0);
-        Stock stock1 = new Stock("2017/5/12", 1.0, 2.0, 3.0, 4.0, 5, 6, 7.0);
-        Map<String, Object> map = new HashMap<String, Object>();
-        map.put(stock.getDate(), stock);
-        map.put(stock1.getDate(), stock1);
-        return map;
-
+    public List<DayRecord> getStockInfo(@PathVariable("code") String code) {
+        System.out.println("123");
+        List<DayRecord> list = stockService.getStockInfo(code);
+        return list;
     }
 
     @RequestMapping(value = "/history", method = RequestMethod.GET)

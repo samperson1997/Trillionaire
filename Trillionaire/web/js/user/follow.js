@@ -38,7 +38,7 @@ angular.module("followApp", [])
                     console.log(status);
                     var sessionstatus = XMLHttpRequest.getResponseHeader("sessionstatus");
                     if (sessionstatus === "logout") {
-                        //如果超时就处理 ，指定要跳转的页面
+                        //如果未登陆就跳转
                        window.location.href="../../login.html";
                     }
                 }

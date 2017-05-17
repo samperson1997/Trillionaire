@@ -8,12 +8,13 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
+import org.springframework.stereotype.Repository;
 import trillionaire.model.Area;
 import trillionaire.model.Concept;
 import trillionaire.model.Industry;
 import trillionaire.model.Stock;
 import trillionaire.dao.StockDao;
-
+@Repository
 public class StockDaoImpl implements StockDao{
 
     SessionFactory sessionFactory ;
