@@ -34,7 +34,15 @@
     font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, "PingFang SC", sans-serif;
 }
 
+.stock-code a {
+    color: #0080ff;
+}
 
+.stock-code a:hover {
+    color: #0080ff;
+    text-decoration: underline;
+    cursor: pointer;
+}
 
 .spec-figure,
 .index-spec-figure {

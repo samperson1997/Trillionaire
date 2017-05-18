@@ -1,4 +1,25 @@
-var tip = document.getElementById('reg-tip');
+window.onload = init;
+
+function init() {
+    tip = document.getElementById('reg-tip');
+    tip.innerHTML = "";
+}
+
+function emailIsValid() {
+    if (!/^[\w\.-_\+]+@[\w-]+(\.\w{2,4})+$/.test($("#reg-username").val())) {
+        tip.innerHTML = "用户邮箱格式不正确";
+    } else {
+        tip.innerHTML = "";
+    }
+}
+
+function passwordIsSame() {
+    if ($("#reg-password").val() != $("#reg-password2").val()) {
+        tip.innerHTML = "两次输入密码不一致";
+    } else {
+        tip.innerHTML = "";
+    }
+}
 
 angular.module("mainapp", [])
     .controller("RegisterController", function ($scope) {
