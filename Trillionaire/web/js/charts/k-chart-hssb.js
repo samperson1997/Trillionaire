@@ -90,7 +90,6 @@ var data0 = splitData([
     ['2013/6/13', 2190.1, 2148.35, 2126.22, 2190.1]
 ]);
 
-
 function splitData(rawData) {
     var categoryData = [];
     var values = []

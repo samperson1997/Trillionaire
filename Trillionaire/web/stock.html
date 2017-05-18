@@ -25,6 +25,8 @@
     <script src="js/jquery-ui/jquery-ui.min.js"></script>
     <script src="js/jquery-ui/ui-choose.js"></script>
     <script src="js/user/follow.js"></script>
+    <script src="js/echarts.js"></script>
+    <script src="js/charts/k-chart.js"></script>
 
 
 </head>
@@ -82,6 +84,10 @@
             <div style="float: left; width: 65%;" align="center">
                 <div style="padding-top: 2%;">
                     <div class="stock-name" style="display: inline;">K线图</div>
+                    <div id="candle-spin">
+                        <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+                        <span>加载中...</span>
+                    </div>
                     <div id="k-chart" style="width:100%; height: 300%;"></div>
                 </div>
 
@@ -268,8 +274,6 @@
 </body>
 
 <script src="js/date-picker.js"></script>
-<script src="js/echarts.js"></script>
-<script src="js/charts/k-chart.js"></script>
 <script src="js/charts/volume-chart.js"></script>
 <script src="js/charts/kdj-line.js"></script>
 <script src="js/charts/ability-chart.js"></script>
@@ -277,7 +281,6 @@
 <script src="js/charts/recommend-trend.js"></script>
 <script src="js/charts/bias-line.js"></script>
 <script src="js/charts/macd-chart.js"></script>
-<script src="js/stock/stock.js"></script>
 
 <script>
     (function() {
@@ -290,20 +293,7 @@
 </script>
 
 <script>
-    $(document).ready(load);
-
-</script>
-
-<script>
-    $('.ui-choose').ui_choose();
-
-    var uc = $('#k-choose').data('ui-choose');
-    uc.click = function(index, item) {
-        console.log('click', index, item.text())
-    }
-    uc.change = function(index, item) {
-        console.log('change', index, item.text())
-    }
+    $(document).ready(loadCandle);
 
 </script>
 

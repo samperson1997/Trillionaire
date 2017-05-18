@@ -1,9 +1,8 @@
 package trillionaire.model;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import java.sql.Date;
 
-import com.sun.org.apache.regexp.internal.recompile;
 
 public class CodeDateKey implements Serializable{
 
@@ -13,7 +12,7 @@ public class CodeDateKey implements Serializable{
 	private static final long serialVersionUID = 2591393586600496569L;
 	
 	private Stock stock;
-	private LocalDate date;
+	private Date date;
 	
 	public CodeDateKey(){
 		
@@ -27,11 +26,11 @@ public class CodeDateKey implements Serializable{
 		this.stock = stock;
 	}
 	
-	public LocalDate getDate(){
+	public Date getDate(){
 		return date;
 	}
 	
-	public void setDate(LocalDate date){
+	public void setDate(Date date){
 		this.date = date;
 	}
 	

@@ -43,7 +43,7 @@ public class StockServiceImpl implements StockService {
     }
 
     public List<DayRecord> getStockInfo(String code, String span) {
-
+        List<DayRecord> list;
         if (span.equals("daily")){
 
         }else if (span.equals("weekly")){
@@ -53,7 +53,8 @@ public class StockServiceImpl implements StockService {
         }else {
 
         }
-        return null;
+        list = getDailyInfo(code);
+        return list;
     }
 
     public Map<String, Object> getSimilarStock(String input) {

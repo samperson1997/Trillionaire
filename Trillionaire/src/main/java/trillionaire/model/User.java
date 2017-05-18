@@ -10,11 +10,9 @@ import static java.lang.String.copyValueOf;
 /**
  * Created by michaeltan on 2017/5/9.
  */
-@Entity
-@Table(name = "member")
+
 public class User {
 
-    @Id
     private String id;
     private String username;
     private String password;
