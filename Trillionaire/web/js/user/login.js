@@ -1,4 +1,17 @@
-var tip = document.getElementById('log-tip');
+window.onload = init;
+
+function init() {
+    tip = document.getElementById('log-tip');
+    tip.innerHTML = "";
+}
+
+function emailIsValid() {
+    if (!/^[\w\.-_\+]+@[\w-]+(\.\w{2,4})+$/.test($("#log-username").val())) {
+        tip.innerHTML = "用户邮箱格式不正确";
+    } else {
+        tip.innerHTML = "";
+    }
+}
 
 angular.module("mainapp", [])
     .controller("UserController", function ($scope) {
@@ -6,7 +19,9 @@ angular.module("mainapp", [])
         $scope.inputPassword = "";
         //登录
         $scope.login = function () {
-            if (checkFirst() != false) {
+            if (!/^[\w\.-_\+]+@[\w-]+(\.\w{2,4})+$/.test($scope.inputUsername)) {
+                tip.innerHTML = "用户邮箱格式不正确";
+            } else if (checkFirst() != false) {
                 tip.innerHTML = "";
                 login_ajax($scope.inputUsername, $scope.inputPassword);
             } else {
