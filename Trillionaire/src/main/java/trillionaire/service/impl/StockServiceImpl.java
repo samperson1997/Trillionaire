@@ -37,25 +37,25 @@ public class StockServiceImpl implements StockService {
         return map;
     }
 
-    private List<DayRecord> getWeeklyInfo(String code) {
+    private Map<String, Object> getWeeklyInfo(String code) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        return null;
+    }
+
+    private Map<String, Object> getMonthlyInfo(String code) {
 
         return null;
     }
 
-    private List<DayRecord> getMonthlyInfo(String code) {
-
-        return null;
-    }
-
-    private List<DayRecord> getAnnualInfo(String code) {
+    private Map<String, Object> getAnnualInfo(String code) {
 
         return null;
     }
 
     public Map<String, Object> getStockInfo(String code, String span) {
-        Map<String, Object> map;
+        Map<String, Object> map = new HashMap<String, Object>();
         if (span.equals("daily")) {
-
+            map = getDailyInfo(code);
         } else if (span.equals("weekly")) {
 
         } else if (span.equals("monthly")) {
@@ -63,7 +63,6 @@ public class StockServiceImpl implements StockService {
         } else {
 
         }
-        map = getDailyInfo(code);
         return map;
     }
 

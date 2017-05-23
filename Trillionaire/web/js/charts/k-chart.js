@@ -1,71 +1,151 @@
-// 数据意义：开盘(open)，收盘(close)，最低(lowest)，最高(highest)
-
-var data0;
-var ma5;
-var ma10;
-var ma20;
-var ma30;
-
+var data;
 function loadCandle() {
-    /*
      var code = getParam('code');
      console.log(code);
      alert(code);
-     */
     var load = $.ajax({
         type: "GET",
-        url: "/stock/000001/daily",
+        url: "/stock/"+code+"/daily",
         contentType: "application/x-www-form-urlencoded",
         dataType: "json",
-        success: function (data) {
-            data0 = splitData(data);
-            ma5 = calculateMA(5, data0.values.length);
-            ma10 = calculateMA(10, data0.values.length);
-            ma20 = calculateMA(20, data0.values.length);
-            ma30 = calculateMA(30, data0.values.length);
+        success: function (data0) {
+            data = splitData(data0);
             $("#candle-spin").html('');
-            option = {
+            var option = {
+                backgroundColor: '#FFF',
+                animation: false,
+                legend: {
+                    bottom: 10,
+                    left: 'center',
+                    data: ['日K', 'MA5', 'MA10', 'MA30']
+                },
                 tooltip: {
                     trigger: 'axis',
                     axisPointer: {
                         type: 'cross'
+                    },
+                    backgroundColor: 'rgba(245, 245, 245, 0.8)',
+                    borderWidth: 1,
+                    borderColor: '#ccc',
+                    padding: 10,
+                    textStyle: {
+                        color: '#000'
+                    },
+                    position: function (pos, params, el, elRect, size) {
+                        var obj = {top: 10};
+                        obj[['left', 'right'][+(pos[0] < size.viewSize[0] / 2)]] = 30;
+                        return obj;
+                    },
+                    extraCssText: 'width: 170px'
+                },
+                axisPointer: {
+                    link: {xAxisIndex: 'all'},
+                    label: {
+                        backgroundColor: '#777'
                     }
                 },
-                legend: {
-                    data: ['日K', 'MA5', 'MA10', 'MA20', 'MA30']
-                },
-                xAxis: {
-                    type: 'category',
-                    data: data0.categoryData,
-                    scale: true,
-                    boundaryGap: false,
-                    axisLine: {
-                        onZero: false
-                    },
-                    splitLine: {
-                        show: false
-                    },
-                    splitNumber: 20,
-                    min: 'dataMin',
-                    max: 'dataMax'
-                },
-                yAxis: {
-                    scale: true,
-                    splitArea: {
-                        show: true
+                toolbox: {
+                    feature: {
+                        dataZoom: {
+                            yAxisIndex: false
+                        },
+                        brush: {
+                            type: ['lineX', 'clear']
+                        }
                     }
                 },
+                brush: {
+                    xAxisIndex: 'all',
+                    brushLink: 'all',
+                    outOfBrush: {
+                        colorAlpha: 0.1
+                    }
+                },
+                grid: [
+                    {
+                        left: '10%',
+                        right: '8%',
+                        height: '50%'
+                    },
+                    {
+                        left: '10%',
+                        right: '8%',
+                        top: '63%',
+                        height: '16%'
+                    }
+                ],
+                xAxis: [
+                    {
+                        type: 'category',
+                        data: data.categoryData,
+                        scale: true,
+                        boundaryGap : false,
+                        axisLine: {onZero: false},
+                        splitLine: {show: false},
+                        splitNumber: 20,
+                        min: 'dataMin',
+                        max: 'dataMax',
+                        axisPointer: {
+                            z: 100
+                        }
+                    },
+                    {
+                        type: 'category',
+                        gridIndex: 1,
+                        data: data.categoryData,
+                        scale: true,
+                        boundaryGap : false,
+                        axisLine: {onZero: false},
+                        axisTick: {show: false},
+                        splitLine: {show: false},
+                        axisLabel: {show: false},
+                        splitNumber: 20,
+                        min: 'dataMin',
+                        max: 'dataMax',
+                        axisPointer: {
+                            label: {
+                                formatter: function (params) {
+                                    var seriesValue = (params.seriesData[0] || {}).value;
+                                    return params.value
+                                        + (seriesValue != null
+                                                ? '\n' + echarts.format.addCommas(seriesValue)
+                                                : ''
+                                        );
+                                }
+                            }
+                        }
+                    }
+                ],
+                yAxis: [
+                    {
+                        scale: true,
+                        splitArea: {
+                            show: true
+                        }
+                    },
+                    {
+                        scale: true,
+                        gridIndex: 1,
+                        splitNumber: 2,
+                        axisLabel: {show: false},
+                        axisLine: {show: false},
+                        axisTick: {show: false},
+                        splitLine: {show: false}
+                    }
+                ],
                 dataZoom: [
                     {
                         type: 'inside',
-                        start: 50,
+                        xAxisIndex: [0, 1],
+                        start: 98,
                         end: 100
                     },
                     {
                         show: true,
+                        xAxisIndex: [0, 1],
                         type: 'slider',
-                        y: '90%',
-                        start: 50,
+                        top: '85%',
+                        start: 98,
                         end: 100
                     }
                 ],
@@ -73,144 +153,74 @@ function loadCandle() {
                     {
                         name: '日K',
                         type: 'candlestick',
-                        data: data0.values,
-                        markPoint: {
-                            label: {
-                                normal: {
-                                    formatter: function (param) {
-                                        return param != null ? Math.round(param.value) : '';
-                                    }
-                                }
-                            },
-                            data: [
-                                {
-                                    name: 'XX标点',
-                                    coord: ['2013/5/31', 2300],
-                                    value: 2300,
-                                    itemStyle: {
-                                        normal: {
-                                            color: 'rgb(41,60,85)'
-                                        }
-                                    }
-                                },
-                                {
-                                    name: 'highest value',
-                                    type: 'max',
-                                    valueDim: 'highest'
-                                },
-                                {
-                                    name: 'lowest value',
-                                    type: 'min',
-                                    valueDim: 'lowest'
-                                },
-                                {
-                                    name: 'average value on close',
-                                    type: 'average',
-                                    valueDim: 'close'
-                                }
-                            ],
-                            tooltip: {
-                                formatter: function (param) {
-                                    return param.name + '<br>' + (param.data.coord || '');
-                                }
+                        data: data.values,
+                        itemStyle: {
+                            normal: {
+                                borderColor: null,
+                                borderColor0: null
                             }
                         },
-                        markLine: {
-                            symbol: ['none', 'none'],
-                            data: [
-                                [
-                                    {
-                                        name: 'from lowest to highest',
-                                        type: 'min',
-                                        valueDim: 'lowest',
-                                        symbol: 'circle',
-                                        symbolSize: 10,
-                                        label: {
-                                            normal: {
-                                                show: false
-                                            },
-                                            emphasis: {
-                                                show: false
-                                            }
-                                        }
-                                    },
-                                    {
-                                        type: 'max',
-                                        valueDim: 'highest',
-                                        symbol: 'circle',
-                                        symbolSize: 10,
-                                        label: {
-                                            normal: {
-                                                show: false
-                                            },
-                                            emphasis: {
-                                                show: false
-                                            }
-                                        }
-                                    }
-                                ],
-                                {
-                                    name: 'min line on close',
-                                    type: 'min',
-                                    valueDim: 'close'
-                                },
-                                {
-                                    name: 'max line on close',
-                                    type: 'max',
-                                    valueDim: 'close'
-                                }
-                            ]
+                        tooltip: {
+                            formatter: function (param) {
+                                param = param[0];
+                                return [
+                                    '日期: ' + param.name + '<hr size=1 style="margin: 3px 0">',
+                                    '开盘价: ' + param.data[0] + '<br/>',
+                                    '收盘价: ' + param.data[1] + '<br/>',
+                                    '最高价: ' + param.data[3] + '<br/>',
+                                    '最低价: ' + param.data[2] + '<br/>'
+                                ].join('');
+                            }
                         }
                     },
                     {
                         name: 'MA5',
                         type: 'line',
-                        data: ma5,
+                        data: data0.ma5,
                         smooth: true,
                         lineStyle: {
-                            normal: {
-                                opacity: 0.5
-                            }
+                            normal: {opacity: 0.5}
                         }
                     },
                     {
                         name: 'MA10',
                         type: 'line',
-                        data: calculateMA(data0, 10),
+                        data: data0.ma10,
                         smooth: true,
                         lineStyle: {
-                            normal: {
-                                opacity: 0.5
-                            }
-                        }
-                    },
-                    {
-                        name: 'MA20',
-                        type: 'line',
-                        data: ma20,
-                        smooth: true,
-                        lineStyle: {
-                            normal: {
-                                opacity: 0.5
-                            }
+                            normal: {opacity: 0.5}
                         }
                     },
                     {
                         name: 'MA30',
                         type: 'line',
-                        data: calculateMA(data0, 30),
+                        data: data0.ma30,
                         smooth: true,
                         lineStyle: {
-                            normal: {
-                                opacity: 0.5
-                            }
+                            normal: {opacity: 0.5}
                         }
                     },
-
+                    {
+                        name: 'Volumn',
+                        type: 'bar',
+                        xAxisIndex: 1,
+                        yAxisIndex: 1,
+                        data: data.volumns
+                    }
                 ]
             };
             var kChart = echarts.init(document.getElementById('k-chart'));
-            kChart.setOption(option);
+            kChart.setOption(option, true);
+            kChart.dispatchAction({
+                type: 'brush',
+                areas: [
+                    {
+                        brushType: 'lineX',
+                        coordRange: ['2016-06-02', '2016-06-20'],
+                        xAxisIndex: 0
+                    }
+                ]
+            });
         },
         error: function (request, status, err) {
             if (status == "timeout") {
@@ -219,42 +229,47 @@ function loadCandle() {
         }
     })
 }
+
 function splitData(rawData) {
     var categoryData = [];
     var values = [];
+    var volumns = [];
     var candle = [];
-    for (var i = 0; i < rawData.length; i++) {
-        categoryData.push(rawData[i].date);
-        candle = [rawData[i].open, rawData[i].adjClose, rawData[i].low, rawData[i].high];
+    var ma5 = rawData.ma5;
+    var ma10 = rawData.ma10;
+    var ma30 = rawData.ma30;
+    var array = rawData.candle;
+    for (var i = 0; i < array.length; i++) {
+        categoryData.push(array[i].date);
+        candle = [array[i].open, array[i].adjClose, array[i].low, array[i].high];
         values.push(candle);
+        volumns.push(array[i].volume);
     }
     return {
         categoryData: categoryData,
-        values: values
+        values: values,
+        volumns: volumns,
+        ma5: ma5,
+        ma10:ma10,
+        ma30:ma30
     };
 }
 
-function calculateMA(dayCount, length) {
-    var result = [];
-    var sum = 0.00;
-    var i = 0;
-    for ( i ; i < length; i++) {
-        if (i < dayCount) {
-            result.push('-');
-        }else {
-            sum = 0;
-            for (var j = 0; j < dayCount; j++) {
-                sum += data0.values[i - j][1];
+var getParam = function (name) {
+    var search = document.location.search;
+    var pattern = new RegExp("[?&]" + name + "\=([^&]+)", "g");
+    var matcher = pattern.exec(search);
+    var items = null;
+    if (null != matcher) {
+        try {
+            items = decodeURIComponent(decodeURIComponent(matcher[1]));
+        } catch (e) {
+            try {
+                items = decodeURIComponent(matcher[1]);
+            } catch (e) {
+                items = matcher[1];
             }
-            sum = sum / dayCount;
-            result.push(sum);
         }
     }
-    console.log(i);
-    return result;
-}
-
-
-
-
-
+    return items;
+};
