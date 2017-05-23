@@ -26,9 +26,9 @@ public class StockController {
 
     @RequestMapping(value = "/{code}/{span}", method = RequestMethod.GET)
     @ResponseBody
-    public List<DayRecord> getDailyCandle(@PathVariable("code") String code, @PathVariable("span") String span) {
-        List<DayRecord> list = stockService.getStockInfo(code, "1");
-        return list;
+    public Map<String, Object> getDailyCandle(@PathVariable("code") String code, @PathVariable("span") String span) {
+        Map<String, Object> map = stockService.getStockInfo(code, "1");
+        return map;
     }
 
     @RequestMapping(value = "/history", method = RequestMethod.GET)

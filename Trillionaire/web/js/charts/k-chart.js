@@ -1,6 +1,10 @@
 // 数据意义：开盘(open)，收盘(close)，最低(lowest)，最高(highest)
 
 var data0;
+var ma5;
+var ma10;
+var ma20;
+var ma30;
 
 function loadCandle() {
     /*
@@ -15,6 +19,10 @@ function loadCandle() {
         dataType: "json",
         success: function (data) {
             data0 = splitData(data);
+            ma5 = calculateMA(5, data0.values.length);
+            ma10 = calculateMA(10, data0.values.length);
+            ma20 = calculateMA(20, data0.values.length);
+            ma30 = calculateMA(30, data0.values.length);
             $("#candle-spin").html('');
             option = {
                 tooltip: {
@@ -157,7 +165,7 @@ function loadCandle() {
                     {
                         name: 'MA5',
                         type: 'line',
-                        data: calculateMA(5),
+                        data: ma5,
                         smooth: true,
                         lineStyle: {
                             normal: {
@@ -168,7 +176,7 @@ function loadCandle() {
                     {
                         name: 'MA10',
                         type: 'line',
-                        data: calculateMA(10),
+                        data: calculateMA(data0, 10),
                         smooth: true,
                         lineStyle: {
                             normal: {
@@ -179,7 +187,7 @@ function loadCandle() {
                     {
                         name: 'MA20',
                         type: 'line',
-                        data: calculateMA(20),
+                        data: ma20,
                         smooth: true,
                         lineStyle: {
                             normal: {
@@ -190,7 +198,7 @@ function loadCandle() {
                     {
                         name: 'MA30',
                         type: 'line',
-                        data: calculateMA(30),
+                        data: calculateMA(data0, 30),
                         smooth: true,
                         lineStyle: {
                             normal: {
@@ -226,14 +234,14 @@ function splitData(rawData) {
     };
 }
 
-function calculateMA(dayCount) {
+function calculateMA(dayCount, length) {
     var result = [];
-    var sum = 0;
-    for (var i = 0; i < data0.values.length; i++) {
+    var sum = 0.00;
+    var i = 0;
+    for ( i ; i < length; i++) {
         if (i < dayCount) {
             result.push('-');
-            //continue;
-        } else {
+        }else {
             sum = 0;
             for (var j = 0; j < dayCount; j++) {
                 sum += data0.values[i - j][1];
@@ -241,7 +249,6 @@ function calculateMA(dayCount) {
             sum = sum / dayCount;
             result.push(sum);
         }
-
     }
     console.log(i);
     return result;

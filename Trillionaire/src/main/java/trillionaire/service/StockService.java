@@ -20,7 +20,7 @@ public interface StockService {
      * @param span 时间跨度
      * @return 不同指标的map映射
      */
-    public List<DayRecord> getStockInfo(String code, String span);
+    public Map<String, Object> getStockInfo(String code, String span);
 
     /**
      * 股票联想
