@@ -1,9 +1,8 @@
 package trillionaire.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+
+import java.util.Set;
 
 import static java.lang.String.copyValueOf;
 
@@ -11,15 +10,21 @@ import static java.lang.String.copyValueOf;
  * Created by michaeltan on 2017/5/9.
  */
 @Entity
-@Table(name = "member")
+@Table(name = "user")
 public class User {
 
-    @Id
-    private String id;
+
+    private int id;
     private String username;
     private String password;
     private String email;
-    private String confirmCode;
+    private int isLogin;
+
+    private Set<Stock> preferStocks;
+
+    public User(){
+
+    }
 
     public User(String email, String name, String password){
         this.email = email;
@@ -27,14 +32,17 @@ public class User {
         this.password = password;
     }
 
-    public String getId() {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public int getId() {
         return this.id;
     }
 
-    public void setId(String ID) {
+    public void setId(int ID) {
         this.id = ID;
     }
 
+    @Column(name = "userName")
     public String getUserName() {
         return this.username;
     }
@@ -43,6 +51,7 @@ public class User {
         this.username = name;
     }
 
+    @Column(name = "password")
     public String getPassword() {
         return this.password;
     }
@@ -51,19 +60,31 @@ public class User {
         this.password = password;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
+    @Column(name = "email")
     public String getEmail() {
         return email;
     }
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @Column(name = "isLogin")
+    public int getIsLogin() {
+        return isLogin;
+    }
+
+    public void setIsLogin(int isLogin) {
+        this.isLogin = isLogin;
+    }
+
+
+    @ManyToMany(cascade = CascadeType.MERGE)
+    public Set<Stock> getPreferStocks(){
+        return preferStocks;
+    }
+
+    public void setPreferStocks(Set<Stock> preferStocks){
+        this.preferStocks = preferStocks;
     }
 }
