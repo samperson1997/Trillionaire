@@ -7,6 +7,7 @@ import trillionaire.model.DayRecord;
 import trillionaire.service.StockService;
 import trillionaire.util.DecimalUtil;
 import trillionaire.vo.Earnings;
+import trillionaire.vo.PriceTarget;
 import trillionaire.vo.RecommendationTrends;
 import trillionaire.vo.StockAbility;
 
@@ -39,17 +40,20 @@ public class StockServiceImpl implements StockService {
 
     private Map<String, Object> getWeeklyInfo(String code) {
         Map<String, Object> map = new HashMap<String, Object>();
-        return null;
+
+        return map;
     }
 
     private Map<String, Object> getMonthlyInfo(String code) {
+        Map<String, Object> map = new HashMap<String, Object>();
 
-        return null;
+        return map;
     }
 
     private Map<String, Object> getAnnualInfo(String code) {
+        Map<String, Object> map = new HashMap<String, Object>();
 
-        return null;
+        return map;
     }
 
     public Map<String, Object> getStockInfo(String code, String span) {
@@ -57,11 +61,13 @@ public class StockServiceImpl implements StockService {
         if (span.equals("daily")) {
             map = getDailyInfo(code);
         } else if (span.equals("weekly")) {
-
+            map = getWeeklyInfo(code);
         } else if (span.equals("monthly")) {
-
-        } else {
-
+            map = getMonthlyInfo(code);
+        } else if (span.equals("annual")){
+            map = getAnnualInfo(code);
+        }else {
+            map = null;
         }
         return map;
     }
@@ -92,18 +98,28 @@ public class StockServiceImpl implements StockService {
         return null;
     }
 
-    public double getPriceTarget(String code) {
-
-        return 0;
+    public PriceTarget getPriceTarget(String code) {
+        return null;
     }
 
-    public String getOBV(String code) {
+    public double getOBV(String code) {
+        return 0.00;
+    }
 
+    public List<Double> getKDJ(String code) {
+        return null;
+    }
+
+    public List<Double> getBIAS(String code) {
+        return null;
+    }
+
+    public List<Double> getMACD(String code) {
         return null;
     }
 
     private double calculateProfitAbility() {
-        double result = 0;
+        double result = 0.0;
         double roe;   //净资产收益率
         double netProfitRatio; //净利率
         double grossProfitRate;  //毛利率
@@ -111,11 +127,12 @@ public class StockServiceImpl implements StockService {
         double esp;   //每股收益
         double income;   //营业收入(百万元)
         double bips;    //每股主营业务收入(元)
-        return 0;
+
+        return result;
     }
 
     private double calculateOperationAbility() {
-        double result = 0;
+        double result = 0.0;
         double arTurnover;  //应收账款周转率(次)
         double arTurnDays;   //应收账款周转天数(天)
         double inventoryTurnover; //存货周转率(次)
@@ -124,11 +141,11 @@ public class StockServiceImpl implements StockService {
         double currentAssetDays;   //流动资产周转天数(天)
 
 
-        return 0;
+        return result;
     }
 
     private double calculateGrowthAbility() {
-        double result = 0;
+        double result = 0.0;
         double mbrg; //主营业务收入增长率(%)
         double nprg; //净利润增长率(%)
         double nav; //净资产增长率
@@ -136,12 +153,11 @@ public class StockServiceImpl implements StockService {
         double epsg; //每股收益增长率
         double seg; //股东权益增长率
 
-
-        return 0;
+        return result;
     }
 
     private double calculateDebtPayingAbility() {
-        double result = 0;
+        double result = 0.0;
         double currentRatio; //流动比率
         double quickRatio; //速动比率
         double cashRatio; //现金比率
@@ -149,14 +165,13 @@ public class StockServiceImpl implements StockService {
         double sheqRatio; //股东权益比率
         double adRatio; //股东权益增长率
 
-
-        return 0;
+        return result;
     }
 
     private List<String> calculateMA(List<DayRecord> list, int dayCount) {
         List<String> result = new ArrayList<String>();
         String s;
-        double sum = 0.00;
+        double sum;
         for (int i = 0; i < list.size(); i++) {
             if (i < dayCount) {
                 s = "-";
