@@ -19,9 +19,7 @@ angular.module("mainapp", [])
         $scope.inputPassword = "";
         //登录
         $scope.login = function () {
-            if (!/^[\w\.-_\+]+@[\w-]+(\.\w{2,4})+$/.test($scope.inputUsername)) {
-                tip.innerHTML = "用户邮箱格式不正确";
-            } else if (checkFirst() != false) {
+            if (checkFirst() != false) {
                 tip.innerHTML = "";
                 login_ajax($scope.inputUsername, $scope.inputPassword);
             } else {
