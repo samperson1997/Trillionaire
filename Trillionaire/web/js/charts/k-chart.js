@@ -1,8 +1,6 @@
 var data;
 function loadCandle() {
      var code = getParam('code');
-     console.log(code);
-     alert(code);
     var load = $.ajax({
         type: "GET",
         url: "/stock/"+code+"/daily",

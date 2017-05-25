@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import trillionaire.service.UserService;
+import trillionaire.util.FollowState;
 import trillionaire.util.LoginState;
 import trillionaire.util.MailUtil;
 import trillionaire.util.RandomCodeUtil;
@@ -23,7 +24,7 @@ public class UserController {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody
     public String login(HttpServletRequest request, String username, String password) {
-        if (username.equals("123")) {
+        if (username.equals("123@qq.com")) {
             HttpSession session = request.getSession();
             session.setAttribute("username", username);
             return LoginState.LOGIN_SUCCESS.toString();
@@ -32,12 +33,17 @@ public class UserController {
         }
     }
 
+    @RequestMapping(value = "/logout", method = RequestMethod.POST)
+    public String logout(HttpServletRequest request, String email){
+        LoginState state = userService.logout(email);
+        HttpSession session = request.getSession();
+        session.invalidate();
+        return state.toString();
+    }
+
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     @ResponseBody
     public String register(String email, String password) {
-        if(!email.matches("^\\w+@(\\w+\\.)+\\w+$")){  //验证是否符合邮箱格式
-            return "error";
-        }
         boolean ifexist = userService.find(email);
         if (ifexist){
             return "exists";
@@ -48,17 +54,32 @@ public class UserController {
         }
     }
 
+    @RequestMapping(value = "/check", method = RequestMethod.POST)
+    @ResponseBody
+    public String check(String email) {
+        boolean ifexist = userService.find(email);
+        if (ifexist){
+            return "exists";
+        } else {
+            return "success";
+        }
+    }
+
+
     @RequestMapping(value = "/follow", method = RequestMethod.POST)
-    public void setFollow(String email, String code) {
+    @ResponseBody
+    public String follow(String email, String code) {
+        return FollowState.FOLLOW_SUCCESS.toString();
+    }
+
+    @RequestMapping(value = "/ifFollow", method = RequestMethod.POST)
+    @ResponseBody
+    public String checkFollow(String email, String code) {
+        return FollowState.HAS_FOLLOW.toString();
 
     }
 
-    @RequestMapping(value = "/attention", method = RequestMethod.GET)
-    public void checkFollow(String email, String code) {
-
-
-    }
-
+    //验证注册
     @RequestMapping(value = "/verify", method = RequestMethod.GET)
     public void verify(HttpServletResponse response, @RequestParam("code")String code) throws Exception{
         System.out.println(code);

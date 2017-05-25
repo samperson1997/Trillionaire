@@ -198,6 +198,15 @@
             <version>3.6.1</version>
         </dependency>
 
+        <!-- jmotif-sax -->
+        <dependency>
+            <groupId>net.seninp</groupId>
+            <artifactId>jmotif-sax</artifactId>
+            <version>1.1.2</version>
+        </dependency>
+
+
+
     </dependencies>
 
 </project>

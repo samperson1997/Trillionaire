@@ -30,8 +30,10 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
                 return false;
             }
         } else if (request.getHeader("x-requested-with") != null && request.getHeader("x-requested-with").equals("XMLHttpRequest")) {//如果是ajax类型，响应logout给前台
-            response.setHeader("sessionstatus", "logout");
-            return false;
+            if (username == null || username == "") {
+                response.setHeader("sessionstatus", "logout");
+                return false;
+            }
         }
 
         /*
