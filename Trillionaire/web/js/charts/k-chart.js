@@ -1,9 +1,10 @@
 var data;
+
 function loadCandle() {
-     var code = getParam('code');
+    var code = getParam('code');
     var load = $.ajax({
         type: "GET",
-        url: "/stock/"+code+"/daily",
+        url: "/stock/" + code + "/daily",
         contentType: "application/x-www-form-urlencoded",
         dataType: "json",
         success: function (data0) {
@@ -30,33 +31,20 @@ function loadCandle() {
                         color: '#000'
                     },
                     position: function (pos, params, el, elRect, size) {
-                        var obj = {top: 10};
+                        var obj = {
+                            top: 10
+                        };
                         obj[['left', 'right'][+(pos[0] < size.viewSize[0] / 2)]] = 30;
                         return obj;
                     },
                     extraCssText: 'width: 170px'
                 },
                 axisPointer: {
-                    link: {xAxisIndex: 'all'},
+                    link: {
+                        xAxisIndex: 'all'
+                    },
                     label: {
                         backgroundColor: '#777'
-                    }
-                },
-                toolbox: {
-                    feature: {
-                        dataZoom: {
-                            yAxisIndex: false
-                        },
-                        brush: {
-                            type: ['lineX', 'clear']
-                        }
-                    }
-                },
-                brush: {
-                    xAxisIndex: 'all',
-                    brushLink: 'all',
-                    outOfBrush: {
-                        colorAlpha: 0.1
                     }
                 },
                 grid: [
@@ -77,9 +65,13 @@ function loadCandle() {
                         type: 'category',
                         data: data.categoryData,
                         scale: true,
-                        boundaryGap : false,
-                        axisLine: {onZero: false},
-                        splitLine: {show: false},
+                        boundaryGap: false,
+                        axisLine: {
+                            onZero: false
+                        },
+                        splitLine: {
+                            show: false
+                        },
                         splitNumber: 20,
                         min: 'dataMin',
                         max: 'dataMax',
@@ -92,11 +84,19 @@ function loadCandle() {
                         gridIndex: 1,
                         data: data.categoryData,
                         scale: true,
-                        boundaryGap : false,
-                        axisLine: {onZero: false},
-                        axisTick: {show: false},
-                        splitLine: {show: false},
-                        axisLabel: {show: false},
+                        boundaryGap: false,
+                        axisLine: {
+                            onZero: false
+                        },
+                        axisTick: {
+                            show: false
+                        },
+                        splitLine: {
+                            show: false
+                        },
+                        axisLabel: {
+                            show: false
+                        },
                         splitNumber: 20,
                         min: 'dataMin',
                         max: 'dataMax',
@@ -104,10 +104,10 @@ function loadCandle() {
                             label: {
                                 formatter: function (params) {
                                     var seriesValue = (params.seriesData[0] || {}).value;
-                                    return params.value
-                                        + (seriesValue != null
-                                                ? '\n' + echarts.format.addCommas(seriesValue)
-                                                : ''
+                                    return params.value +
+                                        (seriesValue != null ?
+                                            '\n' + echarts.format.addCommas(seriesValue) :
+                                            ''
                                         );
                                 }
                             }
@@ -125,10 +125,18 @@ function loadCandle() {
                         scale: true,
                         gridIndex: 1,
                         splitNumber: 2,
-                        axisLabel: {show: false},
-                        axisLine: {show: false},
-                        axisTick: {show: false},
-                        splitLine: {show: false}
+                        axisLabel: {
+                            show: false
+                        },
+                        axisLine: {
+                            show: false
+                        },
+                        axisTick: {
+                            show: false
+                        },
+                        splitLine: {
+                            show: false
+                        }
                     }
                 ],
                 dataZoom: [
@@ -177,7 +185,9 @@ function loadCandle() {
                         data: data0.ma5,
                         smooth: true,
                         lineStyle: {
-                            normal: {opacity: 0.5}
+                            normal: {
+                                opacity: 0.5
+                            }
                         }
                     },
                     {
@@ -186,7 +196,9 @@ function loadCandle() {
                         data: data0.ma10,
                         smooth: true,
                         lineStyle: {
-                            normal: {opacity: 0.5}
+                            normal: {
+                                opacity: 0.5
+                            }
                         }
                     },
                     {
@@ -195,7 +207,9 @@ function loadCandle() {
                         data: data0.ma30,
                         smooth: true,
                         lineStyle: {
-                            normal: {opacity: 0.5}
+                            normal: {
+                                opacity: 0.5
+                            }
                         }
                     },
                     {
@@ -248,8 +262,8 @@ function splitData(rawData) {
         values: values,
         volumns: volumns,
         ma5: ma5,
-        ma10:ma10,
-        ma30:ma30
+        ma10: ma10,
+        ma30: ma30
     };
 }
 

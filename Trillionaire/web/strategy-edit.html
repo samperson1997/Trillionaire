@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html style="width: 100%">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Trillionaire - 量化交易系统</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/top-bar.css">
+    <link rel="stylesheet" href="css/page-title.css">
+    <link rel="stylesheet" href="css/button.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/page-main-body.css">
+    <link rel="stylesheet" href="css/strategy.css">
+
+    <link rel="stylesheet" href="js/jquery-ui/jquery-ui.min.css">
+    <link rel="stylesheet" href="js/jquery-ui/jquery-ui.theme.css">
+    <link rel="stylesheet" href="js/jquery-ui/jquery-ui.structure.min.css">
+
+    <link href="css/font-awesome.css" rel="stylesheet" type="text/css">
+
+    <script src="js/scrollReveal.js"></script>
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/jquery-ui/jquery-ui.min.js"></script>
+    <script src="js/jquery-ui/ui-choose.js"></script>
+
+
+</head>
+
+<body>
+    <header>
+        <div id="top-bar" onselectstart="return false;">
+            <a href="index.html">
+                <img src="img/logo.png" width="15%"></a>
+            <ul align="center">
+
+                <a href="stock.html?code=000001">
+                    <li id="spec-button" class="head-button">个股信息</li>
+                </a>
+                <li id="compare-button" class="head-button">股票对比</li>
+                <a href="market.html">
+                    <li id="market-button" class="head-button">市场行情</li>
+                </a>
+                <a href="strategy-content.html">
+                    <li id="strategy-button" class="head-button">策略回测</li>
+                </a>
+                <li id="star-button" class="head-button">关注股票</li>
+                <a href="login.html">
+                    <li id="log-button" class="head-button" class="button-blue">用户登录</li>
+                </a>
+            </ul>
+        </div>
+
+        <div>
+            <div id="title" onselectstart="return false;" align="left" style="display:inline-block;">
+                <h1 class="page-main-title">策略回测<span class="page-sub-title">&nbsp;&nbsp;|&nbsp;&nbsp;强大而精准的在线研究平台</span></h1>
+            </div>
+        </div>
+
+        <div style="margin-left:5%;">
+            <div>
+                <div class="stock-name" style="display: inline;">编写策略</div>
+
+                <div class="button-blue"><i class="fa fa-save"></i> 保存</div>
+                <div class="stock-code" style="display: inline-block;"><a href="strategy-content.html#new-stra">>>新手入门</a></div>
+                <div class="stock-code" style="display: inline-block;"><a href="strategy-content.html">>>返回策略列表</a></div>
+                <div class="stock-code" style="display: inline-block;"><a href="#">>>API文档</a></div>
+
+                <div></div>
+                <div style="width:60%; display:inline-block;">
+                    <div>
+                        <textarea class="code-area" id="editor" name="content" data-provide="markdown" data-iconlibrary="fa" rows="20"># 可以自己import我们平台支持的第三方python模块，比如pandas、numpy等。
+
+# 在这个方法中编写任何的初始化逻辑。context对象将会在你的算法策略的任何方法之间做传递。
+def init(context):
+    context.s1 = "000001.XSHE"
+    # 实时打印日志
+    logger.info("Interested at stock: " + str(context.s1))
+
+# before_trading此函数会在每天交易开始前被调用，当天只会被调用一次
+def before_trading(context, bar_dict):
+    pass
+
+
+# 你选择的证券的数据更新将会触发此段逻辑，例如日或分钟历史数据切片或者是实时数据切片更新
+def handle_bar(context, bar_dict):
+    # 开始编写你的主要的算法逻辑
+
+    # bar_dict[order_book_id] 可以拿到某个证券的bar信息
+    # context.portfolio 可以拿到现在的投资组合状态信息
+
+    # 使用order_shares(id_or_ins, amount)方法进行落单
+
+    # TODO: 开始编写你的算法吧！
+    order_shares(context.s1, 1000)</textarea>
+                    </div>
+
+                </div>
+
+                <div style="width:30%; float:right; border: 1px solid #AAA; font-size: 100%;">
+                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                </div>
+
+                <div id="result-area">
+                    <div class="stock-name" style="display: inline;">回测结果</div>
+                </div>
+            </div>
+
+        </div>
+    </header>
+
+    <footer>
+        <div id="footer" onselectstart="return false;">
+            <div id="footer-div">
+                <div>
+                    <div class="big-li">
+                        <h4>关于</h4>
+                        <p><i class="fa fa-users"></i> 关于我们</p>
+                        <p><i class="fa fa-envelope"></i> 联系我们</p>
+                    </div>
+
+                    <div class="big-li">
+                        <h4>帮助</h4>
+                        <p><i class="fa fa-file-o"></i> API文档</p>
+                        <p><i class="fa fa-file-text-o"></i> 系统更新日志</p>
+                        <p><i class="fa fa-comments-o"></i> 反馈</p>
+                    </div>
+
+                    <div class="big-li">
+                        <h4>语言</h4>
+                        <p><i class="fa fa-language"></i> 简体中文</p>
+                        <p><i class="fa fa-language"></i> 繁體中文</p>
+                        <p><i class="fa fa-language"></i> English</p>
+                    </div>
+
+                </div>
+            </div>
+
+            <div id="cr">Copyright &copy; 2017 All Rights Reserved</div>
+        </div>
+    </footer>
+</body>
+
+<script>
+    (function() {
+        window.scrollReveal = new scrollReveal({
+            reset: false,
+            move: '50px'
+        });
+    })();
+
+</script>
+
+<script>
+    $(document).ready(load);
+
+</script>
+
+</html>

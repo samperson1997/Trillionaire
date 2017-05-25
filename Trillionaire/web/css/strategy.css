@@ -48,3 +48,12 @@
     transform: translate3d(0, -30px, 0);
     background-color: #AAA;
 }
+
+.code-area {
+    margin: 2%;
+    width: 100%;
+    font-size: 100%;
+    border: 1px solid #AAA;
+    outline: none;
+    resize: none;
+}
