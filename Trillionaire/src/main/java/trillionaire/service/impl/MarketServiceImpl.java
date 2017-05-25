@@ -5,6 +5,9 @@ import trillionaire.vo.RankTable;
 import trillionaire.model.Stock;
 import trillionaire.service.MarketService;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -13,13 +16,12 @@ import java.util.Map;
 @Service
 public class MarketServiceImpl implements MarketService {
 
-    public Map<String, RankTable> getCategoryCondition(String category) {
 
+    public Map<String, List<RankTable>> getCategoryRank(String board) {
         return null;
     }
 
-    public Map<String, Stock> getBoardCondition(String board) {
-
+    public Map<String, List<Stock>> getBoardRank(String category) {
         return null;
     }
 }

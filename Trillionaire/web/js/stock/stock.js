@@ -30,9 +30,10 @@ function dataAnalyze(data) {
 
 function loadCandle(span) {
     var code = getParam('code');
+    console.log(code);
     var loadInfo = $.ajax({
         type: "GET",
-        url: "/stock/" + code+"/"+span,
+        url: "/stock/" + code + "/" + span,
         timeout: 180000,
         contentType: "application/x-www-form-urlencoded",
         dataType: "json",
