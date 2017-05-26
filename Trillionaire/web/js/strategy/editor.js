@@ -1,13 +1,6 @@
 window.onload = init;
 
 function init() {
-    $("#code-area").setTextareaCount({
-        width: "30px",
-        bgColor: "#000",
-        color: "#FFF",
-        display: "inline-block"
-    });
-
     //初始化对象
     editor = ace.edit("code");
 
