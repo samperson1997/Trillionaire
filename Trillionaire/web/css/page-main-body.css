@@ -3,10 +3,10 @@
     border: 1px solid #000;
     border-radius: 5px;
     padding: 1.4%;
-    margin: 0 2%;
+    margin: 0 1%;
 
     color: #0080ff;
-    width: 35%;
+    width: 38%;
     outline: none;
 }
 
@@ -32,6 +32,7 @@
     font-size: 100%;
     font-weight: 300;
     font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, "PingFang SC", sans-serif;
+    margin-right: 1%;
 }
 
 .stock-code a {

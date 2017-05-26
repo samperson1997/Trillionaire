@@ -49,11 +49,32 @@
     background-color: #AAA;
 }
 
-.code-area {
-    margin: 2%;
-    width: 100%;
-    font-size: 100%;
-    border: 1px solid #AAA;
+.log-area {
+    width: 40%;
+    height: 500px;
+    float: right;
+    border: 1px solid #DDD;
+    font-size: 90%;
+    margin: 4.5% 5% 0 0;
+}
+
+.log-title {
+    background-color: #DDD;
+    font-size: 120%;
+    padding: 1%;
+}
+
+.input-box {
+    font-size: 90%;
+    border: 1px solid #000;
+    border-radius: 5px;
+    padding: 1%;
+
+    color: #0080ff;
+    width: 8%;
     outline: none;
-    resize: none;
+}
+
+#code {
+    border: 1px solid #DDD;
 }

@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/page-main-body.css">
     <link rel="stylesheet" href="css/strategy.css">
+    <link rel="stylesheet" href="css/date-picker.css">
 
     <link rel="stylesheet" href="js/jquery-ui/jquery-ui.min.css">
     <link rel="stylesheet" href="js/jquery-ui/jquery-ui.theme.css">
@@ -21,9 +22,11 @@
     <script src="js/scrollReveal.js"></script>
     <script src="js/jquery-3.2.1.min.js"></script>
     <script src="js/jquery-ui/jquery-ui.min.js"></script>
-    <script src="js/jquery-ui/ui-choose.js"></script>
+    <script src="js/auto-line-number.js"></script>
 
-
+    <script src="js/ace/ace.js"></script>
+    <script src="js/strategy/editor.js"></script>
+    <script src="js/echarts.js"></script>
 </head>
 
 <body>
@@ -65,10 +68,19 @@
                 <div class="stock-code" style="display: inline-block;"><a href="strategy-content.html">>>返回策略列表</a></div>
                 <div class="stock-code" style="display: inline-block;"><a href="#">>>API文档</a></div>
 
-                <div></div>
-                <div style="width:60%; display:inline-block;">
+                <div style="margin: 2%;"></div>
+
+                <div style="width: 50%; float: left;">
+                    <div style="margin-bottom: 2%;" align="right">
+
+                        股票¥ <input style="display: inline;" class="input-box" value="10000" />
+                        <div style="display: inline;"><input class="date-picker" type="text" id="start-filter" placeholder="开始日期" />—<input class="date-picker" type="text" id="end-filter" placeholder="截止日期" /></div>
+                        <div class="button-page" onclick="switchTheme()" id="switch-theme-button"><i class="fa fa-eye"></i> 护眼模式</div>
+                        <div class="button-green"><i class="fa fa-forward"></i> 编译运行</div>
+                        <div id="remove-all" class="button-red" onclick="remove()"><i class="fa fa-trash-o"></i> 清空</div>
+                    </div>
                     <div>
-                        <textarea class="code-area" id="editor" name="content" data-provide="markdown" data-iconlibrary="fa" rows="20"># 可以自己import我们平台支持的第三方python模块，比如pandas、numpy等。
+                        <pre id="code" class="ace_editor" style="min-height: 500px;"><textarea class="ace_text-input" id="code-area" spellcheck="false"># 可以自己import我们平台支持的第三方python模块，比如pandas、numpy等。
 
 # 在这个方法中编写任何的初始化逻辑。context对象将会在你的算法策略的任何方法之间做传递。
 def init(context):
@@ -91,17 +103,24 @@ def handle_bar(context, bar_dict):
     # 使用order_shares(id_or_ins, amount)方法进行落单
 
     # TODO: 开始编写你的算法吧！
-    order_shares(context.s1, 1000)</textarea>
+    order_shares(context.s1, 1000)</textarea></pre>
                     </div>
 
                 </div>
 
-                <div style="width:30%; float:right; border: 1px solid #AAA; font-size: 100%;">
-                    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                <div class="log-area">
+                    <div class="log-title" style="margin-bottom: 2%;">
+                        <i class="fa fa-file-text"></i> 错误日志
+                    </div>
+                    <div class="log-content">
+                        <p>none :-)</p>
+                    </div>
                 </div>
 
-                <div id="result-area">
+                <div id="result-area" style="clear: both; margin-top: 45%;">
                     <div class="stock-name" style="display: inline;">回测结果</div>
+                    <div class="stock-code" style="display: inline-block;">&nbsp;&nbsp;|&nbsp;&nbsp;Back Test Result</div>
+                    <div id="return-chart" style="height: 300%;"></div>
                 </div>
             </div>
 
@@ -140,6 +159,8 @@ def handle_bar(context, bar_dict):
     </footer>
 </body>
 
+<script src="js/charts/return-line.js"></script>
+<script src="js/date-picker.js"></script>
 <script>
     (function() {
         window.scrollReveal = new scrollReveal({
@@ -147,11 +168,6 @@ def handle_bar(context, bar_dict):
             move: '50px'
         });
     })();
-
-</script>
-
-<script>
-    $(document).ready(load);
 
 </script>
 

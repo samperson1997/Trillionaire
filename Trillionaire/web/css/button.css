@@ -85,9 +85,9 @@
     border-radius: 5px;
     background-color: #0080ff;
     cursor: pointer;
-    display: inline;
-    margin: 10px;
-    padding: 1% 1.2%;
+    display: inline-block;
+    margin: 1%;
+    padding: 0.8% 1.2%;
 
     font-size: 90%;
 }
@@ -116,9 +116,9 @@
     border-radius: 5px;
     background-color: #cc0000;
     cursor: pointer;
-    display: inline;
-    margin: 10px;
-    padding: 1% 1.2%;
+    display: inline-block;
+    margin: 1%;
+    padding: 0.8% 1.2%;
 
     font-size: 90%;
 }
@@ -147,9 +147,9 @@
     border-radius: 5px;
     background-color: #00cc00;
     cursor: pointer;
-    display: inline;
-    margin: 10px;
-    padding: 1% 1.2%;
+    display: inline-block;
+    margin: 1%;
+    padding: 0.8% 1.2%;
 
     font-size: 90%;
 }
