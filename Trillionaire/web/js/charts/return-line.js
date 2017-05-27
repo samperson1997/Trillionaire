@@ -4,14 +4,12 @@ var date = [];
 
 var data1 = [Math.random() * 300];
 var data2 = [Math.random() * 300];
-var data3 = [Math.random() * 300];
 
 for (var i = 1; i < 20000; i++) {
     var now = new Date(base += oneDay);
     date.push([now.getFullYear(), now.getMonth() + 1, now.getDate()].join('/'));
     data1.push(Math.round((Math.random() - 0.5) * 20 + data1[i - 1]));
     data2.push(Math.round((Math.random() - 0.5) * 20 + data2[i - 1]));
-    data3.push(Math.round((Math.random() - 0.5) * 20 + data3[i - 1]));
 }
 
 option = {
@@ -19,7 +17,7 @@ option = {
         trigger: 'axis'
     },
     legend: {
-        data: ['K', 'D', 'J']
+        data: ['基准收益率', '策略收益率']
     },
     xAxis: {
         type: 'category',
@@ -46,7 +44,7 @@ option = {
     ],
     series: [
         {
-            name: 'K',
+            name: '基准收益率',
             type: 'line',
             smooth: true,
             symbol: 'none',
@@ -55,22 +53,13 @@ option = {
             data: data1
         },
         {
-            name: 'D',
+            name: '策略收益率',
             type: 'line',
             smooth: true,
             symbol: 'none',
             sampling: 'average',
 
             data: data2
-        },
-        {
-            name: 'J',
-            type: 'line',
-            smooth: true,
-            symbol: 'none',
-            sampling: 'average',
-
-            data: data3
         }
     ]
 };

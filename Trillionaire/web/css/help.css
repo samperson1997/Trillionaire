@@ -1,6 +1,7 @@
 #help-page ul {
     margin: 2.5%;
     border-bottom: 1px solid #AAA;
+    font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, "PingFang SC", sans-serif;
 }
 
 #help-page li {
@@ -14,4 +15,25 @@
 #help-page a:hover {
     color: #0080ff;
     text-decoration: underline;
+}
+
+.page-content-long {
+    position: fixed;
+    top: 15%;
+    background-color: rgb(25, 44, 72);
+    padding: 1% 2.5%;
+    border: 1px solid rgb(25, 44, 72);
+    border-top-right-radius: 3%;
+    border-bottom-right-radius: 3%;
+    color: #FFF;
+    font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, "PingFang SC", sans-serif;
+}
+
+.page-content-long li {
+    list-style: square;
+    cursor: pointer;
+}
+
+.page-content-long li:hover {
+    color: red;
 }

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html style="width: 100%">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Trillionaire - 量化交易系统</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/top-bar.css">
+    <link rel="stylesheet" href="css/page-title.css">
+    <link rel="stylesheet" href="css/button.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/page-main-body.css">
+    <link rel="stylesheet" href="css/help.css">
+
+    <link rel="stylesheet" href="js/jquery-ui/jquery-ui.min.css">
+    <link rel="stylesheet" href="js/jquery-ui/jquery-ui.theme.css">
+    <link rel="stylesheet" href="js/jquery-ui/jquery-ui.structure.min.css">
+
+    <link rel="stylesheet" href="js/jquery-ui/ui-choose.css">
+    <link href="css/font-awesome.css" rel="stylesheet" type="text/css">
+
+    <script src="js/scrollReveal.js"></script>
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/jquery-ui/jquery-ui.min.js"></script>
+    <script src="js/jquery-ui/ui-choose.js"></script>
+    <script src="js/market/chooseBoard.js"></script>
+
+
+</head>
+
+<body>
+    <header>
+        <div id="top-bar" onselectstart="return false;">
+            <a href="index.html">
+                <img src="img/logo.png" width="15%"></a>
+            <ul align="center">
+
+                <a href="stock.html?code=000001">
+                    <li id="spec-button" class="head-button">个股信息</li>
+                </a>
+                <li id="compare-button" class="head-button">股票对比</li>
+                <a href="market.html">
+                    <li id="market-button" class="head-button">市场行情</li>
+                </a>
+                <a href="strategy-content.html">
+                    <li id="strategy-button" class="head-button">策略回测</li>
+                </a>
+                <li id="star-button" class="head-button">关注股票</li>
+                <a href="login.html">
+                    <li id="log-button" class="head-button" class="button-blue">用户登录</li>
+                </a>
+            </ul>
+        </div>
+
+        <div>
+            <div id="title" onselectstart="return false;" align="left" style="display:inline-block;">
+                <h1 class="page-main-title">策略推荐<span class="page-sub-title">&nbsp;&nbsp;|&nbsp;&nbsp;用最易懂的语言带你了解股市</span></h1>
+            </div>
+        </div>
+
+        <div class="page-content-long">
+            <ul>
+                <a href="#">
+                    <li>如何使用本文档</li>
+                </a>
+                Python策略Hello World
+                <a href="#">
+                    <li>回测设置</li>
+                </a>
+                <a href="#">
+                    <li>回测结果分析</li>
+                </a>
+                <a href="#">
+                    <li>实时模拟交易</li>
+                </a>
+                <a href="#">
+                    <li>技术分析</li>
+                </a>
+                <a href="#">
+                    <li>数据</li>
+                </a>
+                <a href="#">
+                    <li>常见错误</li>
+                </a>
+                <a href="#">
+                    <li>隐私及安全</li>
+                </a>
+                Python SDK简介
+                <a href="#">
+                    <li>基本方法</li>
+                </a>
+                <a href="#">
+                    <li>交易相关函数</li>
+                </a>
+                <a href="#">
+                    <li>context属性</li>
+                </a>
+                <a href="#">
+                    <li>scheduler定时器</li>
+                </a>
+                <a href="#">
+                    <li>数据查询相关函数</li>
+                </a>
+                <a href="#">
+                    <li>其他方法</li>
+                </a>
+                <a href="#">
+                    <li>重要对象</li>
+                </a>
+                <a href="#">
+                    <li>枚举常量</li>
+                </a>
+                外部数据和Python模块
+                <a href="#">
+                    <li>引入自己的Python模块</li>
+                </a>
+                <a href="#">
+                    <li>支持的其他外部数据源</li>
+                </a>
+                <a href="#">
+                    <li>目前支持的Python模块</li>
+                </a>
+            </ul>
+        </div>
+
+        <div id="help-page" style="float: right; width: 80%;">
+            <div id="kdj">
+                <div class="stock-name" style="display: inline;">KDJ</div>
+                <div class="stock-code" style="display: inline;">&nbsp;|&nbsp;随机指标</div>
+                <ul>
+                    <li>KDJ是一种相当新颖、实用的技术分析指标。<br>它起先用于期货市场的分析，后被广泛用于股市的中短期趋势分析，是期货和股票市场上最常用的技术分析工具。</li>
+                    <li>我如何得知买入时机？<br>K、D、J三值在20以下，K线向上突破D线。</li>
+                    <li>我如何得知卖出时机？<br>K、D、J三值在80以上，K线向下跌破D线。</li>
+                    <li>此类数据线应当何时使用？<br>中短线趋势分析，建议与<a href="#macd">MACD线</a>一起使用。<br>由RSV可知，其是当前股价在最近周期内股价所处位置的体现。<br>当K线向上突破D线时，说明目前趋势是向上的；当K线向下突破D线时，说明目前趋势是向下的; <br>但是股票持续稳定上涨或下跌都会出现钝化现象，KDJ线持平，此时可以综合MACD线来判断。
+                    </li>
+                </ul>
+
+            </div>
+
+            <div id="bias">
+                <div class="stock-name" style="display: inline;">BIAS</div>
+                <div class="stock-code" style="display: inline;">&nbsp;|&nbsp;乖离率</div>
+                <ul>
+                    <li>BIAS是测量股价偏离均线大小程度的指标。<br>当股价偏离市场平均成本太大时，都有一个回归的过程，即所谓的“物极必反”。</li>
+                    <li>我如何得知买入时机？<br>一般来说，负乖离率降至某一百分比时，为买入信号。<br>其他情况有：<br>1、当短期BIAS曲线开始在底部向上突破长期BIAS曲线时，说明股价的弱势整理格局可能被打破，股价短期将向上运动，投资者可以考虑少量长线建仓。<br>2、当短期BIAS曲线向上突破长期BIAS曲线并迅速向上运动，同时中期BIAS曲线也向上突破长期BIAS曲线，说明股价的中长期上涨行情已经开始，投资者可以加大买入股票的力度。<br>3、当短、中、长期BIAS曲线开始摆脱前期窄幅盘整的区间并同时向上快速运动时，说明股价已经进入短线强势拉升行情，投资者应坚决持股待涨。
+                    </li>
+                    <li>我如何得知卖出时机？<br>一般来说，正乖离率涨至某一百分比时，为卖出信号。<br>其他情况有：<br>1、当短期BIAS曲线经过一段快速向上运动的过程后开始在高位向下掉头时，说明股价短期上涨过快，将开始短线调整，投资者可以短线卖出股票。<br>2、当中期BIAS曲线也开始在高位向下掉头时，说明股价的短期上涨行情可能结束，投资者应中线卖出股票。<br>3、当长期BIAS曲线也开始在高位向下掉头时，说明股价的中短期上涨行情已经结束，投资者应全部清仓离场。
+                    </li>
+                    <li>此类数据线应当何时使用？<br>在分析和预测股价走势时，可以结合乖离率与布林线或其他数据图表进行分析。<br>但如果仅单一适用乖离率作为研判依据，有时会出现偏差，尤其是在极端行情中，乖离率所给出的逆势操作幸好可能会丢失机会或作出错误决策。<br>所以，通过乖离率洞察股市冷暖，符合常规思路：涨多了要跌，跌多了要涨。
+                    </li>
+                </ul>
+
+            </div>
+
+            <div id="macd">
+                <div class="stock-name" style="display: inline;">MACD</div>
+                <div class="stock-code" style="display: inline;">&nbsp;|&nbsp;指数平滑异同平均线</div>
+                <ul>
+                    <li>MACD是在使用MACD指标时在图表上看到的MACD柱状线，常用于分析股票的买入、卖出时机。DIFF指白色的线，一般统称MACD线。</li>
+                    <li>我如何得知买入时机？<br>MACD线翻红，即由负变正；DIF由下向上突破DEA。
+                    </li>
+                    <li>我如何得知卖出时机？<br>MACD线翻绿，即由正变负；DIF由上向下突破DEA。
+                    </li>
+                    <li>此类数据线应当何时使用？<br>适用于中线趋势分析，建议与<a href="#kdj">KDJ线</a>一起使用。
+                    </li>
+                </ul>
+
+            </div>
+
+            <div id="rec-trend">
+                <div class="stock-name" style="display: inline;">推荐趋势</div>
+                <div class="stock-code" style="display: inline;">&nbsp;|&nbsp;Recommendation trends</div>
+
+            </div>
+            <div style="margin-bottom: 10%;"></div>
+        </div>
+
+
+    </header>
+
+    <footer>
+        <div id="footer" onselectstart="return false;">
+            <div id="footer-div">
+                <div>
+                    <div class="big-li">
+                        <h4>关于</h4>
+                        <p><i class="fa fa-users"></i> 关于我们</p>
+                        <p><i class="fa fa-envelope"></i> 联系我们</p>
+                    </div>
+
+                    <div class="big-li">
+                        <h4>帮助</h4>
+                        <p><i class="fa fa-file-o"></i> API文档</p>
+                        <p><i class="fa fa-file-text-o"></i> 系统更新日志</p>
+                        <p><i class="fa fa-comments-o"></i> 反馈</p>
+                    </div>
+
+                    <div class="big-li">
+                        <h4>语言</h4>
+                        <p><i class="fa fa-language"></i> 简体中文</p>
+                        <p><i class="fa fa-language"></i> 繁體中文</p>
+                        <p><i class="fa fa-language"></i> English</p>
+                    </div>
+
+                </div>
+            </div>
+
+            <div id="cr">Copyright &copy; 2017 All Rights Reserved</div>
+        </div>
+    </footer>
+</body>
+
+<script>
+    (function() {
+        window.scrollReveal = new scrollReveal({
+            reset: false,
+            move: '50px'
+        });
+    })();
+
+</script>
+
+<script>
+    $(document).ready(load);
+
+</script>
+
+</html>

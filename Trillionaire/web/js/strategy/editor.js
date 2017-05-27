@@ -36,7 +36,7 @@ function remove() {
 function switchTheme() {
     if ($("#switch-theme-button").text().indexOf("护眼模式") >= 0) {
         $("#switch-theme-button").html("<i class=\"fa fa-eye\"></i> 浅色模式");
-        editor.setTheme("ace/theme/tomorrow_night_blue");
+        editor.setTheme("ace/theme/idle_fingers");
 
     } else if ($("#switch-theme-button").text().indexOf("浅色模式") >= 0) {
         $("#switch-theme-button").html("<i class=\"fa fa-eye\"></i> 护眼模式");

@@ -1,4 +1,6 @@
 .stra-table {
+
+    font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, "PingFang SC", sans-serif;
     margin: 3%;
     width: 90%;
     display: inline-table;
@@ -18,7 +20,17 @@
     padding: 0.5% 0;
 }
 
+.stra-table tr td:first-child {
+    cursor: pointer;
+}
+
+.stra-table tr td:first-child:hover {
+    color: #0080ff;
+}
+
 #new-stra-item {
+
+    font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, "PingFang SC", sans-serif;
     margin: 0 auto;
     text-align: center;
 }
@@ -46,10 +58,13 @@
     transition: transform 0.35s;
     -webkit-transform: translate3d(0, -30px, 0);
     transform: translate3d(0, -30px, 0);
-    background-color: #AAA;
+    background-color: #0080ff;
+    color: #FFF;
 }
 
 .log-area {
+
+    font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, "PingFang SC", sans-serif;
     width: 40%;
     height: 500px;
     float: right;
@@ -62,6 +77,7 @@
     background-color: #DDD;
     font-size: 120%;
     padding: 1%;
+    margin-bottom: 2%;
 }
 
 .input-box {
@@ -77,4 +93,32 @@
 
 #code {
     border: 1px solid #DDD;
+}
+
+#result-figure {
+    margin: 1% auto;
+}
+
+.res-spec-figure {
+    display: inline-block;
+    width: 11%;
+    background-color: transparent;
+    font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, "PingFang SC", sans-serif;
+    font-size: 70%;
+    text-align: center;
+    margin: 0 -2%;
+
+    border-bottom: 1px solid #AAA;
+    border-top: 1px solid #AAA;
+    line-height: 150%;
+    padding: 1% 0;
+}
+
+.res-spec-figure h2 {
+    font-weight: 400;
+}
+
+.res-spec-figure p {
+    margin-top: 5%;
+    font-weight: 200;
 }

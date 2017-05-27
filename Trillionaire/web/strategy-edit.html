@@ -58,14 +58,14 @@
             </div>
         </div>
 
-        <div style="margin-left:5%;">
+        <div style="margin: 0 3%;">
             <div>
                 <div class="stock-name" style="display: inline;">编写策略</div>
 
                 <div class="button-blue"><i class="fa fa-save"></i> 保存</div>
                 <div class="stock-code" style="display: inline-block;"><a href="strategy-content.html#new-stra">>>新手入门</a></div>
                 <div class="stock-code" style="display: inline-block;"><a href="strategy-content.html">>>返回策略列表</a></div>
-                <div class="stock-code" style="display: inline-block;"><a href="#">>>API文档</a></div>
+                <div class="stock-code" style="display: inline-block;"><a href="api.html">>>API文档</a></div>
 
                 <div style="margin: 2%;"></div>
 
@@ -108,20 +108,81 @@ def handle_bar(context, bar_dict):
                 </div>
 
                 <div class="log-area">
-                    <div class="log-title" style="margin-bottom: 2%;">
-                        <i class="fa fa-file-text"></i> 错误日志
+                    <div class="log-title">
+                        <i class="fa fa-file-text"></i> 日志&nbsp;Logs and Errors
                     </div>
                     <div class="log-content">
                         <p>none :-)</p>
                     </div>
                 </div>
 
-                <div id="result-area" style="clear: both; margin-top: 45%;">
+                <div id="result-area" style="clear: both; margin-top: 50%;">
                     <div class="stock-name" style="display: inline;">回测结果</div>
                     <div class="stock-code" style="display: inline-block;">&nbsp;&nbsp;|&nbsp;&nbsp;Back Test Result</div>
-                    <div id="return-chart" style="height: 300%;"></div>
+
+                    <div align="center" id="result-figure">
+
+                        <div data-scroll-reveal="enter from bottom over 0.5s" class="res-spec-figure">
+                            <h2>回测收益</h2>
+                            <p>60.49%</p>
+                        </div>
+
+                        <div data-scroll-reveal="enter from bottom over 0.5s" class="res-spec-figure">
+                            <h2>回测年化收益</h2>
+                            <p>60.71%</p>
+                        </div>
+
+                        <div data-scroll-reveal="enter from bottom over 0.5s" class="res-spec-figure">
+                            <h2>基准收益</h2>
+                            <p>52.10%</p>
+                        </div>
+                        <div data-scroll-reveal="enter from bottom over 0.5s" class="res-spec-figure">
+                            <h2>基准年化收益</h2>
+                            <p>52.28%</p>
+                        </div>
+                        <div data-scroll-reveal="enter from bottom over 0.5s" class="res-spec-figure">
+                            <h2>Alpha</h2>
+                            <p>-0.019</p>
+                        </div>
+                        <div data-scroll-reveal="enter from bottom over 0.5s" class="res-spec-figure">
+                            <h2>Beta</h2>
+                            <p>1.255</p>
+                        </div>
+                        <div data-scroll-reveal="enter from bottom over 0.5s" class="res-spec-figure">
+                            <h2>Sharpe</h2>
+                            <p>1.563</p>
+                        </div>
+                        <div data-scroll-reveal="enter from bottom over 0.5s" class="res-spec-figure">
+                            <h2>Sortino</h2>
+                            <p>4.101</p>
+                        </div>
+                        <div data-scroll-reveal="enter from bottom over 0.5s" class="res-spec-figure">
+                            <h2>Info Ratio</h2>
+                            <p>0.415</p>
+                        </div>
+                        <div data-scroll-reveal="enter from bottom over 0.5s" class="res-spec-figure">
+                            <h2>Volatility</h2>
+                            <p>0.304</p>
+                        </div>
+                        <div data-scroll-reveal="enter from bottom over 0.5s" class="res-spec-figure">
+                            <h2>最大回撤</h2>
+                            <p>16.48%</p>
+                        </div>
+                        <div data-scroll-reveal="enter from bottom over 0.5s" class="res-spec-figure">
+                            <h2>追踪错误</h2>
+                            <p>0.1961</p>
+                        </div>
+                        <div data-scroll-reveal="enter from bottom over 0.5s" class="res-spec-figure">
+                            <h2>下行风险</h2>
+                            <p>0.116</p>
+                        </div>
+                    </div>
+
+                    <div id="return-chart" style="height: 400%;"></div>
+
                 </div>
             </div>
+            <div style="margin-bottom: 10%;"></div>
 
         </div>
     </header>
