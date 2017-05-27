@@ -403,3 +403,7 @@
 .page-content-fix li ul li:hover {
     color: red;
 }
+
+.compare-stock {
+    margin-bottom: 5%;
+}

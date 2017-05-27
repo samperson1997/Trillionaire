@@ -35,6 +35,10 @@
     text-align: center;
 }
 
+#new-stra-item a {
+    color: #000;
+}
+
 #new-stra-item li {
     cursor: pointer;
     border: 1px dotted #AAA;

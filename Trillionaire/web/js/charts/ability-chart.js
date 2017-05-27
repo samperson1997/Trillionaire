@@ -1,14 +1,17 @@
 var data0;
-jQuery(function($) {
+jQuery(function ($) {
     loadAbility();
 });
+
 function loadAbility() {
     var code = getParam('code');
-    var load =$.ajax({
+    var load = $.ajax({
         type: "GET",
         url: "/stock/ability",
-        data: {"code": code},
-        timeout:180000,
+        data: {
+            "code": code
+        },
+        timeout: 180000,
         contentType: "application/x-www-form-urlencoded",
         dataType: "json",
         success: function (data) {
@@ -61,7 +64,7 @@ function loadAbility() {
             aChart.setOption(option);
         },
         error: function (request, status, err) {
-            if (status=="timeout"){
+            if (status == "timeout") {
                 load.abort();
                 loadAbility();
             }
