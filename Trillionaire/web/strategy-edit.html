@@ -238,4 +238,10 @@ def handle_bar(context, bar_dict):
 
 </script>
 
+
+<script>
+    if (sessionStorage.getItem("log_state") == "true") {
+        document.getElementById("log-button").innerHTML = "登出系统";
+    }
+</script>
 </html>

@@ -91,21 +91,27 @@
                     <div class="stock-name" style="display: inline-block;">股票1</div>
                     <div class="stock-code" style="display: inline-block;">&nbsp;|&nbsp;000001</div>
                     <div style="display: inline-block;" class="button-page" ng-click="follow()"><i class="fa fa-plus"></i> 关注&nbsp;</div>
-                    <div class="stock-code" style="display: inline-block;">&nbsp;&nbsp;<a href="stock.html?code=000001">>>查看详情</a></div>
+                    <a href="stock.html?code=000001">
+                        <div style="display: inline-block;" class="button-green"><i class="fa fa-eye"></i> 查看</div>
+                    </a>
                 </div>
 
                 <div class="compare-stock">
                     <div class="stock-name" style="display: inline-block;">股票2</div>
                     <div class="stock-code" style="display: inline-block;">&nbsp;|&nbsp;000002</div>
                     <div style="display: inline-block;" class="button-page" ng-click="follow()"><i class="fa fa-plus"></i> 关注&nbsp;</div>
-                    <div class="stock-code" style="display: inline-block;">&nbsp;&nbsp;<a href="stock.html?code=000002">>>查看详情</a></div>
+                    <a href="stock.html?code=000001">
+                        <div style="display: inline-block;" class="button-green"><i class="fa fa-eye"></i> 查看</div>
+                    </a>
                 </div>
 
                 <div class="compare-stock">
                     <div class="stock-name" style="display: inline-block;">股票3</div>
                     <div class="stock-code" style="display: inline-block;">&nbsp;|&nbsp;000003</div>
                     <div style="display: inline-block;" class="button-page" ng-click="follow()"><i class="fa fa-plus"></i> 关注&nbsp;</div>
-                    <div class="stock-code" style="display: inline-block;">&nbsp;&nbsp;<a href="stock.html?code=000003">>>查看详情</a></div>
+                    <a href="stock.html?code=000001">
+                        <div style="display: inline-block;" class="button-green"><i class="fa fa-eye"></i> 查看</div>
+                    </a>
                 </div>
 
                 <div style="border-top: 1px solid #AAA; padding-top: 5%;">
@@ -164,4 +170,10 @@
 
 </script>
 
+
+<script>
+    if (sessionStorage.getItem("log_state") == "true") {
+        document.getElementById("log-button").innerHTML = "登出系统";
+    }
+</script>
 </html>

@@ -122,4 +122,10 @@
 <script src="js/jquery-3.2.1.min.js"></script>
 <script src="js/bootstrap/bootstrap.min.js"></script>
 
+
+<script>
+    if (sessionStorage.getItem("log_state") == "true") {
+        document.getElementById("log-button").innerHTML = "登出系统";
+    }
+</script>
 </html>
