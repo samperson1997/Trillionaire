@@ -2,6 +2,9 @@ package trillionaire.service.impl.boxjenkins;
 
 import org.junit.Test;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 /**
  * Created by michaeltan on 2017/5/25.
  */
@@ -9,7 +12,6 @@ public class MathTest {
 
     @Test
     public void test1() {
-        MathUtils mathUtils = new MathUtils();
         double[] array = {8.71, 9.58, 10.54, 10.69, 10.79, 10.91, 10.92, 10.96, 10.96, 10.97, 11.0, 11.01, 11.09, 11.1,
                 11.12, 11.23, 11.26, 11.34, 11.42, 11.47, 11.48, 11.5, 11.59, 11.61, 11.67, 11.76, 11.78, 11.78, 11.85,
                 11.92, 11.97, 11.99, 12.04, 12.06, 12.09, 12.09, 12.12, 12.13, 12.17, 12.18, 12.2, 12.21, 12.22, 12.27,
@@ -37,14 +39,19 @@ public class MathTest {
                 21.62, 21.63, 21.66, 21.7, 21.71, 21.74, 21.75, 21.75, 21.75, 21.75, 21.78, 21.78, 21.79, 21.79, 21.81,
                 21.82, 21.85, 21.85, 21.85, 21.88, 21.89, 21.89, 21.9, 21.9, 21.91, 21.92, 21.93, 21.94, 21.94, 21.95,
                 21.98, 21.98, 21.99, 22.02, 22.03, 22.06, 22.08, 22.09, 22.1, 22.12, 22.14, 22.16, 22.19, 22.2, 22.2,
-                22.22, 22.24, 22.25, 22.25, 22.28, 22.29, 22.32, 22.33, 22.35, 22.37, 22.4, 22.4, 22.43, 22.49, 22.5, 22.54};
-        double[] array1 = new double[array.length-1];
-        for (int i = 0; i < array.length-1; i++) {
-            array1[i] = Math.log(array[i+1]/array[i]);
+                22.22, 22.24, 22.25, 22.25, 22.28, 22.29, 22.32, 22.33, 22.35, 22.37};
+        TimeSeriesPredict timeSeriesPredict = new TimeSeriesPredict();
+        double temp;
+        double sum = 0.00;
+        double result;
+        int times = 20;
+        for (int i = 0; i < times; i++) {
+            temp = timeSeriesPredict.predict(array);
+            sum += temp;
         }
-        double[] result = mathUtils.pacf(array1, array1.length);
-        for (int i = 0; i < array1.length; i++) {
-            System.out.println(result[i]);
-        }
+        result = sum/(double) times;
+        BigDecimal bigDecimal = new BigDecimal(result);
+        System.out.println(bigDecimal.setScale(2,   RoundingMode.HALF_UP).doubleValue());
     }
+
 }
