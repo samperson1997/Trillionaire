@@ -34,7 +34,7 @@
             <a href="index.html">
                 <img src="img/logo.png" width="15%"></a>
             <ul align="center">
-                <a href="stock.html?code=000001">
+                <a href="stock.html">
                     <li id="spec-button" class="head-button">个股信息</li>
                 </a>
                 <a href="concern.html">
@@ -52,7 +52,6 @@
                 <a href="compare.html">
                     <li id="compare-button" class="head-button">股票对比</li>
                 </a>
-
                 <a href="login.html">
                     <li id="log-button" class="head-button" class="button-blue">用户登录</li>
                 </a>
@@ -139,6 +138,32 @@
                 <div class="stock-code" style="display: inline;">&nbsp;|&nbsp;Recommendation trends</div>
 
             </div>
+
+            <div id="api-2">
+                <div class="stock-name" style="display: inline;">回测设置</div>
+                <ul>
+                    <li>您可以在策略编辑页面中进行以下参数的设置： 基础参数：
+                        <ol>
+                            <li>开始日期：回测期间的开始日期</li>
+                            <li>结束日期：回测期间的结束日期 - 如果回测结束日期在今天之后，将会自动使用最后一天的历史数据</li>
+                            <li>起始资金：回测的起始资金 - 您将使用多少钱去投资策略</li>
+                            <li>回测频率：可以选择日回测以及分钟回测</li>
+
+                        </ol>
+                    </li>
+                    <li>高阶设置：
+                        <ol>
+                            <li>基准合约：设置策略表现的对照基准</li>
+                            <li>佣金倍率：设置策略佣金在默认佣金基础上的倍数</li>
+                            <li>保证金倍率：设置策略保证金在默认保证金率基础上的倍数</li>
+                            <li>撮合方式：可以选择'当前bar收盘'或'下一bar开盘'</li>
+                            <li>滑点：交易中理想成交价和实际成交价的差异。在进行策略回测时，用户可以设置一个滑点参数，来提高买入价或降低卖出价，模拟实际交易中出现的滑点。该参数取值在 [0, 1) 之间。例如，当股票市价为10元，参数设为0.1，则回测时买入价为$10 + 10 * 0.1 = 11$元)</li>
+                            <li>性能分析：勾选该选项之后，策略回测性能分析功能将被开启</li>
+                        </ol>
+                    </li>
+                </ul>
+            </div>
+
             <div style="margin-bottom: 10%;"></div>
         </div>
 
@@ -191,10 +216,6 @@
     $(document).ready(load);
 
 </script>
+<script src="js/user/log_state.js"></script>
 
-<script>
-    if (sessionStorage.getItem("log_state") == "true") {
-        document.getElementById("log-button").innerHTML = "登出系统";
-    }
-</script>
 </html>
