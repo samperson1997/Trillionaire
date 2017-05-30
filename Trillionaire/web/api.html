@@ -34,7 +34,7 @@
             <a href="index.html">
                 <img src="img/logo.png" width="15%"></a>
             <ul align="center">
-                <a href="stock.html">
+                <a href="stock.html?code=000001">
                     <li id="spec-button" class="head-button">个股信息</li>
                 </a>
                 <a href="concern.html">
@@ -207,13 +207,13 @@
                     <li>返回：datetime.datetime</li>
 
                     <h3><code>context.portfolio</code></h3>
-                    <li>该投资组合在单一股票或期货策略中分别为股票投资组合和期货投资组合。在股票+期货的混合策略中代表汇总之后的总投资组合。请参考portfolio</li>
+                    <li>该投资组合在单一股票或期货策略中分别为股票投资组合和期货投资组合。在股票+期货的混合策略中代表汇总之后的总投资组合。请参考<a href="#portfolio">portfolio</a></li>
 
                     <h3><code>context.stock_account</code></h3>
-                    <li>获取股票资金账户信息。请参考 stock_account</li>
+                    <li>获取股票资金账户信息。请参考<a href="#account">account</a></li>
 
                     <h3><code>context.future_account</code></h3>
-                    <li>获取期货资金账户信息。请参考 future_account</li>
+                    <li>获取期货资金账户信息。请参考<a href="#account">account</a></li>
 
                     <h3><code>context.run_info</code></h3>
                     <li>run_id str 标识策略每次运行的唯一id<br>
@@ -339,9 +339,9 @@
                     <li>返回：pandas Panel/DataFrame/Series<br> 传入一个order_book_id，多个fields，函数会返回一个pandas DataFrame<br> 传入一个order_book_id，一个field，函数会返回pandas Series<br> 传入多个order_book_id，一个field，函数会返回一个pandas DataFrame<br> 传入多个order_book_id，函数会返回一个pandas Panel</li>
 
                     <h3><code>current_snapshot(id_or_symbol)</code></h3>
-                    <li>获得当前市场快照数据。只能在日内交易阶段调用，获取当日调用时点的市场快照数据。市场快照数据记录了每日从开盘到当前的数据信息，可以理解为一个动态的day bar数据。在目前分钟回测中，快照数据为当日所有分钟线累积而成，一般情况下，最后一个分钟线获取到的快照数据应当与当日的日线行情保持一致。需要注意，在实盘模拟中，该函数返回的是调用当时的市场快照情况，所以在同一个handle_bar中不同时点调用可能返回的数据不同。如果当日截止到调用时候对应股票没有任何成交，那么snapshot中的close, high, low, last几个价格水平都将以0表示。</li>
+                    <li>获得当前<a href="#snapshot">市场快照</a>数据。只能在日内交易阶段调用，获取当日调用时点的市场快照数据。市场快照数据记录了每日从开盘到当前的数据信息，可以理解为一个动态的day bar数据。在目前分钟回测中，快照数据为当日所有分钟线累积而成，一般情况下，最后一个分钟线获取到的快照数据应当与当日的日线行情保持一致。需要注意，在实盘模拟中，该函数返回的是调用当时的市场快照情况，所以在同一个handle_bar中不同时点调用可能返回的数据不同。如果当日截止到调用时候对应股票没有任何成交，那么snapshot中的close, high, low, last几个价格水平都将以0表示。</li>
                     <li>参数：<code>id_or_symbol</code> str类型， 合约代码或简称</li>
-                    <li>返回：调用时点的市场快照snapshot</li>
+                    <li>返回：调用时点的<a href="#snapshot">市场快照snapshot</a></li>
 
                     <h3><code>get_dominant_future(underlying_symbol)</code></h3>
                     <li>获取某一期货品种策略当前日期的主力合约代码。 合约首次上市时，以当日收盘同品种持仓量最大者作为从第二个交易日开始的主力合约。当同品种其他合约持仓量在收盘后超过当前主力合约1.1倍时，从第二个交易日开始进行主力合约的切换。日内不会进行主力合约的切换。</li>
@@ -562,7 +562,7 @@
                     <li><code>total_turnover</code> float 截止到当前的成交额</li>
                     <li><code>open_interest	</code>float 截止到当前的持仓量（期货专用）</li>
                     <li><code>prev_settlement</code>float 昨日结算价（期货专用）</li>
-                    <li>需要注意，在回测中通过snapshot获取prev_close以及prev_settlement较为低效，推荐通过bar数据进行获取。</li>
+                    <li>需要注意，在回测中通过snapshot获取prev_close以及prev_settlement较为低效，推荐通过<a href="#bar">bar数据</a>进行获取。</li>
 
                     <h3 id="portfolio"><code>Portfolio对象</code></h3>
                     <li><code>cash</code> float 可用资金，为子账户可用资金的加总</li>
@@ -579,7 +579,7 @@
                     <li><code>pnl</code> float 当前投资组合的累计盈亏</li>
                     <li><code>start_date</code> datetime.datetime 策略投资组合的回测/实时模拟交易的开始日期</li>
                     <li><code>annualized_returns</code> float 投资组合的年化收益率</li>
-                    <li><code>positions</code> dict 一个包含所有仓位的字典，以order_book_id作为键，position对象作为值</li>
+                    <li><code>positions</code> dict 一个包含所有仓位的字典，以order_book_id作为键，<a href="#position">position对象</a>作为值</li>
 
                     <h3 id="order"><code>Order对象</code></h3>
                     <li><code>order_id</code> int 唯一标识订单的id</li>
@@ -605,7 +605,7 @@
                     <li><code>market_value</code> float 投资组合当前所有证券仓位的市值的加总</li>
                     <li><code>total_value</code> float 总权益</li>
                     <li><code>transaction_cost</code> float 当日费用</li>
-                    <li><code>positions</code> dict 一个包含股票子组合仓位的字典，以order_book_id作为键，position对象作为值</li>
+                    <li><code>positions</code> dict 一个包含股票子组合仓位的字典，以order_book_id作为键，<a href="#position">position对象</a>作为值</li>
                     <li><code>dividend_receivable</code> float 投资组合在分红现金收到账面之前的应收分红部分</li>
 
                     <h3 id="position"><code>Position对象</code></h3>
@@ -624,7 +624,7 @@
                     <li><code>round_lot</code> int 一手对应多少股，中国A股一手是100股</li>
                     <li><code>sector_code</code> str 板块缩写代码，全球通用标准定义</li>
                     <li><code>sector_code_name</code> str 以当地语言为标准的板块代码名</li>
-                    <li><code>industry_code</code> str 国民经济行业分类代码，具体可参考下方"Industry列表"</li>
+                    <li><code>industry_code</code> str 国民经济行业分类代码</li>
                     <li><code>industry_name</code> str 国民经济行业分类名称</li>
                     <li><code>listed_date</code> str 该证券上市日期</li>
                     <li><code>de_listed_date</code> str 退市日期</li>
