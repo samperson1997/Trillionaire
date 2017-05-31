@@ -51,9 +51,9 @@ public class CodeDateKey implements Serializable{
         if(!(obj instanceof CodeDateKey)) return false; 
         
         CodeDateKey codeDateKey = (CodeDateKey)obj;
-        if(stock.getCode()==codeDateKey.getStock().getCode() || date.equals(codeDateKey.getDate())) return false;
+        if(stock.getCode()==codeDateKey.getStock().getCode() || date.equals(codeDateKey.getDate())) return true;
         
-        return true;  
+        return false;
 	}
 
 }

@@ -18,15 +18,15 @@ public class RealTimeUpdater {
 
     public Map<Integer, RealTimeStock> getNewInfo(){
 
-        String dirPath = "C:\\Users\\USER\\project3\\Trillionaire\\Trillionaire\\src\\main\\java\\";
+        //String dirPath = "C:\\Users\\USER\\project3\\Trillionaire\\Trillionaire\\src\\main\\java\\";
         BufferedReader br = null;
         try {
-            String[] cmd = new String[] { "cmd.exe", "/C", "python C:\\Users\\USER\\project3\\Trillionaire\\Trillionaire\\src\\main\\java\\updater.py" };
+            String[] cmd = new String[] { "cmd.exe", "/C", "python src\\main\\resources\\python\\updater.py" };
             Process p = Runtime.getRuntime().exec(cmd);
             p.waitFor();
-            System.out.println("run python success");
+            System.out.println("get realtime success");
 
-            br = new BufferedReader(new InputStreamReader(new FileInputStream("realtime.csv"),"UTF-8"));
+            br = new BufferedReader(new InputStreamReader(new FileInputStream("src\\main\\resources\\TempFiles\\RealTime\\realtime.csv"),"UTF-8"));
             Map<Integer, RealTimeStock> result = new LinkedHashMap<Integer, RealTimeStock>();
 
             br.readLine();
