@@ -2,11 +2,11 @@
     font-size: 90%;
     border: 1px solid #000;
     border-radius: 5px;
-    padding: 0.7%;
-    margin: 0 2%;
+    padding: 1.4%;
+    margin: 0 1%;
 
     color: #0080ff;
-    width: 25%;
+    width: 60%;
     outline: none;
 }
 
@@ -32,6 +32,7 @@
     font-size: 100%;
     font-weight: 300;
     font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, "PingFang SC", sans-serif;
+    margin-right: 1%;
 }
 
 .stock-code a {
@@ -197,6 +198,7 @@
 }
 
 .index-fig {
+    font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, "PingFang SC", sans-serif;
     display: inline-block;
     width: 30%;
     border: 1px solid #AAA;
@@ -214,6 +216,7 @@
 }
 
 .rank-table {
+    font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, "PingFang SC", sans-serif;
     text-align: center;
 }
 
@@ -227,33 +230,44 @@
 }
 
 .rank-head {
+    font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, "PingFang SC", sans-serif;
     font-size: 100%;
     padding: 2% 15%;
 }
 
 .rank-margin {
+
+    font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, "PingFang SC", sans-serif;
     font-size: 180%;
     padding: 0 15%;
 }
 
 .rank-sta {
+
+    font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, "PingFang SC", sans-serif;
     font-size: 80%;
     padding: 5% 15%;
     color: #000;
 }
 
 .rank-stock {
+
+    font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, "PingFang SC", sans-serif;
     font-size: 100%;
     padding: 5% 15% 0% 15%;
     border-top: 1px solid #AAA;
 }
 
 .rank-stock-margin {
+
+    font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, "PingFang SC", sans-serif;
     font-size: 90%;
     padding: 5% 15%;
 }
 
 .rank-table-rise .rank-top {
+
+    font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, "PingFang SC", sans-serif;
     cursor: pointer;
     color: red;
 }
@@ -264,6 +278,8 @@
 }
 
 .rank-table-rise .rank-bottom {
+
+    font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, "PingFang SC", sans-serif;
     background-color: #EEE;
     cursor: pointer;
 }
@@ -274,6 +290,8 @@
 }
 
 .rank-table-fall .rank-top {
+
+    font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, "PingFang SC", sans-serif;
     cursor: pointer;
     color: green;
 }
@@ -284,6 +302,8 @@
 }
 
 .rank-table-fall .rank-bottom {
+
+    font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, "PingFang SC", sans-serif;
     background-color: #EEE;
     cursor: pointer;
 }
@@ -294,6 +314,8 @@
 }
 
 .whole-rank-div {
+
+    font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, "PingFang SC", sans-serif;
     margin: 0 auto;
 }
 
@@ -337,6 +359,8 @@
 }
 
 .page-content {
+
+    font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, "PingFang SC", sans-serif;
     position: fixed;
     top: 26%;
     background-color: rgb(25, 44, 72);
@@ -353,7 +377,13 @@
     margin: 20% 0;
 }
 
+.page-content li:hover {
+    color: red;
+}
+
 .page-content-fix {
+
+    font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, "PingFang SC", sans-serif;
     width: 13%;
     padding-left: 5%;
     margin-bottom: 3%;
@@ -372,4 +402,8 @@
 
 .page-content-fix li ul li:hover {
     color: red;
+}
+
+.compare-stock {
+    margin-bottom: 5%;
 }

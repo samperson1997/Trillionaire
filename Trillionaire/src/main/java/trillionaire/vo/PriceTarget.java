@@ -4,26 +4,26 @@ package trillionaire.vo;
  * Created by michaeltan on 2017/5/17.
  */
 public class PriceTarget {
-    private double current;
+    private double close;
     private double high;
     private double low;
     private double average;
 
 
-    public PriceTarget(double current, double high, double low, double average) {
+    public PriceTarget(double close, double high, double low, double average) {
 
-        this.current = current;
+        this.close = close;
         this.high = high;
         this.low = low;
         this.average = average;
     }
 
-    public double getCurrent() {
-        return current;
+    public double getClose() {
+        return close;
     }
 
-    public void setCurrent(double current) {
-        this.current = current;
+    public void setClose(double close) {
+        this.close = close;
     }
 
     public double getHigh() {

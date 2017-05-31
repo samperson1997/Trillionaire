@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html style="width: 100%">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Trillionaire - 量化交易系统</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/top-bar.css">
+    <link rel="stylesheet" href="css/page-title.css">
+    <link rel="stylesheet" href="css/button.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/date-picker.css">
+    <link rel="stylesheet" href="css/page-main-body.css">
+    <link rel="stylesheet" href="css/board-rank.css">
+    <link rel="stylesheet" href="css/market.css">
+
+    <link rel="stylesheet" href="js/jquery-ui/jquery-ui.min.css">
+    <link rel="stylesheet" href="js/jquery-ui/jquery-ui.theme.css">
+    <link rel="stylesheet" href="js/jquery-ui/jquery-ui.structure.min.css">
+
+    <link rel="stylesheet" href="js/jquery-ui/ui-choose.css">
+    <link href="css/font-awesome.css" rel="stylesheet" type="text/css">
+
+    <script src="js/scrollReveal.js"></script>
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/jquery-ui/jquery-ui.min.js"></script>
+    <script src="js/jquery-ui/ui-choose.js"></script>
+    <script src="js/market/chooseBoard.js"></script>
+
+
+</head>
+
+<body>
+    <header>
+        <div id="top-bar" onselectstart="return false;">
+            <a href="index.html">
+                <img src="img/logo.png" width="15%"></a>
+            <ul align="center">
+                <a href="stock.html?code=000001">
+                    <li id="spec-button" class="head-button">个股信息</li>
+                </a>
+                <a href="concern.html">
+                    <li id="star-button" class="head-button">关注股票</li>
+                </a>
+                <a href="predict.html">
+                    <li id="pre-button" class="head-button">股市预测</li>
+                </a>
+                <a href="strategy-content.html">
+                    <li id="strategy-button" class="head-button">策略回测</li>
+                </a>
+                <a href="market.html">
+                    <li id="market-button" class="head-button">市场行情</li>
+                </a>
+                <a href="compare.html">
+                    <li id="compare-button" class="head-button">股票对比</li>
+                </a>
+                <a href="login.html">
+                    <li id="log-button" class="head-button" class="button-blue">用户登录</li>
+                </a>
+            </ul>
+        </div>
+
+        <div>
+            <div id="title" onselectstart="return false;" align="left" style="display:inline-block;">
+                <h1 class="page-main-title">股市预测<span class="page-sub-title">&nbsp;&nbsp;|&nbsp;&nbsp;用丰富的数学模型引领未来</span></h1>
+            </div>
+        </div>
+        <!--
+
+        <div class="page-content">
+            <ul>
+                <a href="#index-fig">
+                    <li>沪深行情</li>
+                </a>
+                <a href="#whole-rank">
+                    <li>大盘涨跌</li>
+                </a>
+                <a href="#indu-rank">
+                    <li>行业板块涨跌</li>
+                </a>
+                <a href="#area-rank">
+                    <li>地域板块涨跌</li>
+                </a>
+                <a href="#con-rank">
+                    <li>概念板块涨跌</li>
+                </a>
+            </ul>
+        </div>
+
+        <div style="float: right; width: 85%;">
+            <div class="rank comp-func" id="whole-rank">
+                <h2><i class="fa fa-pie-chart"></i> 大盘涨跌</h2>
+                <h5>查看所有股票信息>></h5>
+            </div>
+
+            <div class="whole-rank-div" align="center">
+                <div class="button-group">
+                    <ul id="select-menu" onclick="set()">
+                        <button type="button" class="button button-primary active">沪A涨跌</button>
+                        <button type="button" class="button button-primary">深A涨跌</button>
+                        <button type="button" class="button button-primary">中小板涨跌</button>
+                        <button type="button" class="button button-primary">创业板涨跌</button>
+                    </ul>
+                </div>
+
+                <div class="content">
+                    <ul id="show-menu">
+                        <li class="pane active">
+                            <table id="upSS-List" class="whole-rank-table" style="border-right: 1px solid #AAA;">
+                                <caption>领涨股票排行</caption>
+                                <tr>
+                                    <th>排名</th>
+                                    <th>股票代码</th>
+                                    <th>股票名称</th>
+                                    <th>涨幅</th>
+                                </tr>
+                            </table>
+                            <table id="downSS-List" class="whole-rank-table">
+                                <caption>领跌股票排行</caption>
+                                <tr>
+                                    <th>排名</th>
+                                    <th>股票代码</th>
+                                    <th>股票名称</th>
+                                    <th>跌幅</th>
+                                </tr>
+                            </table>
+                            <div id="SS-spin">
+                                <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+                                <span>加载中...</span>
+                            </div>
+                        </li>
+                        <li class="pane">
+                            <table id="upSZ-List" class="whole-rank-table" style="border-right: 1px solid #AAA;">
+                                <caption>领涨股票排行</caption>
+                                <tr>
+                                    <th>排名</th>
+                                    <th>股票代码</th>
+                                    <th>股票名称</th>
+                                    <th>涨幅</th>
+                                </tr>
+                            </table>
+                            <table id="downSZ-List" class="whole-rank-table">
+                                <caption>领跌股票排行</caption>
+                                <tr>
+                                    <th>排名</th>
+                                    <th>股票代码</th>
+                                    <th>股票名称</th>
+                                    <th>跌幅</th>
+                                </tr>
+                            </table>
+                            <div id="SZ-spin">
+                                <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+                                <span>加载中...</span>
+                            </div>
+                        </li>
+                        <li class="pane">
+                            <table id="upSME-List" class="whole-rank-table" style="border-right: 1px solid #AAA;">
+                                <caption>领涨股票排行</caption>
+                                <tr>
+                                    <th>排名</th>
+                                    <th>股票代码</th>
+                                    <th>股票名称</th>
+                                    <th>涨幅</th>
+                                </tr>
+                            </table>
+                            <table id="downSME-List" class="whole-rank-table">
+                                <caption>领跌股票排行</caption>
+                                <tr>
+                                    <th>排名</th>
+                                    <th>股票代码</th>
+                                    <th>股票名称</th>
+                                    <th>跌幅</th>
+                                </tr>
+                            </table>
+                            <div id="SME-spin">
+                                <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+                                <span>加载中...</span>
+                            </div>
+                        </li>
+                        <li class="pane">
+                            <table id="upGEM-List" class="whole-rank-table" style="border-right: 1px solid #AAA;">
+                                <caption>领涨股票排行</caption>
+                                <tr>
+                                    <th>排名</th>
+                                    <th>股票代码</th>
+                                    <th>股票名称</th>
+                                    <th>涨幅</th>
+                                </tr>
+                            </table>
+                            <table id="downGEM-List" class="whole-rank-table">
+                                <caption>领跌股票排行</caption>
+                                <tr>
+                                    <th>排名</th>
+                                    <th>股票代码</th>
+                                    <th>股票名称</th>
+                                    <th>跌幅</th>
+                                </tr>
+                            </table>
+                            <div id="GEM-spin">
+                                <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+                                <span>加载中...</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <a href="industry.html">
+                <div class="rank indu-func" id="indu-rank">
+                    <h2><i class="fa fa-industry"></i> 行业板块涨跌</h2>
+                    <h5>查看所有行业股票信息>></h5>
+                </div>
+            </a>
+            <div class="rank-table-div" align="center">
+                <ul class="rank-table rank-table-rise" id="upIndustry-List">
+                    <h3 style="text-align: center">领涨行业</h3>
+                </ul>
+
+                <ul class="rank-table rank-table-fall" id="downIndustry-List">
+                    <h3 style="text-align: center">领跌行业</h3>
+                </ul>
+                <div style="text-align: center" id="Industry-spin">
+                    <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+                    <span>加载中...</span>
+                </div>
+            </div>
+
+            <a href="area.html">
+                <div class="rank board-func" id="area-rank">
+                    <h2><i class="fa fa-location-arrow"></i> 地域板块涨跌</h2>
+                    <h5>查看所有地域股票信息>></h5>
+                </div>
+            </a>
+
+            <div class="rank-table-div" align="center">
+                <ul class="rank-table rank-table-rise" id="upArea-List">
+                    <h3 style="text-align: center">领涨地域</h3>
+                </ul>
+
+                <ul class="rank-table rank-table-fall" id="downArea-List">
+                    <h3 style="text-align: center">领跌地域</h3>
+                </ul>
+                <div style="text-align: center" id="Area-spin">
+                    <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+                    <span>加载中...</span>
+                </div>
+            </div>
+
+            <a href="concept.html">
+                <div class="rank hot-func" id="con-rank">
+                    <h2><i class="fa fa-cubes"></i> 概念板块涨跌</h2>
+                    <h5>查看所有概念股票信息>></h5>
+                </div>
+            </a>
+            <div class="rank-table-div" align="center">
+                <ul class="rank-table rank-table-rise" id="upConcept-List">
+                    <h3 style="text-align: center">领涨概念</h3>
+                </ul>
+
+                <ul class="rank-table rank-table-fall" id="downConcept-List">
+                    <h3 style="text-align: center">领跌概念</h3>
+                </ul>
+                <div style="text-align: center" id="Concept-spin">
+                    <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+                    <span>加载中...</span>
+                </div>
+            </div>
+            <div style="margin-bottom: 10%;"></div>
+        </div>
+
+
+-->
+
+    </header>
+
+    <footer>
+        <div id="footer" onselectstart="return false;">
+            <div id="footer-div">
+                <div>
+                    <div class="big-li">
+                        <h4>关于</h4>
+                        <p><i class="fa fa-users"></i> 关于我们</p>
+                        <p><i class="fa fa-envelope"></i> 联系我们</p>
+                    </div>
+
+                    <div class="big-li">
+                        <h4>帮助</h4>
+                        <p><i class="fa fa-file-o"></i> API文档</p>
+                        <p><i class="fa fa-file-text-o"></i> 系统更新日志</p>
+                        <p><i class="fa fa-comments-o"></i> 反馈</p>
+                    </div>
+
+                    <div class="big-li">
+                        <h4>语言</h4>
+                        <p><i class="fa fa-language"></i> 简体中文</p>
+                        <p><i class="fa fa-language"></i> 繁體中文</p>
+                        <p><i class="fa fa-language"></i> English</p>
+                    </div>
+
+                </div>
+            </div>
+
+            <div id="cr">Copyright &copy; 2017 All Rights Reserved</div>
+        </div>
+    </footer>
+</body>
+
+<script src="js/date-picker.js"></script>
+<script src="js/echarts.js"></script>
+<script src="js/charts/k-chart-hssb.js"></script>
+<script src="js/charts/k-chart-szcz.js"></script>
+<script src="js/charts/k-chart-szzs.js"></script>
+<script src="js/market/category.js"></script>
+
+<script>
+    (function() {
+        window.scrollReveal = new scrollReveal({
+            reset: false,
+            move: '50px'
+        });
+    })();
+
+</script>
+<script src="js/user/log_state.js"></script>
+
+</html>

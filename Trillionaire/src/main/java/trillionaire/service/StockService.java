@@ -1,8 +1,8 @@
 package trillionaire.service;
 
 
-import trillionaire.model.DayRecord;
 import trillionaire.vo.Earnings;
+import trillionaire.vo.PriceTarget;
 import trillionaire.vo.RecommendationTrends;
 import trillionaire.vo.StockAbility;
 
@@ -28,7 +28,15 @@ public interface StockService {
      * @param input 输入
      * @return 不同股票的map映射
      */
-    public Map<String, Object> getSimilarStock(String input);
+    public Map<String, Object> associate(String input);
+
+    /**
+     * 股票联想
+     *
+     * @param code 输入
+     * @return 不同股票的map映射
+     */
+    public Map<String, Object> getSimilarStock(String code);
 
     /**
      * 获得股票能力雷达图数据
@@ -68,7 +76,7 @@ public interface StockService {
      * @param code 股票代码
      * @return 股票价格目标
      */
-    public double getPriceTarget(String code);
+    public PriceTarget getPriceTarget(String code);
 
     /**
      * 获得股票热度
@@ -76,8 +84,31 @@ public interface StockService {
      * @param code 股票代码
      * @return 股票热度
      */
-    public String getOBV(String code);
+    public double getOBV(String code);
 
+    /**
+     * 获得KDJ
+     *
+     * @param code 股票代码
+     * @return 股票热度
+     */
+    public List<Double> getKDJ(String code);
+
+    /**
+     * 获得BIAS
+     *
+     * @param code 股票代码
+     * @return 股票热度
+     */
+    public List<Double> getBIAS(String code);
+
+    /**
+     * 获得MACD
+     *
+     * @param code 股票代码
+     * @return 股票热度
+     */
+    public List<Double> getMACD(String code);
 
 
 }

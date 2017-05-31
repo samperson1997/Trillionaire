@@ -3,7 +3,7 @@ package trillionaire.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import trillionaire.model.DayRecord;
+import trillionaire.model.Stock;
 import trillionaire.service.StockService;
 import trillionaire.vo.Earnings;
 import trillionaire.vo.PriceTarget;
@@ -31,38 +31,31 @@ public class StockController {
         return map;
     }
 
-    @RequestMapping(value = "/history", method = RequestMethod.GET)
-    @ResponseBody
-    public String getHistoryInfo(String code) {
-        String prefix = "http://hq.sinajs.cn/list=";
-        String url = prefix.concat(code);
-        return "s";
-    }
 
     @RequestMapping(value = "/associate", method = RequestMethod.GET)
     @ResponseBody
-    public Map<String, String> getSimilarStock(String input) {
+    public Map<String, String> associate(String input) {
 
         return null;
     }
 
     @RequestMapping(value = "code", method = RequestMethod.GET)
     public void search(HttpServletRequest request, HttpServletResponse response, @RequestParam("code") String code) throws Exception {
-        System.out.println("1");
         request.getRequestDispatcher("stock.html").forward(request, response);
     }
 
     @RequestMapping(value = "/ability", method = RequestMethod.GET)
     @ResponseBody
-    public StockAbility getAbility(String code) {
-        StockAbility stockAbility = stockService.getStockAbility(code);
-        return stockAbility;
+    public StockAbility getAbility(@RequestParam("code") String code) {
+        //StockAbility stockAbility = stockService.getStockAbility(code);
+        StockAbility stockAbility1 = new StockAbility(1.1, 1.2, 1.3, 1.4);
+        return stockAbility1;
     }
 
     @RequestMapping(value = "/prevail", method = RequestMethod.GET)
     @ResponseBody
-    public String getPrevailTrend(String code) {
-        String obv = stockService.getOBV(code);
+    public double getPrevailTrend(String code) {
+        double obv = stockService.getOBV(code);
         return obv;
     }
 
@@ -76,33 +69,43 @@ public class StockController {
     @RequestMapping(value = "/target", method = RequestMethod.GET)
     @ResponseBody
     public PriceTarget getPriceTarget(String code) {
-        PriceTarget priceTarget = null;
+        PriceTarget priceTarget = stockService.getPriceTarget(code);
         return priceTarget;
     }
 
     @RequestMapping(value = "/earnings", method = RequestMethod.GET)
     @ResponseBody
-    public List<Earnings> getEarnings(String code){
+    public List<Earnings> getEarnings(String code) {
         List<Earnings> earnings = stockService.getEarnings(code);
         return earnings;
     }
 
     @RequestMapping(value = "/kdj", method = RequestMethod.GET)
     @ResponseBody
-    public void getKDJ(String code){
+    public List<Double> getKDJ(String code) {
 
+        return null;
     }
 
     @RequestMapping(value = "/bias", method = RequestMethod.GET)
     @ResponseBody
-    public void getBIAS(String code){
+    public List<Double> getBIAS(String code) {
 
+        return null;
     }
 
     @RequestMapping(value = "/macd", method = RequestMethod.GET)
     @ResponseBody
-    public void getMACD(String code){
+    public List<Double> getMACD(String code) {
 
+        return null;
+    }
+
+    @RequestMapping(value = "/similar", method = RequestMethod.GET)
+    @ResponseBody
+    public List<Stock> getSimilarStock(String input) {
+
+        return null;
     }
 
 }

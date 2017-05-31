@@ -13,6 +13,7 @@
     <script src="js/angular/angular.js"></script>
 
     <link href="css/font-awesome.css" rel="stylesheet" type="text/css">
+    <script src="js/user/log_state.js"></script>
 </head>
 
 <body>
@@ -21,16 +22,24 @@
             <a href="index.html">
                 <img src="img/logo.png" width="15%"></a>
             <ul align="center">
-
-                <a href="stock.html">
+                <a href="stock.html?code=000001">
                     <li id="spec-button" class="head-button">个股信息</li>
                 </a>
-                <li id="compare-button" class="head-button">股票对比</li>
+                <a href="concern.html">
+                    <li id="star-button" class="head-button">关注股票</li>
+                </a>
+                <a href="predict.html">
+                    <li id="pre-button" class="head-button">股市预测</li>
+                </a>
+                <a href="strategy-content.html">
+                    <li id="strategy-button" class="head-button">策略回测</li>
+                </a>
                 <a href="market.html">
                     <li id="market-button" class="head-button">市场行情</li>
                 </a>
-                <li id="strategy-button" class="head-button">策略回测</li>
-                <li id="star-button" class="head-button">关注股票</li>
+                <a href="compare.html">
+                    <li id="compare-button" class="head-button">股票对比</li>
+                </a>
                 <a href="login.html">
                     <li id="log-button" class="head-button" class="button-blue">用户登录</li>
                 </a>
@@ -42,7 +51,7 @@
                 <h1 data-scroll-reveal="enter from the top over 1s">登录Trillionaire</h1>
                 <p data-scroll-reveal="enter from the top over 1s">与我们一起，成为夜幕下最闪亮的明灯</p>
                 <a href="register.html">
-                    <h5 id="log-label" data-scroll-reveal="enter from the bottom over 1s but wait 1.5s">没有账号？去注册>></h5>
+                    <h5 id="log-label">没有账号？去注册>></h5>
                 </a>
 
                 <form method="post" data-scroll-reveal="enter from bottom over 1s but wait 0.5s">
@@ -106,6 +115,8 @@
 
 </script>
 
+
+<script src="js/user/log_state.js"></script>
 <script src="js/jquery.backstretch.min.js"></script>
 <script src="js/scripts.js"></script>
 <script src="js/jquery-3.2.1.min.js"></script>
