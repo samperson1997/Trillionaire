@@ -28,7 +28,15 @@ public interface StockService {
      * @param input 输入
      * @return 不同股票的map映射
      */
-    public Map<String, Object> getSimilarStock(String input);
+    public Map<String, Object> associate(String input);
+
+    /**
+     * 股票联想
+     *
+     * @param code 输入
+     * @return 不同股票的map映射
+     */
+    public Map<String, Object> getSimilarStock(String code);
 
     /**
      * 获得股票能力雷达图数据
@@ -101,5 +109,6 @@ public interface StockService {
      * @return 股票热度
      */
     public List<Double> getMACD(String code);
+
 
 }

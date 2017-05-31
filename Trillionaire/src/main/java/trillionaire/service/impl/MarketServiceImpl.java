@@ -16,11 +16,12 @@ import java.util.Map;
 @Service
 public class MarketServiceImpl implements MarketService {
 
-
+    @Override
     public Map<String, List<RankTable>> getCategoryRank(String board) {
         return null;
     }
 
+    @Override
     public Map<String, List<Stock>> getBoardRank(String category) {
         return null;
     }
