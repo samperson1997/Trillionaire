@@ -9,25 +9,16 @@
     <link rel="stylesheet" href="css/page-title.css">
     <link rel="stylesheet" href="css/button.css">
     <link rel="stylesheet" href="css/footer.css">
-    <link rel="stylesheet" href="css/date-picker.css">
     <link rel="stylesheet" href="css/page-main-body.css">
-
-    <link rel="stylesheet" href="js/jquery-ui/jquery-ui.min.css">
-    <link rel="stylesheet" href="js/jquery-ui/jquery-ui.theme.css">
-    <link rel="stylesheet" href="js/jquery-ui/jquery-ui.structure.min.css">
-
-    <link rel="stylesheet" href="js/jquery-ui/ui-choose.css">
+    <link rel="stylesheet" href="css/market.css">
     <link href="css/font-awesome.css" rel="stylesheet" type="text/css">
 
-    <script src="js/scrollReveal.js"></script>
     <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/scrollReveal.js"></script>
     <script src="js/angular/angular.js"></script>
-    <script src="js/jquery-ui/jquery-ui.min.js"></script>
-    <script src="js/jquery-ui/ui-choose.js"></script>
     <script src="js/user/follow.js"></script>
-    <script src="js/echarts.js"></script>
-    <script src="js/charts/k-chart.js"></script>
-
+    <script src="js/market/chooseBoard.js"></script>
+    <script src="js/stock/show.js"></script>
 
 </head>
 
@@ -71,19 +62,7 @@
                 <div style="display: inline;">
                     <input style="display: inline;" id="search-box" class="form-control search-input" placeholder="请输入股票名称或代码" />
                     <ul style="display: inline;" id="results" class="search-results"></ul>
-                    <!--<span class="input-group-btn"><button class="btn btn-default" type="button"><i class="fa fa-search"></i></button></span>-->
                 </div>
-
-                <!--
-<div style="display: inline;">
-    <ul class="ui-choose" id="#k-choose">
-        <li class="selected">日K</li>
-        <li>周K</li>
-        <li>月K</li>
-    </ul>
-</div>
--->
-                <!--                <div style="display: inline;"><input class="date-picker" type="text" id="start-filter" placeholder="开始日期" />—<input class="date-picker" type="text" id="end-filter" placeholder="截止日期" /></div>-->
                 <div style="display: inline-block;" class="button-page" id="search-button">开始检索</div>
             </div>
         </div>
@@ -93,7 +72,13 @@
             <!--        chart area-->
             <div style="float: left; width: 65%;" align="center">
                 <div style="padding-top: 2%;">
-                    <div class="stock-name" style="display: inline;">K线图</div>
+                    <div class="button-group">
+                        <ul id="select-menu" onclick="set()">
+                            <button type="button" id="daily" class="button button-primary active">日K</button>
+                            <button type="button" id="weekly" class="button button-primary">周K</button>
+                            <button type="button" id="monthly" class="button button-primary">月K</button>
+                        </ul>
+                    </div>
                     <div id="candle-spin">
                         <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
                         <span>加载中...</span>
@@ -101,25 +86,6 @@
                     <div id="k-chart" style="width:100%; height: 600%;"></div>
                 </div>
 
-
-
-                <div style="padding-top: 2%;">
-                    <div class="stock-name" style="display: inline;">KDJ</div>
-                    <div class="stock-code" style="display: inline;">&nbsp;&nbsp;<a href="help.html#kdj">>>应该如何使用KDJ?</a></div>
-                    <div id="kdj-chart" style="width:100%; height: 300%;"></div>
-                </div>
-
-                <div style="padding-top: 2%;">
-                    <div class="stock-name" style="display: inline;">BIAS</div>
-                    <div class="stock-code" style="display: inline;">&nbsp;&nbsp;<a href="help.html#bias">>>应该如何使用BIAS?</a></div>
-                    <div id="bias-chart" style="width:100%; height: 300%;"></div>
-                </div>
-
-                <div style="padding-top: 2%;">
-                    <div class="stock-name" style="display: inline;">MACD</div>
-                    <div class="stock-code" style="display: inline;">&nbsp;&nbsp;<a href="help.html#macd">>>应该如何使用MACD?</a></div>
-                    <div id="macd-chart" style="width:100%; height: 300%;"></div>
-                </div>
                 <div class="other-function">
                     <div data-scroll-reveal="enter from bottom over 1s" class="spec-func hot-func">
                         <h2><i class="fa fa-fire"></i> 热度</h2>
@@ -149,7 +115,6 @@
                         <h5>去股票对比界面>></h5>
                     </div>
                 </div>
-
             </div>
 
 
@@ -200,21 +165,51 @@
                 </div>
 
                 <div style="border-top: 1px solid #AAA; padding-top: 5%;">
+                    <div class="stock-name" style="display: inline;">能力比对</div>
+                    <div class="stock-code" style="display: inline;">&nbsp;|&nbsp;Ability Comparison</div>
+                    <div id="ability-chart" style="width:100%; height: 400%;"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="more" onselectstart="return false;" ng-app="followApp">
+            <div style="float: left; width: 65%;" align="center">
+
+                <!--        chart area-->
+
+                <div style="padding-top: 2%;">
+                    <div class="stock-name" style="display: inline;">KDJ</div>
+                    <div class="stock-code" style="display: inline;">&nbsp;&nbsp;<a href="help.html#kdj" target="_blank">>>应该如何使用KDJ?</a></div>
+                    <div id="kdj-chart" style="width:100%; height: 300%;"></div>
+                </div>
+
+                <div style="padding-top: 2%;">
+                    <div class="stock-name" style="display: inline;">BIAS</div>
+                    <div class="stock-code" style="display: inline;">&nbsp;&nbsp;<a href="help.html#bias" target=" _blank">>>应该如何使用BIAS?</a></div>
+                    <div id="bias-chart" style="width:100%; height: 300%;"></div>
+                </div>
+
+                <div style="padding-top: 2%;">
+                    <div class="stock-name" style="display: inline;">MACD</div>
+                    <div class="stock-code" style="display: inline;">&nbsp;&nbsp;<a href="help.html#macd" target=" _blank">>>应该如何使用MACD?</a></div>
+                    <div id="macd-chart" style="width:100%; height: 300%;"></div>
+                </div>
+
+            </div>
+
+
+            <!--        figure area-->
+            <div class="info-board" ng-controller="UserController">
+                <div style="border-top: 1px solid #AAA; padding-top: 5%;">
                     <div class="stock-name" style="display: inline;">推荐趋势</div>
                     <div class="stock-code" style="display: inline;">&nbsp;|&nbsp;Recommendation Trends</div>
-                    <div class="stock-code" style="margin-left: 15%;">&nbsp;&nbsp;<a href="help.html#rec-trend">>>推荐依据</a></div>
+                    <div class="stock-code" style="margin-left: 15%;">&nbsp;&nbsp;<a href="help.html#rec-trend" target="_blank">>>推荐依据</a></div>
 
                     <div id="reco-trend" style="width:100%; height: 500%;"></div>
 
                     <div align="center" class="margin" style="background-color: yellowgreen;">
                         <h2>推荐：减持</h2>
                     </div>
-                </div>
-
-                <div style="border-top: 1px solid #AAA; padding-top: 5%;">
-                    <div class="stock-name" style="display: inline;">能力比对</div>
-                    <div class="stock-code" style="display: inline;">&nbsp;|&nbsp;Ability Comparison</div>
-                    <div id="ability-chart" style="width:100%; height: 400%;"></div>
                 </div>
 
                 <div style="border-top: 1px solid #AAA; padding-top: 5%;">
@@ -248,6 +243,10 @@
                 </div>
 
             </div>
+        </div>
+
+        <div onselectstart="return false;" align="center" style="clear: both; cursor: pointer;" onclick="showMore()">
+            <div id="show-more-button"><i class="fa fa-chevron-up"></i> 查看更少</div>
         </div>
 
     </header>
@@ -284,6 +283,9 @@
     </footer>
 </body>
 
+
+<script src="js/echarts.js"></script>
+<script src="js/charts/k-chart.js"></script>
 <script src="js/charts/volume-chart.js"></script>
 <script src="js/charts/kdj-line.js"></script>
 <script src="js/charts/ability-chart.js"></script>
@@ -291,6 +293,7 @@
 <script src="js/charts/recommend-trend.js"></script>
 <script src="js/charts/bias-line.js"></script>
 <script src="js/charts/macd-chart.js"></script>
+<script src="js/user/log_state.js"></script>
 
 <script>
     (function() {
@@ -306,6 +309,5 @@
     $(document).ready(loadCandle);
 
 </script>
-<script src="js/user/log_state.js"></script>
 
 </html>

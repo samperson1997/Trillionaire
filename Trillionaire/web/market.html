@@ -14,19 +14,10 @@
     <link rel="stylesheet" href="css/board-rank.css">
     <link rel="stylesheet" href="css/market.css">
 
-    <link rel="stylesheet" href="js/jquery-ui/jquery-ui.min.css">
-    <link rel="stylesheet" href="js/jquery-ui/jquery-ui.theme.css">
-    <link rel="stylesheet" href="js/jquery-ui/jquery-ui.structure.min.css">
-
-    <link rel="stylesheet" href="js/jquery-ui/ui-choose.css">
     <link href="css/font-awesome.css" rel="stylesheet" type="text/css">
-
     <script src="js/scrollReveal.js"></script>
     <script src="js/jquery-3.2.1.min.js"></script>
-    <script src="js/jquery-ui/jquery-ui.min.js"></script>
-    <script src="js/jquery-ui/ui-choose.js"></script>
     <script src="js/market/chooseBoard.js"></script>
-
 
 </head>
 
@@ -379,12 +370,12 @@
     </footer>
 </body>
 
-<script src="js/date-picker.js"></script>
 <script src="js/echarts.js"></script>
 <script src="js/charts/k-chart-hssb.js"></script>
 <script src="js/charts/k-chart-szcz.js"></script>
 <script src="js/charts/k-chart-szzs.js"></script>
 <script src="js/market/category.js"></script>
+<script src="js/user/log_state.js"></script>
 
 <script>
     (function() {
@@ -400,20 +391,5 @@
     $(document).ready(load);
 
 </script>
-
-<script>
-    $('.ui-choose').ui_choose();
-
-    var uc = $('#k-choose').data('ui-choose');
-    uc.click = function(index, item) {
-        console.log('click', index, item.text())
-    }
-    uc.change = function(index, item) {
-        console.log('change', index, item.text())
-    }
-
-</script>
-
-<script src="js/user/log_state.js"></script>
 
 </html>

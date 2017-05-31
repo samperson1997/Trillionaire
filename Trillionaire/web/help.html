@@ -64,7 +64,7 @@
             </div>
         </div>
 
-        <div class="page-content">
+        <div class="page-content-long">
             <ul>
                 <a href="#kdj">
                     <li>KDJ</li>
@@ -77,6 +77,21 @@
                 </a>
                 <a href="#rec-trend">
                     <li>推荐趋势</li>
+                </a>
+                <a href="#stra-setting">
+                    <li>回测设置</li>
+                </a>
+                <a href="#stra-setting-1">
+                    <li>撮合机制</li>
+                </a>
+                <a href="#stra-setting-2">
+                    <li>滑点</li>
+                </a>
+                <a href="#stra-setting-3">
+                    <li>基准合约</li>
+                </a>
+                <a href="#stra-setting-4">
+                    <li>保证金倍率</li>
                 </a>
             </ul>
         </div>
@@ -136,31 +151,60 @@
             <div id="rec-trend">
                 <div class="stock-name" style="display: inline;">推荐趋势</div>
                 <div class="stock-code" style="display: inline;">&nbsp;|&nbsp;Recommendation trends</div>
+                <ul>
 
+                </ul>
             </div>
 
-            <div id="api-2">
+            <div id="stra-setting">
                 <div class="stock-name" style="display: inline;">回测设置</div>
                 <ul>
-                    <li>您可以在策略编辑页面中进行以下参数的设置： 基础参数：
-                        <ol>
-                            <li>开始日期：回测期间的开始日期</li>
-                            <li>结束日期：回测期间的结束日期 - 如果回测结束日期在今天之后，将会自动使用最后一天的历史数据</li>
-                            <li>起始资金：回测的起始资金 - 您将使用多少钱去投资策略</li>
-                            <li>回测频率：可以选择日回测以及分钟回测</li>
+                    您可以在策略编辑页面中进行以下参数的设置： <br>
+                    <li> 基础参数：<br> 开始日期：回测期间的开始日期
+                        <br> 结束日期：回测期间的结束日期 - 如果回测结束日期在今天之后，将会自动使用最后一天的历史数据<br> 起始资金：回测的起始资金 - 您将使用多少钱去投资策略<br> 回测频率：可以选择日回测以及分钟回测
+                    </li>
+                    <li>高阶设置：<br> <a href="#stra-setting-3">基准合约</a>：设置策略表现的对照基准
+                        <br> 佣金倍率：设置策略佣金在默认佣金基础上的倍数
+                        <br> <a href="#stra-setting-4">保证金倍率</a>：设置策略保证金在默认保证金率基础上的倍数
+                        <br> <a href="#stra-setting-1">撮合方式</a>：可以选择'当前bar收盘'或'下一bar开盘'
+                        <br> <a href="#stra-setting-2">滑点</a>：交易中理想成交价和实际成交价的差异。在进行策略回测时，用户可以设置一个滑点参数，来提高买入价或降低卖出价，模拟实际交易中出现的滑点。该参数取值在 [0, 1) 之间。例如，当股票市价为10元，参数设为0.1，则回测时买入价为$10 + 10 * 0.1 = 11$元)
+                    </li>
+                </ul>
+            </div>
 
-                        </ol>
+            <div id="stra-setting-1">
+                <div class="stock-name" style="display: inline;">撮合机制</div>
+                <ul>
+                    <li>我们允许用户自定义撮合机制的功能，您可以在策略编辑页面"更多"选项下选择不同的撮合机制。目前提供的撮合方式有以下两种： <br> 当前收盘价：当前bar发单，以当前bar收盘价作为参考价撮合
+                        <br> 下一开盘价：当前bar发单，以下一bar开盘价作为参考价撮合
                     </li>
-                    <li>高阶设置：
-                        <ol>
-                            <li>基准合约：设置策略表现的对照基准</li>
-                            <li>佣金倍率：设置策略佣金在默认佣金基础上的倍数</li>
-                            <li>保证金倍率：设置策略保证金在默认保证金率基础上的倍数</li>
-                            <li>撮合方式：可以选择'当前bar收盘'或'下一bar开盘'</li>
-                            <li>滑点：交易中理想成交价和实际成交价的差异。在进行策略回测时，用户可以设置一个滑点参数，来提高买入价或降低卖出价，模拟实际交易中出现的滑点。该参数取值在 [0, 1) 之间。例如，当股票市价为10元，参数设为0.1，则回测时买入价为$10 + 10 * 0.1 = 11$元)</li>
-                            <li>性能分析：勾选该选项之后，策略回测性能分析功能将被开启</li>
-                        </ol>
-                    </li>
+                    <li>限价单（LimitOrder）如果买单价格不小于参考价，或卖单价格 不超过参考价，以参考价加入滑点影响成交（买得更高，卖得更低）。市价单（MarketOrder）直接以以参考价加入滑点影响成交。成交数量都不超过当前bar成交量的25%。一旦超过，市价单会在部分成交之后被自动撤单；限价单会一直在订单队列中等待下一个bar数据撮合成交，直到当日收盘。当日收盘后，所有未成交限价单都将被系统自动撤单。<br> 分钟回测及实盘模拟：在一个handle_bar内下单，在该handle_bar结束时统一撮合成交（成交价取决于撮合机制以及滑点设置）<br>日回测：在一个handelbar内下单，下单时立刻撮合成交（成交价取决于撮合机制以及滑点设置）</li>
+                    <li>所以在分钟回测以及实盘模拟中handle_bar内发单之后立刻通过cancel_order对该订单进行撤单操作，是一定会撤单成功的。但在日回测中则很可能撤单失败，因为日回测中下单之后立刻撮合成交。 需要注意，在当前的分钟回测撮合模式下，用户在回测中无法通过在<a href="api.html#api-5" target="_blank">scheduler</a>调用的函数中一次性实现“卖出 -> 资金释放 -> 买入”这种先卖后买的逻辑的。因为在分钟回测中，卖出并不能立刻成交。</li>
+                </ul>
+            </div>
+
+            <div id="stra-setting-2">
+                <div class="stock-name" style="display: inline;">滑点</div>
+                <ul>
+                    <li>为了更好模拟实际交易中订单对市场的冲击，我们引入滑点的设置，允许设置的范围是[0, 1)。该设置将在一定程度上使最后的成交价"恶化"，也就是买得更贵，卖得更便宜。我们的滑点方式是按照最后成交价的一定比例进行恶化。例如，设置滑点为0.1，那么如果原本买入交易的成交价为10元，则设置之后成交价将变成11元，即买得更贵。</li>
+                    <li>注意，滑点默认为0，原有的默认0.246%的滑点值以及通过context.slippage设置的方式被废弃。</li>
+
+                </ul>
+            </div>
+
+            <div id="stra-setting-3">
+                <div class="stock-name" style="display: inline;">基准合约</div>
+                <ul>
+                    <li>通过引入基准合约，您可以将策略的表现与基准进行对比，以衡量一定时间内策略的超额表现以及相关风险调整收益指标。</li>
+                    <li>基准合约可以设置为空；在初次创建策略的时候，包含股票的策略默认基准合约都是沪深300指数000300.XSHG；单独期货策略默认没有基准合约。</li>
+                </ul>
+            </div>
+
+            <div id="stra-setting-4">
+                <div class="stock-name" style="display: inline;">保证金倍率</div>
+                <ul>
+                    <li>在进行期货交易时，您可以通过设置保证金倍率来进行保证金的调整，这一倍率不能小于1。</li>
+                    <li>调整依据基准是交易所规定的最低保证金比例，可以通过<a href="api.html#instrument" target="_blank">instruments</a>这一方法查询到。</li>
                 </ul>
             </div>
 

@@ -52,4 +52,3 @@ function loadCandle(span) {
 function load() {
     loadCandle("daily");
 }
-

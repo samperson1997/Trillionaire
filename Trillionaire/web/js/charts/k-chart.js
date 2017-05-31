@@ -2,9 +2,18 @@ var data;
 
 function loadCandle() {
     var code = getParam('code');
+    var urll;
+    if ($("#daily").attr('class').indexOf("active") >= 0) {
+        urll = "/stock/" + code + "/daily";
+    } else if ($("#weekly").attr('class').indexOf("active") >= 0) {
+        urll = "/stock/" + code + "/weekly";
+    } else if ($("#monthly").attr('class').indexOf("active") >= 0) {
+        urll = "/stock/" + code + "/monthly";
+    }
+
     var load = $.ajax({
         type: "GET",
-        url: "/stock/" + code + "/daily",
+        url: urll,
         contentType: "application/x-www-form-urlencoded",
         dataType: "json",
         success: function (data0) {

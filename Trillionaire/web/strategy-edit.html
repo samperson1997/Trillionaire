@@ -69,21 +69,30 @@
                 <div class="stock-name" style="display: inline;">编写策略</div>
 
                 <div class="button-blue"><i class="fa fa-save"></i> 保存</div>
-                <div class="stock-code" style="display: inline-block;"><a href="strategy-content.html#new-stra">>>新手入门</a></div>
+                <div class="stock-code" style="display: inline-block;"><a href="strategy-content.html#new-stra" target="_blank">>>新手入门</a></div>
                 <div class="stock-code" style="display: inline-block;"><a href="strategy-content.html">>>返回策略列表</a></div>
-                <div class="stock-code" style="display: inline-block;"><a href="api.html">>>API文档</a></div>
+                <div class="stock-code" style="display: inline-block;"><a href="api.html" target="_blank">>>API文档</a></div>
 
-                <div style="margin: 2%;"></div>
-
-                <div style="width: 50%; float: left;">
-                    <div style="margin-bottom: 2%;" align="right">
-
-                        股票¥ <input style="display: inline;" class="input-box" value="10000" />
-                        <div style="display: inline;"><input class="date-picker" type="text" id="start-filter" placeholder="开始日期" />—<input class="date-picker" type="text" id="end-filter" placeholder="截止日期" /></div>
+                <div align="center">
+                    <div style="margin: 2%;">
+                        股票¥ <input style="display: inline-block;" class="input-box" value="10000" />
+                        <input style="display: inline-block;" class="date-picker" type="text" id="start-filter" placeholder="开始日期" />—<input style="display: inline-block;" class="date-picker" type="text" id="end-filter" placeholder="截止日期" /> 回测频率 <select style="display: inline-block;">
+                                <option value="day">每日</option>
+                                <option value="day">分钟</option>
+                            </select> 撮合方式 <select style="display: inline-block;">
+                                <option value="day">当前bar收盘</option>
+                                <option value="day">下一bar开盘</option>
+                            </select> 基准合约 <input style="display: inline-block;" class="input-box" value="000300.XSHG" /> 佣金倍率 <input style="display: inline-block;" class="num-box" value="1" /> 滑点 <input style="display: inline-block;" class="num-box" value="0" />
+                    </div>
+                    <div>
                         <div class="button-page" onclick="switchTheme()" id="switch-theme-button"><i class="fa fa-eye"></i> 护眼模式</div>
                         <div class="button-green"><i class="fa fa-forward"></i> 编译运行</div>
                         <div id="remove-all" class="button-red" onclick="remove()"><i class="fa fa-trash-o"></i> 清空</div>
+                        <div class="stock-code" style="display: inline-block;"><a href="help.html#stra-setting" target="_blank">>>如何进行回测设置？</a></div>
                     </div>
+                </div>
+
+                <div style="width: 50%; float: left;">
                     <div>
                         <pre id="code" class="ace_editor" style="min-height: 500px;"><textarea class="ace_text-input" id="code-area" spellcheck="false"># 可以自己import我们平台支持的第三方python模块，比如pandas、numpy等。
 
@@ -122,7 +131,7 @@ def handle_bar(context, bar_dict):
                     </div>
                 </div>
 
-                <div id="result-area" style="clear: both; margin-top: 50%;">
+                <div id="result-area" style="clear: both; margin-top: 40%;">
                     <div class="stock-name" style="display: inline;">回测结果</div>
                     <div class="stock-code" style="display: inline-block;">&nbsp;&nbsp;|&nbsp;&nbsp;Back Test Result</div>
 
