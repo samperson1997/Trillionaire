@@ -53,7 +53,6 @@ angular.module("mainapp", [])
                     $scope.$apply(function () {
                         var str = document.referrer;
                         if (data == "success") {
-                            alert(str);
                             window.sessionStorage.setItem("username", username);
                             if (str == null || str == "") {
                                 window.location.href = "/index.html";
