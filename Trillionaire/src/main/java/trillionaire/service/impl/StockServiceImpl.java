@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import trillionaire.dao.DayRecordDao;
 import trillionaire.model.DayRecord;
 import trillionaire.service.StockService;
+import trillionaire.service.impl.boxjenkins.TimeSeriesPredict;
 import trillionaire.util.DecimalUtil;
 import trillionaire.vo.Earnings;
 import trillionaire.vo.PriceTarget;
@@ -23,6 +24,8 @@ import java.util.Map;
 public class StockServiceImpl implements StockService {
     @Autowired
     private DayRecordDao dayRecordDao;
+
+    private TimeSeriesPredict timeSeriesPredict = new TimeSeriesPredict();
 
     private Map<String, Object> getDailyInfo(String code) {
         Map<String, Object> map = new HashMap<String, Object>();
@@ -50,12 +53,7 @@ public class StockServiceImpl implements StockService {
         return map;
     }
 
-    private Map<String, Object> getAnnualInfo(String code) {
-        Map<String, Object> map = new HashMap<String, Object>();
-
-        return map;
-    }
-
+    @Override
     public Map<String, Object> getStockInfo(String code, String span) {
         Map<String, Object> map = new HashMap<String, Object>();
         if (span.equals("daily")) {
@@ -64,56 +62,86 @@ public class StockServiceImpl implements StockService {
             map = getWeeklyInfo(code);
         } else if (span.equals("monthly")) {
             map = getMonthlyInfo(code);
-        } else if (span.equals("annual")){
-            map = getAnnualInfo(code);
-        }else {
+        } else {
             map = null;
         }
         return map;
     }
 
-    public Map<String, Object> getSimilarStock(String input) {
+    @Override
+    public Map<String, Object> associate(String input) {
 
         return null;
     }
 
+    @Override
+    public Map<String, Object> getSimilarStock(String code) {
+
+        return null;
+    }
+
+    @Override
     public StockAbility getStockAbility(String code) {
 
 
         return null;
     }
 
+    @Override
     public List<Earnings> getEarnings(String code) {
 
         return null;
     }
 
+    @Override
     public double getRecommendationRating(String code) {
 
         return 0;
     }
 
+    @Override
     public RecommendationTrends getRecommendationTrends(String code) {
 
         return null;
     }
 
+    @Override
     public PriceTarget getPriceTarget(String code) {
-        return null;
+        List<DayRecord> list = dayRecordDao.getDayRecordsByCode(1);
+        double[] highArray = new double[list.size()];
+        double[] closeArray = new double[list.size()];
+        double[] lowArray = new double[list.size()];
+        double[] averageArray = new double[list.size()];
+        for (int i=0; i<list.size(); i++){
+            highArray[i] = list.get(i).getHigh();
+            closeArray[i] = list.get(i).getAdjClose();
+            lowArray[i] = list.get(i).getLow();
+            averageArray[i] = list.get(i).getDealSum()/list.get(i).getVolume();
+        }
+        double high = timeSeriesPredict.predict(highArray);
+        double close = timeSeriesPredict.predict(closeArray);
+        double low = timeSeriesPredict.predict(lowArray);
+        double average = timeSeriesPredict.predict(averageArray);
+        PriceTarget priceTarget = new PriceTarget(close, high, low, average);
+        return priceTarget;
     }
 
+    @Override
     public double getOBV(String code) {
         return 0.00;
     }
 
+    @Override
     public List<Double> getKDJ(String code) {
         return null;
     }
 
+    @Override
     public List<Double> getBIAS(String code) {
         return null;
     }
 
+    @Override
     public List<Double> getMACD(String code) {
         return null;
     }
@@ -187,4 +215,5 @@ public class StockServiceImpl implements StockService {
         }
         return result;
     }
+
 }

@@ -14,9 +14,13 @@ import trillionaire.model.Concept;
 import trillionaire.model.Industry;
 import trillionaire.model.Stock;
 import trillionaire.dao.StockDao;
+
+import javax.annotation.Resource;
+
 @Repository
 public class StockDaoImpl implements StockDao{
 
+    @Resource
     SessionFactory sessionFactory ;
 
     public List<Stock> getAllStocks() {
@@ -30,7 +34,6 @@ public class StockDaoImpl implements StockDao{
 
         tx.commit();
         session.close();
-
         return result;
     }
 

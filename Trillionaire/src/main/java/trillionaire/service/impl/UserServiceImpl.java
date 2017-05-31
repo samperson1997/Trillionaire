@@ -11,34 +11,37 @@ import trillionaire.util.LoginState;
 public class UserServiceImpl implements UserService{
 
 
-    public LoginState login(String id, String password) {
+    @Override
+    public LoginState login(String email, String password) {
         return null;
     }
 
-    public LoginState logout(String id) {
+    @Override
+    public LoginState logout(String email) {
         return null;
     }
 
+    @Override
     public LoginState resetPassword(String email, String newPassword) {
         return null;
     }
 
-    public LoginState resetPassword(String id, String oldPassword, String newPassword) {
-        return null;
-    }
-
+    @Override
     public boolean find(String email) {
         return false;
     }
 
+    @Override
     public boolean verify(String randomCode) {
         return false;
     }
 
+    @Override
     public boolean follow(String email, String code) {
         return false;
     }
 
+    @Override
     public boolean checkfollow(String email, String code) {
         return false;
     }

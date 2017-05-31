@@ -3,6 +3,7 @@ package trillionaire.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import trillionaire.model.Stock;
 import trillionaire.service.StockService;
 import trillionaire.vo.Earnings;
 import trillionaire.vo.PriceTarget;
@@ -35,7 +36,7 @@ public class StockController {
 
     @RequestMapping(value = "/associate", method = RequestMethod.GET)
     @ResponseBody
-    public Map<String, String> getSimilarStock(String input) {
+    public Map<String, String> associate(String input) {
 
         return null;
     }
@@ -70,7 +71,7 @@ public class StockController {
     @RequestMapping(value = "/target", method = RequestMethod.GET)
     @ResponseBody
     public PriceTarget getPriceTarget(String code) {
-        PriceTarget priceTarget = null;
+        PriceTarget priceTarget = stockService.getPriceTarget(code);
         return priceTarget;
     }
 
@@ -98,6 +99,13 @@ public class StockController {
     @RequestMapping(value = "/macd", method = RequestMethod.GET)
     @ResponseBody
     public List<Double> getMACD(String code) {
+
+        return null;
+    }
+
+    @RequestMapping(value = "/similar", method = RequestMethod.GET)
+    @ResponseBody
+    public List<Stock> getSimilarStock(String input) {
 
         return null;
     }
