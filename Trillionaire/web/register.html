@@ -48,9 +48,9 @@
 
 
                 <form method="post" data-scroll-reveal="enter from bottom over 1s but wait 0.5s">
-                    <p><input type="text" name="username" placeholder="用户邮箱" class="form-username form-control" id="reg-username" ng-model="inputUsername"></p>
+                    <p><input type="text" name="username" placeholder="用户邮箱" class="form-username form-control" id="reg-username" ng-model="inputUsername" onblur="emailIsValid()"></p>
                     <p><input type="password" name="password" placeholder="密码" class="form-password form-control" id="reg-password" ng-model="inputPassword"></p>
-                    <p><input type="password" name="password2" placeholder="确认密码" class="form-password form-control" id="reg-password2" ng-model="inputPassword2"></p>
+                    <p><input type="password" name="password2" placeholder="确认密码" class="form-password form-control" id="reg-password2" ng-model="inputPassword2" onblur="passwordIsSame()"></p>
                     <div>
                         <p id="reg-tip"></p>
                     </div>
@@ -59,7 +59,6 @@
                             <button class="button-blue" id="register-button" type="button" ng-click="login()">注册</button>
                             <a href="javascript: history.go(-1);"><button class="button-big" id="reg-back-button" type="button">取消</button></a>
                         </div>
-                        <div id="reg-tip"></div>
                     </div>
                 </form>
             </div>

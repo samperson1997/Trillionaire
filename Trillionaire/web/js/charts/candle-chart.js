@@ -1,23 +1,25 @@
 var data;
 function loadCandle() {
+    /*
      var code = getParam('code');
      console.log(code);
      alert(code);
+     */
     var load = $.ajax({
         type: "GET",
-        url: "/stock/"+code+"/daily",
+        url: "/stock/000001/daily",
         contentType: "application/x-www-form-urlencoded",
         dataType: "json",
         success: function (data0) {
             data = splitData(data0);
             $("#candle-spin").html('');
-            var option = {
-                backgroundColor: '#FFF',
+            option = {
+                backgroundColor: '#eee',
                 animation: false,
                 legend: {
                     bottom: 10,
                     left: 'center',
-                    data: ['日K', 'MA5', 'MA10', 'MA30']
+                    data: ['日K', 'MA5', 'MA10', 'MA20', 'MA30']
                 },
                 tooltip: {
                     trigger: 'axis',
@@ -164,11 +166,11 @@ function loadCandle() {
                             formatter: function (param) {
                                 param = param[0];
                                 return [
-                                    '日期: ' + param.name + '<hr size=1 style="margin: 3px 0">',
-                                    '开盘价: ' + param.data[0] + '<br/>',
-                                    '收盘价: ' + param.data[1] + '<br/>',
-                                    '最高价: ' + param.data[3] + '<br/>',
-                                    '最低价: ' + param.data[2] + '<br/>'
+                                    'Date: ' + param.name + '<hr size=1 style="margin: 3px 0">',
+                                    'Open: ' + param.data[0] + '<br/>',
+                                    'Close: ' + param.data[1] + '<br/>',
+                                    'Lowest: ' + param.data[2] + '<br/>',
+                                    'Highest: ' + param.data[3] + '<br/>'
                                 ].join('');
                             }
                         }
@@ -210,7 +212,7 @@ function loadCandle() {
                 ]
             };
             var kChart = echarts.init(document.getElementById('k-chart'));
-            kChart.setOption(option, true);
+            kChart.setOption(option);
             kChart.dispatchAction({
                 type: 'brush',
                 areas: [
@@ -254,22 +256,3 @@ function splitData(rawData) {
         ma30:ma30
     };
 }
-
-var getParam = function (name) {
-    var search = document.location.search;
-    var pattern = new RegExp("[?&]" + name + "\=([^&]+)", "g");
-    var matcher = pattern.exec(search);
-    var items = null;
-    if (null != matcher) {
-        try {
-            items = decodeURIComponent(decodeURIComponent(matcher[1]));
-        } catch (e) {
-            try {
-                items = decodeURIComponent(matcher[1]);
-            } catch (e) {
-                items = matcher[1];
-            }
-        }
-    }
-    return items;
-};

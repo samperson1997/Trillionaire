@@ -3,6 +3,7 @@ package trillionaire.service;
 import trillionaire.vo.RankTable;
 import trillionaire.model.Stock;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -13,17 +14,17 @@ public interface MarketService {
     /**
      * 获得涨跌幅版块的方块
      *
-     * @param category 股票版块
+     * @param board 股票版块
      * @return 版块涨跌的map
      */
-    public Map<String, RankTable> getCategoryCondition(String category);
+    public Map<String, List<RankTable>> getCategoryRank(String board);
 
     /**
      * 获得不同版块的涨跌幅排名
      *
-     * @param board 股票版块
+     * @param category 股票版块
      * @return 版块涨跌的map
      */
-    public Map<String, Stock> getBoardCondition(String board);
+    public Map<String, List<Stock>> getBoardRank(String category);
 
 }

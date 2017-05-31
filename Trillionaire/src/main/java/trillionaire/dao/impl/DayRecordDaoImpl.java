@@ -9,19 +9,21 @@ import org.hibernate.query.Query;
 
 import org.springframework.stereotype.Repository;
 import trillionaire.model.DayRecord;
-import trillionaire.model.Stock;
 import trillionaire.dao.DayRecordDao;
+
+import javax.annotation.Resource;
+
 @Repository
 public class DayRecordDaoImpl implements DayRecordDao{
-	
-	SessionFactory sessionFactory = null;
+
+	@Resource
+	SessionFactory sessionFactory;
 
 	public List<DayRecord> getDayRecordsByCode(int code) {
-		// TODO Auto-generated method stub
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
 		
-		Query<DayRecord> query = session.createNativeQuery("select * from day_record where code = 2 order by date asc", DayRecord.class);
+		Query<DayRecord> query = session.createNativeQuery("select * from day_record where code = "+code+" order by date asc", DayRecord.class);
 		List<DayRecord> result = query.list();
 		
 		tx.commit();

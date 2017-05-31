@@ -1,15 +1,17 @@
 package trillionaire.service.impl;
 
-import org.apache.commons.math3.distribution.NormalDistribution;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import trillionaire.dao.DayRecordDao;
 import trillionaire.model.DayRecord;
 import trillionaire.service.StockService;
+import trillionaire.util.DecimalUtil;
 import trillionaire.vo.Earnings;
 import trillionaire.vo.RecommendationTrends;
 import trillionaire.vo.StockAbility;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -21,39 +23,47 @@ public class StockServiceImpl implements StockService {
     @Autowired
     private DayRecordDao dayRecordDao;
 
-    public List<DayRecord> getDailyInfo(String code) {
+    private Map<String, Object> getDailyInfo(String code) {
+        Map<String, Object> map = new HashMap<String, Object>();
         int stock = Integer.parseInt(code);
         List<DayRecord> list = dayRecordDao.getDayRecordsByCode(stock);
-        return list;
+        List<String> ma5 = calculateMA(list, 5);
+        List<String> ma10 = calculateMA(list, 10);
+        List<String> ma30 = calculateMA(list, 30);
+        map.put("candle", list);
+        map.put("ma5", ma5);
+        map.put("ma10", ma10);
+        map.put("ma30", ma30);
+        return map;
     }
 
-    public List<DayRecord> getWeeklyInfo(String code) {
+    private Map<String, Object> getWeeklyInfo(String code) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        return null;
+    }
+
+    private Map<String, Object> getMonthlyInfo(String code) {
 
         return null;
     }
 
-    public List<DayRecord> getMonthlyInfo(String code) {
+    private Map<String, Object> getAnnualInfo(String code) {
 
         return null;
     }
 
-    public List<DayRecord> getAnnualInfo(String code) {
+    public Map<String, Object> getStockInfo(String code, String span) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        if (span.equals("daily")) {
+            map = getDailyInfo(code);
+        } else if (span.equals("weekly")) {
 
-        return null;
-    }
+        } else if (span.equals("monthly")) {
 
-    public List<DayRecord> getStockInfo(String code, String span) {
-
-        if (span.equals("daily")){
-
-        }else if (span.equals("weekly")){
-
-        }else if (span.equals("monthly")){
-
-        }else {
+        } else {
 
         }
-        return null;
+        return map;
     }
 
     public Map<String, Object> getSimilarStock(String input) {
@@ -141,5 +151,25 @@ public class StockServiceImpl implements StockService {
 
 
         return 0;
+    }
+
+    private List<String> calculateMA(List<DayRecord> list, int dayCount) {
+        List<String> result = new ArrayList<String>();
+        String s;
+        double sum = 0.00;
+        for (int i = 0; i < list.size(); i++) {
+            if (i < dayCount) {
+                s = "-";
+            } else {
+                sum = 0.00;
+                for (int j = 0; j < dayCount; j++) {
+                    sum += list.get(i - j).getAdjClose();
+                }
+                sum = sum / dayCount;
+                s = DecimalUtil.RemainTwoDecimal(sum);
+            }
+            result.add(s);
+        }
+        return result;
     }
 }

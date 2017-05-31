@@ -1,6 +1,7 @@
 function dataAnalyze(data,board) {
     var array = data.up;//领涨的数组
     var finalList;
+    $("#"+board+"-spin").html('');
     if (array!=null){
         for (var i = 0; i < array.length; i++) {
             //对数组遍历
@@ -85,4 +86,5 @@ function load() {
     loadIndustry();
     loadArea();
     loadConcept();
+
 }

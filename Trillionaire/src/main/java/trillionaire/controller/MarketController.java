@@ -76,4 +76,12 @@ public class MarketController {
         return null;
     }
 
+    @RequestMapping(value = "industry",method = RequestMethod.GET)
+    @ResponseBody
+    public List<DayRecord> getBoardRank(@RequestParam("industry") String board){
+
+        return null;
+    }
+
+
 }

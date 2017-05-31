@@ -1,0 +1,17 @@
+#help-page ul {
+    margin: 2.5%;
+    border-bottom: 1px solid #AAA;
+}
+
+#help-page li {
+    margin: 2%;
+}
+
+#help-page a {
+    color: #0080ff;
+}
+
+#help-page a:hover {
+    color: #0080ff;
+    text-decoration: underline;
+}
