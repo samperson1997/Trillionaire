@@ -76,7 +76,8 @@
                 <div align="center">
                     <div style="margin: 2%;">
                         股票¥ <input style="display: inline-block;" class="input-box" value="10000" />
-                        <input style="display: inline-block;" class="date-picker" type="text" id="start-filter" placeholder="开始日期" />—<input style="display: inline-block;" class="date-picker" type="text" id="end-filter" placeholder="截止日期" /> 回测频率 <select style="display: inline-block;">
+                        <input style="display: inline-block;" class="date-picker" type="text" id="start-filter" placeholder="开始日期" />—<input style="display: inline-block;" class="date-picker" type="text" id="end-filter" placeholder="截止日期" />
+                        <select style="display: inline-block;">
                                 <option value="day">每日</option>
                                 <option value="day">分钟</option>
                             </select> 撮合方式 <select style="display: inline-block;">
@@ -87,6 +88,7 @@
                     <div>
                         <div class="button-page" onclick="switchTheme()" id="switch-theme-button"><i class="fa fa-eye"></i> 护眼模式</div>
                         <div class="button-green"><i class="fa fa-forward"></i> 编译运行</div>
+                        <div class="button-green"><i class="fa fa-envira"></i> 参数调优</div>
                         <div id="remove-all" class="button-red" onclick="remove()"><i class="fa fa-trash-o"></i> 清空</div>
                         <div class="stock-code" style="display: inline-block;"><a href="help.html#stra-setting" target="_blank">>>如何进行回测设置？</a></div>
                     </div>
@@ -184,7 +186,7 @@ def handle_bar(context, bar_dict):
                             <p>16.48%</p>
                         </div>
                         <div data-scroll-reveal="enter from bottom over 0.5s" class="res-spec-figure">
-                            <h2>追踪错误</h2>
+                            <h2>跟踪误差</h2>
                             <p>0.1961</p>
                         </div>
                         <div data-scroll-reveal="enter from bottom over 0.5s" class="res-spec-figure">

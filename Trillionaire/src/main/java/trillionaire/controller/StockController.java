@@ -12,6 +12,7 @@ import trillionaire.vo.StockAbility;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -27,6 +28,7 @@ public class StockController {
     @RequestMapping(value = "/{code}/{span}", method = RequestMethod.GET)
     @ResponseBody
     public Map<String, Object> getDailyCandle(@PathVariable("code") String code, @PathVariable("span") String span) {
+
         Map<String, Object> map = stockService.getStockInfo(code, span);
         return map;
     }
