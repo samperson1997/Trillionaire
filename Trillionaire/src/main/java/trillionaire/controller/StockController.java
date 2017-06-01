@@ -27,8 +27,7 @@ public class StockController {
 
     @RequestMapping(value = "/{code}/{span}", method = RequestMethod.GET)
     @ResponseBody
-    public Map<String, Object> getDailyCandle(@PathVariable("code") String code, @PathVariable("span") String span) {
-
+    public Map<String, Object> getCandle(@PathVariable("code") String code, @PathVariable("span") String span) {
         Map<String, Object> map = stockService.getStockInfo(code, span);
         return map;
     }
@@ -57,8 +56,7 @@ public class StockController {
     @RequestMapping(value = "/prevail", method = RequestMethod.GET)
     @ResponseBody
     public double getPrevailTrend(String code) {
-        double obv = stockService.getOBV(code);
-        return obv;
+        return stockService.getVR(code);
     }
 
     @RequestMapping(value = "/trends", method = RequestMethod.GET)
@@ -71,8 +69,7 @@ public class StockController {
     @RequestMapping(value = "/target", method = RequestMethod.GET)
     @ResponseBody
     public PriceTarget getPriceTarget(String code) {
-        PriceTarget priceTarget = stockService.getPriceTarget(code);
-        return priceTarget;
+        return stockService.getPriceTarget(code);
     }
 
     @RequestMapping(value = "/earnings", method = RequestMethod.GET)
@@ -84,23 +81,20 @@ public class StockController {
 
     @RequestMapping(value = "/kdj", method = RequestMethod.GET)
     @ResponseBody
-    public List<Double> getKDJ(String code) {
-
-        return null;
+    public Map<String, Object> getKDJ(String code) {
+        return stockService.getKDJ(code);
     }
 
     @RequestMapping(value = "/bias", method = RequestMethod.GET)
     @ResponseBody
-    public List<Double> getBIAS(String code) {
-
-        return null;
+    public Map<String, Object> getBIAS(String code) {
+        return stockService.getBIAS(code);
     }
 
     @RequestMapping(value = "/macd", method = RequestMethod.GET)
     @ResponseBody
-    public List<Double> getMACD(String code) {
-
-        return null;
+    public Map<String, Object> getMACD(String code) {
+        return stockService.getMACD(code);
     }
 
     @RequestMapping(value = "/similar", method = RequestMethod.GET)

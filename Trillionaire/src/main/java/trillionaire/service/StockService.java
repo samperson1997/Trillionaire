@@ -84,31 +84,31 @@ public interface StockService {
      * @param code 股票代码
      * @return 股票热度
      */
-    public double getOBV(String code);
+    public double getVR(String code);
 
     /**
      * 获得KDJ
      *
      * @param code 股票代码
-     * @return 股票热度
+     * @return KDJ
      */
-    public List<Double> getKDJ(String code);
+    public Map<String, Object> getKDJ(String code);
 
     /**
      * 获得BIAS
      *
      * @param code 股票代码
-     * @return 股票热度
+     * @return BIAS
      */
-    public List<Double> getBIAS(String code);
+    public Map<String, Object> getBIAS(String code);
 
     /**
      * 获得MACD
      *
      * @param code 股票代码
-     * @return 股票热度
+     * @return MACD
      */
-    public List<Double> getMACD(String code);
+    public Map<String, Object> getMACD(String code);
 
 
 }
