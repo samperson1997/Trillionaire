@@ -1,80 +1,109 @@
-var base = +new Date(1968, 9, 3);
-var oneDay = 24 * 3600 * 1000;
-var date = [];
-
-var data1 = [Math.random() * 300];
-var data2 = [Math.random() * 300];
-var data3 = [Math.random() * 300];
-
-for (var i = 1; i < 20000; i++) {
-    var now = new Date(base += oneDay);
-    date.push([now.getFullYear(), now.getMonth() + 1, now.getDate()].join('/'));
-    data1.push(Math.round((Math.random() - 0.5) * 20 + data1[i - 1]));
-    data2.push(Math.round((Math.random() - 0.5) * 20 + data2[i - 1]));
-    data3.push(Math.round((Math.random() - 0.5) * 20 + data3[i - 1]));
-}
-
-option = {
-    tooltip: {
-        trigger: 'axis'
-    },
-    legend: {
-        data: ['K', 'D', 'J']
-    },
-    xAxis: {
-        type: 'category',
-        boundaryGap: false,
-        data: date
-    },
-    yAxis: {
-        type: 'value',
-        boundaryGap: [0, '100%']
-    },
-    dataZoom: [
-        {
-            type: 'inside',
-            start: 50,
-            end: 100
+function loadKDJ() {
+    var code = getParam('code');
+    var load = $.ajax({
+        type: "GET",
+        url: "/stock/" + code + "/kdj",
+        contentType: "application/x-www-form-urlencoded",
+        dataType: "json",
+        success: function (data0) {
+            data = splitData(data0);
+            $("#kdj-spin").html('');
+            option = {
+                tooltip: {
+                    trigger: 'axis'
+                },
+                legend: {
+                    data: ['K', 'D', 'J']
+                },
+                xAxis: {
+                    type: 'category',
+                    boundaryGap: false,
+                    data: date
+                },
+                yAxis: {
+                    type: 'value',
+                    boundaryGap: [0, '100%']
+                },
+                dataZoom: [
+                    {
+                        type: 'inside',
+                        start: 50,
+                        end: 100
         },
-        {
-            show: true,
-            type: 'slider',
-            y: '90%',
-            start: 50,
-            end: 100
+                    {
+                        show: true,
+                        type: 'slider',
+                        y: '90%',
+                        start: 50,
+                        end: 100
         }
     ],
-    series: [
-        {
-            name: 'K',
-            type: 'line',
-            smooth: true,
-            symbol: 'none',
-            sampling: 'average',
+                series: [
+                    {
+                        name: 'K',
+                        type: 'line',
+                        smooth: true,
+                        symbol: 'none',
+                        sampling: 'average',
 
-            data: data1
+                        data: data.k
         },
-        {
-            name: 'D',
-            type: 'line',
-            smooth: true,
-            symbol: 'none',
-            sampling: 'average',
+                    {
+                        name: 'D',
+                        type: 'line',
+                        smooth: true,
+                        symbol: 'none',
+                        sampling: 'average',
 
-            data: data2
+                        data: data.d
         },
-        {
-            name: 'J',
-            type: 'line',
-            smooth: true,
-            symbol: 'none',
-            sampling: 'average',
+                    {
+                        name: 'J',
+                        type: 'line',
+                        smooth: true,
+                        symbol: 'none',
+                        sampling: 'average',
 
-            data: data3
+                        data: data.j
         }
     ]
+            };
+
+
+            var kdjChart = echarts.init(document.getElementById('kdj-chart'));
+            kdjChart.setOption(option);
+        },
+        error: function (request, status, err) {
+            if (status == "timeout") {
+                load.abort();
+            }
+        }
+    })
+}
+
+function splitData(rawData) {
+    return {
+        k: rawData.k,
+        d: rawData.d,
+        j: rawData.j
+    };
+}
+
+var getParam = function (name) {
+    var search = document.location.search;
+    var pattern = new RegExp("[?&]" + name + "\=([^&]+)", "g");
+    var matcher = pattern.exec(search);
+    var items = null;
+    if (null != matcher) {
+        try {
+            items = decodeURIComponent(decodeURIComponent(matcher[1]));
+        } catch (e) {
+            try {
+                items = decodeURIComponent(matcher[1]);
+            } catch (e) {
+                items = matcher[1];
+            }
+        }
+    }
+    return items;
 };
-
-
-var kdjChart = echarts.init(document.getElementById('kdj-chart'));
-kdjChart.setOption(option);

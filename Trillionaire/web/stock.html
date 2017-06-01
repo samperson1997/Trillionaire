@@ -60,10 +60,10 @@
 
                 <!-- search box -->
                 <div style="display: inline;">
-                    <input style="display: inline;" id="search-box" class="form-control search-input" placeholder="请输入股票名称或代码" />
+                    <input style="display: inline-block;" id="search-box" class="form-control search-input" placeholder="请输入股票名称或代码" />
                     <ul style="display: inline;" id="results" class="search-results"></ul>
                 </div>
-                <div style="display: inline-block;" class="button-page" id="search-button">开始检索</div>
+                <div style="display: inline-block;" class="button-page" id="search-button"><i class="fa fa-search"></i>检索</div>
             </div>
         </div>
 
@@ -74,6 +74,7 @@
                 <div style="padding-top: 2%;">
                     <div class="button-group">
                         <ul id="select-menu" onclick="set()">
+                            <button type="button" id="weekly" class="button button-primary">分时</button>
                             <button type="button" id="daily" class="button button-primary active">日K</button>
                             <button type="button" id="weekly" class="button button-primary">周K</button>
                             <button type="button" id="monthly" class="button button-primary">月K</button>
@@ -195,18 +196,30 @@
                     <div class="stock-name" style="display: inline;">KDJ</div>
                     <div class="stock-code" style="display: inline;">&nbsp;&nbsp;<a href="help.html#kdj" target="_blank">>>应该如何使用KDJ?</a></div>
                     <div id="kdj-chart" style="width:100%; height: 300%;"></div>
+                    <div id="kdj-spin">
+                        <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+                        <span>加载中...</span>
+                    </div>
                 </div>
 
                 <div style="padding-top: 2%;">
                     <div class="stock-name" style="display: inline;">BIAS</div>
                     <div class="stock-code" style="display: inline;">&nbsp;&nbsp;<a href="help.html#bias" target=" _blank">>>应该如何使用BIAS?</a></div>
                     <div id="bias-chart" style="width:100%; height: 300%;"></div>
+                    <div id="bias-spin">
+                        <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+                        <span>加载中...</span>
+                    </div>
                 </div>
 
                 <div style="padding-top: 2%;">
                     <div class="stock-name" style="display: inline;">MACD</div>
                     <div class="stock-code" style="display: inline;">&nbsp;&nbsp;<a href="help.html#macd" target=" _blank">>>应该如何使用MACD?</a></div>
                     <div id="macd-chart" style="width:100%; height: 300%;"></div>
+                    <div id="macd-spin">
+                        <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+                        <span>加载中...</span>
+                    </div>
                 </div>
 
             </div>
@@ -319,6 +332,7 @@
 
 <script>
     $(document).ready(loadCandle);
+    $(document).ready(loadKDJ);
 
 </script>
 

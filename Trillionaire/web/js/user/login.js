@@ -61,8 +61,7 @@ angular.module("mainapp", [])
                             }
 
                             sessionStorage.setItem("log_state", "true");
-                        }
-                        if (data == "fail") {
+                        } else if (data == "fail") {
                             $scope.inputPassword = "";
                             tip.innerHTML = "用户名不存在或密码错误";
                         }

@@ -151,19 +151,17 @@ function loadCandle() {
                 dataZoom: [
                     {
                         type: 'inside',
-                        xAxisIndex: [0, 1],
-                        start: 98,
+                        start: 50,
                         end: 100
-                    },
+        },
                     {
                         show: true,
-                        xAxisIndex: [0, 1],
                         type: 'slider',
-                        top: '85%',
-                        start: 98,
+                        y: '90%',
+                        start: 50,
                         end: 100
-                    }
-                ],
+        }
+    ],
                 series: [
                     {
                         name: '日K',
