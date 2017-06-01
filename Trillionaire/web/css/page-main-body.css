@@ -69,6 +69,23 @@
     font-weight: 200;
 }
 
+.rel-figure {
+    background-color: transparent;
+    font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, "PingFang SC", sans-serif;
+    font-size: 85%;
+    padding: 3%;
+}
+
+.rel-figure h2 {
+    display: inline-block;
+    font-weight: 400;
+}
+
+.rel-figure p {
+    display: inline-block;
+    font-weight: 200;
+}
+
 #main-figure {
     margin: 5% auto;
 }
@@ -406,4 +423,24 @@
 
 .compare-stock {
     margin-bottom: 5%;
+}
+
+#show-more-button {
+    clear: both;
+    cursor: pointer;
+    border: 1px solid #DDD;
+    border-radius: 10px;
+    background-color: #DDD;
+
+    padding: 1%;
+    margin: 1% 40%;
+}
+
+#show-more-button:hover {
+    color: #FFF;
+    background-color: #555;
+}
+
+#show-more-button:active {
+    background-color: #DDD;
 }
