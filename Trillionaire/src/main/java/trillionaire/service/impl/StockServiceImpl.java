@@ -5,17 +5,14 @@ import org.springframework.stereotype.Service;
 import trillionaire.dao.DayRecordDao;
 import trillionaire.model.DayRecord;
 import trillionaire.service.StockService;
+import trillionaire.service.impl.apriori.SimilarStockSelector;
 import trillionaire.service.impl.boxjenkins.TimeSeriesPredict;
+import trillionaire.util.DateUtil;
 import trillionaire.util.DecimalUtil;
-import trillionaire.vo.Earnings;
-import trillionaire.vo.PriceTarget;
-import trillionaire.vo.RecommendationTrends;
-import trillionaire.vo.StockAbility;
+import trillionaire.vo.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.sql.Date;
+import java.util.*;
 
 /**
  * Created by michaeltan on 2017/5/6.
@@ -26,9 +23,10 @@ public class StockServiceImpl implements StockService {
     private DayRecordDao dayRecordDao;
 
     private TimeSeriesPredict timeSeriesPredict = new TimeSeriesPredict();
+    private SimilarStockSelector similarStockSelector = new SimilarStockSelector();
 
     private Map<String, Object> getDailyInfo(String code) {
-        Map<String, Object> map = new HashMap<String, Object>();
+        Map<String, Object> map = new HashMap<>();
         int stock = Integer.parseInt(code);
         List<DayRecord> list = dayRecordDao.getDayRecordsByCode(stock);
         List<String> ma5 = calculateMA(list, 5);
@@ -42,20 +40,95 @@ public class StockServiceImpl implements StockService {
     }
 
     private Map<String, Object> getWeeklyInfo(String code) {
-        Map<String, Object> map = new HashMap<String, Object>();
+        Map<String, Object> map = new HashMap<>();
+        int stock = Integer.parseInt(code);
+        List<DayRecord> list = dayRecordDao.getDayRecordsByCode(stock);
+        List<Candle> candleList = new ArrayList<>();
+        double high;
+        double low;
+        double open;
+        double close;
+        int volume;
+        Date date;
+        int j;
+        for (int i=0; i<list.size();i=i+5){
+            volume = 0;
+            high = 0.00;
+            low = 0.00;
+            date = list.get(i).getDate();
+            open = list.get(i).getOpen();
+            for (j=i; j<list.size(); j++){
+                volume += list.get(j).getVolume();
+                if (list.get(j).getHigh()>high){
+                    high = list.get(j).getHigh();
+                }
+                if (list.get(j).getLow()<low){
+                    low = list.get(j).getLow();
+                }
+            }
+            close = list.get(j).getClose();
+            Candle candle = new Candle(date,open,high,low,close,volume);
+            candleList.add(candle);
+        }
+        List<String> ma5 = candleMA(candleList, 5);
+        List<String> ma10 = candleMA(candleList, 10);
+        List<String> ma30 = candleMA(candleList, 30);
+        map.put("candle", list);
+        map.put("ma5", ma5);
+        map.put("ma10", ma10);
+        map.put("ma30", ma30);
 
         return map;
     }
 
     private Map<String, Object> getMonthlyInfo(String code) {
-        Map<String, Object> map = new HashMap<String, Object>();
-
+        Map<String, Object> map = new HashMap<>();
+        int stock = Integer.parseInt(code);
+        List<DayRecord> list = dayRecordDao.getDayRecordsByCode(stock);
+        List<Candle> candleList = new ArrayList<>();
+        double high;
+        double low;
+        double open;
+        double close;
+        int volume;
+        Date date;
+        int j;
+        for (int i=0; i<list.size();i=i+j){
+            volume = 0;
+            high = 0.00;
+            low = 0.00;
+            date = list.get(i).getDate();
+            open = list.get(i).getOpen();
+            for (j=1; j<31; j++){
+                if (DateUtil.getMonth(date)==DateUtil.getMonth(list.get(i+j).getDate())){
+                    volume += list.get(j).getVolume();
+                    if (list.get(j).getHigh()>high){
+                        high = list.get(j).getHigh();
+                    }
+                    if (list.get(j).getLow()<low){
+                        low = list.get(j).getLow();
+                    }
+                }else {
+                    break;
+                }
+            }
+            close = list.get(i+j-1).getClose();
+            Candle candle = new Candle(date,open,high,low,close,volume);
+            candleList.add(candle);
+        }
+        List<String> ma5 = candleMA(candleList, 5);
+        List<String> ma10 = candleMA(candleList, 10);
+        List<String> ma30 = candleMA(candleList, 30);
+        map.put("candle", list);
+        map.put("ma5", ma5);
+        map.put("ma10", ma10);
+        map.put("ma30", ma30);
         return map;
     }
 
     @Override
     public Map<String, Object> getStockInfo(String code, String span) {
-        Map<String, Object> map = new HashMap<String, Object>();
+        Map<String, Object> map;
         if (span.equals("daily")) {
             map = getDailyInfo(code);
         } else if (span.equals("weekly")) {
@@ -122,8 +195,7 @@ public class StockServiceImpl implements StockService {
         double close = timeSeriesPredict.predict(closeArray);
         double low = timeSeriesPredict.predict(lowArray);
         double average = timeSeriesPredict.predict(averageArray);
-        PriceTarget priceTarget = new PriceTarget(close, high, low, average);
-        return priceTarget;
+        return new PriceTarget(close, high, low, average);
     }
 
     @Override
@@ -311,6 +383,26 @@ public class StockServiceImpl implements StockService {
                 sum = 0.00;
                 for (int j = 0; j < dayCount; j++) {
                     sum += list.get(i - j).getAdjClose();
+                }
+                sum = sum / dayCount;
+                s = DecimalUtil.RemainTwoDecimal(sum);
+            }
+            result.add(s);
+        }
+        return result;
+    }
+
+    private List<String> candleMA(List<Candle> list, int dayCount) {
+        List<String> result = new ArrayList<String>();
+        String s;
+        double sum;
+        for (int i = 0; i < list.size(); i++) {
+            if (i < dayCount) {
+                s = "-";
+            } else {
+                sum = 0.00;
+                for (int j = 0; j < dayCount; j++) {
+                    sum += list.get(i - j).getClose();
                 }
                 sum = sum / dayCount;
                 s = DecimalUtil.RemainTwoDecimal(sum);

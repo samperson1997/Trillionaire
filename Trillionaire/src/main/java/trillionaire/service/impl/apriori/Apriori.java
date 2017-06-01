@@ -116,7 +116,7 @@ public class Apriori {
     }
 
     /**
-     * 获取数据库记录
+     * 获取记录
      */
     private List<List<String>> getRecord() {
         SimilarStockSelector similarStockSelector = new SimilarStockSelector();
@@ -126,8 +126,7 @@ public class Apriori {
     /**
      * @param cItemset 求出cItemset中满足最低支持度集合
      */
-    private List<List<String>> getSupportedItemset(
-            List<List<String>> cItemset) {
+    private List<List<String>> getSupportedItemset(List<List<String>> cItemset) {
         boolean end = true;
         List<List<String>> supportedItemset = new ArrayList<List<String>>();
         int k = 0;
@@ -175,8 +174,7 @@ public class Apriori {
      * @return nextItemset
      * 根据cItemset求出下一级的备选集合组，求出的备选集合组中的每个集合的元素的个数比cItemset中的集合的元素大1
      */
-    private List<List<String>> getNextCandidate(
-            List<List<String>> cItemset) {
+    private List<List<String>> getNextCandidate(List<List<String>> cItemset) {
         List<List<String>> nextItemset = new ArrayList<List<String>>();
         for (int i = 0; i < cItemset.size(); i++) {
             List<String> tempList = new ArrayList<String>();
@@ -206,8 +204,7 @@ public class Apriori {
      * @return boolean
      * 检验nextItemset中是否包含copyValueHelpList
      */
-    private boolean isHave(List<String> copyValueHelpList,
-                           List<List<String>> nextItemset) {
+    private boolean isHave(List<String> copyValueHelpList, List<List<String>> nextItemset) {
         for (int i = 0; i < nextItemset.size(); i++)
             if (copyValueHelpList.equals(nextItemset.get(i)))
                 return false;
@@ -219,8 +216,7 @@ public class Apriori {
      * @param cItemset
      * @return 检验 tempList是不是cItemset的子集
      */
-    private boolean isSubsetInC(List<String> tempList,
-                                List<List<String>> cItemset) {
+    private boolean isSubsetInC(List<String> tempList, List<List<String>> cItemset) {
         boolean haveTag = false;
         for (int i = 0; i < tempList.size(); i++) {// k集合tempList的子集是否都在k-1级频繁级中
             List<String> testList = new ArrayList<String>();
