@@ -85,12 +85,12 @@
                                 <option value="day">下一bar开盘</option>
                             </select> 基准合约 <input style="display: inline-block;" class="input-box" value="000300.XSHG" /> 佣金倍率 <input style="display: inline-block;" class="num-box" value="1" /> 滑点 <input style="display: inline-block;" class="num-box" value="0" />
                     </div>
-                    <div>
+                    <div style="margin-top: -2%;">
                         <div class="button-page" onclick="switchTheme()" id="switch-theme-button"><i class="fa fa-eye"></i> 护眼模式</div>
                         <div class="button-green"><i class="fa fa-forward"></i> 编译运行</div>
                         <div class="button-green"><i class="fa fa-envira"></i> 参数调优</div>
                         <div id="remove-all" class="button-red" onclick="remove()"><i class="fa fa-trash-o"></i> 清空</div>
-                        <div class="stock-code" style="display: inline-block;"><a href="help.html#stra-setting" target="_blank">>>如何进行回测设置？</a></div>
+                        <div class="stock-code" style="display: inline-block;"><a href="help.html#stra-setting" target="_blank">>>如何进行回测设置? </a>注意: 选择"参数调优"功能可能导致回测速度变慢。</div>
                     </div>
                 </div>
 
@@ -195,7 +195,28 @@ def handle_bar(context, bar_dict):
                         </div>
                     </div>
 
-                    <div id="return-chart" style="height: 400%;"></div>
+                    <div align="center">
+                        <div style="padding-top: 5%;">
+                            <div class="stock-name" style="display: inline;">累计收益率与基准收益率</div>
+                            <div id="return-chart" style="height: 400%;"></div>
+                        </div>
+
+                        <div style="padding-top: 5%;">
+                            <div class="stock-name" style="display: inline;">收益分布</div>
+                            <div id="cycle-chart" style="height: 400%;"></div>
+
+                        </div>
+
+                        <div style="padding-top: 5%;">
+                            <div class="stock-name" style="display: inline;">超额收益率</div>
+                            <div id="overreturn-chart" style="height: 400%;"></div>
+                        </div>
+
+                        <div style="padding-top: 5%;">
+                            <div class="stock-name" style="display: inline;">策略胜率</div>
+                            <div id="win-chart" style="height: 400%;"></div>
+                        </div>
+                    </div>
 
                 </div>
             </div>
@@ -237,6 +258,9 @@ def handle_bar(context, bar_dict):
 </body>
 
 <script src="js/charts/return-line.js"></script>
+<script src="js/charts/cycle-chart.js"></script>
+<script src="js/charts/overreturn-line.js"></script>
+<script src="js/charts/win-line.js"></script>
 <script src="js/date-picker.js"></script>
 <script>
     (function() {
