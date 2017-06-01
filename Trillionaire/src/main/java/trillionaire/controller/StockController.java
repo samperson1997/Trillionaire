@@ -55,8 +55,8 @@ public class StockController {
     @RequestMapping(value = "/prevail", method = RequestMethod.GET)
     @ResponseBody
     public double getPrevailTrend(String code) {
-        double obv = stockService.getOBV(code);
-        return obv;
+        double vr = stockService.getVR(code);
+        return vr;
     }
 
     @RequestMapping(value = "/trends", method = RequestMethod.GET)
@@ -82,21 +82,21 @@ public class StockController {
 
     @RequestMapping(value = "/kdj", method = RequestMethod.GET)
     @ResponseBody
-    public List<Double> getKDJ(String code) {
-
-        return null;
+    public Map<String, Object> getKDJ(String code) {
+        Map<String, Object> map = stockService.getKDJ(code);
+        return map;
     }
 
     @RequestMapping(value = "/bias", method = RequestMethod.GET)
     @ResponseBody
-    public List<Double> getBIAS(String code) {
+    public Map<String, Object> getBIAS(String code) {
 
         return null;
     }
 
     @RequestMapping(value = "/macd", method = RequestMethod.GET)
     @ResponseBody
-    public List<Double> getMACD(String code) {
+    public Map<String, Object> getMACD(String code) {
 
         return null;
     }
