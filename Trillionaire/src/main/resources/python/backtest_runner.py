@@ -2,8 +2,8 @@ import sys
 from rqalpha import run_file
 
 
-strategy_file_dir_path = 'src\\main\\resources\\TempFiles\\TempStrategy\\BcakTestStrategy\\'
-out_file_dir_path = 'src\\main\\resources\\TempFiles\\TempStrategy\\BackTestResult\\'
+strategy_file_dir_path = 'src\\main\\resources\\TempFiles\\TempStrategy\\BackTestStrategy\\'
+out_file_dir_path = 'src\\main\\resources\\TempFiles\\TempStrategy\\BacktestResult\\'
 
 strategy_id = sys.argv[1]
 starting_cash = int(sys.argv[2])
@@ -46,4 +46,3 @@ config = {
 
 
 run_file(strategy_file_dir_path + strategy_id + ".py", config)
-print("run success")
