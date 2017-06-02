@@ -151,11 +151,14 @@ function loadCandle() {
                 dataZoom: [
                     {
                         type: 'inside',
+                        xAxisIndex: [0, 1],
                         start: 50,
                         end: 100
         },
                     {
                         show: true,
+                        xAxisIndex: [0, 1],
+                        top: '85%',
                         type: 'slider',
                         y: '90%',
                         start: 50,
