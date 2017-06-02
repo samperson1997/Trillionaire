@@ -1,18 +1,23 @@
 package trillionaire.service.impl;
 
+import com.sun.javafx.scene.control.skin.VirtualFlow;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import trillionaire.dao.DayRecordDao;
 import trillionaire.model.DayRecord;
+import trillionaire.model.MonthRecord;
+import trillionaire.model.WeekRecord;
 import trillionaire.service.StockService;
 import trillionaire.service.impl.apriori.SimilarStockSelector;
 import trillionaire.service.impl.boxjenkins.TimeSeriesPredict;
-import trillionaire.util.DateUtil;
 import trillionaire.util.DecimalUtil;
 import trillionaire.vo.*;
 
 import java.sql.Date;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by michaeltan on 2017/5/6.
@@ -42,37 +47,10 @@ public class StockServiceImpl implements StockService {
     private Map<String, Object> getWeeklyInfo(String code) {
         Map<String, Object> map = new HashMap<>();
         int stock = Integer.parseInt(code);
-        List<DayRecord> list = dayRecordDao.getDayRecordsByCode(stock);
-        List<Candle> candleList = new ArrayList<>();
-        double high;
-        double low;
-        double open;
-        double close;
-        int volume;
-        Date date;
-        int j;
-        for (int i=0; i<list.size();i=i+5){
-            volume = 0;
-            high = 0.00;
-            low = 0.00;
-            date = list.get(i).getDate();
-            open = list.get(i).getOpen();
-            for (j=i; j<list.size(); j++){
-                volume += list.get(j).getVolume();
-                if (list.get(j).getHigh()>high){
-                    high = list.get(j).getHigh();
-                }
-                if (list.get(j).getLow()<low){
-                    low = list.get(j).getLow();
-                }
-            }
-            close = list.get(j).getClose();
-            Candle candle = new Candle(date,open,high,low,close,volume);
-            candleList.add(candle);
-        }
-        List<String> ma5 = candleMA(candleList, 5);
-        List<String> ma10 = candleMA(candleList, 10);
-        List<String> ma30 = candleMA(candleList, 30);
+        List<WeekRecord> list = dayRecordDao.getWeekRecordsByCode(stock);
+        List<String> ma5 = calculateWeeklyMA(list, 5);
+        List<String> ma10 = calculateWeeklyMA(list, 10);
+        List<String> ma30 = calculateWeeklyMA(list, 30);
         map.put("candle", list);
         map.put("ma5", ma5);
         map.put("ma10", ma10);
@@ -84,45 +62,15 @@ public class StockServiceImpl implements StockService {
     private Map<String, Object> getMonthlyInfo(String code) {
         Map<String, Object> map = new HashMap<>();
         int stock = Integer.parseInt(code);
-        List<DayRecord> list = dayRecordDao.getDayRecordsByCode(stock);
-        List<Candle> candleList = new ArrayList<>();
-        double high;
-        double low;
-        double open;
-        double close;
-        int volume;
-        Date date;
-        int j;
-        for (int i=0; i<list.size();i=i+j){
-            volume = 0;
-            high = 0.00;
-            low = 0.00;
-            date = list.get(i).getDate();
-            open = list.get(i).getOpen();
-            for (j=1; j<31; j++){
-                if (DateUtil.getMonth(date)==DateUtil.getMonth(list.get(i+j).getDate())){
-                    volume += list.get(j).getVolume();
-                    if (list.get(j).getHigh()>high){
-                        high = list.get(j).getHigh();
-                    }
-                    if (list.get(j).getLow()<low){
-                        low = list.get(j).getLow();
-                    }
-                }else {
-                    break;
-                }
-            }
-            close = list.get(i+j-1).getClose();
-            Candle candle = new Candle(date,open,high,low,close,volume);
-            candleList.add(candle);
-        }
-        List<String> ma5 = candleMA(candleList, 5);
-        List<String> ma10 = candleMA(candleList, 10);
-        List<String> ma30 = candleMA(candleList, 30);
+        List<MonthRecord> list = dayRecordDao.getMonthRecordsByCode(stock);
+        List<String> ma5 = calculateMonthlyMA(list, 5);
+        List<String> ma10 = calculateMonthlyMA(list, 10);
+        List<String> ma30 = calculateMonthlyMA(list, 30);
         map.put("candle", list);
         map.put("ma5", ma5);
         map.put("ma10", ma10);
         map.put("ma30", ma30);
+
         return map;
     }
 
@@ -220,13 +168,10 @@ public class StockServiceImpl implements StockService {
     }
 
     @Override
-    public Map<String, Object> getKDJ(String code) {
-        Map<String, Object> map = new HashMap<String, Object>();
+    public List<KDJ> getKDJ(String code) {
         int stock = Integer.parseInt(code);
         List<DayRecord> list = dayRecordDao.getDayRecordsByCode(stock);
-        List<String> KList = new ArrayList<>();
-        List<String> DList = new ArrayList<>();
-        List<String> JList = new ArrayList<>();
+        List<KDJ> kdj = new ArrayList<>();
         double high = 0.00;
         double low = 0.00;
         double RSV;
@@ -234,15 +179,12 @@ public class StockServiceImpl implements StockService {
         double D;
         double J;
         for (int j = 0; j < 7; j++) {
-            KList.add("-");
-            DList.add("-");
-            JList.add("-");
+            kdj.add(new KDJ("-", "-", "-", list.get(j).getDate()));
         }
-        KList.add("50");
-        DList.add("50");
-        JList.add("-");
+        kdj.add(new KDJ("50.0", "50.0", "-", list.get(7).getDate()));
+
         for (int i = 8; i < list.size(); i++) {
-            for (int j = 0; j < 9; j--) {
+            for (int j = 0; j < 9; j++) {
                 if (list.get(i - j).getHigh() > high) {
                     high = list.get(i - j).getHigh();
                 }
@@ -250,40 +192,39 @@ public class StockServiceImpl implements StockService {
                     low = list.get(i - j).getLow();
                 }
             }
-            RSV = 100 * (list.get(i).getAdjClose() - low) / (high - low);
-            K = 2 * Double.parseDouble(KList.get(i)) / 3 + RSV / 3;
-            D = 2 * Double.parseDouble(DList.get(i)) / 3 + K / 3;
+            RSV = 100 * (list.get(i - 1).getAdjClose() - low) / (high - low);
+            K = 2 * Double.parseDouble(kdj.get(i - 1).getK()) / 3 + RSV / 3;
+            D = 2 * Double.parseDouble(kdj.get(i - 1).getD()) / 3 + K / 3;
             J = 3 * K - 2 * D;
-            KList.add(DecimalUtil.RemainTwoDecimal(K));
-            DList.add(DecimalUtil.RemainTwoDecimal(D));
-            JList.add(DecimalUtil.RemainTwoDecimal(J));
+            kdj.add(new KDJ(DecimalUtil.RemainTwoDecimal(K), DecimalUtil.RemainTwoDecimal(D), DecimalUtil.RemainTwoDecimal(J), list.get(i).getDate()));
             high = 0.00;
             low = 0.00;
         }
-        map.put("K", KList);
-        map.put("D", DList);
-        map.put("J", JList);
-
-        return map;
+        return kdj;
     }
 
     @Override
     public Map<String, Object> getBIAS(String code) {
-        Map<String, Object> map = new HashMap<String, Object>();
+        Map<String, Object> map = new HashMap<>();
         int stock = Integer.parseInt(code);
         List<DayRecord> list = dayRecordDao.getDayRecordsByCode(stock);
         List<String> BIAS6 = calculateBIAS(list, 6);
         List<String> BIAS12 = calculateBIAS(list, 12);
         List<String> BIAS24 = calculateBIAS(list, 24);
-        map.put("BIAS6", BIAS6);
-        map.put("BIAS12", BIAS12);
-        map.put("BIAS24", BIAS24);
+        List<Date> date = new ArrayList<>();
+        for (int i=0; i<list.size(); i++){
+            date.add(list.get(i).getDate());
+        }
+        map.put("date", date);
+        map.put("bias6", BIAS6);
+        map.put("bias12", BIAS12);
+        map.put("bias24", BIAS24);
         return map;
     }
 
     @Override
     public Map<String, Object> getMACD(String code) {
-        Map<String, Object> map = new HashMap<String, Object>();
+        Map<String, Object> map = new HashMap<>();
         int stock = Integer.parseInt(code);
         List<DayRecord> list = dayRecordDao.getDayRecordsByCode(stock);
         List<String> DIFList = new ArrayList<>();
@@ -315,10 +256,14 @@ public class StockServiceImpl implements StockService {
             DEAList.add(DecimalUtil.RemainTwoDecimal(DEA));
             MACDList.add(DecimalUtil.RemainTwoDecimal(MACD));
         }
-
-        map.put("DIF", DIFList);
-        map.put("DEA", DEAList);
-        map.put("MACD", MACDList);
+        List<Date> date = new ArrayList<>();
+        for (int i=0; i<list.size(); i++){
+            date.add(list.get(i).getDate());
+        }
+        map.put("date", date);
+        map.put("diff", DIFList);
+        map.put("dea", DEAList);
+        map.put("macd", MACDList);
         return map;
     }
 
@@ -373,7 +318,7 @@ public class StockServiceImpl implements StockService {
     }
 
     private List<String> calculateMA(List<DayRecord> list, int dayCount) {
-        List<String> result = new ArrayList<String>();
+        List<String> result = new ArrayList<>();
         String s;
         double sum;
         for (int i = 0; i < list.size(); i++) {
@@ -392,8 +337,8 @@ public class StockServiceImpl implements StockService {
         return result;
     }
 
-    private List<String> candleMA(List<Candle> list, int dayCount) {
-        List<String> result = new ArrayList<String>();
+    private List<String> calculateWeeklyMA(List<WeekRecord> list, int dayCount) {
+        List<String> result = new ArrayList<>();
         String s;
         double sum;
         for (int i = 0; i < list.size(); i++) {
@@ -402,7 +347,27 @@ public class StockServiceImpl implements StockService {
             } else {
                 sum = 0.00;
                 for (int j = 0; j < dayCount; j++) {
-                    sum += list.get(i - j).getClose();
+                    sum += list.get(i - j).getAdjClose();
+                }
+                sum = sum / dayCount;
+                s = DecimalUtil.RemainTwoDecimal(sum);
+            }
+            result.add(s);
+        }
+        return result;
+    }
+
+    private List<String> calculateMonthlyMA(List<MonthRecord> list, int dayCount) {
+        List<String> result = new ArrayList<>();
+        String s;
+        double sum;
+        for (int i = 0; i < list.size(); i++) {
+            if (i < dayCount) {
+                s = "-";
+            } else {
+                sum = 0.00;
+                for (int j = 0; j < dayCount; j++) {
+                    sum += list.get(i - j).getAdjClose();
                 }
                 sum = sum / dayCount;
                 s = DecimalUtil.RemainTwoDecimal(sum);

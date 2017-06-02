@@ -23,7 +23,6 @@ function loadCandle() {
                 backgroundColor: '#FFF',
                 animation: false,
                 legend: {
-                    bottom: 10,
                     left: 'center',
                     data: ['日K', 'MA5', 'MA10', 'MA30']
                 },

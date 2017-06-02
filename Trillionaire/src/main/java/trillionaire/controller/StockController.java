@@ -5,14 +5,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import trillionaire.model.Stock;
 import trillionaire.service.StockService;
-import trillionaire.vo.Earnings;
-import trillionaire.vo.PriceTarget;
-import trillionaire.vo.RecommendationTrends;
-import trillionaire.vo.StockAbility;
+import trillionaire.vo.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -62,8 +58,7 @@ public class StockController {
     @RequestMapping(value = "/trends", method = RequestMethod.GET)
     @ResponseBody
     public RecommendationTrends getRecommendationTrends(String code) {
-        RecommendationTrends recommendationTrends = stockService.getRecommendationTrends(code);
-        return recommendationTrends;
+        return stockService.getRecommendationTrends(code);
     }
 
     @RequestMapping(value = "/target", method = RequestMethod.GET)
@@ -75,13 +70,12 @@ public class StockController {
     @RequestMapping(value = "/earnings", method = RequestMethod.GET)
     @ResponseBody
     public List<Earnings> getEarnings(String code) {
-        List<Earnings> earnings = stockService.getEarnings(code);
-        return earnings;
+        return stockService.getEarnings(code);
     }
 
     @RequestMapping(value = "/kdj", method = RequestMethod.GET)
     @ResponseBody
-    public Map<String, Object> getKDJ(String code) {
+    public List<KDJ> getKDJ(String code) {
         return stockService.getKDJ(code);
     }
 

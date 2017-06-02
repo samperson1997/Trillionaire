@@ -2,8 +2,9 @@ function loadKDJ() {
     var code = getParam('code');
     var load = $.ajax({
         type: "GET",
-        url: "/stock/" + code + "/kdj",
+        url: "/stock/kdj",
         contentType: "application/x-www-form-urlencoded",
+        data: {"code": code},
         dataType: "json",
         success: function (data0) {
             data = splitData(data0);
@@ -18,7 +19,7 @@ function loadKDJ() {
                 xAxis: {
                     type: 'category',
                     boundaryGap: false,
-                    data: date
+                    data: data.categoryData,
                 },
                 yAxis: {
                     type: 'value',
@@ -46,7 +47,7 @@ function loadKDJ() {
                         symbol: 'none',
                         sampling: 'average',
 
-                        data: data.k
+                        data: data.k,
         },
                     {
                         name: 'D',
@@ -55,7 +56,7 @@ function loadKDJ() {
                         symbol: 'none',
                         sampling: 'average',
 
-                        data: data.d
+                        data: data.d,
         },
                     {
                         name: 'J',
@@ -64,7 +65,7 @@ function loadKDJ() {
                         symbol: 'none',
                         sampling: 'average',
 
-                        data: data.j
+                        data: data.j,
         }
     ]
             };
@@ -82,10 +83,21 @@ function loadKDJ() {
 }
 
 function splitData(rawData) {
+    var categoryData = [];
+    var k = [];
+    var d = [];
+    var j = [];
+    for (var i = 0; i < rawData.length; i++) {
+        categoryData.push(rawData[i].date);
+        k.push(rawData[i].k);
+        d.push(rawData[i].d);
+        j.push(rawData[i].j)
+    }
     return {
-        k: rawData.k,
-        d: rawData.d,
-        j: rawData.j
+        categoryData: categoryData,
+        k: k,
+        d: d,
+        j: j,
     };
 }
 

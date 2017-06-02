@@ -74,7 +74,6 @@
                 <div style="padding-top: 2%;">
                     <div class="button-group">
                         <ul id="select-menu" onclick="set()">
-                            <button type="button" id="weekly" class="button button-primary">分时</button>
                             <button type="button" id="daily" class="button button-primary active">日K</button>
                             <button type="button" id="weekly" class="button button-primary">周K</button>
                             <button type="button" id="monthly" class="button button-primary">月K</button>
@@ -333,6 +332,8 @@
 <script>
     $(document).ready(loadCandle);
     $(document).ready(loadKDJ);
+    $(document).ready(loadBIAS);
+    $(document).ready(loadMACD);
 
 </script>
 

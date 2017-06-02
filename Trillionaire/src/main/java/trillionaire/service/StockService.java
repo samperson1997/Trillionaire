@@ -1,10 +1,7 @@
 package trillionaire.service;
 
 
-import trillionaire.vo.Earnings;
-import trillionaire.vo.PriceTarget;
-import trillionaire.vo.RecommendationTrends;
-import trillionaire.vo.StockAbility;
+import trillionaire.vo.*;
 
 import java.util.List;
 import java.util.Map;
@@ -92,7 +89,7 @@ public interface StockService {
      * @param code 股票代码
      * @return KDJ
      */
-    public Map<String, Object> getKDJ(String code);
+    public List<KDJ> getKDJ(String code);
 
     /**
      * 获得BIAS
