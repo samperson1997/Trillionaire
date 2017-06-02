@@ -37,9 +37,9 @@ public class BackTestServiceImpl implements BackTestService{
         return 0;
     }
 
-    public BackTestResult startBackTest(int sid, BackTestParams params) {
+    public BackTestResult startBackTest(BackTestParams params) {
         String paramString = "";
-        paramString = sid + " " + params.cash + " " + params.sDate + " " + params.eDate + " " + params.frequency + " " + params.matchingType + " " +
+        paramString = params.sid + " " + params.cash + " " + params.sDate + " " + params.eDate + " " + params.frequency + " " + params.matchingType + " " +
                         params.benchmark + " " + params.commissionMultiplier + " " + params.slippage;
         String[] cmd = new String[] { "cmd.exe", "/C", "activate python36 && python " + runnerPath + " " + paramString };
         try {

@@ -21,7 +21,7 @@ public interface BackTestService {
 
     public int deletStrategy(int sid);
 
-    public BackTestResult startBackTest(int sid, BackTestParams params);
+    public BackTestResult startBackTest(BackTestParams params);
 
     public List<DateReturnsVO> getDateReturnsVOList(int sid);
 

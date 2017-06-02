@@ -46,7 +46,7 @@ public class STest {
 
         BackTestService backTestService = ctx.getBean(BackTestServiceImpl.class);
         BackTestParams params = new BackTestParams();
-        backTestService.startBackTest(1, params);
+        backTestService.startBackTest(params);
 
     }
 }
