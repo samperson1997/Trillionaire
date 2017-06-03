@@ -9,8 +9,8 @@ public interface UserDao {
 
     public User getUserByEmail(String email);
 
-    public void addUser(User user);
+    //public void addUser(User user);
 
-    public void updateUser(User user);
+    public void saveOrUpdateUser(User user);
 
 }

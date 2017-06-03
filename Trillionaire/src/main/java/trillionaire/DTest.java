@@ -12,6 +12,7 @@ import trillionaire.dao.impl.DayRecordDaoImpl;
 import trillionaire.dao.impl.StockDaoImpl;
 import trillionaire.model.DayRecord;
 import trillionaire.model.Stock;
+import trillionaire.model.Strategy;
 import trillionaire.model.User;
 import trillionaire.service.DataUpdateService;
 import trillionaire.service.impl.DataUpdateServiceImpl;
@@ -22,6 +23,7 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.Set;
 
 /**
  * Created by michaeltan on 2017/5/14.
@@ -42,16 +44,26 @@ public class DTest {
         SessionFactory sessionFactory = ctx.getBean(SessionFactory.class);
         System.out.println(sessionFactory);
 
-        //Session session = sessionFactory.openSession();
-        //Transaction tx = session.beginTransaction();
-        //测试数据库
-        //User user = new User("nju123", "tx", "123456");
-        //session.save(user);
-        //tx.commit();
-       // session.close();
+        Session session = sessionFactory.openSession();
+        Transaction tx = session.beginTransaction();
 
-        DataUpdateService dataUpdateService = ctx.getBean(DataUpdateServiceImpl.class);
-        dataUpdateService.updateAllData();
+
+//        User user = session.get(User.class, 1);
+//        System.out.println(user.getConcernedStocks().size() + "!!!!!!");
+//        System.out.println(user.getStrategies().size()+ "!!!!!!");
+
+        Strategy strategy = session.get(Strategy.class,1);
+        session.delete(strategy);
+
+//
+//          session.save(user);
+
+        tx.commit();
+        session.close();
+        sessionFactory.close();
+
+//        DataUpdateService dataUpdateService = ctx.getBean(DataUpdateServiceImpl.class);
+//        dataUpdateService.updateAllData();
 
         //System.out.println(dayRecordDao.getLastDateOf(2));
 

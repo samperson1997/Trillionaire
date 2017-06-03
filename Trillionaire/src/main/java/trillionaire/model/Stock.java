@@ -1,5 +1,7 @@
 package trillionaire.model;
 
+import org.hibernate.annotations.Cascade;
+
 import java.util.Set;
 
 import javax.persistence.*;
@@ -18,8 +20,8 @@ public class Stock {
     private Industry industry;
 
     private Set<Concept> concepts;
-
     private Set<DayRecord> dayRecords;
+    private Set<User> users;
 
 
     public Stock() {
@@ -106,6 +108,33 @@ public class Stock {
 
     public void setConcepts(Set<Concept> concepts){
         this.concepts = concepts;
+    }
+
+    @ManyToMany
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)//使用hibernate注解级联保存和更新
+    @JoinTable(name = "user_stock",
+            joinColumns = {@JoinColumn(name = "code")},//JoinColumns定义本方在中间表的主键映射
+            inverseJoinColumns = {@JoinColumn(name = "id")})
+    public Set<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Set<User> users) {
+        this.users = users;
+    }
+    @Override
+    public boolean equals(Object obj){
+
+        if(this == obj) return true;
+        if(obj == null) return false;
+        if(!(obj instanceof Stock)) return false;
+
+        Stock s = (Stock)obj;
+
+        if(s.getCode() == this.code) return true;
+
+        return false;
+
     }
 
 }
