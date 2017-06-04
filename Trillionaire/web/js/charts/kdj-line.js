@@ -4,7 +4,9 @@ function loadKDJ() {
         type: "GET",
         url: "/stock/kdj",
         contentType: "application/x-www-form-urlencoded",
-        data: {"code": code},
+        data: {
+            "code": code
+        },
         dataType: "json",
         success: function (data0) {
             var data = splitKDJData(data0);
@@ -28,14 +30,14 @@ function loadKDJ() {
                 dataZoom: [
                     {
                         type: 'inside',
-                        start: 50,
+                        start: 98,
                         end: 100
         },
                     {
                         show: true,
                         type: 'slider',
                         y: '90%',
-                        start: 50,
+                        start: 98,
                         end: 100
         }
     ],

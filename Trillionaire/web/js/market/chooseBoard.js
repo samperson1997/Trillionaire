@@ -14,4 +14,5 @@ function set() {
             break;
         }
     }
+    loadCandle();
 };

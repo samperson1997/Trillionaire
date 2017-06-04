@@ -4,7 +4,9 @@ function loadMACD() {
         type: "GET",
         url: "/stock/macd",
         contentType: "application/x-www-form-urlencoded",
-        data: {"code": code},
+        data: {
+            "code": code
+        },
         dataType: "json",
         success: function (data0) {
             $("#macd-spin").html('');
@@ -36,17 +38,17 @@ function loadMACD() {
                 dataZoom: [
                     {
                         type: 'inside',
-                        start: 50,
+                        start: 98,
                         end: 100
-                    },
+        },
                     {
                         show: true,
                         type: 'slider',
                         y: '90%',
-                        start: 50,
+                        start: 98,
                         end: 100
-                    }
-                ],
+        }
+    ],
                 series: [
                     {
                         name: 'MACD',

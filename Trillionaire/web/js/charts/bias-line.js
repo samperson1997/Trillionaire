@@ -4,7 +4,9 @@ function loadBIAS() {
         type: "GET",
         url: "/stock/bias",
         contentType: "application/x-www-form-urlencoded",
-        data: {"code": code},
+        data: {
+            "code": code
+        },
         dataType: "json",
         success: function (data0) {
             $("#bias-spin").html('');
@@ -27,17 +29,17 @@ function loadBIAS() {
                 dataZoom: [
                     {
                         type: 'inside',
-                        start: 50,
+                        start: 98,
                         end: 100
-                    },
+        },
                     {
                         show: true,
                         type: 'slider',
                         y: '90%',
-                        start: 50,
+                        start: 98,
                         end: 100
-                    }
-                ],
+        }
+    ],
                 series: [
                     {
                         name: 'BIAS6',
