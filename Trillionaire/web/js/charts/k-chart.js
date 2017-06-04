@@ -1,5 +1,3 @@
-var data;
-
 function loadCandle() {
     var code = getParam('code');
     var urll;
@@ -10,6 +8,7 @@ function loadCandle() {
     } else if ($("#monthly").attr('class').indexOf("active") >= 0) {
         urll = "/stock/" + code + "/monthly";
     }
+    $("#candle-spin").html('<i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i> <span>加载中...</span>');
 
     var load = $.ajax({
         type: "GET",
@@ -17,14 +16,14 @@ function loadCandle() {
         contentType: "application/x-www-form-urlencoded",
         dataType: "json",
         success: function (data0) {
-            data = splitData(data0);
+            var data = splitData(data0);
             $("#candle-spin").html('');
             var option = {
                 backgroundColor: '#FFF',
-                animation: false,
+                animation: true,
                 legend: {
                     left: 'center',
-                    data: ['日K', 'MA5', 'MA10', 'MA30']
+                    data: ['K', 'MA5', 'MA10', 'MA30']
                 },
                 tooltip: {
                     trigger: 'axis',
@@ -151,22 +150,21 @@ function loadCandle() {
                     {
                         type: 'inside',
                         xAxisIndex: [0, 1],
-                        start: 50,
+                        start: 98,
                         end: 100
-        },
+                    },
                     {
                         show: true,
                         xAxisIndex: [0, 1],
-                        top: '85%',
                         type: 'slider',
-                        y: '90%',
-                        start: 50,
+                        top: '85%',
+                        start: 98,
                         end: 100
-        }
-    ],
+                    }
+                ],
                 series: [
                     {
-                        name: '日K',
+                        name: 'K',
                         type: 'candlestick',
                         data: data.values,
                         itemStyle: {
@@ -232,16 +230,6 @@ function loadCandle() {
             };
             var kChart = echarts.init(document.getElementById('k-chart'));
             kChart.setOption(option, true);
-            kChart.dispatchAction({
-                type: 'brush',
-                areas: [
-                    {
-                        brushType: 'lineX',
-                        coordRange: ['2016-06-02', '2016-06-20'],
-                        xAxisIndex: 0
-                    }
-                ]
-            });
         },
         error: function (request, status, err) {
             if (status == "timeout") {
