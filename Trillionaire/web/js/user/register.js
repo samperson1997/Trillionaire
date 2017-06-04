@@ -50,7 +50,9 @@ angular.module("mainapp", [])
             $.ajax({
                 type: "GET",
                 url: "/user/check",
-                data: {"email": $scope.inputEmail},
+                data: {
+                    "email": $scope.inputEmail
+                },
                 contentType: "application/x-www-form-urlencoded",
                 dataType: "text",
                 success: function (data) {
@@ -82,7 +84,7 @@ angular.module("mainapp", [])
                         if (data == "success") {
                             $scope.inputEmail = "";
                             $scope.inputPassword = "";
-                            tip.innerHTML = "欢迎,注册成功";
+                            tip.innerHTML = "欢迎,注册成功,请查收您的收件箱";
                             window.location.href = "../../login.html";
                         } else if (data == "fail") {
                             $scope.inputEmail = "";

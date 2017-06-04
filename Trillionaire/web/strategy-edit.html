@@ -22,9 +22,8 @@
     <script src="js/scrollReveal.js"></script>
     <script src="js/jquery-3.2.1.min.js"></script>
     <script src="js/jquery-ui/jquery-ui.min.js"></script>
+    <script src="js/angular/angular.js"></script>
 
-    <script src="js/ace/ace.js"></script>
-    <script src="js/strategy/editor.js"></script>
     <script src="js/echarts.js"></script>
 </head>
 
@@ -73,25 +72,30 @@
                 <div class="stock-code" style="display: inline-block;"><a href="strategy-content.html">>>返回策略列表</a></div>
                 <div class="stock-code" style="display: inline-block;"><a href="api.html" target="_blank">>>API文档</a></div>
 
-                <div align="center">
-                    <div style="margin: 2%;">
-                        股票¥ <input style="display: inline-block;" class="input-box" value="10000" />
-                        <input style="display: inline-block;" class="date-picker" type="text" id="start-filter" placeholder="开始日期" />—<input style="display: inline-block;" class="date-picker" type="text" id="end-filter" placeholder="截止日期" />
-                        <select style="display: inline-block;">
-                                <option value="day">每日</option>
-                                <option value="day">分钟</option>
-                            </select> 撮合方式 <select style="display: inline-block;">
-                                <option value="day">当前bar收盘</option>
-                                <option value="day">下一bar开盘</option>
-                            </select> 基准合约 <input style="display: inline-block;" class="input-box" value="000300.XSHG" /> 佣金倍率 <input style="display: inline-block;" class="num-box" value="1" /> 滑点 <input style="display: inline-block;" class="num-box" value="0" />
-                    </div>
-                    <div style="margin-top: -2%;">
-                        <div class="button-page" onclick="switchTheme()" id="switch-theme-button"><i class="fa fa-eye"></i> 护眼模式</div>
-                        <div class="button-green" onclick="loadReturnLine()"><i class="fa fa-forward"></i> 编译运行</div>
-                        <div class="button-green"><i class="fa fa-envira"></i> 参数调优</div>
-                        <div id="remove-all" class="button-red" onclick="remove()"><i class="fa fa-trash-o"></i> 清空</div>
-                        <div class="stock-code" style="display: inline-block;"><a href="help.html#stra-setting" target="_blank">>>如何进行回测设置? </a>注意: 选择"参数调优"功能可能导致回测速度变慢。</div>
-                    </div>
+                <div align="center" ng-app="mainapp" ng-controller="BackTestController">
+                    <form method="post">
+
+                        <div style="margin: 2%;">
+                            股票¥ <input type="text" style="display: inline-block;" class="input-box" ng-model="cash" />
+                            <input style="display: inline-block;" class="date-picker" type="text" id="start-filter" placeholder="开始日期" ng-model="sDate" />—<input style="display: inline-block;" class="date-picker" type="text" id="end-filter" placeholder="截止日期" ng-model="eDate" />
+                            <select style="display: inline-block;" ng-model="frequency">
+                                <option value="1d">每日</option>
+                                <option value="1m">分钟</option>
+                            </select> 撮合方式 <select style="display: inline-block;" ng-model="matchingType">
+                                <option value="cbar">当前bar收盘</option>
+                                <option value="nbar">下一bar开盘</option>
+                            </select> 基准合约 <input style="display: inline-block;" class="input-box" ng-model="benchmark" /> 佣金倍率 <input style="display: inline-block;" class="num-box" ng-model="commissionMultiplier" /> 滑点 <input style="display: inline-block;" class="num-box" ng-model="slippage" />
+                        </div>
+                        <div style="margin-top: -2%;">
+                            <div class="button-page" onclick="switchTheme()" id="switch-theme-button"><i class="fa fa-eye"></i> 护眼模式</div>
+                            <div class="button-green" ng-click="loadReturnLine()"><i class="fa fa-forward"></i> 编译运行</div>
+                            <div class="button-green"><i class="fa fa-envira"></i> 参数调优</div>
+                            <div id="remove-all" class="button-red" onclick="remove()"><i class="fa fa-trash-o"></i> 清空</div>
+                            <div class="stock-code" style="display: inline-block;">
+                                <span id="stra_hint">注意: 选择"参数调优"功能可能导致回测速度变慢。</span><a href="help.html#stra-setting" target="_blank">>>如何进行回测设置? </a></div>
+                        </div>
+
+                    </form>
                 </div>
 
                 <div style="width: 50%; float: left;">
@@ -133,81 +137,84 @@ def handle_bar(context, bar_dict):
                     </div>
                 </div>
 
-                <div id="result-area" style="clear: both; margin-top: 40%;">
-                    <div class="stock-name" style="display: inline;">回测结果</div>
-                    <div class="stock-code" style="display: inline-block;">&nbsp;&nbsp;|&nbsp;&nbsp;Back Test Result</div>
+                <div style="margin-bottom: 40%;"></div>
 
-                    <div align="center" id="result-figure">
+                <div style="clear: both;">
+                    <div id="result-area">
+                        <div class="stock-name" style="display: inline;">回测结果</div>
+                        <div class="stock-code" style="display: inline-block;">&nbsp;&nbsp;|&nbsp;&nbsp;Back Test Result</div>
 
-                        <div data-scroll-reveal="enter from bottom over 0.5s" class="res-spec-figure">
-                            <h2>回测收益</h2>
-                            <p>60.49%</p>
-                        </div>
+                        <div align="center" id="result-figure">
 
-                        <div data-scroll-reveal="enter from bottom over 0.5s" class="res-spec-figure">
-                            <h2>回测年化收益</h2>
-                            <p>60.71%</p>
-                        </div>
+                            <div data-scroll-reveal="enter from bottom over 0.5s" class="res-spec-figure">
+                                <h2>回测收益</h2>
+                                <p>60.49%</p>
+                            </div>
 
-                        <div data-scroll-reveal="enter from bottom over 0.5s" class="res-spec-figure">
-                            <h2>基准收益</h2>
-                            <p>52.10%</p>
-                        </div>
-                        <div data-scroll-reveal="enter from bottom over 0.5s" class="res-spec-figure">
-                            <h2>基准年化收益</h2>
-                            <p>52.28%</p>
-                        </div>
-                        <div data-scroll-reveal="enter from bottom over 0.5s" class="res-spec-figure">
-                            <h2>Alpha</h2>
-                            <p>-0.019</p>
-                        </div>
-                        <div data-scroll-reveal="enter from bottom over 0.5s" class="res-spec-figure">
-                            <h2>Beta</h2>
-                            <p>1.255</p>
-                        </div>
-                        <div data-scroll-reveal="enter from bottom over 0.5s" class="res-spec-figure">
-                            <h2>Sharpe</h2>
-                            <p>1.563</p>
-                        </div>
-                        <div data-scroll-reveal="enter from bottom over 0.5s" class="res-spec-figure">
-                            <h2>Sortino</h2>
-                            <p>4.101</p>
-                        </div>
-                        <div data-scroll-reveal="enter from bottom over 0.5s" class="res-spec-figure">
-                            <h2>Info Ratio</h2>
-                            <p>0.415</p>
-                        </div>
-                        <div data-scroll-reveal="enter from bottom over 0.5s" class="res-spec-figure">
-                            <h2>Volatility</h2>
-                            <p>0.304</p>
-                        </div>
-                        <div data-scroll-reveal="enter from bottom over 0.5s" class="res-spec-figure">
-                            <h2>最大回撤</h2>
-                            <p>16.48%</p>
-                        </div>
-                        <div data-scroll-reveal="enter from bottom over 0.5s" class="res-spec-figure">
-                            <h2>跟踪误差</h2>
-                            <p>0.1961</p>
-                        </div>
-                        <div data-scroll-reveal="enter from bottom over 0.5s" class="res-spec-figure">
-                            <h2>下行风险</h2>
-                            <p>0.116</p>
+                            <div data-scroll-reveal="enter from bottom over 0.5s" class="res-spec-figure">
+                                <h2>回测年化收益</h2>
+                                <p>60.71%</p>
+                            </div>
+
+                            <div data-scroll-reveal="enter from bottom over 0.5s" class="res-spec-figure">
+                                <h2>基准收益</h2>
+                                <p>52.10%</p>
+                            </div>
+                            <div data-scroll-reveal="enter from bottom over 0.5s" class="res-spec-figure">
+                                <h2>基准年化收益</h2>
+                                <p>52.28%</p>
+                            </div>
+                            <div data-scroll-reveal="enter from bottom over 0.5s" class="res-spec-figure">
+                                <h2>Alpha</h2>
+                                <p>-0.019</p>
+                            </div>
+                            <div data-scroll-reveal="enter from bottom over 0.5s" class="res-spec-figure">
+                                <h2>Beta</h2>
+                                <p>1.255</p>
+                            </div>
+                            <div data-scroll-reveal="enter from bottom over 0.5s" class="res-spec-figure">
+                                <h2>Sharpe</h2>
+                                <p>1.563</p>
+                            </div>
+                            <div data-scroll-reveal="enter from bottom over 0.5s" class="res-spec-figure">
+                                <h2>Sortino</h2>
+                                <p>4.101</p>
+                            </div>
+                            <div data-scroll-reveal="enter from bottom over 0.5s" class="res-spec-figure">
+                                <h2>Info Ratio</h2>
+                                <p>0.415</p>
+                            </div>
+                            <div data-scroll-reveal="enter from bottom over 0.5s" class="res-spec-figure">
+                                <h2>Volatility</h2>
+                                <p>0.304</p>
+                            </div>
+                            <div data-scroll-reveal="enter from bottom over 0.5s" class="res-spec-figure">
+                                <h2>最大回撤</h2>
+                                <p>16.48%</p>
+                            </div>
+                            <div data-scroll-reveal="enter from bottom over 0.5s" class="res-spec-figure">
+                                <h2>跟踪误差</h2>
+                                <p>0.1961</p>
+                            </div>
+                            <div data-scroll-reveal="enter from bottom over 0.5s" class="res-spec-figure">
+                                <h2>下行风险</h2>
+                                <p>0.116</p>
+                            </div>
                         </div>
                     </div>
-
                     <div align="center">
                         <div style="padding-top: 5%;">
-                            <div class="stock-name" style="display: inline;">累计收益率与基准收益率</div>
+                            <div class="stock-name" id="return-area">累计收益率与基准收益率</div>
                             <div id="return-chart" style="height: 400%;"></div>
                         </div>
 
                         <div style="padding-top: 5%;">
-                            <div class="stock-name" style="display: inline;">超额收益率</div>
+                            <div class="stock-name" id="overreturn-area">超额收益率</div>
                             <div id="overreturn-chart" style="height: 400%;"></div>
                         </div>
 
                         <div style="padding-top: 5%;">
-                            <div class="stock-name" style="display: inline;">策略胜率</div>
+                            <div class="stock-name" id="win-area">策略胜率</div>
                             <div id="win-chart" style="height: 400%;"></div>
                         </div>
                     </div>
@@ -251,10 +258,7 @@ def handle_bar(context, bar_dict):
     </footer>
 </body>
 
-<script src="js/charts/return-line.js"></script>
-<script src="js/charts/overreturn-line.js"></script>
-<script src="js/charts/win-line.js"></script>
-<script src="js/date-picker.js"></script>
+<script src="js/scrollReveal.js"></script>
 <script>
     (function() {
         window.scrollReveal = new scrollReveal({
@@ -264,6 +268,33 @@ def handle_bar(context, bar_dict):
     })();
 
 </script>
+
+<script src="js/jquery.backstretch.min.js"></script>
+<script src="js/scripts.js"></script>
+<script src="js/date-picker.js"></script>
+
+<script>
+    $(document).ready(function() {
+
+        $(function() {
+            $("#result-area").fadeOut();
+            $("#return-area").fadeOut();
+            $("#return-chart").fadeOut();
+            $("#overreturn-area").fadeOut();
+            $("#win-area").fadeOut();
+            $("#overreturn-chart").fadeOut();
+            $("#win-chart").fadeOut();
+        });
+    });
+
+</script>
+
 <script src="js/user/log_state.js"></script>
+<script src="js/ace/ace.js"></script>
+<script src="js/strategy/editor.js"></script>
+<script src="js/charts/return-line.js"></script>
+<script src="js/charts/overreturn-line.js"></script>
+<script src="js/charts/win-line.js"></script>
+
 
 </html>
