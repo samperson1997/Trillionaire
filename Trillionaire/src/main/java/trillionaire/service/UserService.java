@@ -1,6 +1,6 @@
 package trillionaire.service;
 
-import trillionaire.util.LoginState;
+import trillionaire.util.UserState;
 
 /**
  * Created by michaeltan on 2017/5/9.
@@ -14,7 +14,16 @@ public interface UserService {
      * @param password 用户密码
      * @return 当前登录状态
      */
-    public LoginState login(String email, String password);
+    public UserState login(String email, String password);
+
+    /**
+     * 注册
+     *
+     * @param email 用户账号
+     * @param password 用户密码
+     * @return 注册状态
+     */
+    public UserState register(String email, String password);
 
     /**
      * 登出
@@ -22,7 +31,7 @@ public interface UserService {
      * @param email 用户账号
      * @return 当前登录状态
      */
-    public LoginState logout(String email);
+    public UserState logout(String email);
 
     /**
      * 重置密码
@@ -31,15 +40,7 @@ public interface UserService {
      * @param newPassword 新的密码
      * @return 重置是否成功
      */
-    public LoginState resetPassword(String email, String newPassword);
-
-    /**
-     * 查找用户是否存在
-     *
-     * @param email 用户账号
-     * @return 是否存在
-     */
-    public boolean find(String email);
+    public UserState resetPassword(String email, String newPassword);
 
     /**
      * 用户邮箱验证
@@ -66,5 +67,13 @@ public interface UserService {
      * @return 是否已关注
      */
     public boolean checkfollow(String email, String code);
+
+    /**
+     * 用户是否已存在
+     *
+     * @param email 用户邮箱
+     * @return 是否已存在
+     */
+    public boolean check(String email);
 
 }

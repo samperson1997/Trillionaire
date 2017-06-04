@@ -3,6 +3,7 @@ package trillionaire.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import trillionaire.model.RealTimeStock;
 import trillionaire.model.Stock;
 import trillionaire.service.StockService;
 import trillionaire.vo.*;
@@ -28,6 +29,11 @@ public class StockController {
         return map;
     }
 
+    @RequestMapping(value = "/update", method = RequestMethod.GET)
+    @ResponseBody
+    public RealTimeStock getRealTime(String code) {
+        return stockService.updateRealTime(code);
+    }
 
     @RequestMapping(value = "/associate", method = RequestMethod.GET)
     @ResponseBody
@@ -38,7 +44,7 @@ public class StockController {
 
     @RequestMapping(value = "code", method = RequestMethod.GET)
     public void search(HttpServletRequest request, HttpServletResponse response, @RequestParam("code") String code) throws Exception {
-        request.getRequestDispatcher("stock.html").forward(request, response);
+        request.getRequestDispatcher( "stock.html").forward(request, response);
     }
 
     @RequestMapping(value = "/ability", method = RequestMethod.GET)

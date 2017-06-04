@@ -66,8 +66,5 @@ public class MailUtil implements Runnable {
             e.printStackTrace();
         }
     }
-    public static void main(String[] args){
-        new Thread(new MailUtil("609012488@qq.com", "123")).start();;
-    }
 
 }
