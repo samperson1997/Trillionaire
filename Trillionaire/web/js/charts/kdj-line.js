@@ -7,9 +7,9 @@ function loadKDJ() {
         data: {"code": code},
         dataType: "json",
         success: function (data0) {
-            data = splitData(data0);
+            var data = splitKDJData(data0);
             $("#kdj-spin").html('');
-            option = {
+            var option = {
                 tooltip: {
                     trigger: 'axis'
                 },
@@ -82,7 +82,7 @@ function loadKDJ() {
     })
 }
 
-function splitData(rawData) {
+function splitKDJData(rawData) {
     var categoryData = [];
     var k = [];
     var d = [];

@@ -1,5 +1,4 @@
-var data;
-
+var dataK;
 function loadCandle() {
     var code = getParam('code');
     var urll;
@@ -17,7 +16,7 @@ function loadCandle() {
         contentType: "application/x-www-form-urlencoded",
         dataType: "json",
         success: function (data0) {
-            data = splitData(data0);
+            dataK = splitData(data0);
             $("#candle-spin").html('');
             var option = {
                 backgroundColor: '#FFF',
@@ -71,7 +70,7 @@ function loadCandle() {
                 xAxis: [
                     {
                         type: 'category',
-                        data: data.categoryData,
+                        data: dataK.categoryData,
                         scale: true,
                         boundaryGap: false,
                         axisLine: {
@@ -90,7 +89,7 @@ function loadCandle() {
                     {
                         type: 'category',
                         gridIndex: 1,
-                        data: data.categoryData,
+                        data: dataK.categoryData,
                         scale: true,
                         boundaryGap: false,
                         axisLine: {
@@ -168,7 +167,7 @@ function loadCandle() {
                     {
                         name: '日K',
                         type: 'candlestick',
-                        data: data.values,
+                        data: dataK.values,
                         itemStyle: {
                             normal: {
                                 borderColor: null,
@@ -226,7 +225,7 @@ function loadCandle() {
                         type: 'bar',
                         xAxisIndex: 1,
                         yAxisIndex: 1,
-                        data: data.volumns
+                        data: dataK.volumns,
                     }
                 ]
             };
