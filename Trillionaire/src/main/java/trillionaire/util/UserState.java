@@ -3,17 +3,17 @@ package trillionaire.util;
 /**
  * Created by michaeltan on 2017/5/9.
  */
-public enum LoginState {
-    LOGIN_SUCCESS,
-    LOGIN_FAIL,
+public enum UserState {
+    SUCCESS,
+    FAIL,
     LOGOUT;
 
     @Override
     public String toString() {
         switch (this) {
-            case LOGIN_SUCCESS:
+            case SUCCESS:
                 return  "success";
-            case LOGIN_FAIL:
+            case FAIL:
                 return "fail";
             case LOGOUT:
                 return "logout";

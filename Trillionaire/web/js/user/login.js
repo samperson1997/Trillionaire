@@ -43,7 +43,7 @@ angular.module("mainapp", [])
                 type: "POST",
                 url: "/user/login",
                 data: {
-                    "username": this.username,
+                    "email": this.username,
                     "password": this.password
                 },
                 contentType: "application/x-www-form-urlencoded",
