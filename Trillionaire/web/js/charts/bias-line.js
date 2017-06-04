@@ -9,7 +9,6 @@ function loadBIAS() {
         },
         dataType: "json",
         success: function (data0) {
-            data = splitData(data0);
             $("#bias-spin").html('');
             option = {
                 tooltip: {

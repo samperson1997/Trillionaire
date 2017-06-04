@@ -1,3 +1,4 @@
+var dataK;
 function loadCandle() {
     var code = getParam('code');
     var urll;
@@ -8,7 +9,6 @@ function loadCandle() {
     } else if ($("#monthly").attr('class').indexOf("active") >= 0) {
         urll = "/stock/" + code + "/monthly";
     }
-    $("#candle-spin").html('<i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i> <span>加载中...</span>');
 
     var load = $.ajax({
         type: "GET",
@@ -16,14 +16,14 @@ function loadCandle() {
         contentType: "application/x-www-form-urlencoded",
         dataType: "json",
         success: function (data0) {
-            var data = splitData(data0);
+            dataK = splitData(data0);
             $("#candle-spin").html('');
             var option = {
                 backgroundColor: '#FFF',
-                animation: true,
+                animation: false,
                 legend: {
                     left: 'center',
-                    data: ['K', 'MA5', 'MA10', 'MA30']
+                    data: ['日K', 'MA5', 'MA10', 'MA30']
                 },
                 tooltip: {
                     trigger: 'axis',
@@ -70,7 +70,7 @@ function loadCandle() {
                 xAxis: [
                     {
                         type: 'category',
-                        data: data.categoryData,
+                        data: dataK.categoryData,
                         scale: true,
                         boundaryGap: false,
                         axisLine: {
@@ -89,7 +89,7 @@ function loadCandle() {
                     {
                         type: 'category',
                         gridIndex: 1,
-                        data: data.categoryData,
+                        data: dataK.categoryData,
                         scale: true,
                         boundaryGap: false,
                         axisLine: {
@@ -150,23 +150,24 @@ function loadCandle() {
                     {
                         type: 'inside',
                         xAxisIndex: [0, 1],
-                        start: 98,
+                        start: 50,
                         end: 100
-                    },
+        },
                     {
                         show: true,
                         xAxisIndex: [0, 1],
-                        type: 'slider',
                         top: '85%',
-                        start: 98,
+                        type: 'slider',
+                        y: '90%',
+                        start: 50,
                         end: 100
-                    }
-                ],
+        }
+    ],
                 series: [
                     {
-                        name: 'K',
+                        name: '日K',
                         type: 'candlestick',
-                        data: data.values,
+                        data: dataK.values,
                         itemStyle: {
                             normal: {
                                 borderColor: null,
@@ -224,12 +225,22 @@ function loadCandle() {
                         type: 'bar',
                         xAxisIndex: 1,
                         yAxisIndex: 1,
-                        data: data.volumns
+                        data: dataK.volumns,
                     }
                 ]
             };
             var kChart = echarts.init(document.getElementById('k-chart'));
             kChart.setOption(option, true);
+            kChart.dispatchAction({
+                type: 'brush',
+                areas: [
+                    {
+                        brushType: 'lineX',
+                        coordRange: ['2016-06-02', '2016-06-20'],
+                        xAxisIndex: 0
+                    }
+                ]
+            });
         },
         error: function (request, status, err) {
             if (status == "timeout") {
