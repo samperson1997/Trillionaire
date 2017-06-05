@@ -231,21 +231,29 @@
                     <div style="clear:both"></div>
                     <div data-scroll-reveal="enter from bottom over 0.5s" class="spec-figure">
                         <h2>最高价</h2>
-                        <p>12.50</p>
+                        <div id="max-tprice">
+                            <p>...</p>
+                        </div>
                     </div>
 
                     <div data-scroll-reveal="enter from bottom over 0.5s" class="spec-figure">
                         <h2>最低价</h2>
-                        <p>10.03</p>
+                        <div id="min-tprice">
+                            <p>...</p>
+                        </div>
                     </div>
 
                     <div data-scroll-reveal="enter from bottom over 0.5s" class="spec-figure">
                         <h2>均价</h2>
-                        <p>12.00</p>
+                        <div id="av-tprice">
+                            <p>...</p>
+                        </div>
                     </div>
                     <div data-scroll-reveal="enter from bottom over 0.5s" class="spec-figure">
                         <h2>收盘价</h2>
-                        <p>13.91</p>
+                        <div id="close-tprice">
+                            <p>...</p>
+                        </div>
                     </div>
                 </div>
                 <div style="border-top: 1px solid #AAA; padding-top: 5%;">
@@ -317,6 +325,7 @@
 <script src="js/charts/macd-chart.js"></script>
 <script src="js/user/log_state.js"></script>
 <script src="js/market/chooseBoard.js"></script>
+<script src="js/stock/stock.js"></script>
 
 <script>
     (function() {
@@ -333,6 +342,7 @@
     $(document).ready(loadKDJ);
     $(document).ready(loadBIAS);
     $(document).ready(loadMACD);
+    $(document).ready(loadTargetPrice);
 
 </script>
 

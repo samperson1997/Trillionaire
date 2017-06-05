@@ -64,15 +64,23 @@
         </div>
 
         <div style="margin: 0 3%;">
-            <div>
+            <div ng-app="mainapp" ng-controller="BackTestController">
                 <div class="stock-name" style="display: inline;">编写策略</div>
 
-                <div class="button-blue"><i class="fa fa-save"></i> 保存</div>
-                <div class="stock-code" style="display: inline-block;"><a href="strategy-content.html#new-stra" target="_blank">>>新手入门</a></div>
-                <div class="stock-code" style="display: inline-block;"><a href="strategy-content.html">>>返回策略列表</a></div>
-                <div class="stock-code" style="display: inline-block;"><a href="api.html" target="_blank">>>API文档</a></div>
+                <div id="save-button" class="button-blue" ng-click="saveStra()"><i class="fa fa-save"></i> 保存</div>
+                <div id="save-spin" style="display: inline-block;">
+                    <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+                    <span>正在保存...</span>
+                </div>
+                <div id="save-already" class="stock-code" style="display: inline-block;">已保存</div>
 
-                <div align="center" ng-app="mainapp" ng-controller="BackTestController">
+                <div>
+                    <div class="stock-code" style="display: inline-block;"><a href="strategy-content.html#new-stra" target="_blank">>>新手入门</a></div>
+                    <div class="stock-code" style="display: inline-block;"><a href="strategy-content.html">>>返回策略列表</a></div>
+                    <div class="stock-code" style="display: inline-block;"><a href="api.html" target="_blank">>>API文档</a></div>
+                </div>
+
+                <div align="center">
                     <form method="post">
 
                         <div style="margin: 2%;">
@@ -96,7 +104,7 @@
 
                 <div style="width: 50%; float: left;">
                     <div>
-                        <pre id="code" class="ace_editor" style="min-height: 500px;"><textarea class="ace_text-input" id="code-area" spellcheck="false"># 可以自己import我们平台支持的第三方python模块，比如pandas、numpy等。
+                        <pre id="code" class="ace_editor" style="min-height: 500px;"><textarea class="ace_text-input" id="code-area" spellcheck="false" ng-model="straCode"># 可以自己import我们平台支持的第三方python模块，比如pandas、numpy等。
 
 # 在这个方法中编写任何的初始化逻辑。context对象将会在你的算法策略的任何方法之间做传递。
 def init(context):
@@ -280,6 +288,9 @@ def handle_bar(context, bar_dict):
             $("#win-area").fadeOut();
             $("#overreturn-chart").fadeOut();
             $("#win-chart").fadeOut();
+
+            $("#save-spin").fadeOut();
+            $("#save-already").fadeOut();
         });
     });
 
@@ -291,6 +302,6 @@ def handle_bar(context, bar_dict):
 <script src="js/charts/return-line.js"></script>
 <script src="js/charts/overreturn-line.js"></script>
 <script src="js/charts/win-line.js"></script>
-
+<script src="js/strategy/strategy.js"></script>
 
 </html>

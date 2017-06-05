@@ -21,7 +21,7 @@ function loadCandle() {
             $("#candle-spin").html('');
             var option = {
                 backgroundColor: '#FFF',
-                animation: false,
+                animation: true,
                 legend: {
                     left: 'center',
                     data: ['K', 'MA5', 'MA10', 'MA30']
