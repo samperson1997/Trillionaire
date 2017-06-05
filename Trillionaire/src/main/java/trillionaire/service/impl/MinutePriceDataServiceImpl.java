@@ -1,7 +1,10 @@
 package trillionaire.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import trillionaire.dao.DayRecordDao;
 import trillionaire.service.MinutePriceDataService;
+import trillionaire.util.CMDGetter;
 
 import javax.ejb.Local;
 import java.io.IOException;
@@ -15,6 +18,8 @@ import java.util.*;
 @Service
 public class MinutePriceDataServiceImpl implements MinutePriceDataService {
 
+    @Autowired
+    DayRecordDao dayRecordDao;
 
 
     @Override
@@ -22,27 +27,52 @@ public class MinutePriceDataServiceImpl implements MinutePriceDataService {
         Map<String, Object> result = new HashMap<>();
 
         //
-        int processValue = 1;
+        int processValue = -1;
+        ClearThread ct = null;
+        try{
+
+            String[] cmd = CMDGetter.getCommand("python src\\main\\resources\\python\\get_today_ticks.py " + code );
+            Process p = Runtime.getRuntime().exec(cmd);
+            ct = new ClearThread(p);
+            ct.start();
+            p.waitFor();
+            processValue = p.exitValue();
+
+            Thread.sleep(250);
+            ct.setEnd(true);
+
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+        catch (InterruptedException e){
+            e.printStackTrace();
+        }
+
+
 
         if(processValue != 0){
 
             try{
 
-                String lastDate = "2017-06-02";
+                String lastDate = dayRecordDao.getLastDateOf(Integer.valueOf(code)).toString();
 
-                String[] cmd = new String[] { "cmd.exe", "/C", "python src\\main\\resources\\python\\get_history_ticks.py " + code + " " + lastDate };
-                Process p = Runtime.getRuntime().exec(cmd);
-                ClearThread ct = new ClearThread(p);
-                ct.start();
-                p.waitFor();
-                int processValue2 = p.exitValue();
+                String[] cmd2 = CMDGetter.getCommand("python src\\main\\resources\\python\\get_history_ticks.py " + code + " " + lastDate);
+                Process p2 = Runtime.getRuntime().exec(cmd2);
+                ClearThread ct2 = new ClearThread(p2);
+                ct2.start();
+                p2.waitFor();
+                int processValue2 = p2.exitValue();
 
                 Thread.sleep(250);
-                ct.setEnd(true);
+                ct2.setEnd(true);
 
-                if(processValue2 != 0) return  null;
+                if(processValue2 != 0){
+                    result.put("msg","error");
+                    return result;
+                }
 
-                result = getResultMapByRes(ct.getRes());
+                result = getResultMapByRes(ct2.getRes());
                 return result;
 
             }
@@ -55,9 +85,12 @@ public class MinutePriceDataServiceImpl implements MinutePriceDataService {
 
 
         }
+        else {
+            return getResultMapByRes(ct.getRes());
+        }
 
-
-        return null;
+        result.put("msg","error");
+        return result;
     }
 
     private Map<String, Object> getResultMapByRes(List<String> res){

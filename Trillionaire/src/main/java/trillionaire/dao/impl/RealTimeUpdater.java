@@ -1,6 +1,7 @@
 package trillionaire.dao.impl;
 
 import trillionaire.model.RealTimeStock;
+import trillionaire.util.CMDGetter;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -21,8 +22,7 @@ public class RealTimeUpdater {
         //String dirPath = "C:\\Users\\USER\\project3\\Trillionaire\\Trillionaire\\src\\main\\java\\";
         BufferedReader br = null;
         try {
-            //String[] cmd = new String[] { "cmd.exe", "/C", "python src\\main\\resources\\python\\updater.py" };
-            String[] cmd = new String[] {"/bin/sh", "python src/main/resources/python/abilityUpdater.py" };
+            String[] cmd = CMDGetter.getCommand("python src/main/resources/python/abilityUpdater.py");
             Process p = Runtime.getRuntime().exec(cmd);
             p.waitFor();
             System.out.println("get realtime success");

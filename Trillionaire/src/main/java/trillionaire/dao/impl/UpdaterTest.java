@@ -7,10 +7,9 @@ public class UpdaterTest {
 
     public static void main(String[] args){
 
-       String line = "15,,,,4,,84,8,,,,,,";
-       String[] strs = line.split(",");
+       String line = System.getProperty("os.name");
 
-       System.out.println(strs.length);
+       System.out.println(line);
 
     }
 

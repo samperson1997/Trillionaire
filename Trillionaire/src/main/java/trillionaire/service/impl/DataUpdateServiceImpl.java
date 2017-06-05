@@ -9,6 +9,7 @@ import trillionaire.dao.MeanPriceDao;
 import trillionaire.dao.StockDao;
 import trillionaire.model.*;
 import trillionaire.service.DataUpdateService;
+import trillionaire.util.CMDGetter;
 
 import java.io.*;
 
@@ -53,7 +54,7 @@ public class DataUpdateServiceImpl implements DataUpdateService {
     public void updateAbility(int year, int quarter) {
         try {
 
-            String[] cmd = new String[] { "cmd.exe", "/C", "python src\\main\\resources\\python\\abilityUpdater.py" + " " + year + " " + quarter };
+            String[] cmd = CMDGetter.getCommand("python src\\main\\resources\\python\\abilityUpdater.py" + " " + year + " " + quarter);
             Process p = Runtime.getRuntime().exec(cmd);
             p.waitFor();
             int value = p.exitValue();
@@ -349,15 +350,7 @@ public class DataUpdateServiceImpl implements DataUpdateService {
                 if(isTheFirst && weekRecordList.size()>=1){
 
                     WeekRecord w = weekRecordList.get(weekRecordList.size()-1);
-                    w.setDate(date);
-                    w.setOpen(open);
-                    w.setHigh(high);
-                    w.setLow(low);
-                    w.setClose(close);
-                    w.setAdjClose(adjClose);
-                    w.setChange(change);
-                    w.setVolume(volume);
-                    w.setDealSum(dealSum);
+                    dayRecordDao.deletRecord(w);
                     dayRecordDao.saveWeekRecord(weekRecord);
                     isTheFirst = false;
                 }
@@ -424,15 +417,7 @@ public class DataUpdateServiceImpl implements DataUpdateService {
             if(isTheFirst && weekRecordList.size()>=1){
 
                 WeekRecord w = weekRecordList.get(weekRecordList.size()-1);
-                w.setDate(date);
-                w.setOpen(open);
-                w.setHigh(high);
-                w.setLow(low);
-                w.setClose(close);
-                w.setAdjClose(adjClose);
-                w.setChange(change);
-                w.setVolume(volume);
-                w.setDealSum(dealSum);
+                dayRecordDao.deletRecord(w);
                 dayRecordDao.saveWeekRecord(weekRecord);
                 isTheFirst = false;
             }
@@ -531,15 +516,7 @@ public class DataUpdateServiceImpl implements DataUpdateService {
                 if(isTheFirst && monthRecordList.size()>=1){
 
                     MonthRecord m = monthRecordList.get(monthRecordList.size()-1);
-                    m.setDate(date);
-                    m.setOpen(open);
-                    m.setHigh(high);
-                    m.setLow(low);
-                    m.setClose(close);
-                    m.setAdjClose(adjClose);
-                    m.setChange(change);
-                    m.setVolume(volume);
-                    m.setDealSum(dealSum);
+                    dayRecordDao.deletRecord(m);
                     dayRecordDao.saveMonthRecord(m);
 
                     isTheFirst = false;
@@ -605,15 +582,7 @@ public class DataUpdateServiceImpl implements DataUpdateService {
             if(isTheFirst && monthRecordList.size()>=1){
 
                 MonthRecord m = monthRecordList.get(monthRecordList.size()-1);
-                m.setDate(date);
-                m.setOpen(open);
-                m.setHigh(high);
-                m.setLow(low);
-                m.setClose(close);
-                m.setAdjClose(adjClose);
-                m.setChange(change);
-                m.setVolume(volume);
-                m.setDealSum(dealSum);
+                dayRecordDao.deletRecord(m);
                 dayRecordDao.saveMonthRecord(m);
 
                 isTheFirst = false;
