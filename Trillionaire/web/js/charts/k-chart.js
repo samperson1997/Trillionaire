@@ -172,7 +172,6 @@ function loadCandle() {
                             formatter: function (param) {
                                 param = param[0];
                                 return [
-                                    '日期: ' + param.name + '<hr size=1 style="margin: 3px 0">',
                                     '开盘价: ' + param.data[0] + '<br/>',
                                     '收盘价: ' + param.data[1] + '<br/>',
                                     '最高价: ' + param.data[3] + '<br/>',

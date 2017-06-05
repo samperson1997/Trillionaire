@@ -86,17 +86,18 @@
                 </div>
 
                 <div class="other-function">
-                    <div data-scroll-reveal="enter from bottom over 1s" class="spec-func hot-func">
-                        <h2><i class="fa fa-fire"></i> 热度</h2>
-                        <p>1250人也在关注</p>
-                        <h5>查看我关注的股票>></h5>
-                    </div>
-
+                    <a href="concern.html">
+                        <div data-scroll-reveal="enter from bottom over 1s" class="spec-func hot-func">
+                            <h2><i class="fa fa-fire"></i> 市场热度</h2>
+                            <p id="prevail">...</p>
+                            <h5>查看我关注的股票>></h5>
+                        </div>
+                    </a>
                     <a href="concept.html">
                         <div data-scroll-reveal="enter from bottom over 1s" class="spec-func board-func">
-                            <h2><i class="fa fa-cubes"></i> 所属板块</h2>
+                            <h2><i class="fa fa-cubes"></i> 所属概念</h2>
                             <p>3D打印</p>
-                            <h5>查看该板块股票信息>></h5>
+                            <h5>查看该概念股票信息>></h5>
                         </div>
                     </a>
 
@@ -108,11 +109,13 @@
                         </div>
                     </a>
 
-                    <div data-scroll-reveal="enter from bottom over 1s" class="spec-func comp-func">
-                        <h2><i class="fa fa-balance-scale"></i> 股票对比</h2>
-                        <p>与其他股票一较高下</p>
-                        <h5>去股票对比界面>></h5>
-                    </div>
+                    <a href="area.html">
+                        <div data-scroll-reveal="enter from bottom over 1s" class="spec-func comp-func">
+                            <h2><i class="fa fa-balance-scale"></i> 所属地域</h2>
+                            <p>黑龙江</p>
+                            <h5>查看该地域股票信息>></h5>
+                        </div>
+                    </a>
                 </div>
             </div>
 
@@ -343,6 +346,7 @@
     $(document).ready(loadBIAS);
     $(document).ready(loadMACD);
     $(document).ready(loadTargetPrice);
+    $(document).ready(loadPrevail);
 
 </script>
 

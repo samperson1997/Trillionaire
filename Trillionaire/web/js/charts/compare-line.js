@@ -1,80 +1,148 @@
-var base = +new Date(1968, 9, 3);
-var oneDay = 24 * 3600 * 1000;
-var date = [];
+function loadMargin() {
+    $("#compare-spin").html('<i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i><span>加载中...</span>');
 
-var data1 = [Math.random() * 300];
-var data2 = [Math.random() * 300];
-var data3 = [Math.random() * 300];
-
-for (var i = 1; i < 20000; i++) {
-    var now = new Date(base += oneDay);
-    date.push([now.getFullYear(), now.getMonth() + 1, now.getDate()].join('/'));
-    data1.push(Math.round((Math.random() - 0.5) * 20 + data1[i - 1]));
-    data2.push(Math.round((Math.random() - 0.5) * 20 + data2[i - 1]));
-    data3.push(Math.round((Math.random() - 0.5) * 20 + data3[i - 1]));
-}
-
-option = {
-    tooltip: {
-        trigger: 'axis'
-    },
-    legend: {
-        data: ['股票1', '股票2', '股票3']
-    },
-    xAxis: {
-        type: 'category',
-        boundaryGap: false,
-        data: date
-    },
-    yAxis: {
-        type: 'value',
-        boundaryGap: [0, '100%']
-    },
-    dataZoom: [
-        {
-            type: 'inside',
-            start: 50,
-            end: 100
+    var load = $.ajax({
+        type: "GET",
+        url: "/stock/margin",
+        contentType: "application/x-www-form-urlencoded",
+        data: {
+            "code1": $("#code1").text(),
+            "code2": $("#code2").text(),
+            "code3": $("#code3").text()
         },
-        {
-            show: true,
-            type: 'slider',
-            y: '90%',
-            start: 50,
-            end: 100
+        dataType: "json",
+        success: function (data0) {
+            $("#compare-spin").html('');
+            option = {
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {
+                        type: 'cross'
+                    },
+                    backgroundColor: 'rgba(245, 245, 245, 0.8)',
+                    borderWidth: 1,
+                    borderColor: '#ccc',
+                    padding: 10,
+                    textStyle: {
+                        color: '#000'
+                    },
+                    extraCssText: 'width: 170px'
+                },
+                legend: {
+                    data: ['股票1', '股票2', '股票3']
+                },
+                xAxis: {
+                    type: 'category',
+                    boundaryGap: false,
+                    data: data0.date
+                },
+                yAxis: {
+                    type: 'value',
+                    boundaryGap: [0, '100%'],
+                    min: -1.5,
+                    max: 1.5
+                },
+                dataZoom: [
+                    {
+                        type: 'inside',
+                        start: 98,
+                        end: 100
+        },
+                    {
+                        show: true,
+                        type: 'slider',
+                        y: '90%',
+                        start: 98,
+                        end: 100
         }
     ],
-    series: [
-        {
-            name: '股票1',
-            type: 'line',
-            smooth: true,
-            symbol: 'none',
-            sampling: 'average',
+                series: [
+                    {
+                        name: '股票1',
+                        type: 'line',
+                        smooth: true,
+                        symbol: 'none',
+                        sampling: 'average',
 
-            data: data1
+                        data: data0.margin1
         },
-        {
-            name: '股票2',
-            type: 'line',
-            smooth: true,
-            symbol: 'none',
-            sampling: 'average',
+                    {
+                        name: '股票2',
+                        type: 'line',
+                        smooth: true,
+                        symbol: 'none',
+                        sampling: 'average',
 
-            data: data2
+                        data: data0.margin2
         },
-        {
-            name: '股票3',
-            type: 'line',
-            smooth: true,
-            symbol: 'none',
-            sampling: 'average',
+                    {
+                        name: '股票3',
+                        type: 'line',
+                        smooth: true,
+                        symbol: 'none',
+                        sampling: 'average',
 
-            data: data3
+                        data: data0.margin3
         }
     ]
-};
+            };
 
 
-var comChart = echarts.init(document.getElementById('compare-chart'));
-comChart.setOption(option);
+            var comChart = echarts.init(document.getElementById('compare-chart'));
+            comChart.setOption(option);
+        },
+        error: function (request, status, err) {
+            if (status == "timeout") {
+                load.abort();
+            }
+        }
+    })
+}
+
+function quitCompare1() {
+    $("#name1").text('选择股票加入对比');
+    $("#code1").text('000000');
+    $("#code1").css('display', "none");
+
+    $("#quit1").css('display', "none");
+    $("#a1").removeAttr('href');
+
+    loadMargin();
+}
+
+function quitCompare2() {
+    $("#name2").text('选择股票加入对比');
+    $("#code2").text('000000');
+    $("#code2").css('display', "none");
+
+    $("#quit2").css('display', "none");
+    $("#a2").removeAttr('href');
+
+    loadMargin();
+}
+
+function quitCompare3() {
+    $("#name3").text('选择股票加入对比');
+    $("#code3").text('000000');
+    $("#code3").css('display', "none");
+
+    $("#quit3").css('display', "none");
+    $("#a3").removeAttr('href');
+
+    loadMargin();
+}
+
+function addCompare() {
+    //需要判断股票代码是不是有效，这里测试统一默认输入000001
+
+    if ($("#name1").text() == '选择股票加入对比') {
+        $("#name1").text('深发展');
+        $("#code1").text($("#search-box").val());
+        $("#code1").css('display', "inline-block");
+
+        $("#quit1").css('display', "inline-block");
+        $("#a1").addAttr('href', "stock.html?code=" + $("#search-box").val()); //?????
+
+        loadMargin(); //?????
+    }
+}

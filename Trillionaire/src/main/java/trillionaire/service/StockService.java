@@ -115,6 +115,16 @@ public interface StockService {
      * @return MACD
      */
     public Map<String, Object> getMACD(String code);
+    
+    /**
+     * 获得涨跌幅
+     *
+     * @param code1 股票1代码
+     * @param code2 股票2代码
+     * @param code3 股票3代码
+     * @return margin
+     */
+    public Map<String, Object> getMargin(String code1, String code2, String code3);
 
 
 }

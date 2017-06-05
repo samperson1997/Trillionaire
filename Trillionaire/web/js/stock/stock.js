@@ -52,3 +52,25 @@ function loadTargetPrice() {
         }
     })
 }
+
+function loadPrevail() {
+    var code = getParam('code');
+
+    var load = $.ajax({
+        type: "GET",
+        url: "/stock/prevail",
+        contentType: "application/x-www-form-urlencoded",
+        data: {
+            "code": code
+        },
+        dataType: "json",
+        success: function (data0) {
+            $("#prevail").text('市场热度' + String(data0));
+        },
+        error: function (request, status, err) {
+            if (status == "timeout") {
+                load.abort();
+            }
+        }
+    })
+}
