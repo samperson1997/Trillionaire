@@ -20,11 +20,14 @@
     padding: 0.5% 0;
 }
 
-.stra-table tr td:first-child {
+.stra-table tr td:first-child,
+.stra-table tr td:first-child a {
     cursor: pointer;
+    color: #000;
 }
 
-.stra-table tr td:first-child:hover {
+.stra-table tr td:first-child:hover,
+.stra-table tr td:first-child a:hover {
     color: #0080ff;
 }
 

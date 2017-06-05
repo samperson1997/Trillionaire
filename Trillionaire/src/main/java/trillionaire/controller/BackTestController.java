@@ -40,8 +40,8 @@ public class BackTestController {
         straIdName.setSid(1);
         straIdName.setStrategName("sA");
         StraIdName straIdName2 = new StraIdName();
-        straIdName.setSid(2);
-        straIdName.setStrategName("sB");
+        straIdName2.setSid(2);
+        straIdName2.setStrategName("sB");
 
         List<StraIdName> list = new ArrayList<>();
         list.add(straIdName);
