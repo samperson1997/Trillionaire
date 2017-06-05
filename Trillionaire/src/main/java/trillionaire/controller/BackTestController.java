@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import trillionaire.vo.BackTestParams;
+import trillionaire.vo.StraIdName;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -19,6 +20,45 @@ import java.util.Map;
 @Controller
 @RequestMapping("/backtest")
 public class BackTestController {
+
+    @RequestMapping(value = "/get_strategy_list", method = RequestMethod.GET)
+    @ResponseBody
+    public List<StraIdName> getUserStrategies(int userId){
+
+        StraIdName straIdName = new StraIdName();
+        straIdName.setSid(1);
+        straIdName.setStrategName("sA");
+        StraIdName straIdName2 = new StraIdName();
+        straIdName.setSid(2);
+        straIdName.setStrategName("sB");
+
+        List<StraIdName> result = new ArrayList<>();
+        result.add(straIdName);
+        result.add(straIdName2);
+
+        return result;
+    }
+
+    public String creatStrategy(int userId, String strategyname){
+
+        return "this is default strategy content!";
+
+    }
+
+    public Map<String, Object> saveStrategy(int sid, String content){
+
+        return null;
+    }
+
+    public Map<String, Object> openStrategy(int sid, String content){
+
+        return null;
+    }
+
+    public Map<String, Object> deleteStrategy(int sid, String content){
+
+        return null;
+    }
 
     @RequestMapping(value = "/run", method = RequestMethod.GET)
     @ResponseBody
@@ -45,5 +85,7 @@ public class BackTestController {
 
         return result;
     }
+
+
 
 }
