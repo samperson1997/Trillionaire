@@ -14,17 +14,17 @@ public interface MarketService {
     /**
      * 获得涨跌幅版块的方块
      *
-     * @param board 股票版块
+     * @param category 股票版块
      * @return 版块涨跌的map
      */
-    public Map<String, List<RankTable>> getCategoryRank(String board);
+    public Map<String, List<RankTable>> getSquare(String category);
 
     /**
      * 获得不同版块的涨跌幅排名
      *
-     * @param category 股票版块
+     * @param board 股票版块
      * @return 版块涨跌的map
      */
-    public Map<String, List<Stock>> getBoardRank(String category);
+    public Map<String, List<Stock>> getBoardRank(String board);
 
 }

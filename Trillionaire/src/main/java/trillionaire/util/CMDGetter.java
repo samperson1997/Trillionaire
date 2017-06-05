@@ -15,7 +15,7 @@ public class CMDGetter {
         }
         else{
 
-            return new String[] { "/bin/sh",  command };
+            return new String[] { "/bin/sh", "-c", "source activate trillionaire && "+command };
         }
 
     }

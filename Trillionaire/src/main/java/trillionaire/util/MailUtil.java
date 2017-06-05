@@ -58,7 +58,7 @@ public class MailUtil implements Runnable {
             // 2.4设置邮件内容
             String content = "<html><head></head><body><h1>验证你的电子邮件地址</h1><h3><a href='http://localhost:8080/user/verify?code="
                     + code + "'>http://localhost:8080/user/verify?code=" + code
-                    + "</href></h3></body></html>";
+                    + "</href></h3><h5>若浏览器不能正常跳转，请复制链接到地址栏</h5></body></html>";
             message.setContent(content, "text/html;charset=UTF-8");
             // 3.发送邮件
             Transport.send(message);
