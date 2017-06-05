@@ -141,5 +141,18 @@ public class DayRecordDaoImpl implements DayRecordDao{
 		return result;
 	}
 
+	@Override
+	public void deletRecord(Object obj) {
+
+		Session session = sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+
+		session.delete(obj);
+
+		tx.commit();
+		session.close();
+
+	}
+
 
 }

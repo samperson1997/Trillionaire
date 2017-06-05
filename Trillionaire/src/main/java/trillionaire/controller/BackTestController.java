@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import trillionaire.vo.BackTestParams;
+import trillionaire.vo.StraIdName;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -20,6 +21,119 @@ import java.util.Map;
 @RequestMapping("/backtest")
 public class BackTestController {
 
+    /**
+     *
+     * @param userId
+     * @return result{
+     *              'msg':
+     *              'nameList':[{
+     *                  'sid',
+     *                  'strategyName'
+     *              }...]
+     *          }
+     */
+    @RequestMapping(value = "/get_strategy_list", method = RequestMethod.GET)
+    @ResponseBody
+    public Map<String, Object> getUserStrategies(int userId){
+
+        StraIdName straIdName = new StraIdName();
+        straIdName.setSid(1);
+        straIdName.setStrategName("sA");
+        StraIdName straIdName2 = new StraIdName();
+        straIdName.setSid(2);
+        straIdName.setStrategName("sB");
+
+        List<StraIdName> list = new ArrayList<>();
+        list.add(straIdName);
+        list.add(straIdName2);
+
+        Map<String, Object> result = new HashMap<>();
+        result.put("msg", "success");
+        result.put("nameList", list);
+
+        return result;
+    }
+
+
+
+    /**
+     *
+     * @param sid
+     * @param strategyName
+     * @param content
+     * @return result{
+     *              'msg'
+     *              'sid'
+     *          }
+     */
+    @RequestMapping(value = "/save_strategy", method = RequestMethod.GET)
+    @ResponseBody
+    public Map<String, Object> saveStrategy(int sid, String strategyName, String content){
+
+            Map<String, Object> result = new HashMap<>();
+            result.put("msg", "success");
+            result.put("sid", 55);
+
+        return result;
+    }
+
+    /**
+     *
+     * @param sid
+     * @return result{
+     *              'msg'
+     *              'sid'
+     *              'strategyName'
+     *              'strategyContent'
+     *          }
+     */
+    @RequestMapping(value = "/open_strategy", method = RequestMethod.GET)
+    @ResponseBody
+    public Map<String, Object> openStrategy(int sid){
+
+        Map<String, Object> result = new HashMap<>();
+        result.put("msg", "success");
+        result.put("sid", 55);
+        result.put("strategyName","testStrategy");
+        result.put("strategyContent", "python content!!!>>>!!!");
+
+        return result;
+    }
+
+
+    /**
+     *
+     * @param sid
+     * @return result{
+     *              'msg'
+     *          }
+     */
+    @RequestMapping(value = "/delete_strategy", method = RequestMethod.GET)
+    @ResponseBody
+    public Map<String, Object> deleteStrategy(int sid){
+
+        Map<String, Object> result = new HashMap<>();
+        result.put("msg", "success");
+
+        return result;
+    }
+
+    /**
+     *
+     * @param params
+     * @return result{
+     *              'msg'
+     *              'datelist':[{
+     *                  (string)
+     *              }...]
+     *              'data1':[{
+     *                  (double)
+     *              }...]
+     *              'data2':[{
+     *                  (double)
+     *              }...]
+     *          }
+     */
     @RequestMapping(value = "/run", method = RequestMethod.GET)
     @ResponseBody
     public Map<String, Object> runBackTest( BackTestParams params){
@@ -45,5 +159,7 @@ public class BackTestController {
 
         return result;
     }
+
+
 
 }

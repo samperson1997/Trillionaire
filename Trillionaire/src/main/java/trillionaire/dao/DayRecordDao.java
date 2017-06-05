@@ -27,4 +27,6 @@ public interface DayRecordDao {
 
 	public Date getLastMonthDateOf(int code);
 
+	public void deletRecord(Object obj);
+
 }
