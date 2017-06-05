@@ -17,7 +17,6 @@
     <script src="js/scrollReveal.js"></script>
     <script src="js/angular/angular.js"></script>
     <script src="js/user/follow.js"></script>
-    <script src="js/market/chooseBoard.js"></script>
     <script src="js/stock/show.js"></script>
 
 </head>
@@ -73,7 +72,7 @@
             <div style="float: left; width: 65%;" align="center">
                 <div style="padding-top: 2%;">
                     <div class="button-group">
-                        <ul id="select-menu" onclick="set()">
+                        <ul id="select-menu" onclick="set()" onclick="loadCandle()">
                             <button type="button" id="daily" class="button button-primary active">日K</button>
                             <button type="button" id="weekly" class="button button-primary">周K</button>
                             <button type="button" id="monthly" class="button button-primary">月K</button>
@@ -232,21 +231,29 @@
                     <div style="clear:both"></div>
                     <div data-scroll-reveal="enter from bottom over 0.5s" class="spec-figure">
                         <h2>最高价</h2>
-                        <p>12.50</p>
+                        <div id="max-tprice">
+                            <p>...</p>
+                        </div>
                     </div>
 
                     <div data-scroll-reveal="enter from bottom over 0.5s" class="spec-figure">
                         <h2>最低价</h2>
-                        <p>10.03</p>
+                        <div id="min-tprice">
+                            <p>...</p>
+                        </div>
                     </div>
 
                     <div data-scroll-reveal="enter from bottom over 0.5s" class="spec-figure">
                         <h2>均价</h2>
-                        <p>12.00</p>
+                        <div id="av-tprice">
+                            <p>...</p>
+                        </div>
                     </div>
                     <div data-scroll-reveal="enter from bottom over 0.5s" class="spec-figure">
                         <h2>收盘价</h2>
-                        <p>13.91</p>
+                        <div id="close-tprice">
+                            <p>...</p>
+                        </div>
                     </div>
                 </div>
                 <div style="border-top: 1px solid #AAA; padding-top: 5%;">
@@ -310,7 +317,6 @@
 
 <script src="js/echarts.js"></script>
 <script src="js/charts/k-chart.js"></script>
-<script src="js/charts/volume-chart.js"></script>
 <script src="js/charts/kdj-line.js"></script>
 <script src="js/charts/ability-chart.js"></script>
 <script src="js/charts/earning-chart.js"></script>
@@ -318,6 +324,8 @@
 <script src="js/charts/bias-line.js"></script>
 <script src="js/charts/macd-chart.js"></script>
 <script src="js/user/log_state.js"></script>
+<script src="js/market/chooseBoard.js"></script>
+<script src="js/stock/stock.js"></script>
 
 <script>
     (function() {
@@ -334,6 +342,7 @@
     $(document).ready(loadKDJ);
     $(document).ready(loadBIAS);
     $(document).ready(loadMACD);
+    $(document).ready(loadTargetPrice);
 
 </script>
 

@@ -1,6 +1,7 @@
 package trillionaire.service;
 
 
+import trillionaire.model.RealTimeStock;
 import trillionaire.vo.*;
 
 import java.util.List;
@@ -18,6 +19,14 @@ public interface StockService {
      * @return 不同指标的map映射
      */
     public Map<String, Object> getStockInfo(String code, String span);
+
+    /**
+     * 获取股票实时数据
+     *
+     * @param code 股票代码
+     * @return 不同指标的map映射
+     */
+    public RealTimeStock updateRealTime(String code);
 
     /**
      * 股票联想

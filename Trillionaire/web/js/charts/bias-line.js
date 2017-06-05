@@ -4,14 +4,26 @@ function loadBIAS() {
         type: "GET",
         url: "/stock/bias",
         contentType: "application/x-www-form-urlencoded",
-        data: {"code": code},
+        data: {
+            "code": code
+        },
         dataType: "json",
         success: function (data0) {
-            data = splitData(data0);
             $("#bias-spin").html('');
             option = {
                 tooltip: {
-                    trigger: 'axis'
+                    trigger: 'axis',
+                    axisPointer: {
+                        type: 'cross'
+                    },
+                    backgroundColor: 'rgba(245, 245, 245, 0.8)',
+                    borderWidth: 1,
+                    borderColor: '#ccc',
+                    padding: 10,
+                    textStyle: {
+                        color: '#000'
+                    },
+                    extraCssText: 'width: 170px'
                 },
                 legend: {
                     data: ['BIAS6', 'BIAS12', 'BIAS24']
@@ -28,17 +40,17 @@ function loadBIAS() {
                 dataZoom: [
                     {
                         type: 'inside',
-                        start: 50,
+                        start: 98,
                         end: 100
-                    },
+        },
                     {
                         show: true,
                         type: 'slider',
                         y: '90%',
-                        start: 50,
+                        start: 98,
                         end: 100
-                    }
-                ],
+        }
+    ],
                 series: [
                     {
                         name: 'BIAS6',

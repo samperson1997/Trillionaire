@@ -2,15 +2,17 @@ package trillionaire.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import trillionaire.service.UserService;
 import trillionaire.util.FollowState;
-import trillionaire.util.LoginState;
-import trillionaire.util.MailUtil;
-import trillionaire.util.RandomCodeUtil;
+import trillionaire.util.UserState;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.servlet.http.HttpServletRequest;
 
 /**
  * Created by michaeltan on 2017/5/6.
@@ -23,19 +25,18 @@ public class UserController {
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody
-    public String login(HttpServletRequest request, String username, String password) {
-        if (username.equals("123@qq.com")) {
+    public String login(HttpServletRequest request, String email, String password) {
+        UserState userState = userService.login(email, password);
+        if (userState == UserState.SUCCESS) {
             HttpSession session = request.getSession();
-            session.setAttribute("username", username);
-            return LoginState.LOGIN_SUCCESS.toString();
-        } else {
-            return LoginState.LOGIN_FAIL.toString();
+            session.setAttribute("email", email);
         }
+        return userState.toString();
     }
 
     @RequestMapping(value = "/logout", method = RequestMethod.POST)
-    public String logout(HttpServletRequest request, String email){
-        LoginState state = userService.logout(email);
+    public String logout(HttpServletRequest request, String email) {
+        UserState state = userService.logout(email);
         HttpSession session = request.getSession();
         session.invalidate();
         return state.toString();
@@ -44,27 +45,9 @@ public class UserController {
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     @ResponseBody
     public String register(String email, String password) {
-        boolean ifexist = userService.find(email);
-        if (ifexist){
-            return "exists";
-        } else {
-            String code = RandomCodeUtil.generateUniqueCode();
-            new Thread(new MailUtil(email, code)).start();
-            return "success";
-        }
+        UserState userState = userService.register(email, password);
+        return userState.toString();
     }
-
-    @RequestMapping(value = "/check", method = RequestMethod.POST)
-    @ResponseBody
-    public String check(String email) {
-        boolean ifexist = userService.find(email);
-        if (ifexist){
-            return "exists";
-        } else {
-            return "success";
-        }
-    }
-
 
     @RequestMapping(value = "/follow", method = RequestMethod.POST)
     @ResponseBody
@@ -81,12 +64,23 @@ public class UserController {
 
     //验证注册
     @RequestMapping(value = "/verify", method = RequestMethod.GET)
-    public void verify(HttpServletResponse response, @RequestParam("code")String code) throws Exception{
-        System.out.println(code);
-        if (code.equals("123")) {
+    public void verify(HttpServletResponse response, @RequestParam("code") String code) throws Exception {
+        boolean ifsuccess = userService.verify(code);
+        if (ifsuccess) {
             response.sendRedirect("/login.html");
         } else {
             response.sendRedirect("/index.html");
+        }
+    }
+
+    @RequestMapping(value = "/check", method = RequestMethod.POST)
+    @ResponseBody
+    public String check(String email) {
+        boolean exist = userService.check(email);
+        if (exist) {
+            return "exist";
+        } else {
+            return "none";
         }
     }
 

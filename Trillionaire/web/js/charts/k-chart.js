@@ -1,4 +1,4 @@
-var data;
+var dataK;
 
 function loadCandle() {
     var code = getParam('code');
@@ -17,14 +17,14 @@ function loadCandle() {
         contentType: "application/x-www-form-urlencoded",
         dataType: "json",
         success: function (data0) {
-            data = splitData(data0);
+            dataK = splitData(data0);
             $("#candle-spin").html('');
             var option = {
                 backgroundColor: '#FFF',
-                animation: false,
+                animation: true,
                 legend: {
                     left: 'center',
-                    data: ['日K', 'MA5', 'MA10', 'MA30']
+                    data: ['K', 'MA5', 'MA10', 'MA30']
                 },
                 tooltip: {
                     trigger: 'axis',
@@ -37,13 +37,6 @@ function loadCandle() {
                     padding: 10,
                     textStyle: {
                         color: '#000'
-                    },
-                    position: function (pos, params, el, elRect, size) {
-                        var obj = {
-                            top: 10
-                        };
-                        obj[['left', 'right'][+(pos[0] < size.viewSize[0] / 2)]] = 30;
-                        return obj;
                     },
                     extraCssText: 'width: 170px'
                 },
@@ -71,7 +64,7 @@ function loadCandle() {
                 xAxis: [
                     {
                         type: 'category',
-                        data: data.categoryData,
+                        data: dataK.categoryData,
                         scale: true,
                         boundaryGap: false,
                         axisLine: {
@@ -90,7 +83,7 @@ function loadCandle() {
                     {
                         type: 'category',
                         gridIndex: 1,
-                        data: data.categoryData,
+                        data: dataK.categoryData,
                         scale: true,
                         boundaryGap: false,
                         axisLine: {
@@ -151,24 +144,24 @@ function loadCandle() {
                     {
                         type: 'inside',
                         xAxisIndex: [0, 1],
-                        start: 50,
+                        start: 98,
                         end: 100
         },
                     {
                         show: true,
                         xAxisIndex: [0, 1],
-                        top: '85%',
+                        top: '90%',
                         type: 'slider',
                         y: '90%',
-                        start: 50,
+                        start: 98,
                         end: 100
         }
     ],
                 series: [
                     {
-                        name: '日K',
+                        name: 'K',
                         type: 'candlestick',
-                        data: data.values,
+                        data: dataK.values,
                         itemStyle: {
                             normal: {
                                 borderColor: null,
@@ -226,7 +219,7 @@ function loadCandle() {
                         type: 'bar',
                         xAxisIndex: 1,
                         yAxisIndex: 1,
-                        data: data.volumns
+                        data: dataK.volumns,
                     }
                 ]
             };

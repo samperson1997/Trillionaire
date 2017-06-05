@@ -17,38 +17,38 @@ var getParam = function (name) {
     return items;
 };
 
-function dataAnalyze(data) {
-    var array = data;
-    var finalList;
-    for (var i = 0; i < array.length; i++) {
-        //对数组遍历
-        finalList = '';
-        $("#up-List").append(finalList);
-    }
+//function dataAnalyze(data) {
+//    var array = data;
+//    var finalList;
+//    for (var i = 0; i < array.length; i++) {
+//        //对数组遍历
+//        finalList = '';
+//        $("#up-List").append(finalList);
+//    }
+//
+//}
 
-}
-
-function loadCandle(span) {
+function loadTargetPrice() {
     var code = getParam('code');
-    console.log(code);
-    var loadInfo = $.ajax({
+
+    var load = $.ajax({
         type: "GET",
-        url: "/stock/" + code + "/" + span,
-        timeout: 180000,
+        url: "/stock/target",
         contentType: "application/x-www-form-urlencoded",
+        data: {
+            "code": code
+        },
         dataType: "json",
-        success: function (data) {
-            //dataAnalyze(data);
+        success: function (data0) {
+            $("#max-tprice").html('<p>' + String(data0.high) + '</p>');
+            $("#min-tprice").html('<p>' + String(data0.low) + '</p>');
+            $("#av-tprice").html('<p>' + String(data0.average) + '</p>');
+            $("#close-tprice").html('<p>' + String(data0.close) + '</p>');
         },
         error: function (request, status, err) {
             if (status == "timeout") {
                 load.abort();
-                loadInfo();
             }
         }
     })
-}
-
-function load() {
-    loadCandle("daily");
 }

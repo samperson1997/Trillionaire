@@ -22,13 +22,22 @@ function passwordIsSame() {
 }
 
 angular.module("mainapp", [])
-    .controller("RegisterController", function ($scope) {
-        $scope.inputUsername = "";
+    .controller("UserController", function ($scope) {
+        $scope.inputEmail = "";
         $scope.inputPassword = "";
         $scope.inputPassword2 = "";
 
+        //注册
+        $scope.register = function () {
+            if (checkFirst() != false) {
+                register_ajax($scope.inputEmail, $scope.inputPassword);
+            } else {
+                tip.innerHTML = "请把信息填写完整";
+            }
+        };
+
         function checkFirst() {
-            if ($scope.inputUsername != null && $scope.inputUsername != "" &&
+            if ($scope.inputEmail != null && $scope.inputEmail != "" &&
                 $scope.inputPassword != null && $scope.inputPassword != "" &&
                 $scope.inputPassword2 != null && $scope.inputPassword2 != "") {
                 return true;
@@ -36,43 +45,54 @@ angular.module("mainapp", [])
                 return false;
             }
         };
-        //注册  
-        $scope.register = function () {
-            if (checkFirst() != false) {
-                $scope.inputPassword = hex_md5($scope.inputPassword);
-                $.ajax({
-                    type: "POST",
-                    url: "/user/register",
-                    data: {
-                        "username": $scope.inputUsername,
-                        "password": $scope.inputPassword,
-                        "tel": $scope.inputTel,
-                        "email": $scope.inputEmail
-                    },
-                    contentType: "application/x-www-form-urlencoded",
-                    dataType: "json",
-                    success: function (data) {
-                        console.log(data);
-                        $scope.$apply(function () {
-                            if (data.success == true && data.message == "注册成功") {
-                                $scope.inputUsername = "";
-                                $scope.inputPassword = "";
-                                $scope.inputEmail = "";
-                                $scope.inputTel = "";
-                                tip.innerHTML = "欢迎,注册成功";
-                                window.location.href = "../../login.html";
-                            } else if (data.success == false && data.message == "该用户名已存在...") {
-                                $scope.inputUsername = "";
-                                $scope.inputPassword = "";
-                                $scope.inputEmail = "";
-                                $scope.inputTel = "";
-                                tip.innerHTML = "该用户名已被注册";
-                            }
-                        });
+
+        $scope.check = function () {
+            $.ajax({
+                type: "GET",
+                url: "/user/check",
+                data: {
+                    "email": $scope.inputEmail
+                },
+                contentType: "application/x-www-form-urlencoded",
+                dataType: "text",
+                success: function (data) {
+                    if (data == "exist") {
+                        tip.innerHTML = "该用户名已被注册";
+                    } else if (data == "none") {
+
                     }
-                });
-            } else {
-                tip.innerHTML = "请把信息填写完整";
-            };
-        };
-    })
+                }
+            })
+        }
+
+        //注册
+        function register_ajax(email, password) {
+            this.email = email;
+            this.password = password;
+            $.ajax({
+                type: "POST",
+                url: "/user/register",
+                data: {
+                    "email": this.email,
+                    "password": this.password,
+                },
+                contentType: "application/x-www-form-urlencoded",
+                dataType: "json",
+                success: function (data) {
+                    console.log(data);
+                    $scope.$apply(function () {
+                        if (data == "success") {
+                            $scope.inputEmail = "";
+                            $scope.inputPassword = "";
+                            tip.innerHTML = "欢迎,注册成功,请查收您的收件箱";
+                            window.location.href = "../../login.html";
+                        } else if (data == "fail") {
+                            $scope.inputEmail = "";
+                            $scope.inputPassword = "";
+                            tip.innerHTML = "该用户名已被注册";
+                        }
+                    });
+                }
+            });
+        }
+    });

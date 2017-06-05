@@ -4,14 +4,27 @@ function loadKDJ() {
         type: "GET",
         url: "/stock/kdj",
         contentType: "application/x-www-form-urlencoded",
-        data: {"code": code},
+        data: {
+            "code": code
+        },
         dataType: "json",
         success: function (data0) {
-            data = splitData(data0);
+            var data = splitKDJData(data0);
             $("#kdj-spin").html('');
-            option = {
+            var option = {
                 tooltip: {
-                    trigger: 'axis'
+                    trigger: 'axis',
+                    axisPointer: {
+                        type: 'cross'
+                    },
+                    backgroundColor: 'rgba(245, 245, 245, 0.8)',
+                    borderWidth: 1,
+                    borderColor: '#ccc',
+                    padding: 10,
+                    textStyle: {
+                        color: '#000'
+                    },
+                    extraCssText: 'width: 170px'
                 },
                 legend: {
                     data: ['K', 'D', 'J']
@@ -28,14 +41,14 @@ function loadKDJ() {
                 dataZoom: [
                     {
                         type: 'inside',
-                        start: 50,
+                        start: 98,
                         end: 100
         },
                     {
                         show: true,
                         type: 'slider',
                         y: '90%',
-                        start: 50,
+                        start: 98,
                         end: 100
         }
     ],
@@ -82,7 +95,7 @@ function loadKDJ() {
     })
 }
 
-function splitData(rawData) {
+function splitKDJData(rawData) {
     var categoryData = [];
     var k = [];
     var d = [];

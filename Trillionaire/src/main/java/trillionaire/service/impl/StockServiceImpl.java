@@ -1,11 +1,12 @@
 package trillionaire.service.impl;
 
-import com.sun.javafx.scene.control.skin.VirtualFlow;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import trillionaire.dao.DayRecordDao;
+import trillionaire.dao.RealTimeStockDao;
 import trillionaire.model.DayRecord;
 import trillionaire.model.MonthRecord;
+import trillionaire.model.RealTimeStock;
 import trillionaire.model.WeekRecord;
 import trillionaire.service.StockService;
 import trillionaire.service.impl.apriori.SimilarStockSelector;
@@ -26,6 +27,8 @@ import java.util.Map;
 public class StockServiceImpl implements StockService {
     @Autowired
     private DayRecordDao dayRecordDao;
+    @Autowired
+    private RealTimeStockDao realTimeStockDao;
 
     private TimeSeriesPredict timeSeriesPredict = new TimeSeriesPredict();
     private SimilarStockSelector similarStockSelector = new SimilarStockSelector();
@@ -87,6 +90,13 @@ public class StockServiceImpl implements StockService {
             map = null;
         }
         return map;
+    }
+
+    @Override
+    public RealTimeStock updateRealTime(String code) {
+        int stock = Integer.parseInt(code);
+        RealTimeStock realTimeStock = realTimeStockDao.getRealTimeByCode(stock);
+        return realTimeStock;
     }
 
     @Override
@@ -212,7 +222,7 @@ public class StockServiceImpl implements StockService {
         List<String> BIAS12 = calculateBIAS(list, 12);
         List<String> BIAS24 = calculateBIAS(list, 24);
         List<Date> date = new ArrayList<>();
-        for (int i=0; i<list.size(); i++){
+        for (int i = 0; i < list.size(); i++) {
             date.add(list.get(i).getDate());
         }
         map.put("date", date);
@@ -257,7 +267,7 @@ public class StockServiceImpl implements StockService {
             MACDList.add(DecimalUtil.RemainTwoDecimal(MACD));
         }
         List<Date> date = new ArrayList<>();
-        for (int i=0; i<list.size(); i++){
+        for (int i = 0; i < list.size(); i++) {
             date.add(list.get(i).getDate());
         }
         map.put("date", date);
@@ -276,6 +286,7 @@ public class StockServiceImpl implements StockService {
         double esp;   //每股收益
         double income;   //营业收入(百万元)
         double bips;    //每股主营业务收入(元)
+
 
         return result;
     }

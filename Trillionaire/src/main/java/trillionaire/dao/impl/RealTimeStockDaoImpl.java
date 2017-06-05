@@ -1,5 +1,6 @@
 package trillionaire.dao.impl;
 
+import org.springframework.stereotype.Repository;
 import trillionaire.dao.RealTimeStockDao;
 import trillionaire.model.RealTimeStock;
 
@@ -10,6 +11,7 @@ import java.util.TimerTask;
 /**
  * Created by USER on 2017/5/17.
  */
+@Repository
 public class RealTimeStockDaoImpl implements RealTimeStockDao{
 
     private Map<Integer, RealTimeStock> stockMap;
