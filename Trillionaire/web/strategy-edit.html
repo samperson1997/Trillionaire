@@ -77,13 +77,9 @@
 
                         <div style="margin: 2%;">
                             股票¥ <input type="text" style="display: inline-block;" class="input-box" ng-model="cash" />
-                            <input style="display: inline-block;" class="date-picker" type="text" id="start-filter" placeholder="开始日期" ng-model="sDate" />—<input style="display: inline-block;" class="date-picker" type="text" id="end-filter" placeholder="截止日期" ng-model="eDate" />
-                            <select style="display: inline-block;" ng-model="frequency">
-                                <option value="1d">每日</option>
-                                <option value="1m">分钟</option>
-                            </select> 撮合方式 <select style="display: inline-block;" ng-model="matchingType">
-                                <option value="cbar">当前bar收盘</option>
-                                <option value="nbar">下一bar开盘</option>
+                            <input style="display: inline-block;" class="date-picker" type="text" id="start-filter" placeholder="开始日期" ng-model="sDate" />—<input style="display: inline-block;" class="date-picker" type="text" id="end-filter" placeholder="截止日期" ng-model="eDate" /> 撮合方式 <select style="display: inline-block;" ng-model="matchingType">
+                                <option value="current_bar">当前bar收盘</option>
+                                <option value="next_bar">下一bar开盘</option>
                             </select> 基准合约 <input style="display: inline-block;" class="input-box" ng-model="benchmark" /> 佣金倍率 <input style="display: inline-block;" class="num-box" ng-model="commissionMultiplier" /> 滑点 <input style="display: inline-block;" class="num-box" ng-model="slippage" />
                         </div>
                         <div style="margin-top: -2%;">

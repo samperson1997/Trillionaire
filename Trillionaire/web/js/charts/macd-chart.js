@@ -18,7 +18,15 @@ function loadMACD() {
                     trigger: 'axis',
                     axisPointer: {
                         type: 'cross'
-                    }
+                    },
+                    backgroundColor: 'rgba(245, 245, 245, 0.8)',
+                    borderWidth: 1,
+                    borderColor: '#ccc',
+                    padding: 10,
+                    textStyle: {
+                        color: '#000'
+                    },
+                    extraCssText: 'width: 170px'
                 },
                 xAxis: {
                     type: 'category',

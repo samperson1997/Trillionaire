@@ -5,8 +5,7 @@ angular.module("mainapp", [])
         $scope.cash = "10000";
         $scope.sDate = "2016-09-01";
         $scope.eDate = "2016-09-04";
-        $scope.frequency = "1d";
-        $scope.matchingType = "cbar";
+        $scope.matchingType = "current_bar";
         $scope.benchmark = "000300.XSHG";
         $scope.commissionMultiplier = "1";
         $scope.slippage = "0";
@@ -18,7 +17,7 @@ angular.module("mainapp", [])
                 $scope.benchmark != "" &&
                 $scope.commissionMultiplier != "" &&
                 $scope.slippage != "") {
-                loadReturnLine_ajax(99, $scope.cash, $scope.sDate, $scope.eDate, $scope.frequency, $scope.matchingType, $scope.benchmark, $scope.commissionMultiplier, $scope.slippage);
+                loadReturnLine_ajax(99, $scope.cash, $scope.sDate, $scope.eDate, "1d", $scope.matchingType, $scope.benchmark, $scope.commissionMultiplier, $scope.slippage);
                 $("#stra_hint").html("<p style=\"color: #000; display: inline-block;\">注意: 选择\"参数调优\"功能可能导致回测速度变慢。</p>");
 
             } else {
@@ -36,17 +35,17 @@ angular.module("mainapp", [])
             if ($scope.benchmark == "") {
                 $scope.benchmark = "000300.XSHG";
                 $("#stra_hint").html("<p style=\"color: red; display: inline-block;\">已将基准合约设为默认值。</p>");
-                loadReturnLine_ajax(99, $scope.cash, $scope.sDate, $scope.eDate, $scope.frequency, $scope.matchingType, $scope.benchmark, $scope.commissionMultiplier, $scope.slippage);
+                loadReturnLine_ajax(99, $scope.cash, $scope.sDate, $scope.eDate, "1d", $scope.matchingType, $scope.benchmark, $scope.commissionMultiplier, $scope.slippage);
             }
             if ($scope.commissionMultiplier == "") {
                 $scope.commissionMultiplier = "1";
                 $("#stra_hint").html("<p style=\"color: red; display: inline-block;\">已将佣金倍率设为默认值。</p>");
-                loadReturnLine_ajax(99, $scope.cash, $scope.sDate, $scope.eDate, $scope.frequency, $scope.matchingType, $scope.benchmark, $scope.commissionMultiplier, $scope.slippage);
+                loadReturnLine_ajax(99, $scope.cash, $scope.sDate, $scope.eDate, "1d", $scope.matchingType, $scope.benchmark, $scope.commissionMultiplier, $scope.slippage);
             }
             if ($scope.slippage == "") {
                 $scope.slippage = "0";
                 $("#stra_hint").html("<p style=\"color: red; display: inline-block;\">已将滑点设为默认值。</p>");
-                loadReturnLine_ajax(99, $scope.cash, $scope.sDate, $scope.eDate, $scope.frequency, $scope.matchingType, $scope.benchmark, $scope.commissionMultiplier, $scope.slippage);
+                loadReturnLine_ajax(99, $scope.cash, $scope.sDate, $scope.eDate, "1d", $scope.matchingType, $scope.benchmark, $scope.commissionMultiplier, $scope.slippage);
             }
 
         };
@@ -102,7 +101,25 @@ angular.module("mainapp", [])
 function getOP(datelist, d1, d2) {
     op = {
         tooltip: {
-            trigger: 'axis'
+            trigger: 'axis',
+            axisPointer: {
+                type: 'cross'
+            },
+            backgroundColor: 'rgba(245, 245, 245, 0.8)',
+            borderWidth: 1,
+            borderColor: '#ccc',
+            padding: 10,
+            textStyle: {
+                color: '#000'
+            },
+            position: function (pos, params, el, elRect, size) {
+                var obj = {
+                    top: 10
+                };
+                obj[['left', 'right'][+(pos[0] < size.viewSize[0] / 2)]] = 30;
+                return obj;
+            },
+            extraCssText: 'width: 170px'
         },
         legend: {
             data: ['基准收益率', '策略收益率']

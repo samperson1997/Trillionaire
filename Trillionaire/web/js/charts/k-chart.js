@@ -1,4 +1,5 @@
 var dataK;
+
 function loadCandle() {
     var code = getParam('code');
     var urll;
@@ -23,7 +24,7 @@ function loadCandle() {
                 animation: false,
                 legend: {
                     left: 'center',
-                    data: ['日K', 'MA5', 'MA10', 'MA30']
+                    data: ['K', 'MA5', 'MA10', 'MA30']
                 },
                 tooltip: {
                     trigger: 'axis',
@@ -36,13 +37,6 @@ function loadCandle() {
                     padding: 10,
                     textStyle: {
                         color: '#000'
-                    },
-                    position: function (pos, params, el, elRect, size) {
-                        var obj = {
-                            top: 10
-                        };
-                        obj[['left', 'right'][+(pos[0] < size.viewSize[0] / 2)]] = 30;
-                        return obj;
                     },
                     extraCssText: 'width: 170px'
                 },
@@ -150,22 +144,22 @@ function loadCandle() {
                     {
                         type: 'inside',
                         xAxisIndex: [0, 1],
-                        start: 50,
+                        start: 98,
                         end: 100
         },
                     {
                         show: true,
                         xAxisIndex: [0, 1],
-                        top: '85%',
+                        top: '90%',
                         type: 'slider',
                         y: '90%',
-                        start: 50,
+                        start: 98,
                         end: 100
         }
     ],
                 series: [
                     {
-                        name: '日K',
+                        name: 'K',
                         type: 'candlestick',
                         data: dataK.values,
                         itemStyle: {
