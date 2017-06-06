@@ -95,7 +95,7 @@ public class BackTestController {
         result.put("msg", "success");
         result.put("sid", 55);
         result.put("strategyName","testStrategy");
-        result.put("strategyContent", "python content!!!>>>!!!");
+        result.put("strategyContent", "#python content!!!>>>!!!");
 
         return result;
     }
