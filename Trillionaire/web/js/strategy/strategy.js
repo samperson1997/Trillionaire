@@ -1,4 +1,9 @@
 var retChart = echarts.init(document.getElementById('return-chart'));
+var sid = getParam('sid');
+//如果是刚刚新建的策略，sid设置为-1
+if (sid == null) {
+    sid = -1;
+}
 
 angular.module("mainapp", [])
     .controller("BackTestController", function ($scope) {
@@ -98,35 +103,43 @@ angular.module("mainapp", [])
         };
 
         $scope.saveStra = function () {
-            $("#save-button").fadeOut();
-            $("#save-spin").fadeIn();
-            saveStra_ajax(99, $scope.straCode);
-
+            if (sid == -1 && $("#stra-name-input").val() == null) { //??????
+                $("#stra-name-input").fadeIn();
+            } else {
+                $("#save-button").fadeOut();
+                $("#stra-name-input").fadeOut();
+                $("#save-spin").fadeIn();
+                saveStra_ajax(sid, $("#stra-name-input").val(), $scope.content);
+            }
         };
 
-
-        function saveStra_ajax(sid, straCode) {
+        function saveStra_ajax(sid, strategyName, content) {
             this.sid = sid;
-            this.straCode = straCode;
+            this.content = content;
 
             $.ajax({
                 type: "GET",
-                url: "/backtest/save",
+                url: "/backtest/save_strategy",
                 data: {
                     'sid': this.sid,
-                    'straCode': this.straCode
+                    'strategyName': this.strategyName,
+                    'content': this.content
                 },
                 contentType: "application/x-www-form-urlencoded",
                 dataType: "json",
                 success: function (result) {
-                    $("#save-spin").fadeOut();
-                    $("#save-already").fadeIn(2000).fadeOut();
-                    $("#save-spin").fadeIn();
+                    $("#save-spin").fadeOut(function () {
+                        $("#save-already").fadeIn().delay(2000).fadeOut(function () {
+                            $("#save-button").fadeIn();
+                        });
+                    });
+                    sid = result.sid;
+                    //                    window.location.href = "strategy-edit?sid=" + sid;
                 },
                 error: function (XMLHttpRequest) {
                     $("#save-spin").fadeOut();
                     $("#save-spin").fadeIn();
-                    alert(XMLHttpRequest.status);
+                    alert("错误，错误代码：" + XMLHttpRequest.status);
                 }
             });
         };

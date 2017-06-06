@@ -103,5 +103,11 @@ public class StockController {
 
         return null;
     }
+    
+    @RequestMapping(value = "/margin", method = RequestMethod.GET)
+    @ResponseBody
+    public Map<String, Object> getMargin(@RequestParam("code1") String code1, @RequestParam("code2") String code2, @RequestParam("code3") String code3) {
+        return stockService.getMargin(code1, code2, code3);
+    }
 
 }

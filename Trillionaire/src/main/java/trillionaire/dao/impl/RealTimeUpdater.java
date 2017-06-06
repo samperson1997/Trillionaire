@@ -25,10 +25,13 @@ public class RealTimeUpdater {
             String[] cmd = CMDGetter.getCommand("python src/main/resources/python/updater.py");
             Process p = Runtime.getRuntime().exec(cmd);
             p.waitFor();
+            int processValue = p.exitValue();
+            System.out.println(processValue);
             System.out.println("get realtime success");
 
            // br = new BufferedReader(new InputStreamReader(new FileInputStream("src\\main\\resources\\TempFiles\\RealTime\\realtime.csv"),"UTF-8"));
-            br = new BufferedReader(new InputStreamReader(new FileInputStream("src/main/resources/TempFiles/RealTime/realtime.csv"),"UTF-8"));
+            String filePath = RealTimeUpdater.class.getClassLoader().getResource("/TempFiles/RealTime/realtime.csv").getPath();
+            br = new BufferedReader(new InputStreamReader(new FileInputStream(filePath),"UTF-8"));
             Map<Integer, RealTimeStock> result = new LinkedHashMap<Integer, RealTimeStock>();
 
             br.readLine();

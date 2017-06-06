@@ -24,3 +24,7 @@ hs_err_pid*
 
 *.iml
 .idea/
+
+Trillionaire/target/
+out/
+Trillionaire/src/main/resources/jdbc.properties

@@ -70,50 +70,72 @@
                     <ul style="display: inline;" id="results" class="search-results"></ul>
 
                 </div>
-                <div style="display: inline-block;" class="button-page" id="search-button">加入对比</div>
+                <div style="display: inline-block;" class="button-page" id="add-button" onclick="addCompare()">加入对比</div>
             </div>
         </div>
 
-        <div onselectstart="return false;" ng-app="followApp">
-
+        <div onselectstart="return false;">
             <!--        chart area-->
             <div style="float: left; width: 65%;" align="center">
+
+                <a href="stock.html?code=000001" id="a1">
+                    <div id="com1" class="compare-stock">
+                        <div class="stock-code">股票1</div>
+                        <div class="stock-name" style="display: inline-block;" id="name1">深发展A</div>
+                        <div class="stock-code" style="display: inline-block;" id="code1">000001</div>
+
+                    </div>
+                </a>
+
+                <a href="stock.html?code=000002">
+                    <div id="com2" class="compare-stock">
+                        <div class="stock-code">股票2</div>
+                        <div class="stock-name" style="display: inline-block;" id="name2">万科A</div>
+                        <div class="stock-code" style="display: inline-block;" id="code2">000002</div>
+
+                    </div>
+                </a>
+
+                <a href="stock.html?code=000100">
+                    <div id="com3" class="compare-stock">
+                        <div class="stock-code">股票3</div>
+                        <div class="stock-name" style="display: inline-block;" id="name3">什么鬼</div>
+                        <div class="stock-code" style="display: inline-block;" id="code3">000100</div>
+
+                    </div>
+                </a>
+
+                <div class="compare-quit">
+
+                    <div id="quit1" style="margin-top: 8%;" class="button-red" onclick="quitCompare1()"><i class="fa fa-minus"></i> 退出对比&nbsp;</div>
+                </div>
+
+                <div class="compare-quit">
+
+                    <div id="quit2" style="margin-top: 8%;" class="button-red" onclick="quitCompare2()"><i class="fa fa-minus"></i> 退出对比&nbsp;</div>
+                </div>
+
+                <div class="compare-quit">
+
+                    <div id="quit3" style="margin-top: 8%;" class="button-red" onclick="quitCompare3()"><i class="fa fa-minus"></i> 退出对比&nbsp;</div>
+                </div>
+
+
                 <div style="padding-top: 2%;">
-                    <div id="compare-chart" style="width:100%; height: 500%;"></div>
+                    <div id="compare-spin">
+                        <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+                        <span>加载中...</span>
+                    </div>
+                    <div id="compare-chart" style="width:100%; height: 300%;"></div>
+
                 </div>
             </div>
 
 
             <!--        figure area-->
             <div class="info-board" ng-controller="UserController">
-                <div class="compare-stock">
-                    <div class="stock-name" style="display: inline-block;">股票1</div>
-                    <div class="stock-code" style="display: inline-block;">&nbsp;|&nbsp;000001</div>
-                    <div style="display: inline-block;" class="button-page" ng-click="follow()"><i class="fa fa-plus"></i> 关注&nbsp;</div>
-                    <a href="stock.html?code=000001">
-                        <div style="display: inline-block;" class="button-green"><i class="fa fa-eye"></i> 查看</div>
-                    </a>
-                </div>
 
-                <div class="compare-stock">
-                    <div class="stock-name" style="display: inline-block;">股票2</div>
-                    <div class="stock-code" style="display: inline-block;">&nbsp;|&nbsp;000002</div>
-                    <div style="display: inline-block;" class="button-page" ng-click="follow()"><i class="fa fa-plus"></i> 关注&nbsp;</div>
-                    <a href="stock.html?code=000001">
-                        <div style="display: inline-block;" class="button-green"><i class="fa fa-eye"></i> 查看</div>
-                    </a>
-                </div>
-
-                <div class="compare-stock">
-                    <div class="stock-name" style="display: inline-block;">股票3</div>
-                    <div class="stock-code" style="display: inline-block;">&nbsp;|&nbsp;000003</div>
-                    <div style="display: inline-block;" class="button-page" ng-click="follow()"><i class="fa fa-plus"></i> 关注&nbsp;</div>
-                    <a href="stock.html?code=000001">
-                        <div style="display: inline-block;" class="button-green"><i class="fa fa-eye"></i> 查看</div>
-                    </a>
-                </div>
-
-                <div style="border-top: 1px solid #AAA; padding-top: 5%;">
+                <div>
                     <div class="stock-name" style="display: inline;">能力比对</div>
                     <div class="stock-code" style="display: inline;">&nbsp;|&nbsp;Ability Comparison</div>
                     <div id="ability-chart" style="width:100%; height: 400%;"></div>
@@ -121,7 +143,7 @@
 
             </div>
         </div>
-
+        <div style="margin-bottom: 20%;"></div>
     </header>
 
     <footer>
@@ -167,6 +189,10 @@
             move: '50px'
         });
     })();
+
+</script>
+<script>
+    $(document).ready(loadMargin);
 
 </script>
 

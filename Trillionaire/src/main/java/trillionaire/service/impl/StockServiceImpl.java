@@ -174,7 +174,7 @@ public class StockServiceImpl implements StockService {
             }
         }
         result = (2 * AVS + CVS) / (2 * BVS + CVS);
-        return result;
+        return Double.parseDouble(DecimalUtil.RemainTwoDecimal(result));
     }
 
     @Override
@@ -275,6 +275,40 @@ public class StockServiceImpl implements StockService {
         map.put("dea", DEAList);
         map.put("macd", MACDList);
         return map;
+    }
+    
+    @Override
+    public Map<String, Object> getMargin(String code1, String code2, String code3){
+        Map<String, Object> map = new HashMap<>();
+
+        List<DayRecord> list0 = dayRecordDao.getDayRecordsByCode(1);
+        List<Date> date = new ArrayList<>();
+        for (int i = 0; i < list0.size(); i++) {
+            date.add(list0.get(i).getDate());
+        }
+        map.put("date", date);
+        map.put("margin1", getSingleMargin(code1));
+        map.put("margin2", getSingleMargin(code2));
+        map.put("margin3", getSingleMargin(code3));
+
+        return map;
+    }
+
+    private List<String> getSingleMargin(String code){
+        List<String> result = new ArrayList<>();
+        if(code.equals("000000")){
+
+        } else {
+            int stock = Integer.parseInt(code);
+            String s;
+            List<DayRecord> list = dayRecordDao.getDayRecordsByCode(stock);
+            for (int i = 0; i < list.size(); i++) {
+                s = DecimalUtil.RemainTwoDecimal(list.get(i).getChange());
+                result.add(s);
+            }
+        }
+
+        return result;
     }
 
     private double calculateProfitAbility() {

@@ -421,8 +421,29 @@
     color: red;
 }
 
-.compare-stock {
-    margin-bottom: 5%;
+.compare-stock,
+.compare-stock a {
+    margin: 1%;
+    padding: 2%;
+    display: inline-block;
+    width: 25%;
+    border: 1px solid #AAA;
+    color: #000;
+}
+
+.compare-quit {
+    margin: -5% 1% 0 1%;
+    padding: 2%;
+    display: inline-block;
+    width: 25%;
+}
+
+.compare-stock:hover {
+    transition: transform 0.35s;
+    -webkit-transform: translate3d(0, -10px, 0);
+    transform: translate3d(0, -10px, 0);
+    background-color: #0080ff;
+    color: #FFF;
 }
 
 #show-more-button {

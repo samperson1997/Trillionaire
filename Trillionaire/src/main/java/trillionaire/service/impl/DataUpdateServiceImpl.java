@@ -127,7 +127,7 @@ public class DataUpdateServiceImpl implements DataUpdateService {
         URL url = getDownloadURL(stock.getMarket(), code, lastDate);
         if(url==null) return;
 
-        File file = new File("src\\main\\resources\\TempFiles\\TempDayRecord\\"+code+".csv");
+        File file = new File("src/main/resources/TempFiles/TempDayRecord/"+code+".csv");
         if(!file.exists()){
             try {
                 file.createNewFile();

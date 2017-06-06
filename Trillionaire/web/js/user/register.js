@@ -47,22 +47,27 @@ angular.module("mainapp", [])
         };
 
         $scope.check = function () {
-            $.ajax({
-                type: "GET",
-                url: "/user/check",
-                data: {
-                    "email": $scope.inputEmail
-                },
-                contentType: "application/x-www-form-urlencoded",
-                dataType: "text",
-                success: function (data) {
-                    if (data == "exist") {
-                        tip.innerHTML = "该用户名已被注册";
-                    } else if (data == "none") {
-
+            var reg = /^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/;
+            if ($scope.inputEmail.match(reg)) {
+                $.ajax({
+                    type: "GET",
+                    url: "/user/check",
+                    data: {
+                        "email": $scope.inputEmail
+                    },
+                    contentType: "application/x-www-form-urlencoded",
+                    dataType: "text",
+                    success: function (data) {
+                        if (data == "exist") {
+                            tip.innerHTML = "该用户名已被注册";
+                        } else if (data == "none") {
+                            tip.innerHTML = "";
+                        }
                     }
-                }
-            })
+                })
+            } else {
+
+            }
         }
 
         //注册

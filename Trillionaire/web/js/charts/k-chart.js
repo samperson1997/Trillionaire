@@ -172,7 +172,6 @@ function loadCandle() {
                             formatter: function (param) {
                                 param = param[0];
                                 return [
-                                    '日期: ' + param.name + '<hr size=1 style="margin: 3px 0">',
                                     '开盘价: ' + param.data[0] + '<br/>',
                                     '收盘价: ' + param.data[1] + '<br/>',
                                     '最高价: ' + param.data[3] + '<br/>',
@@ -268,22 +267,3 @@ function splitData(rawData) {
         ma30: ma30
     };
 }
-
-var getParam = function (name) {
-    var search = document.location.search;
-    var pattern = new RegExp("[?&]" + name + "\=([^&]+)", "g");
-    var matcher = pattern.exec(search);
-    var items = null;
-    if (null != matcher) {
-        try {
-            items = decodeURIComponent(decodeURIComponent(matcher[1]));
-        } catch (e) {
-            try {
-                items = decodeURIComponent(matcher[1]);
-            } catch (e) {
-                items = matcher[1];
-            }
-        }
-    }
-    return items;
-};
