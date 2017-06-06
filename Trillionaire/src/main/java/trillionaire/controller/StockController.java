@@ -32,7 +32,11 @@ public class StockController {
     @RequestMapping(value = "/update", method = RequestMethod.GET)
     @ResponseBody
     public RealTimeStock getRealTime(String code) {
-        return stockService.updateRealTime(code);
+        long t1 = System.currentTimeMillis();
+        RealTimeStock r = stockService.updateRealTime(code);
+        long t2 = System.currentTimeMillis();
+        System.out.println(t2-t1);
+        return r;
     }
 
     @RequestMapping(value = "/associate", method = RequestMethod.GET)
