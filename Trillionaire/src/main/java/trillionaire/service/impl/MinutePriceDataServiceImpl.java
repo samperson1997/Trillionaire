@@ -29,7 +29,7 @@ public class MinutePriceDataServiceImpl implements MinutePriceDataService {
         int processValue = -1;
         ClearThread ct = null;
         try {
-            String path = this.getClass().getResource("/python/get_today_ticks.py").getPath();
+            String path = this.getClass().getResource("/python/get_today_ticks.py").getPath().substring(CMDGetter.getOSPathStarter());
             String[] cmd = CMDGetter.getCommand("python " + path + " " + code);
             Process p = Runtime.getRuntime().exec(cmd);
             ct = new ClearThread(p);
@@ -52,8 +52,8 @@ public class MinutePriceDataServiceImpl implements MinutePriceDataService {
             try {
 
                 String lastDate = dayRecordDao.getLastDateOf(Integer.valueOf(code)).toString();
-
-                String[] cmd2 = CMDGetter.getCommand("python src\\main\\resources\\python\\get_history_ticks.py " + code + " " + lastDate);
+                String path2 = this.getClass().getResource("/python/get_history_ticks.py").getPath().substring(CMDGetter.getOSPathStarter());
+                String[] cmd2 = CMDGetter.getCommand("python " + path2 + " " + code + " " + lastDate);
                 Process p2 = Runtime.getRuntime().exec(cmd2);
                 ClearThread ct2 = new ClearThread(p2);
                 ct2.start();

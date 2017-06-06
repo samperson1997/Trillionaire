@@ -1,3 +1,5 @@
+package envtest;
+
 import org.junit.Test;
 
 /**

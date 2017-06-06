@@ -1,3 +1,4 @@
+package envtest;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -67,8 +68,8 @@ public class MainTest {
 //        sessionFactory.close();
 
 
-//        MinutePriceDataService minutePriceDataService = ctx.getBean(MinutePriceDataServiceImpl.class);
-//        Map<String, Object> map = minutePriceDataService.getMinutePriceDate("000001");
+        MinutePriceDataService minutePriceDataService = ctx.getBean(MinutePriceDataServiceImpl.class);
+        Map<String, Object> map = minutePriceDataService.getMinutePriceDate("000001");
 //
 //        List<String> time = (List<String>) (map.get("time"));
 //        List<Double> price = (List<Double>) (map.get("price"));
@@ -84,17 +85,17 @@ public class MainTest {
 //            System.out.println(volume.get(i) + " ");
 //        }
 
-        DataUpdateService dataUpdateService = ctx.getBean(DataUpdateServiceImpl.class);
-        dataUpdateService.updateAbility(2005,2);
+//        DataUpdateService dataUpdateService = ctx.getBean(DataUpdateServiceImpl.class);
+//        dataUpdateService.updateAbility(2005,2);
 
 
-//        RealTimeStockDao realTimeStockDao = ctx.getBean(RealTimeStockDaoImpl.class);
-//        try {
-//            Thread.sleep(10000);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
-//        System.out.println(realTimeStockDao.getRealTimeByCode(2).getName());
+        RealTimeStockDao realTimeStockDao = ctx.getBean(RealTimeStockDaoImpl.class);
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println(realTimeStockDao.getRealTimeByCode(2).getName() + "  " + realTimeStockDao.getRealTimeByCode(2).getHigh());
 
 
     }

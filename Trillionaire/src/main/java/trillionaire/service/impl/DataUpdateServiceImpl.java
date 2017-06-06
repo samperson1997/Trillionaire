@@ -53,8 +53,8 @@ public class DataUpdateServiceImpl implements DataUpdateService {
 
     public void updateAbility(int year, int quarter) {
         try {
-            String pythonPath = this.getClass().getResource("/python/abilityUpdater.py").getPath().substring(1);
-            String classPath = this.getClass().getResource("/").getPath().substring(1) +"TempFiles/Ability/";
+            String pythonPath = this.getClass().getResource("/python/abilityUpdater.py").getPath().substring(CMDGetter.getOSPathStarter());
+            String classPath = this.getClass().getResource("/").getPath().substring(CMDGetter.getOSPathStarter()) +"TempFiles/Ability/";
 
             System.out.println(pythonPath);
             System.out.println(classPath);
@@ -137,8 +137,8 @@ public class DataUpdateServiceImpl implements DataUpdateService {
         if(url==null) return;
 
 
-        String fileDir = "";
-        this.getClass().getResource("/");
+        String fileDir = this.getClass().getResource("/").getPath().substring(CMDGetter.getOSPathStarter());
+
         File file = new File(fileDir + "TempFiles/TempDayRecord/" +  code+".csv");
         if(!file.exists()){
             try {
