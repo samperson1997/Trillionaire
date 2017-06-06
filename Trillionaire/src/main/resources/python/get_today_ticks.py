@@ -15,11 +15,5 @@ df = df[['time','price','volume','amount']]
 print
 print 'data start!'
 for i, row in df.iterrows():
-    print row['time'],
-    print " ",
-    print row['price'],
-    print " ",
-    print row['volume'],
-    print " ",
-    print row['amount']
+    print row['time'],row['price'],row['volume'],row['amount']
 print 'data end'

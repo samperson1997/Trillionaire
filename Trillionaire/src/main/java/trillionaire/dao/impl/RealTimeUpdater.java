@@ -22,7 +22,7 @@ public class RealTimeUpdater {
         //String dirPath = "C:\\Users\\USER\\project3\\Trillionaire\\Trillionaire\\src\\main\\java\\";
         BufferedReader br = null;
         try {
-            String[] cmd = CMDGetter.getCommand("python src/main/resources/python/abilityUpdater.py");
+            String[] cmd = CMDGetter.getCommand("python src/main/resources/python/updater.py");
             Process p = Runtime.getRuntime().exec(cmd);
             p.waitFor();
             System.out.println("get realtime success");

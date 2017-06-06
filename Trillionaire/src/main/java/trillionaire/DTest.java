@@ -66,25 +66,26 @@ public class DTest {
 //        sessionFactory.close();
 
 
-//        MinutePriceDataService minutePriceDataService = ctx.getBean(MinutePriceDataServiceImpl.class);
-//        Map<String, Object> map = minutePriceDataService.getMinutePriceDate("000001");
-//
-//        List<String> time = (List<String>) (map.get("time"));
-//        List<Double> price = (List<Double>) (map.get("price"));
-//        List<Double> meanPrice = (List<Double>) (map.get("meanPrice"));
-//        List<Double> volume = (List<Double>) (map.get("volume"));
-//
-//        System.out.println(time.size() + " " + price.size() + " " + meanPrice.size() + " " + volume.size());
-//
-//        for(int i=0; i<time.size(); i++){
-//            System.out.print(time.get(i) + " ");
-//            System.out.print(price.get(i) + " ");
-//            System.out.print(meanPrice.get(i) + " ");
-//            System.out.println(volume.get(i) + " ");
-//        }
+        MinutePriceDataService minutePriceDataService = ctx.getBean(MinutePriceDataServiceImpl.class);
+        Map<String, Object> map = minutePriceDataService.getMinutePriceDate("000001");
 
-        DataUpdateService dataUpdateService = ctx.getBean(DataUpdateServiceImpl.class);
-        dataUpdateService.updateAllData();
+        List<String> time = (List<String>) (map.get("time"));
+        List<Double> price = (List<Double>) (map.get("price"));
+        List<Double> meanPrice = (List<Double>) (map.get("meanPrice"));
+        List<Double> volume = (List<Double>) (map.get("volume"));
+
+        System.out.println(time.size() + " " + price.size() + " " + meanPrice.size() + " " + volume.size());
+
+        for(int i=0; i<time.size(); i++){
+            System.out.print(time.get(i) + " ");
+            System.out.print(price.get(i) + " ");
+            System.out.print(meanPrice.get(i) + " ");
+            System.out.println(volume.get(i) + " ");
+        }
+
+//        DataUpdateService dataUpdateService = ctx.getBean(DataUpdateServiceImpl.class);
+//        dataUpdateService.updateAllData();
+
 
     }
 }
