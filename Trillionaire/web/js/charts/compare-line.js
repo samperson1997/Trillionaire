@@ -133,7 +133,8 @@ function quitCompare3() {
 }
 
 function addCompare() {
-    //需要判断股票代码是不是有效，这里测试统一默认输入000001
+    //需要判断股票代码是不是有效
+    //需要知道代码对应的名称，这里测试统一默认当作深发展
 
     if ($("#name1").text() == '选择股票加入对比') {
         $("#name1").text('深发展');
@@ -141,8 +142,26 @@ function addCompare() {
         $("#code1").css('display', "inline-block");
 
         $("#quit1").css('display', "inline-block");
-        $("#a1").addAttr('href', "stock.html?code=" + $("#search-box").val()); //?????
+        $("#a1").attr('href', "stock.html?code=" + $("#search-box").val());
+        loadMargin();
+    } else if ($("#name2").text() == '选择股票加入对比') {
+        $("#name2").text('深发展');
+        $("#code2").text($("#search-box").val());
+        $("#code2").css('display', "inline-block");
 
-        loadMargin(); //?????
+        $("#quit2").css('display', "inline-block");
+        loadMargin();
+        $("#a2").attr('href', "stock.html?code=" + $("#search-box").val());
+    } else if ($("#name3").text() == '选择股票加入对比') {
+        $("#name3").text('深发展');
+        $("#code3").text($("#search-box").val());
+        $("#code3").css('display', "inline-block");
+
+        $("#quit3").css('display', "inline-block");
+        $("#a3").attr('href', "stock.html?code=" + $("#search-box").val());
+        loadMargin();
+    } else {
+        $("#compare-page-hint").fadeIn().delay(1000).fadeOut();
     }
+    $("#search-box").val("");
 }

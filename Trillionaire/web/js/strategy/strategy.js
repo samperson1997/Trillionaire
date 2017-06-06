@@ -1,9 +1,5 @@
 var retChart = echarts.init(document.getElementById('return-chart'));
 var sid = getParam('sid');
-//如果是刚刚新建的策略，sid设置为-1
-if (sid == null) {
-    sid = -1;
-}
 
 angular.module("mainapp", [])
     .controller("BackTestController", function ($scope) {
@@ -23,11 +19,12 @@ angular.module("mainapp", [])
                 $scope.commissionMultiplier != "" &&
                 $scope.slippage != "") {
                 loadReturnLine_ajax(99, $scope.cash, $scope.sDate, $scope.eDate, "1d", $scope.matchingType, $scope.benchmark, $scope.commissionMultiplier, $scope.slippage);
-                $("#stra_hint").html("<p style=\"color: #000; display: inline-block;\">注意: 选择\"参数调优\"功能可能导致回测速度变慢。</p>");
 
             } else {
                 if ($scope.cash == "" || $scope.sDate == "" || $scope.eDate == "") {
-                    $("#stra_hint").html("<p style=\"color: red; display: inline-block;\">请将回测设置填写完整!</p>");
+                    $("#stra-page-hint").html("请将回测设置填写完整");
+                    $("#stra-page-hint").fadeIn().delay(1000).fadeOut();
+
                     $("#result-area").fadeOut();
                     $("#return-area").fadeOut();
                     $("#return-chart").fadeOut();
@@ -39,17 +36,23 @@ angular.module("mainapp", [])
             }
             if ($scope.benchmark == "") {
                 $scope.benchmark = "000300.XSHG";
-                $("#stra_hint").html("<p style=\"color: red; display: inline-block;\">已将基准合约设为默认值。</p>");
+                $("#stra-page-hint").html("已将基准合约设为默认值");
+                $("#stra-page-hint").fadeIn().delay(1000).fadeOut();
+
                 loadReturnLine_ajax(99, $scope.cash, $scope.sDate, $scope.eDate, "1d", $scope.matchingType, $scope.benchmark, $scope.commissionMultiplier, $scope.slippage);
             }
             if ($scope.commissionMultiplier == "") {
                 $scope.commissionMultiplier = "1";
-                $("#stra_hint").html("<p style=\"color: red; display: inline-block;\">已将佣金倍率设为默认值。</p>");
+                $("#stra-page-hint").html("已将佣金倍率设为默认值");
+                $("#stra-page-hint").fadeIn().delay(1000).fadeOut();
+
                 loadReturnLine_ajax(99, $scope.cash, $scope.sDate, $scope.eDate, "1d", $scope.matchingType, $scope.benchmark, $scope.commissionMultiplier, $scope.slippage);
             }
             if ($scope.slippage == "") {
                 $scope.slippage = "0";
-                $("#stra_hint").html("<p style=\"color: red; display: inline-block;\">已将滑点设为默认值。</p>");
+                $("#stra-page-hint").html("已将滑点设为默认值");
+                $("#stra-page-hint").fadeIn().delay(1000).fadeOut();
+
                 loadReturnLine_ajax(99, $scope.cash, $scope.sDate, $scope.eDate, "1d", $scope.matchingType, $scope.benchmark, $scope.commissionMultiplier, $scope.slippage);
             }
 
@@ -96,19 +99,19 @@ angular.module("mainapp", [])
                     $("#overreturn-chart").fadeOut();
                     $("#win-chart").fadeOut();
                 },
-                error: function (XMLHttpRequest) {
-                    alert(XMLHttpRequest.status);
+                error: function (request, status, err) {
+                    load.abort();
                 }
             });
         };
 
         $scope.saveStra = function () {
-            if (sid == -1 && $("#stra-name-input").val() == "") {
+            if (sid < 0 && $("#stra-name-input").val() == "") {
                 $("#stra-name-input").fadeIn();
             } else {
-                $("#save-button").fadeOut();
                 $("#stra-name-input").fadeOut();
-                $("#save-spin").fadeIn();
+                $("#save-button").fadeOut();
+
                 saveStra_ajax(sid, $("#stra-name-input").val(), $scope.content);
             }
         };
@@ -128,7 +131,7 @@ angular.module("mainapp", [])
                 contentType: "application/x-www-form-urlencoded",
                 dataType: "json",
                 success: function (result) {
-                    $("#save-spin").fadeOut(function () {
+                    $("#save-button").fadeOut(function () {
                         $("#save-already").fadeIn().delay(1000).fadeOut(function () {
                             $("#save-button").fadeIn();
                         });
@@ -136,10 +139,8 @@ angular.module("mainapp", [])
                     sid = result.sid;
                     //                    window.location.href = "strategy-edit?sid=" + sid;
                 },
-                error: function (XMLHttpRequest) {
-                    $("#save-spin").fadeOut();
-                    $("#save-spin").fadeIn();
-                    alert("错误，错误代码：" + XMLHttpRequest.status);
+                error: function (request, status, err) {
+                    load.abort();
                 }
             });
         };

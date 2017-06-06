@@ -3,7 +3,7 @@
     color: #FFF;
     background-color: transparent;
     cursor: pointer;
-    display: inline;
+    display: inline-block;
     margin: 10px;
     padding: 5px 10px;
     border-radius: 5px;
@@ -51,7 +51,7 @@
     color: #FFF;
     background-color: #0080ff;
     cursor: pointer;
-    display: inline;
+    display: inline-block;
     margin: 10px;
     padding: 5px 10px;
     border-radius: 5px;
@@ -84,7 +84,6 @@
     border: 1px solid #0080ff;
     border-radius: 5px;
     background-color: #0080ff;
-    cursor: pointer;
     display: inline-block;
     margin: 1%;
     padding: 0.8% 1.2%;
@@ -115,7 +114,6 @@
     border: 1px solid #cc0000;
     border-radius: 5px;
     background-color: #cc0000;
-    cursor: pointer;
     display: inline-block;
     margin: 1%;
     padding: 0.8% 1.2%;
@@ -146,7 +144,6 @@
     border: 1px solid #00cc00;
     border-radius: 5px;
     background-color: #00cc00;
-    cursor: pointer;
     display: inline-block;
     margin: 1%;
     padding: 0.8% 1.2%;
@@ -168,4 +165,13 @@
     color: #FFF;
     background-color: #00cc00;
     border: 1px solid #00cc00;
+}
+
+#save-already {
+    font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, "PingFang SC", sans-serif;
+    color: lightseagreen;
+    display: inline-block;
+    margin: 10px;
+    padding: 6px 11px;
+    font-size: 110%;
 }

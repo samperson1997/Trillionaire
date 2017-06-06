@@ -62,25 +62,25 @@
                 <h1 class="page-main-title">策略回测<span class="page-sub-title">&nbsp;&nbsp;|&nbsp;&nbsp;强大而精准的在线研究平台</span></h1>
             </div>
         </div>
+        <div id="stra-page-hint" class="page-hint">提示</div>
 
         <div style="margin: 0 3%;">
             <div ng-app="mainapp" ng-controller="BackTestController">
-                <div class="stock-name" style="display: inline;">编写策略</div>
-                <input id="stra-name-input" class="input-box" style="display: inline-block;" placeholder="给策略起一个名称" />
 
-                <div id="save-button" class="button-blue" ng-click="saveStra()"><i class="fa fa-save"></i> 保存</div>
-                <div id="save-spin" style="display: inline-block;">
-                    <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
-                    <span>正在保存...</span>
+                <div onselectstart="return false;">
+                    <div class="stock-name" style="display: inline;">编写策略</div>
+
+                    <div id="save-button" class="button-blue" ng-click="saveStra()"><i class="fa fa-save"></i> 保存</div>
+                    <div id="save-already"><i class="fa fa-check-circle"></i> 成功</div>
+
+                    <input id="stra-name-input" class="input-box" style="display: inline-block;" placeholder="给策略起一个名称" />
+
+                    <div class="stock-code" style="display: inline-block;"><a href="strategy-content.html#new-stra" target="_blank">>>新手入门</a></div>
+                    <div class="stock-code" style="display: inline-block;"><a href="strategy-content.html">>>返回策略列表</a></div>
+                    <div class="stock-code" style="display: inline-block;"><a href="api.html" target="_blank">>>API文档</a></div>
+
                 </div>
-
-                <div id="save-already" class="stock-code" style="display: inline-block; color: green;"><i class="fa fa-check-circle"></i> 已保存</div>
-                <div class="stock-code" style="display: inline-block;"><a href="strategy-content.html#new-stra" target="_blank">>>新手入门</a></div>
-                <div class="stock-code" style="display: inline-block;"><a href="strategy-content.html">>>返回策略列表</a></div>
-                <div class="stock-code" style="display: inline-block;"><a href="api.html" target="_blank">>>API文档</a></div>
-
-
-                <div align="center">
+                <div align="center" onselectstart="return false;">
                     <form method="post">
 
                         <div style="margin: 2%;">
@@ -96,7 +96,7 @@
                             <div class="button-green"><i class="fa fa-envira"></i> 参数调优</div>
                             <div id="remove-all" class="button-red" onclick="remove()"><i class="fa fa-trash-o"></i> 清空</div>
                             <div class="stock-code" style="display: inline-block;">
-                                <span id="stra_hint">注意: 选择"参数调优"功能可能导致回测速度变慢。</span><a href="help.html#stra-setting" target="_blank">>>如何进行回测设置? </a></div>
+                                <span>注意: 选择"参数调优"功能可能导致回测速度变慢。</span><a href="help.html#stra-setting" target="_blank">>>如何进行回测设置? </a></div>
                         </div>
 
                     </form>
@@ -120,7 +120,7 @@
 
                 <div style="margin-bottom: 40%;"></div>
 
-                <div style="clear: both;">
+                <div style="clear: both;" onselectstart="return false;">
                     <div id="result-area">
                         <div class="stock-name" style="display: inline;">回测结果</div>
                         <div class="stock-code" style="display: inline-block;">&nbsp;&nbsp;|&nbsp;&nbsp;Back Test Result</div>

@@ -465,3 +465,16 @@
 #show-more-button:active {
     background-color: #DDD;
 }
+
+.page-hint {
+    text-align: center;
+    color: #FFF;
+    padding: 1%;
+    margin: 1% 35%;
+    background-color: #777;
+    border-radius: 10px;
+    position: fixed;
+    top: 30%;
+    font-size: 150%;
+    display: none;
+}
