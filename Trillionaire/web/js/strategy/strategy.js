@@ -103,7 +103,7 @@ angular.module("mainapp", [])
         };
 
         $scope.saveStra = function () {
-            if (sid == -1 && $("#stra-name-input").val() == null) { //??????
+            if (sid == -1 && $("#stra-name-input").val() == "") {
                 $("#stra-name-input").fadeIn();
             } else {
                 $("#save-button").fadeOut();
@@ -129,7 +129,7 @@ angular.module("mainapp", [])
                 dataType: "json",
                 success: function (result) {
                     $("#save-spin").fadeOut(function () {
-                        $("#save-already").fadeIn().delay(2000).fadeOut(function () {
+                        $("#save-already").fadeIn().delay(1000).fadeOut(function () {
                             $("#save-button").fadeIn();
                         });
                     });
