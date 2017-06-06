@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import trillionaire.model.RealTimeStock;
 import trillionaire.model.Stock;
+import trillionaire.service.MinutePriceDataService;
 import trillionaire.service.StockService;
 import trillionaire.vo.*;
 
@@ -21,6 +22,8 @@ import java.util.Map;
 public class StockController {
     @Autowired
     private StockService stockService;
+    @Autowired
+    private MinutePriceDataService minutePriceDataService;
 
     @RequestMapping(value = "/{code}/{span}", method = RequestMethod.GET)
     @ResponseBody
@@ -29,14 +32,16 @@ public class StockController {
         return map;
     }
 
-    @RequestMapping(value = "/update", method = RequestMethod.GET)
+    @RequestMapping(value = "/updateRealtime", method = RequestMethod.GET)
     @ResponseBody
-    public RealTimeStock getRealTime(String code) {
-        long t1 = System.currentTimeMillis();
-        RealTimeStock r = stockService.updateRealTime(code);
-        long t2 = System.currentTimeMillis();
-        System.out.println(t2-t1);
-        return r;
+    public RealTimeStock updateRealTime(String code) {
+        return stockService.updateRealTime(code);
+    }
+
+    @RequestMapping(value = "/getRealtime", method = RequestMethod.GET)
+    @ResponseBody
+    public Map<String, Object> getRealTime(String code) {
+        return minutePriceDataService.getMinutePriceDate(code);
     }
 
     @RequestMapping(value = "/associate", method = RequestMethod.GET)
@@ -48,7 +53,7 @@ public class StockController {
 
     @RequestMapping(value = "code", method = RequestMethod.GET)
     public void search(HttpServletRequest request, HttpServletResponse response, @RequestParam("code") String code) throws Exception {
-        request.getRequestDispatcher( "stock.html").forward(request, response);
+        request.getRequestDispatcher("stock.html").forward(request, response);
     }
 
     @RequestMapping(value = "/ability", method = RequestMethod.GET)
@@ -107,7 +112,7 @@ public class StockController {
 
         return null;
     }
-    
+
     @RequestMapping(value = "/margin", method = RequestMethod.GET)
     @ResponseBody
     public Map<String, Object> getMargin(@RequestParam("code1") String code1, @RequestParam("code2") String code2, @RequestParam("code3") String code3) {
