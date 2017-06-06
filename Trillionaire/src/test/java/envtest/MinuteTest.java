@@ -39,6 +39,8 @@ public class MinuteTest {
         List<Double> meanPrice = (List<Double>) (map.get("meanPrice"));
         List<Double> volume = (List<Double>) (map.get("volume"));
 
+        long t1 = System.currentTimeMillis();
+
         System.out.println(time.size() + " " + price.size() + " " + meanPrice.size() + " " + volume.size());
 
         for(int i=0; i<time.size(); i++){
@@ -47,6 +49,10 @@ public class MinuteTest {
             System.out.print(meanPrice.get(i) + " ");
             System.out.println(volume.get(i) + " ");
         }
+
+        long t2 = System.currentTimeMillis();
+
+        System.out.println(t2 - t1);
 
     }
 

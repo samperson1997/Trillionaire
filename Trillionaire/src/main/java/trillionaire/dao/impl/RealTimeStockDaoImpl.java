@@ -4,9 +4,7 @@ import org.springframework.stereotype.Repository;
 import trillionaire.dao.RealTimeStockDao;
 import trillionaire.model.RealTimeStock;
 
-import java.util.Map;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.*;
 
 /**
  * Created by USER on 2017/5/17.
@@ -28,12 +26,21 @@ public class RealTimeStockDaoImpl implements RealTimeStockDao{
     }
 
     public RealTimeStock getRealTimeByCode(int code) {
-
         if(stockMap!=null){
             return stockMap.get(code);
         }
 
         return null;
+    }
+
+    public List<RealTimeStock> getAll(){
+
+        if(stockMap==null){
+            return null;
+        }
+
+        return new ArrayList<RealTimeStock>(stockMap.values());
+
     }
 
     public class UpdateThread extends TimerTask {
