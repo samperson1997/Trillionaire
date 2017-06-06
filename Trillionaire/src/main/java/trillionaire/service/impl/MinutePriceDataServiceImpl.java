@@ -29,7 +29,7 @@ public class MinutePriceDataServiceImpl implements MinutePriceDataService {
         int processValue = -1;
         ClearThread ct = null;
         try {
-            String path = MinutePriceDataServiceImpl.class.getClassLoader().getResource("/python/get_today_ticks.py").getPath();
+            String path = this.getClass().getResource("/python/get_today_ticks.py").getPath();
             String[] cmd = CMDGetter.getCommand("python " + path + " " + code);
             Process p = Runtime.getRuntime().exec(cmd);
             ct = new ClearThread(p);

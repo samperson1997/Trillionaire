@@ -21,8 +21,10 @@ public class RealTimeUpdater {
         //String dirPath = "C:\\Users\\USER\\project3\\Trillionaire\\Trillionaire\\src\\main\\java\\";
         BufferedReader br = null;
         try {
-            String path = RealTimeUpdater.class.getClassLoader().getResource("/python/updater.py").getPath();
-            String outPath = RealTimeUpdater.class.getClassLoader().getResource("/TempFiles/RealTime/realtime.csv").getPath();
+            String path = this.getClass().getResource("/python/updater.py").getPath().substring(1);
+            //System.out.println(path);
+            String outPath = this.getClass().getResource("/TempFiles/RealTime/realtime.csv").getPath().substring(1);
+            //System.out.println(outPath);
             String[] cmd = CMDGetter.getCommand("python " + path + " " + outPath);
             Process p = Runtime.getRuntime().exec(cmd);
             p.waitFor();
@@ -31,7 +33,7 @@ public class RealTimeUpdater {
             System.out.println("get realtime success");
 
             // br = new BufferedReader(new InputStreamReader(new FileInputStream("src\\main\\resources\\TempFiles\\RealTime\\realtime.csv"),"UTF-8"));
-            String filePath = RealTimeUpdater.class.getClassLoader().getResource("/TempFiles/RealTime/realtime.csv").getPath();
+            String filePath = this.getClass().getResource("/TempFiles/RealTime/realtime.csv").getPath();
             br = new BufferedReader(new InputStreamReader(new FileInputStream(filePath), "UTF-8"));
             Map<Integer, RealTimeStock> result = new LinkedHashMap<Integer, RealTimeStock>();
 
