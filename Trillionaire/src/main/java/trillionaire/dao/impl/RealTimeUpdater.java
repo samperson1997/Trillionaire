@@ -9,7 +9,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.Scanner;
 
 /**
  * Created by USER on 2017/5/17.
@@ -17,28 +16,30 @@ import java.util.Scanner;
 public class RealTimeUpdater {
 
 
-    public Map<Integer, RealTimeStock> getNewInfo(){
+    public Map<Integer, RealTimeStock> getNewInfo() {
 
         //String dirPath = "C:\\Users\\USER\\project3\\Trillionaire\\Trillionaire\\src\\main\\java\\";
         BufferedReader br = null;
         try {
-            String[] cmd = CMDGetter.getCommand("python src/main/resources/python/updater.py");
+            String path = RealTimeUpdater.class.getClassLoader().getResource("/python/updater.py").getPath();
+            String outPath = RealTimeUpdater.class.getClassLoader().getResource("/TempFiles/RealTime/realtime.csv").getPath();
+            String[] cmd = CMDGetter.getCommand("python " + path + " " + outPath);
             Process p = Runtime.getRuntime().exec(cmd);
             p.waitFor();
             int processValue = p.exitValue();
             System.out.println(processValue);
             System.out.println("get realtime success");
 
-           // br = new BufferedReader(new InputStreamReader(new FileInputStream("src\\main\\resources\\TempFiles\\RealTime\\realtime.csv"),"UTF-8"));
+            // br = new BufferedReader(new InputStreamReader(new FileInputStream("src\\main\\resources\\TempFiles\\RealTime\\realtime.csv"),"UTF-8"));
             String filePath = RealTimeUpdater.class.getClassLoader().getResource("/TempFiles/RealTime/realtime.csv").getPath();
-            br = new BufferedReader(new InputStreamReader(new FileInputStream(filePath),"UTF-8"));
+            br = new BufferedReader(new InputStreamReader(new FileInputStream(filePath), "UTF-8"));
             Map<Integer, RealTimeStock> result = new LinkedHashMap<Integer, RealTimeStock>();
 
             br.readLine();
 
             String line = null;
 
-            while((line=br.readLine())!=null){
+            while ((line = br.readLine()) != null) {
                 String[] strs = line.split(",");
                 RealTimeStock realTimeStock = getRealTimeStockByLine(strs);
                 int code = Integer.valueOf(strs[1]);
@@ -59,8 +60,7 @@ public class RealTimeUpdater {
 
     }
 
-    private RealTimeStock getRealTimeStockByLine(String[] strs){
-
+    private RealTimeStock getRealTimeStockByLine(String[] strs) {
 
 
         String code = strs[1];
@@ -80,10 +80,10 @@ public class RealTimeUpdater {
         double mktcap = Double.valueOf(strs[14]);
         double nmc = Double.valueOf(strs[15]);
 
-        RealTimeStock realTimeStock = new RealTimeStock(code, name,changepercent, trade, open, high, low, settlement, volume, turnoverratio,
-                                                        amount, per, pb, mktcap, nmc);
+        RealTimeStock realTimeStock = new RealTimeStock(code, name, changepercent, trade, open, high, low, settlement, volume, turnoverratio,
+                amount, per, pb, mktcap, nmc);
 
-        return  realTimeStock;
+        return realTimeStock;
     }
 
 }

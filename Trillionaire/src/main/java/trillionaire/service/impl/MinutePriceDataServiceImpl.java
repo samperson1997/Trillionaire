@@ -6,7 +6,6 @@ import trillionaire.dao.DayRecordDao;
 import trillionaire.service.MinutePriceDataService;
 import trillionaire.util.CMDGetter;
 
-import javax.ejb.Local;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.time.LocalTime;
@@ -29,9 +28,9 @@ public class MinutePriceDataServiceImpl implements MinutePriceDataService {
         //
         int processValue = -1;
         ClearThread ct = null;
-        try{
-
-            String[] cmd = CMDGetter.getCommand("python src\\main\\resources\\python\\get_today_ticks.py " + code );
+        try {
+            String path = MinutePriceDataServiceImpl.class.getClassLoader().getResource("/python/get_today_ticks.py").getPath();
+            String[] cmd = CMDGetter.getCommand("python " + path + " " + code);
             Process p = Runtime.getRuntime().exec(cmd);
             ct = new ClearThread(p);
             ct.start();
@@ -41,19 +40,16 @@ public class MinutePriceDataServiceImpl implements MinutePriceDataService {
             Thread.sleep(250);
             ct.setEnd(true);
 
-        }
-        catch (IOException e){
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        catch (InterruptedException e){
-            e.printStackTrace();
-        }
 
 
+        if (processValue != 0) {
 
-        if(processValue != 0){
-
-            try{
+            try {
 
                 String lastDate = dayRecordDao.getLastDateOf(Integer.valueOf(code)).toString();
 
@@ -67,35 +63,32 @@ public class MinutePriceDataServiceImpl implements MinutePriceDataService {
                 Thread.sleep(250);
                 ct2.setEnd(true);
 
-                if(processValue2 != 0){
-                    result.put("msg","error");
+                if (processValue2 != 0) {
+                    result.put("msg", "error");
                     return result;
                 }
 
                 result = getResultMapByRes(ct2.getRes());
                 return result;
 
-            }
-            catch (IOException e){
+            } catch (IOException e) {
                 e.printStackTrace();
-            }
-            catch (InterruptedException e){
+            } catch (InterruptedException e) {
                 e.printStackTrace();
             }
 
 
-        }
-        else {
+        } else {
             return getResultMapByRes(ct.getRes());
         }
 
-        result.put("msg","error");
+        result.put("msg", "error");
         return result;
     }
 
-    private Map<String, Object> getResultMapByRes(List<String> res){
+    private Map<String, Object> getResultMapByRes(List<String> res) {
 
-        DecimalFormat df   = new DecimalFormat("#.00");
+        DecimalFormat df = new DecimalFormat("#.00");
 
         Map<String, Object> result = new HashMap<>();
         List<String> time = new ArrayList<>();
@@ -105,18 +98,18 @@ public class MinutePriceDataServiceImpl implements MinutePriceDataService {
         List<Double> amount = new ArrayList<>();
 
         int startIndex = 0;
-        while(!res.get(startIndex).equals("data start!")){
+        while (!res.get(startIndex).equals("data start!")) {
             startIndex++;
         }
         startIndex++;
 
-        LocalTime lastTime = LocalTime.of(8,0,0);
+        LocalTime lastTime = LocalTime.of(8, 0, 0);
         double lastVolume = 0;
         double lastAmount = 0;
         boolean firstTag = true;
-        for(int i=startIndex; i<res.size()-1; i++){
+        for (int i = startIndex; i < res.size() - 1; i++) {
             //System.out.println(res.get(i));
-            if(res.get(i).equals("data end")){
+            if (res.get(i).equals("data end")) {
                 break;
             }
 
@@ -126,22 +119,20 @@ public class MinutePriceDataServiceImpl implements MinutePriceDataService {
             double v = Double.valueOf(strs[2]);
             double a = Double.valueOf(strs[3]);
 
-            if(lastTime.getHour()==t.getHour() && lastTime.getMinute()==t.getMinute()){
+            if (lastTime.getHour() == t.getHour() && lastTime.getMinute() == t.getMinute()) {
                 lastVolume += v;
                 lastAmount += a;
-            }
-            else{
-                if(firstTag){
-                    lastTime = LocalTime.of(t.getHour(),t.getMinute(),0);
+            } else {
+                if (firstTag) {
+                    lastTime = LocalTime.of(t.getHour(), t.getMinute(), 0);
                     time.add(lastTime.toString());
                     price.add(p);
                     lastVolume = v;
                     lastAmount = a;
                     firstTag = false;
 
-                }
-                else{
-                    lastTime = LocalTime.of(t.getHour(),t.getMinute(),0);
+                } else {
+                    lastTime = LocalTime.of(t.getHour(), t.getMinute(), 0);
                     time.add(lastTime.toString());
                     price.add(p);
                     volume.add(lastVolume);
@@ -155,20 +146,20 @@ public class MinutePriceDataServiceImpl implements MinutePriceDataService {
         volume.add(lastVolume);
         amount.add(lastAmount);
 
-        for(int i=0; i<volume.size(); i++){
+        for (int i = 0; i < volume.size(); i++) {
 //            System.out.println(amount.get(i));
 //            System.out.println(volume.get(i));
 
-            if(volume.get(i).equals(0.0)){
+            if (volume.get(i).equals(0.0)) {
                 meanPrice.add(price.get(i));
 
-            }else{
-                meanPrice.add(Double.valueOf(df.format(amount.get(i)/volume.get(i)/100)));
+            } else {
+                meanPrice.add(Double.valueOf(df.format(amount.get(i) / volume.get(i) / 100)));
             }
 
         }
 
-        result.put("msg","success");
+        result.put("msg", "success");
         result.put("time", time);
         result.put("price", price);
         result.put("meanPrice", meanPrice);
