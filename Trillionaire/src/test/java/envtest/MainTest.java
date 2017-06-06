@@ -1,4 +1,4 @@
-package trillionaire;
+package envtest;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -8,8 +8,10 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import trillionaire.dao.DayRecordDao;
+import trillionaire.dao.RealTimeStockDao;
 import trillionaire.dao.StockDao;
 import trillionaire.dao.impl.DayRecordDaoImpl;
+import trillionaire.dao.impl.RealTimeStockDaoImpl;
 import trillionaire.dao.impl.StockDaoImpl;
 import trillionaire.model.DayRecord;
 import trillionaire.model.Stock;
@@ -34,7 +36,7 @@ import java.util.Set;
  * Created by michaeltan on 2017/5/14.
  */
 
-public class DTest {
+public class MainTest {
     private ApplicationContext ctx = null;
 
     @Test
@@ -68,23 +70,32 @@ public class DTest {
 
         MinutePriceDataService minutePriceDataService = ctx.getBean(MinutePriceDataServiceImpl.class);
         Map<String, Object> map = minutePriceDataService.getMinutePriceDate("000001");
-
-        List<String> time = (List<String>) (map.get("time"));
-        List<Double> price = (List<Double>) (map.get("price"));
-        List<Double> meanPrice = (List<Double>) (map.get("meanPrice"));
-        List<Double> volume = (List<Double>) (map.get("volume"));
-
-        System.out.println(time.size() + " " + price.size() + " " + meanPrice.size() + " " + volume.size());
-
-        for(int i=0; i<time.size(); i++){
-            System.out.print(time.get(i) + " ");
-            System.out.print(price.get(i) + " ");
-            System.out.print(meanPrice.get(i) + " ");
-            System.out.println(volume.get(i) + " ");
-        }
+//
+//        List<String> time = (List<String>) (map.get("time"));
+//        List<Double> price = (List<Double>) (map.get("price"));
+//        List<Double> meanPrice = (List<Double>) (map.get("meanPrice"));
+//        List<Double> volume = (List<Double>) (map.get("volume"));
+//
+//        System.out.println(time.size() + " " + price.size() + " " + meanPrice.size() + " " + volume.size());
+//
+//        for(int i=0; i<time.size(); i++){
+//            System.out.print(time.get(i) + " ");
+//            System.out.print(price.get(i) + " ");
+//            System.out.print(meanPrice.get(i) + " ");
+//            System.out.println(volume.get(i) + " ");
+//        }
 
 //        DataUpdateService dataUpdateService = ctx.getBean(DataUpdateServiceImpl.class);
-//        dataUpdateService.updateAllData();
+//        dataUpdateService.updateAbility(2005,2);
+
+
+        RealTimeStockDao realTimeStockDao = ctx.getBean(RealTimeStockDaoImpl.class);
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println(realTimeStockDao.getRealTimeByCode(2).getName() + "  " + realTimeStockDao.getRealTimeByCode(2).getHigh());
 
 
     }

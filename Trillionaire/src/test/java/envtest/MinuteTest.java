@@ -1,44 +1,26 @@
-package trillionaire;
+package envtest;
 
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.jcp.xml.dsig.internal.dom.DOMBase64Transform;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import trillionaire.dao.DayRecordDao;
-import trillionaire.dao.StockDao;
-import trillionaire.dao.impl.DayRecordDaoImpl;
-import trillionaire.dao.impl.StockDaoImpl;
-import trillionaire.model.DayRecord;
-import trillionaire.model.Stock;
-import trillionaire.model.Strategy;
-import trillionaire.model.User;
-import trillionaire.service.DataUpdateService;
 import trillionaire.service.MinutePriceDataService;
-import trillionaire.service.impl.DataUpdateServiceImpl;
 import trillionaire.service.impl.MinutePriceDataServiceImpl;
 
 import javax.sql.DataSource;
-import java.sql.Date;
-import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 /**
- * Created by michaeltan on 2017/5/14.
+ * Created by USER on 2017/6/6.
  */
+public class MinuteTest {
 
-public class DTest {
     private ApplicationContext ctx = null;
 
     @Test
-    public void testDataSource() throws SQLException, ParseException {
+    public void test(){
+
         //检查spring配置
         ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
 
@@ -49,23 +31,6 @@ public class DTest {
         SessionFactory sessionFactory = ctx.getBean(SessionFactory.class);
         System.out.println(sessionFactory);
 
-//        Session session = sessionFactory.openSession();
-//        Transaction tx = session.beginTransaction();
-
-//        User user = session.get(User.class, 1);
-//        System.out.println(user.getConcernedStocks().size() + "!!!!!!");
-//        System.out.println(user.getStrategies().size()+ "!!!!!!");
-
-//        Strategy strategy = session.get(Strategy.class,1);
-//        session.delete(strategy);
-
-//          session.save(user);
-//
-//        tx.commit();
-//        session.close();
-//        sessionFactory.close();
-
-
         MinutePriceDataService minutePriceDataService = ctx.getBean(MinutePriceDataServiceImpl.class);
         Map<String, Object> map = minutePriceDataService.getMinutePriceDate("000001");
 
@@ -73,6 +38,8 @@ public class DTest {
         List<Double> price = (List<Double>) (map.get("price"));
         List<Double> meanPrice = (List<Double>) (map.get("meanPrice"));
         List<Double> volume = (List<Double>) (map.get("volume"));
+
+        long t1 = System.currentTimeMillis();
 
         System.out.println(time.size() + " " + price.size() + " " + meanPrice.size() + " " + volume.size());
 
@@ -83,9 +50,10 @@ public class DTest {
             System.out.println(volume.get(i) + " ");
         }
 
-//        DataUpdateService dataUpdateService = ctx.getBean(DataUpdateServiceImpl.class);
-//        dataUpdateService.updateAllData();
+        long t2 = System.currentTimeMillis();
 
+        System.out.println(t2 - t1);
 
     }
+
 }

@@ -3,10 +3,7 @@ package trillionaire.dao.impl;
 import trillionaire.model.RealTimeStock;
 import trillionaire.util.CMDGetter;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -21,8 +18,10 @@ public class RealTimeUpdater {
         //String dirPath = "C:\\Users\\USER\\project3\\Trillionaire\\Trillionaire\\src\\main\\java\\";
         BufferedReader br = null;
         try {
-            String path = RealTimeUpdater.class.getClassLoader().getResource("/python/updater.py").getPath();
-            String outPath = RealTimeUpdater.class.getClassLoader().getResource("/TempFiles/RealTime/realtime.csv").getPath();
+            String path = this.getClass().getResource("/python/updater.py").getPath().substring(CMDGetter.getOSPathStarter());
+            //System.out.println(path);
+            String outPath = this.getClass().getResource("/").getPath().substring(CMDGetter.getOSPathStarter()) + "TempFiles/RealTime/realtime.csv";
+            //System.out.println(outPath);
             String[] cmd = CMDGetter.getCommand("python " + path + " " + outPath);
             Process p = Runtime.getRuntime().exec(cmd);
             p.waitFor();
@@ -31,8 +30,8 @@ public class RealTimeUpdater {
             System.out.println("get realtime success");
 
             // br = new BufferedReader(new InputStreamReader(new FileInputStream("src\\main\\resources\\TempFiles\\RealTime\\realtime.csv"),"UTF-8"));
-            String filePath = RealTimeUpdater.class.getClassLoader().getResource("/TempFiles/RealTime/realtime.csv").getPath();
-            br = new BufferedReader(new InputStreamReader(new FileInputStream(filePath), "UTF-8"));
+            //String filePath = this.getClass().getResource("/TempFiles/RealTime/realtime.csv").getPath();
+            br = new BufferedReader(new InputStreamReader(new FileInputStream(outPath), "UTF-8"));
             Map<Integer, RealTimeStock> result = new LinkedHashMap<Integer, RealTimeStock>();
 
             br.readLine();

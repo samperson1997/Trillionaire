@@ -53,20 +53,29 @@ public class DataUpdateServiceImpl implements DataUpdateService {
 
     public void updateAbility(int year, int quarter) {
         try {
+            String pythonPath = this.getClass().getResource("/python/abilityUpdater.py").getPath().substring(CMDGetter.getOSPathStarter());
+            String classPath = this.getClass().getResource("/").getPath().substring(CMDGetter.getOSPathStarter()) +"TempFiles/Ability/";
 
-            String[] cmd = CMDGetter.getCommand("python src\\main\\resources\\python\\abilityUpdater.py" + " " + year + " " + quarter);
+            System.out.println(pythonPath);
+            System.out.println(classPath);
+
+
+            String[] cmd = CMDGetter.getCommand("python " + pythonPath + " " + year + " " + quarter + " " + classPath);
             Process p = Runtime.getRuntime().exec(cmd);
             p.waitFor();
             int value = p.exitValue();
             System.out.println(value);
+            if(value != 0) {
+                return;
+            }
             System.out.println("get ability success");
 
             if(value == 0){
 
-                BufferedReader developingReader = new BufferedReader(new InputStreamReader(new FileInputStream("src\\main\\resources\\TempFiles\\Ability\\developing_ability_"+year+quarter+".csv"),"UTF-8"));
-                BufferedReader debtPayingReader = new BufferedReader(new InputStreamReader(new FileInputStream("src\\main\\resources\\TempFiles\\Ability\\debt_paying_ability_"+year+quarter+".csv"),"UTF-8"));
-                BufferedReader operationReader = new BufferedReader(new InputStreamReader(new FileInputStream("src\\main\\resources\\TempFiles\\Ability\\operation_ability_"+year+quarter+".csv"),"UTF-8"));
-                BufferedReader profitabilityReader = new BufferedReader(new InputStreamReader(new FileInputStream("src\\main\\resources\\TempFiles\\Ability\\profitability_"+year+quarter+".csv"),"UTF-8"));
+                BufferedReader developingReader = new BufferedReader(new InputStreamReader(new FileInputStream(classPath+"developing_ability_"+year+quarter+".csv"),"UTF-8"));
+                BufferedReader debtPayingReader = new BufferedReader(new InputStreamReader(new FileInputStream(classPath+"debt_paying_ability_"+year+quarter+".csv"),"UTF-8"));
+                BufferedReader operationReader = new BufferedReader(new InputStreamReader(new FileInputStream(classPath+"operation_ability_"+year+quarter+".csv"),"UTF-8"));
+                BufferedReader profitabilityReader = new BufferedReader(new InputStreamReader(new FileInputStream(classPath+"profitability_"+year+quarter+".csv"),"UTF-8"));
 
                 String line = null;
                 developingReader.readLine();
@@ -127,7 +136,10 @@ public class DataUpdateServiceImpl implements DataUpdateService {
         URL url = getDownloadURL(stock.getMarket(), code, lastDate);
         if(url==null) return;
 
-        File file = new File("src/main/resources/TempFiles/TempDayRecord/"+code+".csv");
+
+        String fileDir = this.getClass().getResource("/").getPath().substring(CMDGetter.getOSPathStarter());
+
+        File file = new File(fileDir + "TempFiles/TempDayRecord/" +  code+".csv");
         if(!file.exists()){
             try {
                 file.createNewFile();
