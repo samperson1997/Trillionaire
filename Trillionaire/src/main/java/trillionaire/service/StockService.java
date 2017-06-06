@@ -85,12 +85,12 @@ public interface StockService {
     public PriceTarget getPriceTarget(String code);
 
     /**
-     * 获得股票热度
+     * 获得股票信息
      *
      * @param code 股票代码
-     * @return 股票热度
+     * @return 股票信息
      */
-    public double getVR(String code);
+    public StockSquare getSquare(String code);
 
     /**
      * 获得KDJ

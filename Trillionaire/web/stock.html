@@ -122,47 +122,47 @@
 
             <!--        figure area-->
             <div class="info-board" ng-controller="UserController">
-                <div class="stock-name" style="display: inline;">深发展A</div>
-                <div class="stock-code" style="display: inline;">&nbsp;|&nbsp;000001</div>
+                <div id="name" class="stock-name" style="display: inline;">...</div>
+                <div id="code" class="stock-code" style="display: inline;">&nbsp;|&nbsp;...</div>
                 <div style="display: inline-block;" class="button-page" ng-click="follow()"><i class="fa fa-plus"></i> 关注&nbsp;</div>
                 <div align="center" class="margin">
-                    <h2><i class="fa fa-line-chart"></i> +9.20%</h2>
+                    <h2 id="change">...</h2>
                 </div>
                 <div align="center" id="main-figure">
 
                     <div data-scroll-reveal="enter from bottom over 0.5s" class="spec-figure">
+                        <h2>今开</h2>
+                        <p id="open">...</p>
+                    </div>
+
+                    <div data-scroll-reveal="enter from bottom over 0.5s" class="spec-figure">
                         <h2>最高价</h2>
-                        <p>12.50</p>
+                        <p id="high">...</p>
                     </div>
 
                     <div data-scroll-reveal="enter from bottom over 0.5s" class="spec-figure">
                         <h2>最低价</h2>
-                        <p>10.03</p>
-                    </div>
-
-                    <div data-scroll-reveal="enter from bottom over 0.5s" class="spec-figure">
-                        <h2>开盘价</h2>
-                        <p>12.00</p>
+                        <p id="low">...</p>
                     </div>
                     <div data-scroll-reveal="enter from bottom over 0.5s" class="spec-figure">
-                        <h2>收盘价</h2>
-                        <p>13.91</p>
+                        <h2>昨收</h2>
+                        <p id="settlement">...</p>
                     </div>
                     <div data-scroll-reveal="enter from bottom over 0.5s" class="spec-figure">
                         <h2>成交量</h2>
-                        <p>2121221</p>
+                        <p id="volume">...</p>
                     </div>
                     <div data-scroll-reveal="enter from bottom over 0.5s" class="spec-figure">
                         <h2>成交额</h2>
-                        <p>22929121</p>
+                        <p id="amount">...</p>
                     </div>
                     <div data-scroll-reveal="enter from bottom over 0.5s" class="spec-figure">
                         <h2>换手率</h2>
-                        <p>22.9%</p>
+                        <p id="turnoverrate">...</p>
                     </div>
                     <div data-scroll-reveal="enter from bottom over 0.5s" class="spec-figure">
-                        <h2>振幅</h2>
-                        <p>2.2%</p>
+                        <h2>市盈率</h2>
+                        <p id="per">...</p>
                     </div>
                 </div>
 
@@ -347,6 +347,7 @@
     $(document).ready(loadMACD);
     $(document).ready(loadTargetPrice);
     $(document).ready(loadPrevail);
+    $(document).ready(updateInfo);
 
 </script>
 

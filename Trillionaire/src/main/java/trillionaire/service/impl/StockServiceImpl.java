@@ -4,10 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import trillionaire.dao.DayRecordDao;
 import trillionaire.dao.RealTimeStockDao;
-import trillionaire.model.DayRecord;
-import trillionaire.model.MonthRecord;
-import trillionaire.model.RealTimeStock;
-import trillionaire.model.WeekRecord;
+import trillionaire.dao.StockDao;
+import trillionaire.model.*;
 import trillionaire.service.StockService;
 import trillionaire.service.impl.apriori.SimilarStockSelector;
 import trillionaire.service.impl.boxjenkins.TimeSeriesPredict;
@@ -29,6 +27,8 @@ public class StockServiceImpl implements StockService {
     private DayRecordDao dayRecordDao;
     @Autowired
     private RealTimeStockDao realTimeStockDao;
+    @Autowired
+    private StockDao stockDao;
 
     private TimeSeriesPredict timeSeriesPredict = new TimeSeriesPredict();
     private SimilarStockSelector similarStockSelector = new SimilarStockSelector();
@@ -157,13 +157,14 @@ public class StockServiceImpl implements StockService {
     }
 
     @Override
-    public double getVR(String code) {
+    public StockSquare getSquare(String code) {
         double result;
         double AVS = 0.00;
         double BVS = 0.00;
         double CVS = 0.00;
-        int stock = Integer.parseInt(code);
-        List<DayRecord> list = dayRecordDao.getDayRecordsByCode(stock);
+        int stockNum = Integer.parseInt(code);
+        List<DayRecord> list = dayRecordDao.getDayRecordsByCode(stockNum);
+        Stock stock = list.get(0).getStock();
         for (int i = list.size() - 1; i > list.size() - 26; i--) {
             if (Math.abs(list.get(i).getAdjClose() - list.get(i).getOpen()) <= 0.05) {
                 CVS += list.get(i).getVolume();
@@ -174,7 +175,9 @@ public class StockServiceImpl implements StockService {
             }
         }
         result = (2 * AVS + CVS) / (2 * BVS + CVS);
-        return Double.parseDouble(DecimalUtil.RemainTwoDecimal(result));
+        StockSquare stockSquare = new StockSquare(Double.parseDouble(DecimalUtil.RemainTwoDecimal(result)), stock.getConcepts(), stock.getArea().getName(), stock.getIndustry().getName());
+
+        return stockSquare;
     }
 
     @Override
@@ -276,9 +279,9 @@ public class StockServiceImpl implements StockService {
         map.put("macd", MACDList);
         return map;
     }
-    
+
     @Override
-    public Map<String, Object> getMargin(String code1, String code2, String code3){
+    public Map<String, Object> getMargin(String code1, String code2, String code3) {
         Map<String, Object> map = new HashMap<>();
 
         List<DayRecord> list0 = dayRecordDao.getDayRecordsByCode(1);
@@ -294,9 +297,9 @@ public class StockServiceImpl implements StockService {
         return map;
     }
 
-    private List<String> getSingleMargin(String code){
+    private List<String> getSingleMargin(String code) {
         List<String> result = new ArrayList<>();
-        if(code.equals("000000")){
+        if (code.equals("000000")) {
 
         } else {
             int stock = Integer.parseInt(code);

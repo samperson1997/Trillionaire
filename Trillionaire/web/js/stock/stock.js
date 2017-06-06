@@ -74,3 +74,43 @@ function loadPrevail() {
         }
     })
 }
+
+function updateInfo() {
+    var code = getParam('code');
+
+    var load = $.ajax({
+        type: "GET",
+        url: "/stock/updateRealtime",
+        contentType: "application/x-www-form-urlencoded",
+        data: {
+            "code": code
+        },
+        dataType: "json",
+        success: function (data0) {
+            $("#name").text(String(data0.name));
+            $("#code").text(' | '+String(data0.code));
+            if (data0.changepercent>0){
+                $("#change").css('background-color','red');
+                $("#change").html('<i class=\"fa fa-line-chart\"></i>'+" +"+String(data0.changepercent)+"%");
+            }else {
+                $("#change").css('background-color','green');
+                $("#change").html('<i class=\"fa fa-line-chart\"></i>'+" -"+String(data0.changepercent)+"%");
+            }
+            $("#high").html('<p>' + String(data0.high) + '</p>');
+            $("#low").html('<p>' + String(data0.low) + '</p>');
+            $("#open").html('<p>' + String(data0.open) + '</p>');
+            $("#settlement").html('<p>' + String(data0.settlement) + '</p>');
+            $("#volume").html('<p>' + String(data0.volume) + '</p>');
+            $("#turnoverrate").html('<p>' + String(data0.turnoverratio) + '</p>');
+            $("#per").html('<p>' + String(data0.per) + '</p>');
+            $("#amount").html('<p>' + String(data0.amount) + '</p>');
+        },
+        error: function (request, status, err) {
+            if (status == "timeout") {
+                load.abort();
+                updateInfo()
+            }
+        }
+    })
+}
+

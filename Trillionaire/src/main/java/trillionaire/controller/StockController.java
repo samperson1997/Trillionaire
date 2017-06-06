@@ -66,8 +66,8 @@ public class StockController {
 
     @RequestMapping(value = "/prevail", method = RequestMethod.GET)
     @ResponseBody
-    public double getPrevailTrend(String code) {
-        return stockService.getVR(code);
+    public StockSquare getPrevailTrend(String code) {
+        return stockService.getSquare(code);
     }
 
     @RequestMapping(value = "/trends", method = RequestMethod.GET)
