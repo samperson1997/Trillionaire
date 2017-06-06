@@ -43,6 +43,7 @@ function loadMACD() {
                         show: true
                     }
                 },
+
                 dataZoom: [
                     {
                         type: 'inside',
@@ -57,6 +58,17 @@ function loadMACD() {
                         end: 100
         }
     ],
+                visualMap: {
+                    seriesIndex: 0,
+                    show: false,
+                    pieces: [{
+                        gt: 0,
+                        color: 'red'
+                    }, {
+                        lte: 0,
+                        color: 'green'
+                    }]
+                },
                 series: [
                     {
                         name: 'MACD',
@@ -70,7 +82,8 @@ function loadMACD() {
                         smooth: true,
                         lineStyle: {
                             normal: {
-                                opacity: 0.5
+                                opacity: 0.5,
+                                color: 'dodgerblue'
                             }
                         }
                     },
@@ -81,7 +94,8 @@ function loadMACD() {
                         smooth: true,
                         lineStyle: {
                             normal: {
-                                opacity: 0.5
+                                opacity: 0.5,
+                                color: 'yellow'
                             }
                         }
                     }

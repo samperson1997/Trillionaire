@@ -224,16 +224,6 @@ function loadCandle() {
             };
             var kChart = echarts.init(document.getElementById('k-chart'));
             kChart.setOption(option, true);
-            kChart.dispatchAction({
-                type: 'brush',
-                areas: [
-                    {
-                        brushType: 'lineX',
-                        coordRange: ['2016-06-02', '2016-06-20'],
-                        xAxisIndex: 0
-                    }
-                ]
-            });
         },
         error: function (request, status, err) {
             if (status == "timeout") {

@@ -72,10 +72,11 @@
             <div style="float: left; width: 65%;" align="center">
                 <div style="padding-top: 2%;">
                     <div class="button-group">
-                        <ul id="select-menu" onclick="set()" onclick="loadCandle()">
-                            <button type="button" id="daily" class="button button-primary active">日K</button>
-                            <button type="button" id="weekly" class="button button-primary">周K</button>
-                            <button type="button" id="monthly" class="button button-primary">月K</button>
+                        <ul id="select-menu">
+                            <button type="button" id="minute" onclick="set();loadRealTimeChart()" class="button button-primary">分时</button>
+                            <button type="button" id="daily" onclick="set();loadCandle()" class="button button-primary active">日K</button>
+                            <button type="button" id="weekly" onclick="set();loadCandle()" class="button button-primary">周K</button>
+                            <button type="button" id="monthly" onclick="set();loadCandle()" class="button button-primary">月K</button>
                         </ul>
                     </div>
                     <div id="candle-spin">
@@ -326,6 +327,7 @@
 <script src="js/charts/recommend-trend.js"></script>
 <script src="js/charts/bias-line.js"></script>
 <script src="js/charts/macd-chart.js"></script>
+<script src="js/charts/realtime-chart.js"></script>
 <script src="js/user/log_state.js"></script>
 <script src="js/market/chooseBoard.js"></script>
 <script src="js/stock/stock.js"></script>
