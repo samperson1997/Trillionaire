@@ -69,6 +69,7 @@ function loadMACD() {
                         color: 'green'
                     }]
                 },
+                color: ['dodgerblue', 'yellow'],
                 series: [
                     {
                         name: 'MACD',
@@ -82,8 +83,7 @@ function loadMACD() {
                         smooth: true,
                         lineStyle: {
                             normal: {
-                                opacity: 0.5,
-                                color: 'dodgerblue'
+                                opacity: 0.5
                             }
                         }
                     },
@@ -94,8 +94,7 @@ function loadMACD() {
                         smooth: true,
                         lineStyle: {
                             normal: {
-                                opacity: 0.5,
-                                color: 'yellow'
+                                opacity: 0.5
                             }
                         }
                     }

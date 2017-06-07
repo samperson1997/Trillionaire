@@ -88,13 +88,16 @@ function updateInfo() {
         dataType: "json",
         success: function (data0) {
             $("#name").text(String(data0.name));
-            $("#code").text(' | '+String(data0.code));
-            if (data0.changepercent>0){
-                $("#change").css('background-color','red');
-                $("#change").html('<i class=\"fa fa-line-chart\"></i>'+" +"+String(data0.changepercent)+"%");
-            }else {
-                $("#change").css('background-color','green');
-                $("#change").html('<i class=\"fa fa-line-chart\"></i>'+" -"+String(data0.changepercent)+"%");
+            $("#code").text(' | ' + String(data0.code));
+            if (data0.changepercent > 0) {
+                $(".margin").css('backgroundColor', 'red');
+                $("#change").html('<i class=\"fa fa-arrow-up\"></i>' + " +" + String(data0.changepercent) + "%");
+            } else if (data0.changepercent == 0) {
+                $(".margin").css('backgroundColor', '#777');
+                $("#change").html("0");
+            } else if (data0.changepercent < 0) {
+                $(".margin").css('backgroundColor', 'green');
+                $("#change").html('<i class=\"fa fa-arrow-down\"></i>' + " " + String(data0.changepercent) + "%");
             }
             $("#high").html('<p>' + String(data0.high) + '</p>');
             $("#low").html('<p>' + String(data0.low) + '</p>');
@@ -113,4 +116,3 @@ function updateInfo() {
         }
     })
 }
-
