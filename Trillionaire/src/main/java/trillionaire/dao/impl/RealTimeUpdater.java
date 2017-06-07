@@ -4,8 +4,7 @@ import trillionaire.model.RealTimeStock;
 import trillionaire.util.CMDGetter;
 
 import java.io.*;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by USER on 2017/5/17.
@@ -13,76 +12,129 @@ import java.util.Map;
 public class RealTimeUpdater {
 
 
-    public Map<Integer, RealTimeStock> getNewInfo() {
+    public boolean updateNewInfo(Map<Integer, RealTimeStock> stockMap) {
 
-        //String dirPath = "C:\\Users\\USER\\project3\\Trillionaire\\Trillionaire\\src\\main\\java\\";
         BufferedReader br = null;
+        ClearThread ct = null;
         try {
             String path = this.getClass().getResource("/python/updater.py").getPath().substring(CMDGetter.getOSPathStarter());
             //System.out.println(path);
-            String outPath = this.getClass().getResource("/").getPath().substring(CMDGetter.getOSPathStarter()) + "TempFiles/RealTime/realtime.csv";
+            //String outPath = this.getClass().getResource("/").getPath().substring(CMDGetter.getOSPathStarter()) + "TempFiles/RealTime/realtime.csv";
             //System.out.println(outPath);
-            String[] cmd = CMDGetter.getCommand("python " + path + " " + outPath);
+            String[] cmd = CMDGetter.getCommand("python " + path );
             Process p = Runtime.getRuntime().exec(cmd);
+            ct = new ClearThread(p);
+            ct.start();
             p.waitFor();
+            Thread.sleep(100);
+            ct.setEnd(true);
             int processValue = p.exitValue();
-            System.out.println(processValue);
-            System.out.println("get realtime success");
-
-            // br = new BufferedReader(new InputStreamReader(new FileInputStream("src\\main\\resources\\TempFiles\\RealTime\\realtime.csv"),"UTF-8"));
-            //String filePath = this.getClass().getResource("/TempFiles/RealTime/realtime.csv").getPath();
-            br = new BufferedReader(new InputStreamReader(new FileInputStream(outPath), "UTF-8"));
-            Map<Integer, RealTimeStock> result = new LinkedHashMap<Integer, RealTimeStock>();
-
-            br.readLine();
-
-            String line = null;
-
-            while ((line = br.readLine()) != null) {
-                String[] strs = line.split(",");
-                RealTimeStock realTimeStock = getRealTimeStockByLine(strs);
-                int code = Integer.valueOf(strs[1]);
-
-                result.put(code, realTimeStock);
+            if(processValue != 0){
+                return false;
             }
 
-            br.close();
-            return result;
+            List<String> res = ct.getRes();
+            int index = 0;
+            while(index < res.size() && !res.get(index).equals("data start!")){
+                index++;
+            }
+            index++;
+
+            while (index < res.size() ) {
+                if(res.get(index).equals("data end")){
+                    break;
+                }
+
+                RealTimeStock realTimeStock = getRealTimeStockByLine(res.get(index));
+
+                if(realTimeStock==null){
+                    index++;
+                    continue;
+                }
+                else {
+                    int code = Integer.valueOf(realTimeStock.getCode());
+                    stockMap.put(code, realTimeStock);
+                    index++;
+                }
+
+            }
+
+            System.out.println("update realtime success");
+            return true;
 
         } catch (IOException e) {
             e.printStackTrace();
-            return null;
+            return false;
         } catch (InterruptedException e) {
             e.printStackTrace();
-            return null;
+            return false;
         }
 
     }
 
-    private RealTimeStock getRealTimeStockByLine(String[] strs) {
+    private RealTimeStock getRealTimeStockByLine(String line) {
+        String[] strs = line.split(" ");
 
+        for(int i=2; i<15; i++){
+            if(strs[i].equals("0") || strs[i].equals("0.0"))
+                return null;
+        }
 
-        String code = strs[1];
-
-        String name = strs[2];
-        double changepercent = Double.valueOf(strs[3]);
-        double trade = Double.valueOf(strs[4]);
-        double open = Double.valueOf(strs[5]);
-        double high = Double.valueOf(strs[6]);
-        double low = Double.valueOf(strs[7]);
-        double settlement = Double.valueOf(strs[8]);
-        long volume = Long.valueOf(strs[9]);
-        double turnoverratio = Double.valueOf(strs[10]);
-        long amount = Long.valueOf(strs[11]);
-        double per = Double.valueOf(strs[12]);
-        double pb = Double.valueOf(strs[13]);
-        double mktcap = Double.valueOf(strs[14]);
-        double nmc = Double.valueOf(strs[15]);
+        String code = strs[0];
+        String name = strs[1];
+        double changepercent = Double.valueOf(strs[2]);
+        double trade = Double.valueOf(strs[3]);
+        double open = Double.valueOf(strs[4]);
+        double high = Double.valueOf(strs[5]);
+        double low = Double.valueOf(strs[6]);
+        double settlement = Double.valueOf(strs[7]);
+        long volume = Long.valueOf(strs[8]);
+        double turnoverratio = Double.valueOf(strs[9]);
+        long amount = Long.valueOf(strs[10]);
+        double per = Double.valueOf(strs[11]);
+        double pb = Double.valueOf(strs[12]);
+        double mktcap = Double.valueOf(strs[13]);
+        double nmc = Double.valueOf(strs[14]);
 
         RealTimeStock realTimeStock = new RealTimeStock(code, name, changepercent, trade, open, high, low, settlement, volume, turnoverratio,
                 amount, per, pb, mktcap, nmc);
 
         return realTimeStock;
+    }
+
+    class ClearThread extends Thread {
+        Process process;
+        boolean end;
+        List<String> res;
+
+        public ClearThread(Process process) {
+            this.process = process;
+            end = false;
+            res = new ArrayList<>();
+        }
+
+        @Override
+        public void run() {
+            if (process == null) {
+                return;
+            }
+
+            Scanner scanner = new Scanner(process.getInputStream());
+            while (process != null && !end) {
+                while (scanner.hasNextLine()) {
+                    String line = scanner.nextLine();
+                    res.add(line);
+                }
+            }
+        }
+
+        public void setEnd(boolean end) {
+            this.end = end;
+        }
+
+        public List<String> getRes() {
+            return res;
+        }
     }
 
 }

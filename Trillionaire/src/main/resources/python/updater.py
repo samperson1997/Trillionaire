@@ -6,9 +6,12 @@ import sys
 reload(sys)
 sys.setdefaultencoding('utf8')
 
-path = sys.argv[1]
-
 df = ts.get_today_all()
-df.to_csv(path)
+df = df[['code','name','changepercent','trade','open','high','low','settlement','volume','turnoverratio','amount','per','pb','mktcap','nmc']]
 
-print 'run success!!!'
+
+
+print ('data start!')
+for i, row in df.iterrows():
+    print row['code'],row['name'],row['changepercent'],row['trade'],row['open'],row['high'],row['low'],row['settlement'],row['volume'],row['turnoverratio'],row['amount'],row['per'],row['pb'],row['mktcap'],row['nmc']
+print ('data end')

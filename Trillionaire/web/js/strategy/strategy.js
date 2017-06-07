@@ -112,7 +112,7 @@ angular.module("mainapp", [])
                 $("#stra-name-input").fadeOut();
                 $("#save-button").fadeOut();
 
-                saveStra_ajax(sid, $("#stra-name-input").val(), $scope.content);
+                saveStra_ajax(sid, $("#stra-name-input").val(),editor.getValue());
             }
         };
 

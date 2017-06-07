@@ -70,6 +70,10 @@ public class BackTestController {
     @ResponseBody
     public Map<String, Object> saveStrategy(int sid, String strategyName, String content){
 
+            System.out.println(sid);
+            System.out.println(strategyName);
+            System.out.println(content);
+
             Map<String, Object> result = new HashMap<>();
             result.put("msg", "success");
             result.put("sid", 55);

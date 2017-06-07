@@ -1,10 +1,17 @@
 package trillionaire.dao.impl;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.query.Query;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import trillionaire.dao.RealTimeStockDao;
 import trillionaire.model.RealTimeStock;
+import trillionaire.model.Stock;
 
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Created by USER on 2017/5/17.
@@ -16,7 +23,18 @@ public class RealTimeStockDaoImpl implements RealTimeStockDao{
     private Timer timer;
     private UpdateThread updateThread;
 
+    @Autowired
+    SessionFactory sessionFactory;
+
     public RealTimeStockDaoImpl(){
+
+        stockMap = new ConcurrentHashMap<>();
+//        Session session = sessionFactory.openSession();
+//        Transaction tx = session.beginTransaction();
+//        Query query = session.createNativeQuery("select code from stock where");
+//        List<Integer> codeList = query.list();
+//        tx.commit();
+//        session.close();
 
         updateThread = new UpdateThread(new RealTimeUpdater());
         timer = new Timer(true);
@@ -27,7 +45,9 @@ public class RealTimeStockDaoImpl implements RealTimeStockDao{
 
     public RealTimeStock getRealTimeByCode(int code) {
         if(stockMap!=null){
-            return stockMap.get(code);
+            if(stockMap.get(code)!=null){
+                return stockMap.get(code).clone();
+            }
         }
 
         return null;
@@ -39,7 +59,12 @@ public class RealTimeStockDaoImpl implements RealTimeStockDao{
             return null;
         }
 
-        return new ArrayList<RealTimeStock>(stockMap.values());
+        ArrayList<RealTimeStock> result = new ArrayList<RealTimeStock>();
+        for(Map.Entry<Integer, RealTimeStock> entry: stockMap.entrySet()){
+            result.add(entry.getValue().clone());
+        }
+
+        return result;
 
     }
 
@@ -54,7 +79,7 @@ public class RealTimeStockDaoImpl implements RealTimeStockDao{
 
         @Override
         public void run() {
-            stockMap = updater.getNewInfo();
+            updater.updateNewInfo(stockMap);
         }
     }
 }
