@@ -39,7 +39,7 @@ public class RealTimeTest {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        System.out.println(realTimeStockDao.getRealTimeByCode(603833).getName() + "  " + realTimeStockDao.getRealTimeByCode(603833).getHigh());
+        System.out.println(realTimeStockDao.getRealTimeByCode(603833).getCode() + "  " + realTimeStockDao.getRealTimeByCode(603833).getName() + "  " + realTimeStockDao.getRealTimeByCode(603833).getHigh());
 
     }
 

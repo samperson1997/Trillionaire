@@ -109,7 +109,7 @@ public class RealTimeStock {
 
     public RealTimeStock clone(){
 
-        RealTimeStock cloner = new RealTimeStock(this.code, this.code, this.changepercent, this.trade, this.open, this.high, this.low, this.settlement,
+        RealTimeStock cloner = new RealTimeStock(this.code, this.name, this.changepercent, this.trade, this.open, this.high, this.low, this.settlement,
                                     this.volume, this.turnoverratio, this.amount, this.per, this.pb, this.mktcap, this.nmc);
 
         return cloner;
