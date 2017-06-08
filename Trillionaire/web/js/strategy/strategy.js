@@ -1,5 +1,6 @@
 var retChart = echarts.init(document.getElementById('return-chart'));
 var sid = getParam('sid');
+var headerfade = 0;
 
 angular.module("mainapp", [])
     .controller("BackTestController", function ($scope) {
@@ -112,13 +113,19 @@ angular.module("mainapp", [])
                 $("#stra-name-input").fadeOut();
                 $("#save-button").fadeOut();
 
-                saveStra_ajax(sid, $("#stra-name-input").val(), editor.getValue(), sessionStorage.getItem("userId"));
+                if (namefade == 1) {
+                    saveStra_ajax(sid, $("#stra-name-input").val(), editor.getValue(), sessionStorage.getItem("userId"));
+                } else {
+                    saveStra_ajax(sid, $("#stra-name").text().substr(7), editor.getValue(), sessionStorage.getItem("userId"));
+                }
             }
         };
 
-        function saveStra_ajax(sid, strategyName, content) {
+        function saveStra_ajax(sid, strategyName, content, userId) {
             this.sid = sid;
             this.content = content;
+            this.strategyName = strategyName;
+            this.userId = userId;
 
             $.ajax({
                 type: "GET",
@@ -135,7 +142,10 @@ angular.module("mainapp", [])
                     $("#save-button").fadeOut(function () {
                         $("#save-already").fadeIn().delay(1000).fadeOut(function () {
                             $("#save-button").fadeIn();
-
+                            $("#stra-name").fadeIn(function () {
+                                namefade = 0;
+                            });
+                            $("#stra-name").text("策略名称 | " + strategyName);
                         });
                     });
                     sid = result.sid;
