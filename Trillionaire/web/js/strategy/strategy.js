@@ -112,7 +112,7 @@ angular.module("mainapp", [])
                 $("#stra-name-input").fadeOut();
                 $("#save-button").fadeOut();
 
-                saveStra_ajax(sid, $("#stra-name-input").val(),editor.getValue());
+                saveStra_ajax(sid, $("#stra-name-input").val(), editor.getValue(), sessionStorage.getItem("userId"));
             }
         };
 
@@ -126,7 +126,8 @@ angular.module("mainapp", [])
                 data: {
                     'sid': this.sid,
                     'strategyName': this.strategyName,
-                    'content': this.content
+                    'content': this.content,
+                    'userId': this.userId
                 },
                 contentType: "application/x-www-form-urlencoded",
                 dataType: "json",
@@ -134,6 +135,7 @@ angular.module("mainapp", [])
                     $("#save-button").fadeOut(function () {
                         $("#save-already").fadeIn().delay(1000).fadeOut(function () {
                             $("#save-button").fadeIn();
+
                         });
                     });
                     sid = result.sid;

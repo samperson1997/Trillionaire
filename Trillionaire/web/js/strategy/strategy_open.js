@@ -3,6 +3,8 @@ var editor = ace.edit("code");
 
 function loadStraContent() {
     if (sid > 0) {
+        $("#stra-name").fadeIn();
+
         var load = $.ajax({
             type: "GET",
             url: "/backtest/open_strategy",
@@ -14,10 +16,12 @@ function loadStraContent() {
             success: function (data0) {
                 editor.setValue(data0.strategyContent);
                 editor.gotoLine(editor.session.getLength() + 1);
+                $("#stra-name").text("策略名称 | " + data0.strategyName);
             },
             error: function (request, status, err) {
                 if (status == "timeout") {
                     load.abort();
+                    $("#stra-name").fadeOut();
                 }
             }
         })
