@@ -1,12 +1,16 @@
 package trillionaire.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import trillionaire.model.Strategy;
+import trillionaire.service.BackTestService;
 import trillionaire.vo.BackTestParams;
 import trillionaire.vo.StraIdName;
+import trillionaire.vo.StrategySimple;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -20,6 +24,10 @@ import java.util.Map;
 @Controller
 @RequestMapping("/backtest")
 public class BackTestController {
+
+    @Autowired
+    BackTestService backTestService;
+
 
     /**
      *
@@ -36,16 +44,23 @@ public class BackTestController {
     @ResponseBody
     public Map<String, Object> getUserStrategies(int userId){
 
-        StraIdName straIdName = new StraIdName();
-        straIdName.setSid(1);
-        straIdName.setStrategName("sA");
-        StraIdName straIdName2 = new StraIdName();
-        straIdName2.setSid(2);
-        straIdName2.setStrategName("sB");
+        if(userId < 0){
 
-        List<StraIdName> list = new ArrayList<>();
-        list.add(straIdName);
-        list.add(straIdName2);
+            Map<String, Object> result = new HashMap<>();
+            result.put("msg", "error");
+
+            return result;
+
+        }
+
+        List<StrategySimple> list = backTestService.getMyStrategy(userId);
+
+        if(list==null){
+            Map<String, Object> result = new HashMap<>();
+            result.put("msg", "error");
+
+            return result;
+        }
 
         Map<String, Object> result = new HashMap<>();
         result.put("msg", "success");
@@ -68,17 +83,29 @@ public class BackTestController {
      */
     @RequestMapping(value = "/save_strategy", method = RequestMethod.GET)
     @ResponseBody
-    public Map<String, Object> saveStrategy(int sid, String strategyName, String content){
+    public Map<String, Object> saveStrategy(int sid, String strategyName, String content, int userId){
 
-            System.out.println(sid);
-            System.out.println(strategyName);
-            System.out.println(content);
-
+        System.out.println(content);
+//            int returnSid = -1;
+//
+//            if(sid < 0){
+//                returnSid = backTestService.addStrategy(userId, strategyName, content);
+//            }
+//            else {
+//                returnSid = backTestService.saveStrategy(sid, strategyName, content);
+//            }
+//
             Map<String, Object> result = new HashMap<>();
-            result.put("msg", "success");
-            result.put("sid", 55);
+//
+//            if(returnSid > 0){
+//                result.put("msg", "success");
+//                result.put("sid", returnSid);
+//            }
+//            else {
+//                result.put("msg", "error");
+//            }
 
-        return result;
+            return result;
     }
 
     /**
@@ -96,10 +123,18 @@ public class BackTestController {
     public Map<String, Object> openStrategy(int sid){
 
         Map<String, Object> result = new HashMap<>();
-        result.put("msg", "success");
-        result.put("sid", 55);
-        result.put("strategyName","testStrategy");
-        result.put("strategyContent", "#python content!!!>>>!!!");
+
+        Strategy strategy = backTestService.openStrategy(sid);
+
+        if(strategy==null){
+            result.put("msg", "error");
+        }
+        else {
+            result.put("msg", "success");
+            result.put("sid", strategy.getSid());
+            result.put("strategyName", strategy.getStrategyName());
+            result.put("strategyContent", strategy.getContent());
+        }
 
         return result;
     }
@@ -117,6 +152,9 @@ public class BackTestController {
     public Map<String, Object> deleteStrategy(int sid){
 
         Map<String, Object> result = new HashMap<>();
+
+        backTestService.deletStrategy(sid);
+
         result.put("msg", "success");
 
         return result;

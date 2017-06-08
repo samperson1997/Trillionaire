@@ -7,6 +7,8 @@ import trillionaire.model.User;
  */
 public interface UserDao {
 
+    public User getUser(int userId);
+
     public User getUserByEmail(String email);
 
     //public void addUser(User user);

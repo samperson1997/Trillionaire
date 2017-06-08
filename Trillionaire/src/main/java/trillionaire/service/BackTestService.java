@@ -1,5 +1,6 @@
 package trillionaire.service;
 
+import trillionaire.model.Strategy;
 import trillionaire.util.BackTestResult;
 import trillionaire.vo.BackTestParams;
 import trillionaire.vo.BackTestSummary;
@@ -15,9 +16,11 @@ public interface BackTestService {
 
     public List<StrategySimple> getMyStrategy(int userId);
 
-    public int addStrategy(int userId, String strategyName);
+    public Strategy openStrategy(int sid);
 
-    public int saveStrategy(int sid, String newContents);
+    public int addStrategy(int userId, String strategyName, String content);
+
+    public int saveStrategy(int sid, String strategyName, String content);
 
     public int deletStrategy(int sid);
 

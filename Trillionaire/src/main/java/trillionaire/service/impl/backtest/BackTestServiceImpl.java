@@ -1,6 +1,11 @@
 package trillionaire.service.impl.backtest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import trillionaire.dao.StrategyDao;
+import trillionaire.dao.UserDao;
+import trillionaire.model.Strategy;
+import trillionaire.model.User;
 import trillionaire.service.BackTestService;
 import trillionaire.util.BackTestResult;
 import trillionaire.vo.BackTestParams;
@@ -9,7 +14,9 @@ import trillionaire.vo.DateReturnsVO;
 import trillionaire.vo.StrategySimple;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by USER on 2017/5/31.
@@ -20,20 +27,60 @@ public class BackTestServiceImpl implements BackTestService{
     private String runnerPath = "src\\main\\resources\\python\\backtest_runner.py";
     private String readerPath = "src\\main\\resources\\python\\backtest_reader.py";
 
+    @Autowired
+    StrategyDao strategyDao;
+
+    @Autowired
+    UserDao userDao;
+
 
     public List<StrategySimple> getMyStrategy(int userId) {
-        return null;
+
+        Set<Strategy> strategies = strategyDao.getUserStrategy(userId);
+
+        if(strategies==null) return null;
+
+        List<StrategySimple> result = new ArrayList<>();
+        for(Strategy s: strategies){
+            StrategySimple strategySimple = new StrategySimple();
+            strategySimple.name = s.getStrategyName();
+            strategySimple.sid = s.getSid();
+            result.add(strategySimple);
+        }
+
+        return result;
     }
 
-    public int addStrategy(int userId, String strategyName) {
-        return 0;
+    public Strategy openStrategy(int sid){
+
+
+        return strategyDao.getStrategy(sid);
     }
 
-    public int saveStrategy(int sid, String newContents) {
-        return 0;
+    public int addStrategy(int userId, String strategyName, String content) {
+
+        User user = userDao.getUser(userId);
+        Strategy strategy = new Strategy();
+        strategy.setStrategyName(strategyName);
+        strategy.setContent(content);
+        strategy.setOwner(user);
+
+        return strategyDao.saveStrategy(strategy);
+    }
+
+    public int saveStrategy(int sid, String strategyName, String content) {
+
+        Strategy strategy = strategyDao.getStrategy(sid);
+        strategy.setStrategyName(strategyName);
+        strategy.setContent(content);
+
+        return strategyDao.saveStrategy(strategy);
     }
 
     public int deletStrategy(int sid) {
+
+        strategyDao.deletStrategy(sid);
+
         return 0;
     }
 

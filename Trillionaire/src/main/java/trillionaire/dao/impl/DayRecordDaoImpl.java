@@ -67,7 +67,7 @@ public class DayRecordDaoImpl implements DayRecordDao{
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
 
-		dayRecord.setDate(Date.valueOf(dayRecord.getDate().toLocalDate().plusDays(1)));
+		dayRecord.setDate(Date.valueOf(dayRecord.getDate().toLocalDate()));
 		session.saveOrUpdate(dayRecord);
 
 		tx.commit();
@@ -94,7 +94,7 @@ public class DayRecordDaoImpl implements DayRecordDao{
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
 
-		weekRecord.setDate(Date.valueOf(weekRecord.getDate().toLocalDate().plusDays(1)));
+		weekRecord.setDate(Date.valueOf(weekRecord.getDate().toLocalDate()));
 		session.saveOrUpdate(weekRecord);
 
 		tx.commit();
@@ -120,7 +120,7 @@ public class DayRecordDaoImpl implements DayRecordDao{
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
 
-		monthRecord.setDate(Date.valueOf(monthRecord.getDate().toLocalDate().plusDays(1)));
+		monthRecord.setDate(Date.valueOf(monthRecord.getDate().toLocalDate()));
 		session.saveOrUpdate(monthRecord);
 
 		tx.commit();
