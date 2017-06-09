@@ -8,15 +8,14 @@ import trillionaire.model.Strategy;
 import trillionaire.model.User;
 import trillionaire.service.BackTestService;
 import trillionaire.util.BackTestResult;
-import trillionaire.vo.BackTestParams;
-import trillionaire.vo.BackTestSummary;
-import trillionaire.vo.DateReturnsVO;
-import trillionaire.vo.StrategySimple;
+import trillionaire.util.CMDGetter;
+import trillionaire.vo.*;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by USER on 2017/5/31.
@@ -24,8 +23,10 @@ import java.util.Set;
 @Service
 public class BackTestServiceImpl implements BackTestService{
 
-    private String runnerPath = "src\\main\\resources\\python\\backtest_runner.py";
-    private String readerPath = "src\\main\\resources\\python\\backtest_reader.py";
+    private String runnerPath;
+    private String readerPath;
+    private String inputDir;
+    private String outputDir;
 
     @Autowired
     StrategyDao strategyDao;
@@ -33,19 +34,28 @@ public class BackTestServiceImpl implements BackTestService{
     @Autowired
     UserDao userDao;
 
+    public BackTestServiceImpl(){
 
-    public List<StrategySimple> getMyStrategy(int userId) {
+        runnerPath = this.getClass().getResource("/python/backtest_runner.py").getPath().substring(CMDGetter.getOSPathStarter());
+        readerPath = this.getClass().getResource("/python/backtest_reader.py").getPath().substring(CMDGetter.getOSPathStarter());
+        inputDir = this.getClass().getResource("/").getPath().substring(CMDGetter.getOSPathStarter()) + "TempFiles/TempStrategy/BackTestStrategy/";
+        outputDir = this.getClass().getResource("/").getPath().substring(CMDGetter.getOSPathStarter()) + "TempFiles/TempStrategy/BacktestResult/";
+
+    }
+
+
+    public List<StraIdName> getMyStrategy(int userId) {
 
         Set<Strategy> strategies = strategyDao.getUserStrategy(userId);
 
         if(strategies==null) return null;
 
-        List<StrategySimple> result = new ArrayList<>();
+        List<StraIdName> result = new ArrayList<>();
         for(Strategy s: strategies){
-            StrategySimple strategySimple = new StrategySimple();
-            strategySimple.name = s.getStrategyName();
-            strategySimple.sid = s.getSid();
-            result.add(strategySimple);
+            StraIdName straIdName = new StraIdName();
+            straIdName.setStrategName(s.getStrategyName());
+            straIdName.setSid(s.getSid());
+            result.add(straIdName);
         }
 
         return result;
@@ -84,18 +94,91 @@ public class BackTestServiceImpl implements BackTestService{
         return 0;
     }
 
-    public BackTestResult startBackTest(BackTestParams params) {
-        String paramString = "";
-        paramString = params.sid + " " + params.cash + " " + params.sDate + " " + params.eDate + " " + params.frequency + " " + params.matchingType + " " +
-                        params.benchmark + " " + params.commissionMultiplier + " " + params.slippage;
-        String[] cmd = new String[] { "cmd.exe", "/C", "activate python36 && python " + runnerPath + " " + paramString };
+    public Map<String, Object> startBackTest(BackTestParams params) {
+
+        if(params.sid < 0){
+            Map<String, Object> result = new HashMap<>();
+            result.put("msg", "error1");
+            return  result;
+        }
+
+        Strategy strategy = strategyDao.getStrategy(params.sid);
+        if(strategy == null){
+            Map<String, Object> result = new HashMap<>();
+            result.put("msg", "error2");
+            return  result;
+        }
+
+        File strategyFile = new File(inputDir + params.sid + ".py");
+        File outPklFIle = new File(outputDir + params.sid + ".pkl");
         try {
-            Process p = Runtime.getRuntime().exec(cmd);
-            p.waitFor();
-            int value = p.exitValue();
-            if(value == 0){
-                System.out.println("run success.");
-                return BackTestResult.SUCCESS;
+            creatFile(strategyFile);
+            creatFile(outPklFIle);
+        } catch (IOException e) {
+            e.printStackTrace();
+            Map<String, Object> result = new HashMap<>();
+            result.put("msg", "error3");
+            return  result;
+        }
+
+        try {
+            BufferedWriter bw = new BufferedWriter(new FileWriter(strategyFile));
+            bw.write(strategy.getContent());
+            bw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+            Map<String, Object> result = new HashMap<>();
+            result.put("msg", "error4");
+            return  result;
+        }
+
+
+
+        try {
+            String paramString = "";
+            paramString = params.sid + " " + params.cash + " " + params.sDate + " " + params.eDate + " " + params.frequency + " " + params.matchingType + " " +
+                    params.benchmark + " " + params.commissionMultiplier + " " + params.slippage + " " + strategyFile.getPath() + " " + outPklFIle.getPath();
+            String[] cmd = CMDGetter.getCommand("activate python36 && python " + runnerPath + " " + paramString);
+            Process runnerProcess = Runtime.getRuntime().exec(cmd);
+            ClearThread ct = new ClearThread(runnerProcess);
+            ct.start();
+            runnerProcess.waitFor();
+            int runValue = runnerProcess.exitValue();
+            Thread.sleep(200);
+            ct.setEnd(true);
+
+            if(runValue == 0){
+
+                String[] cmd2 = CMDGetter.getCommand("activate python36 && python " + readerPath + " " + outPklFIle);
+                Process readerProcess = Runtime.getRuntime().exec(cmd2);
+                ClearThread ct2 = new ClearThread(readerProcess);
+                ct2.start();
+                readerProcess.waitFor();
+                int readValue = readerProcess.exitValue();
+                Thread.sleep(200);
+                ct2.setEnd(true);
+
+                if(readValue == 0){
+
+                    return getResult(ct2.getRes());
+
+                }
+                else {
+                    Map<String, Object> result = new HashMap<>();
+                    result.put("msg", "error5");
+                    return  result;
+                }
+
+            }
+            else {
+                Map<String, Object> result = new HashMap<>();
+                result.put("msg", "error6");
+                String errorLog = "";
+                for(String str: ct.getRes()){
+                    errorLog += str + "\n";
+                }
+                result.put("errorLog", errorLog);
+                return  result;
             }
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -104,7 +187,7 @@ public class BackTestServiceImpl implements BackTestService{
         }
 
 
-        return BackTestResult.ERROR;
+        return null;
     }
 
     public List<DateReturnsVO> getDateReturnsVOList(int sid) {
@@ -114,4 +197,106 @@ public class BackTestServiceImpl implements BackTestService{
     public BackTestSummary getBackTestSummary(int sid) {
         return null;
     }
+
+
+    private void creatFile(File file) throws IOException {
+        if(!file.exists()){
+            file.createNewFile();
+        }
+    }
+
+    private Map<String, Object> getResult(List<String> res){
+
+        Map<String, Object> result = new HashMap<>();
+        result.put("msg", "success");
+        BackTestSummary summary = new BackTestSummary();
+        List<String> datelist = new ArrayList<>();
+        List<Double> data1 = new ArrayList<>();
+        List<Double> data2 = new ArrayList<>();
+
+        int index = 0;
+
+        while(!res.get(index).equals("--------------------")){
+            index++;
+        }
+        index++;
+
+        summary.setBacktestReturns(Double.valueOf(res.get(index++)));
+        summary.setBacktestAnnualizedReturns(Double.valueOf(res.get(index++)));
+        summary.setBenchReturns(Double.valueOf(res.get(index++)));
+        summary.setBenchAnnualizedReturns(Double.valueOf(res.get(index++)));
+        summary.setAlpha(Double.valueOf(res.get(index++)));
+        summary.setBeta(Double.valueOf(res.get(index++)));
+        summary.setSharpe(Double.valueOf(res.get(index++)));
+        summary.setSortino(Double.valueOf(res.get(index++)));
+        summary.setInfoRatio(Double.valueOf(res.get(index++)));
+        summary.setVolatility(Double.valueOf(res.get(index++)));
+        summary.setMaxDrawdown(Double.valueOf(res.get(index++)));
+        summary.setTrackingError(Double.valueOf(res.get(index++)));
+        summary.setDownsideRisk(Double.valueOf(res.get(index++)));
+
+        index++;
+
+        while(!res.get(index).equals("--------------------")){
+            datelist.add(res.get(index).split(" ")[0]);
+            index++;
+        }
+
+        index++;
+
+        while(!res.get(index).equals("--------------------")){
+            data1.add(Double.valueOf(res.get(index)));
+            index++;
+        }
+
+        index++;
+
+        while(!res.get(index).equals("--------------------")){
+            data2.add(Double.valueOf(res.get(index)));
+            index++;
+        }
+
+        result.put("summary", summary);
+        result.put("datelist", datelist);
+        result.put("data1", data1);
+        result.put("data2", data2);
+
+        return result;
+    }
+
+    class ClearThread extends Thread {
+        Process process;
+        boolean end;
+        List<String> res;
+
+        public ClearThread(Process process) {
+            this.process = process;
+            end = false;
+            res = new ArrayList<>();
+        }
+
+        @Override
+        public void run() {
+            if (process == null) {
+                return;
+            }
+
+            Scanner scanner = new Scanner(process.getInputStream());
+            while (process != null && !end) {
+                while (scanner.hasNextLine()) {
+                    String line = scanner.nextLine();
+                    res.add(line);
+                }
+            }
+        }
+
+        public void setEnd(boolean end) {
+            this.end = end;
+        }
+
+        public List<String> getRes() {
+            return res;
+        }
+    }
+
 }

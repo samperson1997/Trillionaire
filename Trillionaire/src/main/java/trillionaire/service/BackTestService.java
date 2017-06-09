@@ -2,19 +2,17 @@ package trillionaire.service;
 
 import trillionaire.model.Strategy;
 import trillionaire.util.BackTestResult;
-import trillionaire.vo.BackTestParams;
-import trillionaire.vo.BackTestSummary;
-import trillionaire.vo.DateReturnsVO;
-import trillionaire.vo.StrategySimple;
+import trillionaire.vo.*;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by USER on 2017/5/31.
  */
 public interface BackTestService {
 
-    public List<StrategySimple> getMyStrategy(int userId);
+    public List<StraIdName> getMyStrategy(int userId);
 
     public Strategy openStrategy(int sid);
 
@@ -24,7 +22,7 @@ public interface BackTestService {
 
     public int deletStrategy(int sid);
 
-    public BackTestResult startBackTest(BackTestParams params);
+    public Map<String, Object> startBackTest(BackTestParams params);
 
     public List<DateReturnsVO> getDateReturnsVOList(int sid);
 

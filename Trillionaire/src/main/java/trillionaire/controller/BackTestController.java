@@ -53,7 +53,7 @@ public class BackTestController {
 
         }
 
-        List<StrategySimple> list = backTestService.getMyStrategy(userId);
+        List<StraIdName> list = backTestService.getMyStrategy(userId);
 
         if(list==null){
             Map<String, Object> result = new HashMap<>();
@@ -81,10 +81,10 @@ public class BackTestController {
      *              'sid'
      *          }
      */
-    @RequestMapping(value = "/save_strategy", method = RequestMethod.GET)
+    @RequestMapping(value = "/save_strategy", method = RequestMethod.POST)
     @ResponseBody
     public Map<String, Object> saveStrategy(int sid, String strategyName, String content, int userId){
-
+        userId = 1;
         System.out.println(content);
 //            int returnSid = -1;
 //
@@ -96,7 +96,7 @@ public class BackTestController {
 //            }
 //
             Map<String, Object> result = new HashMap<>();
-//
+
 //            if(returnSid > 0){
 //                result.put("msg", "success");
 //                result.put("sid", returnSid);

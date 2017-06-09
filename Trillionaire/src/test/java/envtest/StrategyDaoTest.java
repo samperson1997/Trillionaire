@@ -40,8 +40,33 @@ public class StrategyDaoTest {
         //backTestService.addStrategy(1, "secondStra", "java2\npython\n\np y thon\n");
         //backTestService.addStrategy(1, "3thStra", "java3\npython33\n\np y thon\n");
 
-        backTestService.saveStrategy(5, "time test","yyyyes\n\n\n");
-        Strategy strategy = backTestService.openStrategy(5);
+        backTestService.saveStrategy(3, "full", "import talib\n" +
+                "\n" +
+                "# 初始化函数\n" +
+                "def init(context):\n" +
+                "    context.s1 = \"000001.XSHE\"\n    context.SHORTPERIOD = 12\n" +
+                "    context.LONGPERIOD = 26\n" +
+                "    context.SMOOTHPERIOD = 9\n" +
+                "    context.OBSERVATION = 100\n" +
+                "    context.introduction = \'I am the most lovel\'\n" +
+                "\n" +
+                "def handle_bar(context, bar_dict):\n" +
+                "    prices = history_bars(context.s1, context.OBSERVATION, '1d', 'close')\n" +
+                "\n" +
+                "    macd, signal, hist = talib.MACD(prices, context.SHORTPERIOD,context.LONGPERIOD, context.SMOOTHPERIOD)\n" +
+                "\n" +
+                "    if macd[-1] - signal[-1] > 0 and macd[-2] - signal[-2] < 0:\n" +
+                "        # 满仓入股\n" +
+                "        order_target_percent(context.s1, 1)\n" +
+                "        logger.info(context.introduction)\n" +
+                "\n" +
+                "    if macd[-1] - signal[-1] < 0 and macd[-2] - signal[-2] > 0:\n" +
+                "        # 获取该股票的仓位\n" +
+                "        curPosition = context.portfolio.positions[context.s1].quantity\n" +
+                "        # 清仓\n" +
+                "        if curPosition > 0:\n" +
+                "            order_target_value(context.s1, 0)");
+        Strategy strategy = backTestService.openStrategy(3);
         System.out.println(strategy.getChangingTime());
 //
 //        backTestService.saveStrategy(5,"new", "new");

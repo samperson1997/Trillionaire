@@ -121,7 +121,7 @@ angular.module("mainapp", [])
             this.content = content;
 
             $.ajax({
-                type: "GET",
+                type: "POST",
                 url: "/backtest/save_strategy",
                 data: {
                     'sid': this.sid,
