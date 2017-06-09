@@ -15,6 +15,7 @@ import trillionaire.service.impl.backtest.BackTestServiceImpl;
 import javax.sql.DataSource;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.List;
 
 /**
  * Created by USER on 2017/6/8.
@@ -41,7 +42,17 @@ public class DayRecordTest {
 //        weekRecord.setDate(Date.valueOf(LocalDate.of(2020,1,2)));
 //        dayRecordDao.saveWeekRecord(weekRecord);
 
-        System.out.println(dayRecordDao.getDayRecords(2,100).size());
+        long t1 = System.currentTimeMillis();
+        //System.out.println(dayRecordDao.getDayRecords(2,100).size());
+
+        List<List<DayRecord>> l = dayRecordDao.getAligningDayRecords(1,1,150);
+        System.out.println(l.get(0).get(0).getClass());
+//
+//        List<DayRecord> list = dayRecordDao.getDayRecordBeforeDate(1,LocalDate.of(2017,5,1), 30);
+//        System.out.println(list.get(0).getChange());
+
+        long t2 = System.currentTimeMillis();
+        System.out.println(t2-t1);
 
     }
 

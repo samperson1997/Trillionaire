@@ -76,10 +76,10 @@ public class RealTimeUpdater {
     private RealTimeStock getRealTimeStockByLine(String line) {
         String[] strs = line.split(",");
 
-        for(int i=2; i<15; i++){
-            if(strs[i].equals("0") || strs[i].equals("0.0"))
-                return null;
-        }
+//        for(int i=2; i<15; i++){
+//            if(strs[i].equals("0") || strs[i].equals("0.0"))
+//                return null;
+//        }
 
         String code = strs[0];
         String name = strs[1];
