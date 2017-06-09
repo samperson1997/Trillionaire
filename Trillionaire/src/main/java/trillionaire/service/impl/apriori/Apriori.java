@@ -11,14 +11,14 @@ import java.util.Map;
 public class Apriori {
 
     private boolean endTag = false;
-    private Map<Integer, Integer> dCountMap = new HashMap<Integer, Integer>(); // k-1频繁集的记数表
-    private Map<Integer, Integer> dkCountMap = new HashMap<Integer, Integer>();// k频繁集的记数表
-    private List<List<String>> record = new ArrayList<List<String>>();// 数据记录表
+    private Map<Integer, Integer> dCountMap = new HashMap<>(); // k-1频繁集的记数表
+    private Map<Integer, Integer> dkCountMap = new HashMap<>();// k频繁集的记数表
+    private List<List<String>> record = new ArrayList<>();// 数据记录表
     private double MIN_SUPPORT = 0.12;// 最小支持度
     private double MIN_CONF = 0.8;// 最小置信度
     private int lable = 1;// 用于输出时的一个标记，记录当前在打印第几级关联集
-    private List<Double> confCount = new ArrayList<Double>();// 置信度记录表
-    private List<List<String>> confItemset = new ArrayList<List<String>>();// 满足支持度的集合
+    private List<Double> confCount = new ArrayList<>();// 置信度记录表
+    private List<List<String>> confItemset = new ArrayList<>();// 满足支持度的集合
 
     /**
      * @param confItemset2 输出满足条件的频繁集
@@ -62,11 +62,9 @@ public class Apriori {
      *                   若满足则在全局变量confItemset添加list
      *                   如不满足则返回null
      */
-    private List<String> getConfItem(List<String> list,
-                                     List<List<String>> lItemset, Integer count,
-                                     Map<Integer, Integer> dCountMap2) {
+    private List<String> getConfItem(List<String> list, List<List<String>> lItemset, Integer count, Map<Integer, Integer> dCountMap2) {
         for (int i = 0; i < list.size(); i++) {
-            List<String> testList = new ArrayList<String>();
+            List<String> testList = new ArrayList<>();
             for (int j = 0; j < list.size(); j++)
                 if (i != j)
                     testList.add(list.get(j));
@@ -87,8 +85,7 @@ public class Apriori {
      * @param testList
      * @param lItemset 查找testList中的内容在lItemset的位置
      */
-    private int findConf(List<String> testList,
-                         List<List<String>> lItemset) {
+    private int findConf(List<String> testList, List<List<String>> lItemset) {
         for (int i = 0; i < lItemset.size(); i++) {
             boolean notHaveTag = false;
             for (int j = 0; j < testList.size(); j++) {
@@ -116,19 +113,11 @@ public class Apriori {
     }
 
     /**
-     * 获取记录
-     */
-    private List<List<String>> getRecord() {
-        SimilarStockSelector similarStockSelector = new SimilarStockSelector();
-        return similarStockSelector.getRecord();
-    }
-
-    /**
      * @param cItemset 求出cItemset中满足最低支持度集合
      */
     private List<List<String>> getSupportedItemset(List<List<String>> cItemset) {
         boolean end = true;
-        List<List<String>> supportedItemset = new ArrayList<List<String>>();
+        List<List<String>> supportedItemset = new ArrayList<>();
         int k = 0;
         for (int i = 0; i < cItemset.size(); i++) {
             int count = countFrequent(cItemset.get(i));//统计记录数
@@ -175,16 +164,16 @@ public class Apriori {
      * 根据cItemset求出下一级的备选集合组，求出的备选集合组中的每个集合的元素的个数比cItemset中的集合的元素大1
      */
     private List<List<String>> getNextCandidate(List<List<String>> cItemset) {
-        List<List<String>> nextItemset = new ArrayList<List<String>>();
+        List<List<String>> nextItemset = new ArrayList<>();
         for (int i = 0; i < cItemset.size(); i++) {
-            List<String> tempList = new ArrayList<String>();
+            List<String> tempList = new ArrayList<>();
             for (int k = 0; k < cItemset.get(i).size(); k++)
                 tempList.add(cItemset.get(i).get(k));
             for (int h = i + 1; h < cItemset.size(); h++) {
                 for (int j = 0; j < cItemset.get(h).size(); j++) {
                     tempList.add(cItemset.get(h).get(j));
                     if (isSubsetInC(tempList, cItemset)) {// tempList的子集全部在cItemset中
-                        List<String> copyValueHelpList = new ArrayList<String>();
+                        List<String> copyValueHelpList = new ArrayList<>();
                         for (int p = 0; p < tempList.size(); p++)
                             copyValueHelpList.add(tempList.get(p));
                         if (isHave(copyValueHelpList, nextItemset))//nextItemset还没有copyValueHelpList这个集合
@@ -219,7 +208,7 @@ public class Apriori {
     private boolean isSubsetInC(List<String> tempList, List<List<String>> cItemset) {
         boolean haveTag = false;
         for (int i = 0; i < tempList.size(); i++) {// k集合tempList的子集是否都在k-1级频繁级中
-            List<String> testList = new ArrayList<String>();
+            List<String> testList = new ArrayList<>();
             for (int j = 0; j < tempList.size(); j++)
                 if (i != j)
                     testList.add(tempList.get(j));
@@ -240,8 +229,8 @@ public class Apriori {
      * 根据数据库记录求出第一级备选集
      */
     private List<List<String>> findFirstCandidate() {
-        List<List<String>> tableList = new ArrayList<List<String>>();
-        List<String> lineList = new ArrayList<String>();
+        List<List<String>> tableList = new ArrayList<>();
+        List<String> lineList = new ArrayList<>();
 
         int size = 0;
         for (int i = 1; i < record.size(); i++) {
@@ -263,7 +252,7 @@ public class Apriori {
             }
         }
         for (int i = 0; i < lineList.size(); i++) {
-            List<String> helpList = new ArrayList<String>();
+            List<String> helpList = new ArrayList<>();
             helpList.add(lineList.get(i));
             tableList.add(helpList);
         }
@@ -271,7 +260,7 @@ public class Apriori {
     }
 
     public void select() {
-        record = getRecord();// 获取原始数据记录
+        //record = getRecord();// 获取原始数据记录
         List<List<String>> cItemset = findFirstCandidate();// 获取第一次的备选集
         List<List<String>> lItemset = getSupportedItemset(cItemset);// 获取备选集cItemset满足支持的集合
 
@@ -289,4 +278,7 @@ public class Apriori {
         }
     }
 
+    public void setRecord(List<List<String>> record) {
+        this.record = record;
+    }
 }

@@ -101,14 +101,15 @@ public class StockServiceImpl implements StockService {
     }
 
     @Override
-    public Map<String, Object> associate(String input) {
+    public Map<String, Object> associate(String code) {
 
         return null;
     }
 
     @Override
     public Map<String, Object> getSimilarStock(String code) {
-
+        int stock = Integer.parseInt(code);
+        similarStockSelector.selects(stock);
         return null;
     }
 
