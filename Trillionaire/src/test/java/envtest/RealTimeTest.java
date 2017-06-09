@@ -36,7 +36,7 @@ public class RealTimeTest {
 
         RealTimeStockDao realTimeStockDao = ctx.getBean(RealTimeStockDaoImpl.class);
         try {
-            Thread.sleep(30000);
+            Thread.sleep(25000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

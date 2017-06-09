@@ -1,11 +1,14 @@
 package trillionaire.dao;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.sql.Date;
 
 import trillionaire.model.DayRecord;
 import trillionaire.model.MonthRecord;
 import trillionaire.model.WeekRecord;
+
+import javax.ejb.Local;
 
 public interface DayRecordDao {
 	
@@ -30,5 +33,9 @@ public interface DayRecordDao {
 	public void deletRecord(Object obj);
 
 	public List<DayRecord> getDayRecords(int code, int limitNum);
+
+	public List<DayRecord> getAligningDayRecords(int code1, int code2, int limit);
+
+	public List<DayRecord> getDayRecordBeforeDate(int code, LocalDate date, int limit);
 
 }
