@@ -34,7 +34,7 @@ public interface DayRecordDao {
 
 	public List<DayRecord> getDayRecords(int code, int limitNum);
 
-	public List<DayRecord> getAligningDayRecords(int code1, int code2, int limit);
+	public List<List<DayRecord>> getAligningDayRecords(int code1, int code2, int limit);
 
 	public List<DayRecord> getDayRecordBeforeDate(int code, LocalDate date, int limit);
 

@@ -7,12 +7,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import trillionaire.model.DayRecord;
-import trillionaire.vo.RankTable;
-import trillionaire.model.Stock;
 import trillionaire.service.MarketService;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -27,23 +23,20 @@ public class MarketController {
 
     @RequestMapping(value = "category", method = RequestMethod.GET)
     @ResponseBody
-    public Map<String, List<RankTable>> getCategoryCondition(@RequestParam("category") String category) {
-        Map<String, List<RankTable>> map = marketService.getSquare(category);
-
-        return map;
+    public Map<String, Object> getCategoryCondition(@RequestParam("category") String category) {
+        return marketService.getSquare(category);
     }
 
 
-    @RequestMapping(value = "board", method = RequestMethod.GET)
+    @RequestMapping(value = "/board", method = RequestMethod.GET)
     @ResponseBody
-    public Map<String, List<DayRecord>> getBoardCondition(@RequestParam("board")String board) {
-
-        return null;
+    public Map<String, Object> getBoardCondition() {
+        return marketService.getBoardRank();
     }
 
-    @RequestMapping(value = "industry",method = RequestMethod.GET)
+    @RequestMapping(value = "industry", method = RequestMethod.GET)
     @ResponseBody
-    public List<DayRecord> getBoardRank(@RequestParam("industry") String board){
+    public List<DayRecord> getBoardRank(@RequestParam("industry") String board) {
 
         return null;
     }

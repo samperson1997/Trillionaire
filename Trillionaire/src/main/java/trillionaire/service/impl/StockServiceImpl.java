@@ -96,6 +96,7 @@ public class StockServiceImpl implements StockService {
     public RealTimeStock updateRealTime(String code) {
         int stock = Integer.parseInt(code);
         RealTimeStock realTimeStock = realTimeStockDao.getRealTimeByCode(stock);
+        System.out.println(realTimeStockDao.getAll().size());
         return realTimeStock;
     }
 

@@ -1,6 +1,7 @@
 package trillionaire.dao.impl;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -169,6 +170,16 @@ public class DayRecordDaoImpl implements DayRecordDao{
 		session.close();
 		return result;
 
+	}
+
+	@Override
+	public List<List<DayRecord>> getAligningDayRecords(int code1, int code2, int limit) {
+		return null;
+	}
+
+	@Override
+	public List<DayRecord> getDayRecordBeforeDate(int code, LocalDate date, int limit) {
+		return null;
 	}
 
 
