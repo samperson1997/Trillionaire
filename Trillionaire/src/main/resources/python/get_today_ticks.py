@@ -3,8 +3,8 @@
 import tushare as ts
 import sys
 
-reload(sys)
-sys.setdefaultencoding('utf8')
+# reload(sys)
+# sys.setdefaultencoding('utf8')
 
 code = sys.argv[1]
 
@@ -12,8 +12,8 @@ df = ts.get_today_ticks(code)
 df = df.sort_values(by = 'time', ascending = True)
 df = df[['time','price','volume','amount']]
 
-print
-print 'data start!'
+print()
+print ('data start!')
 for i, row in df.iterrows():
-    print row['time'],row['price'],row['volume'],row['amount']
-print 'data end'
+    print (row['time'],row['price'],row['volume'],row['amount'])
+print ('data end')

@@ -37,9 +37,11 @@ public class DayRecordTest {
         System.out.println(sessionFactory);
 
         DayRecordDao dayRecordDao = ctx.getBean(DayRecordDaoImpl.class);
-        WeekRecord weekRecord = dayRecordDao.getWeekRecordsByCode(2).get(dayRecordDao.getWeekRecordsByCode(2).size()-1);
-        weekRecord.setDate(Date.valueOf(LocalDate.of(2020,1,2)));
-        dayRecordDao.saveWeekRecord(weekRecord);
+//        WeekRecord weekRecord = dayRecordDao.getWeekRecordsByCode(2).get(dayRecordDao.getWeekRecordsByCode(2).size()-1);
+//        weekRecord.setDate(Date.valueOf(LocalDate.of(2020,1,2)));
+//        dayRecordDao.saveWeekRecord(weekRecord);
+
+        System.out.println(dayRecordDao.getDayRecords(2,100).size());
 
     }
 

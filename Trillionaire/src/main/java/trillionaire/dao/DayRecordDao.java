@@ -29,4 +29,6 @@ public interface DayRecordDao {
 
 	public void deletRecord(Object obj);
 
+	public List<DayRecord> getDayRecords(int code, int limitNum);
+
 }

@@ -2,6 +2,7 @@ package envtest;
 
 import org.hibernate.SessionFactory;
 import org.junit.Test;
+import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import trillionaire.dao.RealTimeStockDao;
@@ -35,12 +36,12 @@ public class RealTimeTest {
 
         RealTimeStockDao realTimeStockDao = ctx.getBean(RealTimeStockDaoImpl.class);
         try {
-            Thread.sleep(10000);
+            Thread.sleep(30000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
         System.out.println(realTimeStockDao.getRealTimeByCode(603833).getCode() + "  " + realTimeStockDao.getRealTimeByCode(603833).getName() + "  " + realTimeStockDao.getRealTimeByCode(603833).getHigh());
-
+        System.out.println(realTimeStockDao.getAll().size());
     }
 
 }

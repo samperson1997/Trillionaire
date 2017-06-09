@@ -32,6 +32,7 @@ public class MinuteTest {
         System.out.println(sessionFactory);
 
         MinutePriceDataService minutePriceDataService = ctx.getBean(MinutePriceDataServiceImpl.class);
+        long t1 = System.currentTimeMillis();
         Map<String, Object> map = minutePriceDataService.getMinutePriceDate("000001");
 
         List<String> time = (List<String>) (map.get("time"));
@@ -39,7 +40,7 @@ public class MinuteTest {
         List<Double> meanPrice = (List<Double>) (map.get("meanPrice"));
         List<Double> volume = (List<Double>) (map.get("volume"));
 
-        long t1 = System.currentTimeMillis();
+
 
         System.out.println(time.size() + " " + price.size() + " " + meanPrice.size() + " " + volume.size());
 
