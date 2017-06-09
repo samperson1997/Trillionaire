@@ -36,7 +36,7 @@ public class BacktestTest {
         BackTestService backTestService = ctx.getBean(BackTestServiceImpl.class);
 
         BackTestParams params = new BackTestParams();
-        params.setSid(3);
+        params.setSid(2);
 
         long t1 = System.currentTimeMillis();
         Map<String,Object> map = backTestService.startBackTest(params);

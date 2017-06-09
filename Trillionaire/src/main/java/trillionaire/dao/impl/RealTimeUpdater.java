@@ -49,14 +49,12 @@ public class RealTimeUpdater {
                 RealTimeStock realTimeStock = getRealTimeStockByLine(res.get(index));
 
                 if(realTimeStock==null){
-                    System.out.println("null");
                     index++;
                     continue;
                 }
                 else {
                     int code = Integer.valueOf(realTimeStock.getCode());
                     stockMap.put(code, realTimeStock);
-                    System.out.println(index);
                     index++;
                 }
 

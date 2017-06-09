@@ -138,22 +138,24 @@ public class BackTestServiceImpl implements BackTestService{
             String paramString = "";
             paramString = params.sid + " " + params.cash + " " + params.sDate + " " + params.eDate + " " + params.frequency + " " + params.matchingType + " " +
                     params.benchmark + " " + params.commissionMultiplier + " " + params.slippage + " " + strategyFile.getPath() + " " + outPklFIle.getPath();
-            String[] cmd = CMDGetter.getCommand("activate python36 && python " + runnerPath + " " + paramString);
+            String[] cmd = CMDGetter.getCommand("python " + runnerPath + " " + paramString);
             Process runnerProcess = Runtime.getRuntime().exec(cmd);
             ClearThread ct = new ClearThread(runnerProcess);
             ct.start();
             runnerProcess.waitFor();
+            System.out.println("after 1 exec");
             int runValue = runnerProcess.exitValue();
             Thread.sleep(200);
             ct.setEnd(true);
 
             if(runValue == 0){
 
-                String[] cmd2 = CMDGetter.getCommand("activate python36 && python " + readerPath + " " + outPklFIle);
+                String[] cmd2 = CMDGetter.getCommand("python " + readerPath + " " + outPklFIle);
                 Process readerProcess = Runtime.getRuntime().exec(cmd2);
                 ClearThread ct2 = new ClearThread(readerProcess);
                 ct2.start();
                 readerProcess.waitFor();
+                System.out.println("after 1 exec");
                 int readValue = readerProcess.exitValue();
                 Thread.sleep(200);
                 ct2.setEnd(true);
