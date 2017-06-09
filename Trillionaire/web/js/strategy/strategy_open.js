@@ -3,7 +3,9 @@ var editor = ace.edit("code");
 
 function loadStraContent() {
     if (sid > 0) {
-        $("#stra-name").fadeIn();
+        $("#stra-name").fadeIn(function () {
+            namefade = 0;
+        });
 
         var load = $.ajax({
             type: "GET",
@@ -21,7 +23,9 @@ function loadStraContent() {
             error: function (request, status, err) {
                 if (status == "timeout") {
                     load.abort();
-                    $("#stra-name").fadeOut();
+                    $("#stra-name").fadeOut(function () {
+                        namefade = 1;
+                    });
                 }
             }
         })
