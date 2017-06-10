@@ -11,7 +11,8 @@ public class UtilTest {
 
     @Test
     public void test(){
-        
+        int code = 600435;
+        System.out.println(CodeUtil.TransferCode(code));
 
     }
 }
