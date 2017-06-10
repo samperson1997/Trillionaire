@@ -17,17 +17,6 @@ var getParam = function (name) {
     return items;
 };
 
-//function dataAnalyze(data) {
-//    var array = data;
-//    var finalList;
-//    for (var i = 0; i < array.length; i++) {
-//        //对数组遍历
-//        finalList = '';
-//        $("#up-List").append(finalList);
-//    }
-//
-//}
-
 function loadTargetPrice() {
     var code = getParam('code');
 
@@ -111,7 +100,7 @@ function updateInfo() {
         error: function (request, status, err) {
             if (status == "timeout") {
                 load.abort();
-                updateInfo()
+                updateInfo();
             }
         }
     })
@@ -128,12 +117,28 @@ function loadSimilarStock() {
             "code": code
         },
         dataType: "json",
-        success: function (data0) {
-            $("#prevail").text('市场热度' + String(data0));
+        success: function (data) {
+            if (data.subject.length == 0) {
+                $("#subject").append('<p>无关联股票</p>');
+            } else {
+                $.each(data.subject, function (i, value) {
+                    $("#subject").append('<p><a href=\"stock.html?code=' + value.code + '\" target=\"_blank\">' + value.stock2 + '</a></p>');
+                })
+            }
+
+            if (data.object.length == 0) {
+                $("#object").append('<p>无被关联股票</p>');
+            } else {
+                $.each(data.object, function (i, value) {
+                    $("#object").append('<p><a href=\"stock.html?code=' + value.code + '\" target=\"_blank\>' + value.stock1 + '</a></p>');
+                })
+            }
         },
         error: function (request, status, err) {
             if (status == "timeout") {
                 load.abort();
+                $("#subject").append('<p>无关联股票</p>');
+                $("#object").append('<p>无被关联股票</p>');
             }
         }
     })
