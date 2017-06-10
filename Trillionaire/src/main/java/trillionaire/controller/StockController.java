@@ -113,9 +113,9 @@ public class StockController {
 
     @RequestMapping(value = "/similar", method = RequestMethod.GET)
     @ResponseBody
-    public List<Stock> getSimilarStock(String input) {
+    public Map<Integer,Object> getSimilarStock(String code) {
 
-        return null;
+        return stockService.getSimilarStock(code);
     }
 
     @RequestMapping(value = "/margin", method = RequestMethod.GET)

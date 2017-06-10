@@ -29,9 +29,10 @@ public class StockServiceImpl implements StockService {
     private RealTimeStockDao realTimeStockDao;
     @Autowired
     private StockDao stockDao;
+    @Autowired
+    private SimilarStockSelector similarStockSelector;
 
     private TimeSeriesPredict timeSeriesPredict = new TimeSeriesPredict();
-    private SimilarStockSelector similarStockSelector = new SimilarStockSelector();
 
     private Map<String, Object> getDailyInfo(String code) {
         Map<String, Object> map = new HashMap<>();
@@ -107,10 +108,9 @@ public class StockServiceImpl implements StockService {
     }
 
     @Override
-    public Map<String, Object> getSimilarStock(String code) {
+    public Map<Integer, Object> getSimilarStock(String code) {
         int stock = Integer.parseInt(code);
-        similarStockSelector.selects(stock);
-        return null;
+        return similarStockSelector.selects(stock);
     }
 
     @Override
@@ -140,7 +140,8 @@ public class StockServiceImpl implements StockService {
 
     @Override
     public PriceTarget getPriceTarget(String code) {
-        List<DayRecord> list = dayRecordDao.getDayRecordsByCode(1);
+        int stockCode = Integer.parseInt(code);
+        List<DayRecord> list = dayRecordDao.getDayRecordsByCode(stockCode);
         double[] highArray = new double[list.size()];
         double[] closeArray = new double[list.size()];
         double[] lowArray = new double[list.size()];

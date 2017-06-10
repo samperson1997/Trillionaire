@@ -259,8 +259,9 @@ public class Apriori {
         return tableList;
     }
 
-    public void select() {
+    public Map<Integer,Object> select() {
         //record = getRecord();// 获取原始数据记录
+        Map<Integer, Object> map = new HashMap<>();
         List<List<String>> cItemset = findFirstCandidate();// 获取第一次的备选集
         List<List<String>> lItemset = getSupportedItemset(cItemset);// 获取备选集cItemset满足支持的集合
 
@@ -268,14 +269,19 @@ public class Apriori {
             List<List<String>> ckItemset = getNextCandidate(lItemset);// 获取第下一次的备选集
             List<List<String>> lkItemset = getSupportedItemset(ckItemset);// 获取备选集cItemset满足支持的集合
             getConfidencedItemset(lkItemset, lItemset, dkCountMap, dCountMap);// 获取备选集cItemset满足置信度的集合
-            if (confItemset.size() != 0)// 满足置信度的集合不为空
+            int i=0;
+            if (confItemset.size() != 0) {// 满足置信度的集合不为空
                 printConfItemset(confItemset);// 打印满足置信度的集合
+                map.put(i,confItemset);
+                i++;
+            }
             confItemset.clear();// 清空置信度的集合
             cItemset = ckItemset;// 保存数据，为下次循环迭代准备
             lItemset = lkItemset;
             dCountMap.clear();
             dCountMap.putAll(dkCountMap);
         }
+        return map;
     }
 
     public void setRecord(List<List<String>> record) {

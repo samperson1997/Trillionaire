@@ -2,6 +2,8 @@ package trillionaire.service;
 
 import trillionaire.util.UserState;
 
+import java.util.Map;
+
 /**
  * Created by michaeltan on 2017/5/9.
  */
@@ -12,9 +14,9 @@ public interface UserService {
      *
      * @param email 用户账号
      * @param password 用户密码
-     * @return 当前登录状态
+     * @return 当前登录状态集
      */
-    public UserState login(String email, String password);
+    public Map<String, Object> login(String email, String password);
 
     /**
      * 注册

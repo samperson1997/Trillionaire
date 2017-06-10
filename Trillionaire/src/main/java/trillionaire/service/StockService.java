@@ -42,7 +42,7 @@ public interface StockService {
      * @param code 输入
      * @return 不同股票的map映射
      */
-    public Map<String, Object> getSimilarStock(String code);
+    public Map<Integer, Object> getSimilarStock(String code);
 
     /**
      * 获得股票能力雷达图数据
