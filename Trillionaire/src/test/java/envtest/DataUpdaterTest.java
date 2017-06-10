@@ -4,7 +4,9 @@ import org.hibernate.SessionFactory;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import trillionaire.service.DataUpdateService;
 import trillionaire.service.MinutePriceDataService;
+import trillionaire.service.impl.DataUpdateServiceImpl;
 import trillionaire.service.impl.MinutePriceDataServiceImpl;
 
 import javax.sql.DataSource;
@@ -31,8 +33,11 @@ public class DataUpdaterTest {
         SessionFactory sessionFactory = ctx.getBean(SessionFactory.class);
         System.out.println(sessionFactory);
 
-        MinutePriceDataService minutePriceDataService = ctx.getBean(MinutePriceDataServiceImpl.class);
-        Map<String, Object> map = minutePriceDataService.getMinutePriceDate("000001");
+//        MinutePriceDataService minutePriceDataService = ctx.getBean(MinutePriceDataServiceImpl.class);
+//        Map<String, Object> map = minutePriceDataService.getMinutePriceDate("000001");
+
+        DataUpdateService dataUpdateService = ctx.getBean(DataUpdateServiceImpl.class);
+        dataUpdateService.updateAbility(2017,1);
 
     }
 
