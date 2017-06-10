@@ -13,6 +13,7 @@ import trillionaire.util.UserState;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.Map;
 
 /**
  * Created by michaeltan on 2017/5/6.
@@ -25,13 +26,13 @@ public class UserController {
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody
-    public String login(HttpServletRequest request, String email, String password) {
-        UserState userState = userService.login(email, password);
-        if (userState == UserState.SUCCESS) {
+    public Map<String, Object> login(HttpServletRequest request, String email, String password) {
+        Map<String, Object> map = userService.login(email,password);
+        if (map.get("msg") == "success") {
             HttpSession session = request.getSession();
             session.setAttribute("email", email);
         }
-        return userState.toString();
+        return map;
     }
 
     @RequestMapping(value = "/logout", method = RequestMethod.POST)

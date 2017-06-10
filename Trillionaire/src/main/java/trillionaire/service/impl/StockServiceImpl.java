@@ -9,14 +9,12 @@ import trillionaire.model.*;
 import trillionaire.service.StockService;
 import trillionaire.service.impl.apriori.SimilarStockSelector;
 import trillionaire.service.impl.boxjenkins.TimeSeriesPredict;
+import trillionaire.util.CodeUtil;
 import trillionaire.util.DecimalUtil;
 import trillionaire.vo.*;
 
 import java.sql.Date;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by michaeltan on 2017/5/6.
@@ -29,9 +27,10 @@ public class StockServiceImpl implements StockService {
     private RealTimeStockDao realTimeStockDao;
     @Autowired
     private StockDao stockDao;
+    @Autowired
+    private SimilarStockSelector similarStockSelector;
 
     private TimeSeriesPredict timeSeriesPredict = new TimeSeriesPredict();
-    private SimilarStockSelector similarStockSelector = new SimilarStockSelector();
 
     private Map<String, Object> getDailyInfo(String code) {
         Map<String, Object> map = new HashMap<>();
@@ -101,16 +100,74 @@ public class StockServiceImpl implements StockService {
     }
 
     @Override
-    public Map<String, Object> associate(String code) {
-
-        return null;
+    public List<AssociateStock> associate(String code) {
+        List<Stock> list = stockDao.getAllStocks();
+        List<AssociateStock> stockList = new ArrayList<>();
+        boolean isNum = code.matches("[0-9]+");
+        if (isNum) {
+            for (int i = 0; i < list.size(); i++) {
+                String s = CodeUtil.TransferCode(list.get(i).getCode());
+                if (s.startsWith(code)) {
+                    AssociateStock associateStock = new AssociateStock(list.get(i).getName(), s);
+                    stockList.add(associateStock);
+                }
+            }
+        } else {
+            for (int i = 0; i < list.size(); i++) {
+                if (list.get(i).getName().startsWith(code)) {
+                    String s = CodeUtil.TransferCode(list.get(i).getCode());
+                    AssociateStock associateStock = new AssociateStock(list.get(i).getName(), s);
+                    stockList.add(associateStock);
+                }
+            }
+        }
+        Collections.sort(stockList, new Comparator<AssociateStock>() {
+            @Override
+            public int compare(AssociateStock o1, AssociateStock o2) {
+                return new Double(o1.getCode()).compareTo(Double.valueOf(o2.getCode()));
+            }
+        });
+        return stockList;
     }
 
     @Override
     public Map<String, Object> getSimilarStock(String code) {
         int stock = Integer.parseInt(code);
-        similarStockSelector.selects(stock);
-        return null;
+        List<Map<Integer, Object>> list = similarStockSelector.selects(stock);
+        List<SimilarStock> associateList = new ArrayList<>();
+        List<SimilarStock> associatedList = new ArrayList<>();
+
+        Map<String, Object> map = new HashMap<>();
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).containsKey(1)) {
+                associatedList.add((SimilarStock) list.get(i).get(0));
+            } else {
+                associateList.add((SimilarStock) list.get(i).get(0));
+            }
+        }
+        Collections.sort(associateList, new Comparator<SimilarStock>() {
+            @Override
+            public int compare(SimilarStock o1, SimilarStock o2) {
+                if (o2.getConfidence() > o1.getConfidence()) {
+                    return 1;
+                } else {
+                    return new Double(o2.getSupport()).compareTo(o1.getSupport());
+                }
+            }
+        });
+        Collections.sort(associatedList, new Comparator<SimilarStock>() {
+            @Override
+            public int compare(SimilarStock o1, SimilarStock o2) {
+                if (o2.getConfidence() > o1.getConfidence()) {
+                    return 1;
+                } else {
+                    return new Double(o2.getSupport()).compareTo(o1.getSupport());
+                }
+            }
+        });
+        map.put("subject", associateList);
+        map.put("object", associatedList);
+        return map;
     }
 
     @Override
@@ -140,7 +197,8 @@ public class StockServiceImpl implements StockService {
 
     @Override
     public PriceTarget getPriceTarget(String code) {
-        List<DayRecord> list = dayRecordDao.getDayRecordsByCode(1);
+        int stockCode = Integer.parseInt(code);
+        List<DayRecord> list = dayRecordDao.getDayRecordsByCode(stockCode);
         double[] highArray = new double[list.size()];
         double[] closeArray = new double[list.size()];
         double[] lowArray = new double[list.size()];
@@ -167,10 +225,10 @@ public class StockServiceImpl implements StockService {
         int stockNum = Integer.parseInt(code);
         List<DayRecord> list = dayRecordDao.getDayRecordsByCode(stockNum);
         Stock stock = list.get(0).getStock();
-        for (int i = list.size() - 1; i > list.size() - 26; i--) {
-            if (Math.abs(list.get(i).getAdjClose() - list.get(i).getOpen()) <= 0.05) {
+        for (int i = list.size() - 1; i > list.size() - 33; i--) {
+            if (Math.abs(list.get(i).getClose() - list.get(i).getOpen()) <= 0.03) {
                 CVS += list.get(i).getVolume();
-            } else if (list.get(i).getAdjClose() - list.get(i).getOpen() > 0.05) {
+            } else if (list.get(i).getClose() - list.get(i).getOpen() > 0.03) {
                 AVS += list.get(i).getVolume();
             } else {
                 BVS += list.get(i).getVolume();

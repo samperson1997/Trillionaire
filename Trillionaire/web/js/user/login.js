@@ -47,13 +47,14 @@ angular.module("mainapp", [])
                     "password": this.password
                 },
                 contentType: "application/x-www-form-urlencoded",
-                dataType: "text",
+                dataType: "json",
                 success: function (data) {
                     console.log(data);
                     $scope.$apply(function () {
                         var str = document.referrer;
-                        if (data == "success") {
-                            window.sessionStorage.setItem("username", username);
+                        if (data.msg == "success") {
+
+                            alert(data.id);
                             if (str == null || str == "") {
                                 window.location.href = "/index.html";
                             } else {
@@ -61,7 +62,8 @@ angular.module("mainapp", [])
                             }
 
                             sessionStorage.setItem("log_state", "true");
-                        } else if (data == "fail") {
+                            sessionStorage.setItem("userId", data.id);
+                        } else if (data.msg == "fail") {
                             $scope.inputPassword = "";
                             tip.innerHTML = "用户名不存在或密码错误";
                         }

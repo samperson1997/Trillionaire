@@ -60,7 +60,7 @@ public class MarketServiceImpl implements MarketService {
         List<RealTimeStock> sz = new ArrayList<>();
         List<RealTimeStock> gem = new ArrayList<>();
         List<RealTimeStock> sme = new ArrayList<>();
-            Collections.sort(list, new Comparator<RealTimeStock>() {
+        Collections.sort(list, new Comparator<RealTimeStock>() {
             @Override
             public int compare(RealTimeStock o1, RealTimeStock o2) {
                 return new Double(o2.getChangepercent()).compareTo(o1.getChangepercent());

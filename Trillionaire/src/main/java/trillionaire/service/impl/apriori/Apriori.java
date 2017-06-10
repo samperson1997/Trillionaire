@@ -1,5 +1,7 @@
 package trillionaire.service.impl.apriori;
 
+import trillionaire.vo.SimilarStock;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -259,8 +261,9 @@ public class Apriori {
         return tableList;
     }
 
-    public void select() {
-        //record = getRecord();// 获取原始数据记录
+    public Map<Integer, Object> select(List<List<String>> data, int code) {
+        record = data;// 获取原始数据记录
+        Map<Integer, Object> map = new HashMap<>();
         List<List<String>> cItemset = findFirstCandidate();// 获取第一次的备选集
         List<List<String>> lItemset = getSupportedItemset(cItemset);// 获取备选集cItemset满足支持的集合
 
@@ -268,17 +271,20 @@ public class Apriori {
             List<List<String>> ckItemset = getNextCandidate(lItemset);// 获取第下一次的备选集
             List<List<String>> lkItemset = getSupportedItemset(ckItemset);// 获取备选集cItemset满足支持的集合
             getConfidencedItemset(lkItemset, lItemset, dkCountMap, dCountMap);// 获取备选集cItemset满足置信度的集合
-            if (confItemset.size() != 0)// 满足置信度的集合不为空
-                printConfItemset(confItemset);// 打印满足置信度的集合
+            int i = 0;
+            if (confItemset.size() != 0) {// 满足置信度的集合不为空
+                for (i = 0; i < confItemset.size(); i++) {
+                    SimilarStock similarStock = new SimilarStock(confItemset.get(i).get(0), confItemset.get(i).get(1), confItemset.get(i).get(2), confItemset.get(i).get(3), code);
+                    map.put(i, similarStock);
+                }
+            }
             confItemset.clear();// 清空置信度的集合
             cItemset = ckItemset;// 保存数据，为下次循环迭代准备
             lItemset = lkItemset;
             dCountMap.clear();
             dCountMap.putAll(dkCountMap);
         }
+        return map;
     }
 
-    public void setRecord(List<List<String>> record) {
-        this.record = record;
-    }
 }

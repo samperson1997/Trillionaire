@@ -51,9 +51,8 @@ public class StockController {
 
     @RequestMapping(value = "/associate", method = RequestMethod.GET)
     @ResponseBody
-    public Map<String, String> associate(String code) {
-        stockService.getSimilarStock(code);
-        return null;
+    public List<AssociateStock> associate(String input) {
+        return stockService.associate(input);
     }
 
     @RequestMapping(value = "code", method = RequestMethod.GET)
@@ -113,9 +112,9 @@ public class StockController {
 
     @RequestMapping(value = "/similar", method = RequestMethod.GET)
     @ResponseBody
-    public List<Stock> getSimilarStock(String input) {
+    public Map<String,Object> getSimilarStock(String code) {
 
-        return null;
+        return stockService.getSimilarStock(code);
     }
 
     @RequestMapping(value = "/margin", method = RequestMethod.GET)
