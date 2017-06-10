@@ -187,7 +187,7 @@ public class MinutePriceDataServiceImpl implements MinutePriceDataService {
                 return;
             }
 
-            Scanner scanner = new Scanner(process.getInputStream());
+            Scanner scanner = new Scanner(process.getInputStream(), CMDGetter.getCmdCharSet());
             while (process != null && !end) {
                 while (scanner.hasNextLine()) {
                     String line = scanner.nextLine();

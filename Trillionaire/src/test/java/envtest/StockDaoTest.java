@@ -2,22 +2,21 @@ package envtest;
 
 import org.hibernate.SessionFactory;
 import org.junit.Test;
-import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import trillionaire.dao.RealTimeStockDao;
+import trillionaire.dao.StockDao;
 import trillionaire.dao.impl.RealTimeStockDaoImpl;
-import trillionaire.service.MinutePriceDataService;
-import trillionaire.service.impl.MinutePriceDataServiceImpl;
+import trillionaire.dao.impl.StockDaoImpl;
+import trillionaire.model.Stock;
 
 import javax.sql.DataSource;
 import java.util.List;
-import java.util.Map;
 
 /**
- * Created by USER on 2017/6/6.
+ * Created by USER on 2017/6/10.
  */
-public class RealTimeTest {
+public class StockDaoTest {
 
     private ApplicationContext ctx = null;
 
@@ -34,14 +33,10 @@ public class RealTimeTest {
         SessionFactory sessionFactory = ctx.getBean(SessionFactory.class);
         System.out.println(sessionFactory);
 
-        RealTimeStockDao realTimeStockDao = ctx.getBean(RealTimeStockDaoImpl.class);
-        try {
-            Thread.sleep(25000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        //System.out.println(realTimeStockDao.getRealTimeByCode(603833).getCode() + "  " + realTimeStockDao.getRealTimeByCode(603833).getName() + "  " + realTimeStockDao.getRealTimeByCode(603833).getHigh());
-        System.out.println(realTimeStockDao.getAll().size());
+        StockDao stockDao = ctx.getBean(StockDaoImpl.class);
+        List<Stock> list = stockDao.getAllStocks();
+        System.out.println(list.size());
+        System.out.println(list.get(0).getName());
     }
 
 }

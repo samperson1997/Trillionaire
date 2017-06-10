@@ -1,5 +1,6 @@
 package trillionaire.vo;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import trillionaire.model.Concept;
 
 import java.util.Iterator;
@@ -8,6 +9,7 @@ import java.util.Set;
 /**
  * Created by michaeltan on 2017/6/7.
  */
+@JsonIgnoreProperties(value = {"concept"})
 public class StockSquare {
     private double vr;
     private String concept;
@@ -29,11 +31,12 @@ public class StockSquare {
         this.vr = vr;
     }
 
-    public String transfer(Set<Concept> concept) {
+    private String transfer(Set<Concept> concept) {
         String s = "";
         Iterator<Concept> it = concept.iterator();
         while (it.hasNext()) {
-            s = s + "," + it.next();
+            s = s + "," + it.next().getName();
+            System.out.println(s);
         }
         return s;
     }

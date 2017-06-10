@@ -30,6 +30,7 @@ public class RealTimeUpdater {
             ct.setEnd(true);
             int processValue = p.exitValue();
             if(processValue != 0){
+                System.out.println("update realtime error");
                 return false;
             }
 
@@ -73,12 +74,12 @@ public class RealTimeUpdater {
     }
 
     private RealTimeStock getRealTimeStockByLine(String line) {
-        String[] strs = line.split(" ");
+        String[] strs = line.split(",");
 
-        for(int i=2; i<15; i++){
-            if(strs[i].equals("0") || strs[i].equals("0.0"))
-                return null;
-        }
+//        for(int i=2; i<15; i++){
+//            if(strs[i].equals("0") || strs[i].equals("0.0"))
+//                return null;
+//        }
 
         String code = strs[0];
         String name = strs[1];
@@ -119,7 +120,7 @@ public class RealTimeUpdater {
                 return;
             }
 
-            Scanner scanner = new Scanner(process.getInputStream());
+            Scanner scanner = new Scanner(process.getInputStream(), CMDGetter.getCmdCharSet());
             while (process != null && !end) {
                 while (scanner.hasNextLine()) {
                     String line = scanner.nextLine();

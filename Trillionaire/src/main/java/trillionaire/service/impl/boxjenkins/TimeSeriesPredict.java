@@ -35,14 +35,14 @@ public class TimeSeriesPredict {
             sumPredict += tmpPredict[k] / (double) cnt;
         }
         result = sumPredict;
-        double margin = data[data.length - 1] / data[data.length - 2] - 1;
-        double correction = 0.00;
+        double margin = (data[data.length - 1] / data[data.length - 2]) - 1;
+        double correction;
         if (Math.abs(margin) >= 0.07) {
-            correction = 1 + 10 * Math.sin(Math.abs(margin));
+            correction = data[data.length - 1] * 0.1 + 10 * Math.sin(Math.abs(margin));
         } else if (Math.abs(margin) >= 0.03 && Math.abs(margin) < 0.07) {
-            correction = 1 - 10 * Math.sin(Math.abs(margin));
+            correction = data[data.length - 1] * 0.1 - 10 * Math.sin(Math.abs(margin));
         } else {
-            correction = margin * data[data.length - 1];
+            correction = (Math.abs(margin)) * data[data.length - 1];
         }
         if (margin >= 0) {
             result = result + correction;

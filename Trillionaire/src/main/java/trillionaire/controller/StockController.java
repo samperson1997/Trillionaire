@@ -7,6 +7,7 @@ import trillionaire.model.RealTimeStock;
 import trillionaire.model.Stock;
 import trillionaire.service.MinutePriceDataService;
 import trillionaire.service.StockService;
+import trillionaire.service.impl.apriori.SimilarStockSelector;
 import trillionaire.vo.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -50,8 +51,8 @@ public class StockController {
 
     @RequestMapping(value = "/associate", method = RequestMethod.GET)
     @ResponseBody
-    public Map<String, String> associate(String input) {
-
+    public Map<String, String> associate(String code) {
+        stockService.getSimilarStock(code);
         return null;
     }
 
@@ -112,9 +113,9 @@ public class StockController {
 
     @RequestMapping(value = "/similar", method = RequestMethod.GET)
     @ResponseBody
-    public List<Stock> getSimilarStock(String input) {
+    public Map<Integer,Object> getSimilarStock(String code) {
 
-        return null;
+        return stockService.getSimilarStock(code);
     }
 
     @RequestMapping(value = "/margin", method = RequestMethod.GET)

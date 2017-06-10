@@ -21,6 +21,21 @@ public class UserDaoImpl implements UserDao{
     SessionFactory sessionFactory;
 
     @Override
+    public User getUser(int userId) {
+
+        Session session = sessionFactory.openSession();
+        Transaction tx = session.beginTransaction();
+
+
+        User user = session.get(User.class, userId);
+
+        tx.commit();
+        session.close();
+
+        return user;
+    }
+
+    @Override
     public User getUserByEmail(String email) {
 
         Session session = sessionFactory.openSession();

@@ -1,10 +1,6 @@
 import sys
 from rqalpha import run_file
 
-
-strategy_file_dir_path = 'src\\main\\resources\\TempFiles\\TempStrategy\\BackTestStrategy\\'
-out_file_dir_path = 'src\\main\\resources\\TempFiles\\TempStrategy\\BacktestResult\\'
-
 strategy_id = sys.argv[1]
 starting_cash = int(sys.argv[2])
 s_date = sys.argv[3]
@@ -14,6 +10,8 @@ matching_type = sys.argv[6]
 benchmark = sys.argv[7]
 commission_multiplier = float(sys.argv[8])
 slippage = float(sys.argv[9])
+strategy_file_path = sys.argv[10]
+out_file_path = sys.argv[11]
 
 config = {
   "extra": {
@@ -27,22 +25,19 @@ config = {
     "stock_starting_cash": starting_cash,
     "benchmark": benchmark,
     "frequency": frequency,
-    "strategy_file": strategy_file_dir_path + strategy_id + ".py",
+    "strategy_file": strategy_file_path,
   },
   "mod": {
     "sys_analyser": {
       "enabled": True,
-      "output_file": out_file_dir_path + strategy_id + ".pkl",
-      #"plot":True,
-      #"plot-save":out_file_dir_path + "plot.png",
+      "output_file": out_file_path,
     },
     "sys_simulation":{
-       "enabled":True,
-       "slippage":slippage,
-       "commission-multiplier":commission_multiplier,
+      "enabled":True,
+      "slippage":slippage,
+      "commission-multiplier":commission_multiplier,
     },
   },
 }
 
-
-run_file(strategy_file_dir_path + strategy_id + ".py", config)
+run_file(strategy_file_path, config)

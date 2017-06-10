@@ -9,6 +9,9 @@ import trillionaire.util.MailUtil;
 import trillionaire.util.RandomCodeUtil;
 import trillionaire.util.UserState;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Created by michaeltan on 2017/5/9.
  */
@@ -21,13 +24,17 @@ public class UserServiceImpl implements UserService {
     UserDao userDao;
 
     @Override
-    public UserState login(String email, String password) {
+    public Map<String, Object> login(String email, String password) {
         User user = userDao.getUserByEmail(email);
+        Map<String, Object> map = new HashMap<>();
         if (password.equals(user.getPassword())) {
-            return UserState.SUCCESS;
+            map.put("msg",UserState.SUCCESS.toString());
+            map.put("id",user.getId());
+            map.put("email",user.getEmail());
         } else {
-            return UserState.FAIL;
+            map.put("msg",UserState.FAIL.toString());
         }
+        return map;
     }
 
     @Override

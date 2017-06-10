@@ -37,12 +37,12 @@ public interface StockService {
     public Map<String, Object> associate(String input);
 
     /**
-     * 股票联想
+     * 股票关联分析
      *
      * @param code 输入
      * @return 不同股票的map映射
      */
-    public Map<String, Object> getSimilarStock(String code);
+    public Map<Integer, Object> getSimilarStock(String code);
 
     /**
      * 获得股票能力雷达图数据
