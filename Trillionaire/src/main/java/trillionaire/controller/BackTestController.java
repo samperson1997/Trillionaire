@@ -84,26 +84,24 @@ public class BackTestController {
     @RequestMapping(value = "/save_strategy", method = RequestMethod.POST)
     @ResponseBody
     public Map<String, Object> saveStrategy(int sid, String strategyName, String content, int userId){
-        userId = 1;
-        System.out.println(content);
-//            int returnSid = -1;
-//
-//            if(sid < 0){
-//                returnSid = backTestService.addStrategy(userId, strategyName, content);
-//            }
-//            else {
-//                returnSid = backTestService.saveStrategy(sid, strategyName, content);
-//            }
-//
+            int returnSid = -1;
+
+            if(sid < 0){
+                returnSid = backTestService.addStrategy(userId, strategyName, content);
+            }
+            else {
+                returnSid = backTestService.saveStrategy(sid, strategyName, content);
+            }
+
             Map<String, Object> result = new HashMap<>();
 
-//            if(returnSid > 0){
-//                result.put("msg", "success");
-//                result.put("sid", returnSid);
-//            }
-//            else {
-//                result.put("msg", "error");
-//            }
+            if(returnSid > 0){
+                result.put("msg", "success");
+                result.put("sid", returnSid);
+            }
+            else {
+                result.put("msg", "error");
+            }
 
             return result;
     }
@@ -180,24 +178,11 @@ public class BackTestController {
     @ResponseBody
     public Map<String, Object> runBackTest( BackTestParams params){
 
-        Map<String, Object> result = new HashMap<>();
+        System.out.println("start backtest" + params.sid);
 
-        List<String> date = new ArrayList<>();
-        List<Double> data1 = new ArrayList<>();
-        List<Double> data2 = new ArrayList<>();
+        Map<String, Object> result = backTestService.startBackTest(params);
 
-        LocalDate t = LocalDate.now();
-        for(int i=0; i<100; i++){
-            date.add(t.toString());
-            data1.add(i+0.5);
-            data2.add(i+1.5);
-            t = t.plusDays(1);
-        }
-
-        result.put("datelist", date);
-        result.put("data1",data1);
-        result.put("data2", data2);
-        System.out.println("exe...");
+        System.out.println("success " + params.sid);
 
         return result;
     }

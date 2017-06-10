@@ -35,14 +35,16 @@ public class BacktestTest {
 
         BackTestService backTestService = ctx.getBean(BackTestServiceImpl.class);
 
-        BackTestParams params = new BackTestParams();
-        params.setSid(2);
+//        BackTestParams params = new BackTestParams();
+//        params.setSid(2);
+//
+//        long t1 = System.currentTimeMillis();
+//        Map<String,Object> map = backTestService.startBackTest(params);
+//        long t2 = System.currentTimeMillis();
+//
+//        System.out.println(map.get("errorLog"));
 
-        long t1 = System.currentTimeMillis();
-        Map<String,Object> map = backTestService.startBackTest(params);
-        long t2 = System.currentTimeMillis();
-
-        System.out.println(map.get("errorLog"));
+        System.out.println(backTestService.addStrategy(1, "sss","ddd"));
 
 //        List<String> date = (List<String>) map.get("datelist");
 //        for(String s: date){

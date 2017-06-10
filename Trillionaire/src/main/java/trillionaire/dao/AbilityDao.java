@@ -18,4 +18,12 @@ public interface AbilityDao {
 
     public void saveDebtPayingAbility(DebtPayingAbility debtPayingAbility);
 
+    public Profitability getProfitability(int code);
+
+    public OperationAbility getOperationAbility(int code);
+
+    public DevelopingAbility DevelopingAbility(int code);
+
+    public DebtPayingAbility getDebtPayingAbility(int code);
+
 }

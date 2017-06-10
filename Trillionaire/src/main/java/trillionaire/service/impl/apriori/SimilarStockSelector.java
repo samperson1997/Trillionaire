@@ -26,9 +26,11 @@ public class SimilarStockSelector {
 
     public List<List<String>> getRecord(int code1, int code2) {
         List<List<String>> record = new ArrayList<>();
-        List<List<DayRecord>> stockList = dayRecordDao.getAligningDayRecords(code1, code2, 180);
+        List<List<DayRecord>> stockList = dayRecordDao.getAligningDayRecords(code1, code2, 200);
+
         for (int i = 0; i < stockList.get(0).size(); i++) {//处理矩阵中的T、F、YES、NO
             List<String> lineList = new ArrayList<>();
+            lineList.add(String.valueOf(i));   //添加股票名称或代码(2选1)
             for (int j = 0; j < stockList.size(); j++) {
                 if (stockList.get(j).get(i).getChange() > 0) {  //涨
                     lineList.add(stockList.get(j).get(i).getStock().getName());   //添加股票名称或代码(2选1)
@@ -39,16 +41,16 @@ public class SimilarStockSelector {
         return record;
     }
 
-    public Map<Integer,Object> selects(int code) {
+    public List<Map<Integer, Object>> selects(int code) {
         List<Stock> stockList = stockDao.getAllStocks();
-        Map<Integer, Object> result = new HashMap<>();
+        List<Map<Integer, Object>> result = new ArrayList<>();
         for (int i = 0; i < stockList.size(); i++) {
             if (code != stockList.get(i).getCode()) {
                 List<List<String>> data = getRecord(code, stockList.get(i).getCode());
-                apriori.setRecord(data);
-                System.out.println("1234");
-                Map<Integer,Object> map = apriori.select();
-                result.put(i,map);
+                Map<Integer, Object> map = apriori.select(data, stockList.get(i).getCode());
+                if (map.containsKey(0)) {
+                    result.add(map);
+                }
             }
         }
         return result;
