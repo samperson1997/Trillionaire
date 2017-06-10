@@ -42,7 +42,7 @@ public class BacktestTest {
         Map<String,Object> map = backTestService.startBackTest(params);
         long t2 = System.currentTimeMillis();
 
-        System.out.println(map.get("msg") + " " + (t2-t1));
+        System.out.println(map.get("errorLog"));
 
 //        List<String> date = (List<String>) map.get("datelist");
 //        for(String s: date){

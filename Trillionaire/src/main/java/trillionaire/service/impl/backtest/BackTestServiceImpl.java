@@ -142,20 +142,26 @@ public class BackTestServiceImpl implements BackTestService{
             Process runnerProcess = Runtime.getRuntime().exec(cmd);
             ClearThread ct = new ClearThread(runnerProcess);
             ct.start();
+            ClearThread errorCt = new ClearThread(runnerProcess, true);
+            errorCt.start();
             runnerProcess.waitFor();
-            System.out.println("after 1 exec");
             int runValue = runnerProcess.exitValue();
             Thread.sleep(200);
             ct.setEnd(true);
+            errorCt.setEnd(true);
 
-            if(runValue == 0){
+            boolean checkTag = false;
+            if(errorCt.getRes().size() > 0 && errorCt.getRes().get(0).contains("Traceback")){
+                checkTag = true;
+            }
+
+            if(runValue == 0 && !checkTag){
 
                 String[] cmd2 = CMDGetter.getCommand("python " + readerPath + " " + outPklFIle);
                 Process readerProcess = Runtime.getRuntime().exec(cmd2);
                 ClearThread ct2 = new ClearThread(readerProcess);
                 ct2.start();
                 readerProcess.waitFor();
-                System.out.println("after 1 exec");
                 int readValue = readerProcess.exitValue();
                 Thread.sleep(200);
                 ct2.setEnd(true);
@@ -176,7 +182,16 @@ public class BackTestServiceImpl implements BackTestService{
                 Map<String, Object> result = new HashMap<>();
                 result.put("msg", "error6");
                 String errorLog = "";
-                for(String str: ct.getRes()){
+
+                ClearThread clearThread = null;
+                if(checkTag){
+                    clearThread = errorCt;
+                }
+                else {
+                    clearThread = ct;
+                }
+
+                for(String str: clearThread.getRes()){
                     errorLog += str + "\n";
                 }
                 result.put("errorLog", errorLog);
@@ -270,11 +285,19 @@ public class BackTestServiceImpl implements BackTestService{
         Process process;
         boolean end;
         List<String> res;
+        boolean isErrorType = false;
 
         public ClearThread(Process process) {
             this.process = process;
             end = false;
             res = new ArrayList<>();
+        }
+
+        public ClearThread(Process process, boolean isError) {
+            this.process = process;
+            end = false;
+            res = new ArrayList<>();
+            isErrorType = isError;
         }
 
         @Override
@@ -283,7 +306,13 @@ public class BackTestServiceImpl implements BackTestService{
                 return;
             }
 
-            Scanner scanner = new Scanner(process.getInputStream(), CMDGetter.getCmdCharSet());
+            Scanner scanner = null;
+            if(!isErrorType){
+                scanner = new Scanner(process.getInputStream(), CMDGetter.getCmdCharSet());
+            }
+            else {
+                scanner = new Scanner(process.getErrorStream(), CMDGetter.getCmdCharSet());
+            }
             while (process != null && !end) {
                 while (scanner.hasNextLine()) {
                     String line = scanner.nextLine();
