@@ -54,7 +54,6 @@ angular.module("mainapp", [])
                         var str = document.referrer;
                         if (data.msg == "success") {
 
-                            alert(data.id);
                             if (str == null || str == "") {
                                 window.location.href = "/index.html";
                             } else {

@@ -19,7 +19,7 @@ angular.module("mainapp", [])
                 $scope.benchmark != "" &&
                 $scope.commissionMultiplier != "" &&
                 $scope.slippage != "") {
-                loadReturnLine_ajax(99, $scope.cash, $scope.sDate, $scope.eDate, "1d", $scope.matchingType, $scope.benchmark, $scope.commissionMultiplier, $scope.slippage);
+                loadReturnLine_ajax(sid, $scope.cash, $scope.sDate, $scope.eDate, "1d", $scope.matchingType, $scope.benchmark, $scope.commissionMultiplier, $scope.slippage);
 
             } else {
                 if ($scope.cash == "" || $scope.sDate == "" || $scope.eDate == "") {
@@ -40,21 +40,21 @@ angular.module("mainapp", [])
                 $("#stra-page-hint").html("已将基准合约设为默认值");
                 $("#stra-page-hint").fadeIn().delay(1000).fadeOut();
 
-                loadReturnLine_ajax(99, $scope.cash, $scope.sDate, $scope.eDate, "1d", $scope.matchingType, $scope.benchmark, $scope.commissionMultiplier, $scope.slippage);
+                loadReturnLine_ajax(sid, $scope.cash, $scope.sDate, $scope.eDate, "1d", $scope.matchingType, $scope.benchmark, $scope.commissionMultiplier, $scope.slippage);
             }
             if ($scope.commissionMultiplier == "") {
                 $scope.commissionMultiplier = "1";
                 $("#stra-page-hint").html("已将佣金倍率设为默认值");
                 $("#stra-page-hint").fadeIn().delay(1000).fadeOut();
 
-                loadReturnLine_ajax(99, $scope.cash, $scope.sDate, $scope.eDate, "1d", $scope.matchingType, $scope.benchmark, $scope.commissionMultiplier, $scope.slippage);
+                loadReturnLine_ajax(sid, $scope.cash, $scope.sDate, $scope.eDate, "1d", $scope.matchingType, $scope.benchmark, $scope.commissionMultiplier, $scope.slippage);
             }
             if ($scope.slippage == "") {
                 $scope.slippage = "0";
                 $("#stra-page-hint").html("已将滑点设为默认值");
                 $("#stra-page-hint").fadeIn().delay(1000).fadeOut();
 
-                loadReturnLine_ajax(99, $scope.cash, $scope.sDate, $scope.eDate, "1d", $scope.matchingType, $scope.benchmark, $scope.commissionMultiplier, $scope.slippage);
+                loadReturnLine_ajax(sid, $scope.cash, $scope.sDate, $scope.eDate, "1d", $scope.matchingType, $scope.benchmark, $scope.commissionMultiplier, $scope.slippage);
             }
 
         };
