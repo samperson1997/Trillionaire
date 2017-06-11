@@ -63,6 +63,12 @@ public class DataUpdateServiceImpl implements DataUpdateService {
             if(!f1.isDirectory()){
                 f1.mkdirs();
             }
+            creatFile(new File(classPath+"developing_ability_"+year+quarter+".csv"));
+            creatFile(new File(classPath+"debt_paying_ability_"+year+quarter+".csv"));
+            creatFile(new File(classPath+"operation_ability_"+year+quarter+".csv"));
+            creatFile(new File(classPath+"profitability_"+year+quarter+".csv"));
+
+
 
             String[] cmd = CMDGetter.getCommand("python " + pythonPath + " " + year + " " + quarter + " " + classPath);
             Process p = Runtime.getRuntime().exec(cmd);
@@ -839,5 +845,16 @@ public class DataUpdateServiceImpl implements DataUpdateService {
         }
 
 
+    }
+
+
+    private void creatFile(File file){
+        if(!file.exists()){
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
