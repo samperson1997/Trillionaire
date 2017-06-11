@@ -101,7 +101,7 @@ public class Stock {
         this.dayRecords = dayRecords;
     }
 
-    @ManyToMany(cascade = CascadeType.MERGE)
+    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     public Set<Concept> getConcepts(){
         return this.concepts;
     }
