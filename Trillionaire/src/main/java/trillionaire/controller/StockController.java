@@ -63,9 +63,7 @@ public class StockController {
     @RequestMapping(value = "/ability", method = RequestMethod.GET)
     @ResponseBody
     public StockAbility getAbility(@RequestParam("code") String code) {
-        //StockAbility stockAbility = stockService.getStockAbility(code);
-        StockAbility stockAbility1 = new StockAbility(1.1, 1.2, 1.3, 1.4);
-        return stockAbility1;
+        return stockService.getStockAbility(code);
     }
 
     @RequestMapping(value = "/prevail", method = RequestMethod.GET)
@@ -113,7 +111,6 @@ public class StockController {
     @RequestMapping(value = "/similar", method = RequestMethod.GET)
     @ResponseBody
     public Map<String,Object> getSimilarStock(String code) {
-
         return stockService.getSimilarStock(code);
     }
 

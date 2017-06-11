@@ -2,6 +2,7 @@ package trillionaire.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import trillionaire.dao.AbilityDao;
 import trillionaire.dao.DayRecordDao;
 import trillionaire.dao.RealTimeStockDao;
 import trillionaire.dao.StockDao;
@@ -27,6 +28,8 @@ public class StockServiceImpl implements StockService {
     private RealTimeStockDao realTimeStockDao;
     @Autowired
     private StockDao stockDao;
+    @Autowired
+    private AbilityDao abilityDao;
     @Autowired
     private SimilarStockSelector similarStockSelector;
 
@@ -133,6 +136,8 @@ public class StockServiceImpl implements StockService {
     @Override
     public Map<String, Object> getSimilarStock(String code) {
         int stock = Integer.parseInt(code);
+        List<DayRecord> dayRecordList = dayRecordDao.getDayRecordsByCode(stock);
+        String name = dayRecordList.get(0).getStock().getName();
         List<Map<Integer, Object>> list = similarStockSelector.selects(stock);
         List<SimilarStock> associateList = new ArrayList<>();
         List<SimilarStock> associatedList = new ArrayList<>();
@@ -142,7 +147,12 @@ public class StockServiceImpl implements StockService {
             if (list.get(i).containsKey(1)) {
                 associatedList.add((SimilarStock) list.get(i).get(0));
             } else {
-                associateList.add((SimilarStock) list.get(i).get(0));
+                SimilarStock similarStock = (SimilarStock) list.get(i).get(0);
+                if (similarStock.getStock1().equals(name)) {
+                    associateList.add(similarStock);
+                } else {
+                    associatedList.add(similarStock);
+                }
             }
         }
         Collections.sort(associateList, new Comparator<SimilarStock>() {
@@ -172,9 +182,17 @@ public class StockServiceImpl implements StockService {
 
     @Override
     public StockAbility getStockAbility(String code) {
-
-
-        return null;
+        int stock = Integer.parseInt(code);
+        double profit = calculateProfitAbility(stock);
+        double operation = calculateOperationAbility(stock);
+        double growth = calculateGrowthAbility(stock);
+        double debtPaying = calculateDebtPayingAbility(stock);
+        if (profit != -1.0 && operation != -1.0 && growth != -1.0 && debtPaying != -1.0) {
+            StockAbility stockAbility = new StockAbility(profit, operation, growth, debtPaying);
+            return stockAbility;
+        } else {
+            return null;
+        }
     }
 
     @Override
@@ -374,55 +392,192 @@ public class StockServiceImpl implements StockService {
         return result;
     }
 
-    private double calculateProfitAbility() {
+    private double calculateProfitAbility(int code) {
         double result = 0.0;
-        double roe;   //净资产收益率
-        double netProfitRatio; //净利率
-        double grossProfitRate;  //毛利率
-        double netProfit;   //净利润(万元)
-        double esp;   //每股收益
-        double income;   //营业收入(百万元)
-        double bips;    //每股主营业务收入(元)
+        List<Stock> list = stockDao.getAllStocks();
+        List<Double> roeList = new ArrayList<>();
+        List<Double> netProfitRatioList = new ArrayList<>();
+        List<Double> espList = new ArrayList<>();
+        List<Double> incomeList = new ArrayList<>();
+        List<Double> bipsList = new ArrayList<>();
+        for (int i = 0; i < list.size(); i++) {
+            Profitability profitability = abilityDao.getProfitability(list.get(i).getCode());
+            if (profitability != null) {
+                System.out.println(profitability.getRoe());
+                roeList.add(profitability.getRoe());
+                netProfitRatioList.add(profitability.getNetProfitRatio());
+                espList.add(profitability.getEsp());
+                incomeList.add(profitability.getIncome());
+                bipsList.add(profitability.getBips());
+            }
+        }
+        Collections.reverse(roeList);
+        Collections.reverse(netProfitRatioList);
+        Collections.reverse(espList);
+        Collections.reverse(incomeList);
+        Collections.reverse(bipsList);
 
-
-        return result;
+        Profitability profitability = abilityDao.getProfitability(code);
+        if (profitability == null) {
+            return -1.0;
+        } else {
+            for (int i = 0; i < roeList.size(); i++) {
+                if (profitability.getRoe() < roeList.get(i)) {
+                    result++;
+                }
+                if (profitability.getBips() < bipsList.get(i)) {
+                    result++;
+                }
+                if (profitability.getIncome() < incomeList.get(i)) {
+                    result++;
+                }
+                if (profitability.getNetProfitRatio() < netProfitRatioList.get(i)) {
+                    result++;
+                }
+                if (profitability.getEsp() < espList.get(i)) {
+                    result++;
+                }
+            }
+            result = result / 6;
+            result = 10 - (result * 10 / list.size());
+            return result;
+        }
     }
 
-    private double calculateOperationAbility() {
+    private double calculateOperationAbility(int code) {
         double result = 0.0;
-        double arTurnover;  //应收账款周转率(次)
-        double arTurnDays;   //应收账款周转天数(天)
-        double inventoryTurnover; //存货周转率(次)
-        double inventoryDays;   //存货周转天数(天)
-        double currentAssetTurnover; //流动资产周转率(次)
-        double currentAssetDays;   //流动资产周转天数(天)
+        List<Stock> list = stockDao.getAllStocks();
+        List<Double> arTurnoverList = new ArrayList<>();
+        List<Double> inventoryTurnoverList = new ArrayList<>();
+        List<Double> currentAssetTurnoverList = new ArrayList<>();
+        for (int i = 0; i < list.size(); i++) {
+            OperationAbility operationAbility = abilityDao.getOperationAbility(list.get(i).getCode());
+            if (operationAbility != null) {
+                arTurnoverList.add(operationAbility.getArTurnover());
+                inventoryTurnoverList.add(operationAbility.getInventoryTurnover());
+                currentAssetTurnoverList.add(operationAbility.getCurrentAssetTurnover());
+            }
+        }
+        Collections.reverse(arTurnoverList);
+        Collections.reverse(inventoryTurnoverList);
+        Collections.reverse(currentAssetTurnoverList);
 
+        OperationAbility operationAbility = abilityDao.getOperationAbility(code);
 
-        return result;
+        if (operationAbility == null) {
+            return -1;
+        } else {
+            for (int i = 0; i < arTurnoverList.size(); i++) {
+                if (operationAbility.getArTurnover() < arTurnoverList.get(i)) {
+                    result++;
+                }
+                if (operationAbility.getInventoryTurnover() < inventoryTurnoverList.get(i)) {
+                    result++;
+                }
+                if (operationAbility.getCurrentAssetTurnover() < currentAssetTurnoverList.get(i)) {
+                    result++;
+                }
+            }
+            result = result / 3;
+            result = 10 - (result * 10 / list.size());
+            return result;
+        }
     }
 
-    private double calculateGrowthAbility() {
+    private double calculateGrowthAbility(int code) {
         double result = 0.0;
-        double mbrg; //主营业务收入增长率(%)
-        double nprg; //净利润增长率(%)
-        double nav; //净资产增长率
-        double targ; //总资产增长率
-        double epsg; //每股收益增长率
-        double seg; //股东权益增长率
+        List<Stock> list = stockDao.getAllStocks();
+        List<Double> mbrgList = new ArrayList<>();
+        List<Double> nprgList = new ArrayList<>();
+        List<Double> navList = new ArrayList<>();
+        List<Double> epsgList = new ArrayList<>();
+        for (int i = 0; i < list.size(); i++) {
+            DevelopingAbility developingAbility = abilityDao.DevelopingAbility(list.get(i).getCode());
+            if (developingAbility != null) {
+                mbrgList.add(developingAbility.getMbrg());
+                nprgList.add(developingAbility.getNprg());
+                navList.add(developingAbility.getNav());
+                epsgList.add(developingAbility.getEpsg());
+            }
+        }
+        Collections.reverse(mbrgList);
+        Collections.reverse(nprgList);
+        Collections.reverse(navList);
+        Collections.reverse(epsgList);
 
-        return result;
+        DevelopingAbility developingAbility = abilityDao.DevelopingAbility(code);
+        if (developingAbility == null) {
+            return -1.0;
+        } else {
+            for (int i = 0; i < mbrgList.size(); i++) {
+                if (developingAbility.getMbrg() < mbrgList.get(i)) {
+                    result++;
+                }
+                if (developingAbility.getNprg() < nprgList.get(i)) {
+                    result++;
+                }
+                if (developingAbility.getNav() < navList.get(i)) {
+                    result++;
+                }
+                if (developingAbility.getEpsg() < epsgList.get(i)) {
+                    result++;
+                }
+            }
+            result = result / 4;
+            result = 10 - (result * 10 / list.size());
+            return result;
+        }
     }
 
-    private double calculateDebtPayingAbility() {
+    private double calculateDebtPayingAbility(int code) {
         double result = 0.0;
-        double currentRatio; //流动比率
-        double quickRatio; //速动比率
-        double cashRatio; //现金比率
-        double icRatio; //利息支付倍数
-        double sheqRatio; //股东权益比率
-        double adRatio; //股东权益增长率
+        List<Stock> list = stockDao.getAllStocks();
+        List<Double> currentRatioList = new ArrayList<>();
+        List<Double> quickList = new ArrayList<>();
+        List<Double> cashList = new ArrayList<>();
+        List<Double> sheqList = new ArrayList<>();
+        List<Double> adRatioList = new ArrayList<>();
+        for (int i = 0; i < list.size(); i++) {
+            DebtPayingAbility debtPayingAbility = abilityDao.getDebtPayingAbility(list.get(i).getCode());
+            if (debtPayingAbility != null) {
+                currentRatioList.add(debtPayingAbility.getCurrentRatio());
+                quickList.add(debtPayingAbility.getQuickRatio());
+                cashList.add(debtPayingAbility.getCashRatio());
+                sheqList.add(debtPayingAbility.getSheqRatio());
+                adRatioList.add(debtPayingAbility.getAdRatio());
+            }
+        }
+        Collections.reverse(currentRatioList);
+        Collections.reverse(quickList);
+        Collections.reverse(cashList);
+        Collections.reverse(sheqList);
+        Collections.reverse(adRatioList);
 
-        return result;
+        DebtPayingAbility debtPayingAbility = abilityDao.getDebtPayingAbility(code);
+        if (debtPayingAbility == null) {
+            return -1.0;
+        } else {
+            for (int i = 0; i < currentRatioList.size(); i++) {
+                if (debtPayingAbility.getCurrentRatio() < currentRatioList.get(i)) {
+                    result++;
+                }
+                if (debtPayingAbility.getQuickRatio() < quickList.get(i)) {
+                    result++;
+                }
+                if (debtPayingAbility.getCashRatio() < cashList.get(i)) {
+                    result++;
+                }
+                if (debtPayingAbility.getSheqRatio() < sheqList.get(i)) {
+                    result++;
+                }
+                if (debtPayingAbility.getAdRatio() < adRatioList.get(i)) {
+                    result++;
+                }
+            }
+            result = result / 5;
+            result = 10 - (result * 10 / list.size());
+            return result;
+        }
     }
 
     private List<String> calculateMA(List<DayRecord> list, int dayCount) {

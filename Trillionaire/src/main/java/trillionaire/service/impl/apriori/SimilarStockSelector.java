@@ -8,7 +8,6 @@ import trillionaire.model.DayRecord;
 import trillionaire.model.Stock;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -47,9 +46,11 @@ public class SimilarStockSelector {
         for (int i = 0; i < stockList.size(); i++) {
             if (code != stockList.get(i).getCode()) {
                 List<List<String>> data = getRecord(code, stockList.get(i).getCode());
-                Map<Integer, Object> map = apriori.select(data, stockList.get(i).getCode());
-                if (map.containsKey(0)) {
-                    result.add(map);
+                if (data.size() > 23) {
+                    Map<Integer, Object> map = apriori.select(data, stockList.get(i).getCode());
+                    if (map.containsKey(0)) {
+                        result.add(map);
+                    }
                 }
             }
         }
