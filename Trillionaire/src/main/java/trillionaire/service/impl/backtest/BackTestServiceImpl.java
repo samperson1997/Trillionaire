@@ -155,6 +155,11 @@ public class BackTestServiceImpl implements BackTestService{
                 checkTag = true;
             }
             System.out.println("process value:"+runValue);
+            if(runValue==1){
+                for (String s: errorCt.getRes()){
+                    System.out.println(s);
+                }
+            }
 
             if(runValue == 0 && !checkTag){
                 System.out.println("run2 before waitfor");
