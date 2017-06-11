@@ -62,7 +62,6 @@
                 <h1 class="page-main-title">策略回测<span class="page-sub-title">&nbsp;&nbsp;|&nbsp;&nbsp;强大而精准的在线研究平台</span></h1>
             </div>
         </div>
-        <div id="stra-page-hint" class="page-hint">提示</div>
 
         <div style="margin: 0 3%;">
             <div ng-app="mainapp" ng-controller="BackTestController">
@@ -112,10 +111,10 @@
 
                 <div class="log-area">
                     <div class="log-title">
-                        <i class="fa fa-file-text"></i> 日志&nbsp;Logs and Errors
+                        <i class="fa fa-file-text"></i> 错误日志&nbsp;Error Log
                     </div>
-                    <div class="log-content">
-                        <p>none :-)</p>
+                    <div class="log-content" id="log-content">
+                        <p>暂无错误<i class="fa fa-smile-o"></i></p>
                     </div>
                 </div>
 
@@ -130,57 +129,57 @@
 
                             <div data-scroll-reveal="enter from bottom over 0.5s" class="res-spec-figure">
                                 <h2>回测收益</h2>
-                                <p>60.49%</p>
+                                <p id="backtestReturns">...</p>
                             </div>
 
                             <div data-scroll-reveal="enter from bottom over 0.5s" class="res-spec-figure">
                                 <h2>回测年化收益</h2>
-                                <p>60.71%</p>
+                                <p id="backtestAnnualizedReturns">...</p>
                             </div>
 
                             <div data-scroll-reveal="enter from bottom over 0.5s" class="res-spec-figure">
                                 <h2>基准收益</h2>
-                                <p>52.10%</p>
+                                <p id="benchReturns">...</p>
                             </div>
                             <div data-scroll-reveal="enter from bottom over 0.5s" class="res-spec-figure">
                                 <h2>基准年化收益</h2>
-                                <p>52.28%</p>
+                                <p id="benchAnnualizedReturns">...</p>
                             </div>
                             <div data-scroll-reveal="enter from bottom over 0.5s" class="res-spec-figure">
                                 <h2>Alpha</h2>
-                                <p>-0.019</p>
+                                <p id="alpha">...</p>
                             </div>
                             <div data-scroll-reveal="enter from bottom over 0.5s" class="res-spec-figure">
                                 <h2>Beta</h2>
-                                <p>1.255</p>
+                                <p id="beta">...</p>
                             </div>
                             <div data-scroll-reveal="enter from bottom over 0.5s" class="res-spec-figure">
                                 <h2>Sharpe</h2>
-                                <p>1.563</p>
+                                <p id="sharpe">...</p>
                             </div>
                             <div data-scroll-reveal="enter from bottom over 0.5s" class="res-spec-figure">
                                 <h2>Sortino</h2>
-                                <p>4.101</p>
+                                <p id="sortino">...</p>
                             </div>
                             <div data-scroll-reveal="enter from bottom over 0.5s" class="res-spec-figure">
                                 <h2>Info Ratio</h2>
-                                <p>0.415</p>
+                                <p id="infoRatio">...</p>
                             </div>
                             <div data-scroll-reveal="enter from bottom over 0.5s" class="res-spec-figure">
                                 <h2>Volatility</h2>
-                                <p>0.304</p>
+                                <p id="volatility">...</p>
                             </div>
                             <div data-scroll-reveal="enter from bottom over 0.5s" class="res-spec-figure">
                                 <h2>最大回撤</h2>
-                                <p>16.48%</p>
+                                <p id="maxDrawdown">...</p>
                             </div>
                             <div data-scroll-reveal="enter from bottom over 0.5s" class="res-spec-figure">
                                 <h2>跟踪误差</h2>
-                                <p>0.1961</p>
+                                <p id="trackingError">...</p>
                             </div>
                             <div data-scroll-reveal="enter from bottom over 0.5s" class="res-spec-figure">
                                 <h2>下行风险</h2>
-                                <p>0.116</p>
+                                <p id="downsideRisk">...</p>
                             </div>
                         </div>
                     </div>
@@ -205,7 +204,9 @@
             </div>
             <div style="margin-bottom: 10%;"></div>
 
+
         </div>
+        <div id="stra-page-hint" class="page-hint">提示</div>
     </header>
 
     <footer>

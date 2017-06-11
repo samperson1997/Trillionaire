@@ -70,7 +70,6 @@
 }
 
 .log-area {
-
     font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, "PingFang SC", sans-serif;
     width: 40%;
     height: 500px;
@@ -85,6 +84,12 @@
     font-size: 120%;
     padding: 1%;
     margin-bottom: 2%;
+}
+
+.log-content {
+    width: 40%;
+    padding: 1%;
+    height: 500px;
 }
 
 .input-box {

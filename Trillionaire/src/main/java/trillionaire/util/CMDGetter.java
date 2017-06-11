@@ -41,11 +41,12 @@ public class CMDGetter {
 
         if(osName.equals("Windows 10")){
 
-            return new String[] { "cmd.exe", "/C", "activate python36 && "+ command };
+            return new String[] { "cmd.exe", "/C", "activate python36 && " + command };
         }
         else{
 
-            return new String[] { "/bin/sh", "-c",  command };
+            System.out.println(command);
+            return new String[] { "/bin/sh", "-c", command };
         }
 
     }

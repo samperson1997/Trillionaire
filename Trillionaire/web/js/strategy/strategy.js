@@ -89,11 +89,43 @@ angular.module("mainapp", [])
                 contentType: "application/x-www-form-urlencoded",
                 dataType: "json",
                 success: function (result) {
-                    op = getOP(result.datelist, result.data1, result.data2);
-                    retChart.setOption(op);
-                    $("#result-area").fadeIn();
-                    $("#return-area").fadeIn();
-                    $("#return-chart").fadeIn();
+                    console.log(result);
+
+                    if (result.msg == "success") {
+                        op = getOP(result.datelist, result.data1, result.data2);
+                        retChart.setOption(op);
+
+                        $("#log-content").html('<p>暂无错误 <i class="fa fa-smile-o"></i></p>');
+                        $("#backtestReturn").text(result.summary.backtestReturn);
+                        $("#backtestAnnualizedReturns").text(result.summary.backtestAnnualizedReturns);
+                        $("#benchReturns").text(result.summary.benchReturns);
+                        $("#benchAnnualizedReturns").text(result.summary.benchAnnualizedReturns);
+                        $("#alpha").text(result.summary.alpha);
+                        $("#beta").text(result.summary.beta);
+                        $("#sharpe").text(result.summary.sharpe);
+                        $("#sortino").text(result.summary.sortino);
+                        $("#infoRatio").text(result.summary.infoRatio);
+                        $("#volatility").text(result.summary.volatility);
+                        $("#maxDrawdown").text(result.summary.maxDrawdown);
+                        $("#trackingError").text(result.summary.trackingError);
+                        $("#downsideRisk").text(result.summary.downsideRisk);
+
+                        $("#result-area").fadeIn();
+                        $("#return-area").fadeIn();
+                        $("#return-chart").fadeIn();
+                    } else {
+
+                        if (result.msg == "error6") {
+                            $("#log-content").html('<p>代码有语法错误 <i class="fa fa-frown-o"></i><br>' + result.errorLog + '</p>');
+                        } else {
+                            $("#log-content").html('<p>代码有误，错误编码：' + result.msg + ' <i class="fa fa-frown-o"></i></p>');
+                        }
+                        //                        $("#stra-page-hint").html(result.msg);
+                        //                        $("#stra-page-hint").fadeIn().delay(1000).fadeOut();
+                        $("#result-area").fadeOut();
+                        $("#return-area").fadeOut();
+                        $("#return-chart").fadeOut();
+                    }
 
                     $("#overreturn-area").fadeOut();
                     $("#win-area").fadeOut();
@@ -149,7 +181,7 @@ angular.module("mainapp", [])
                         });
                     });
                     sid = result.sid;
-                    //                    window.location.href = "strategy-edit?sid=" + sid;
+                    window.location.href = "strategy-edit.html?sid=" + sid;
                 },
                 error: function (request, status, err) {
                     load.abort();

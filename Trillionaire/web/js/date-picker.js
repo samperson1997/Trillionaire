@@ -12,6 +12,7 @@ $(document).ready(function () {
             beforeShowDay: $.datepicker.noWeekends,
             yearRange: '2005:2017',
             showButtonPanel: true,
+            dateFormat: 'yy-mm-dd',
             onClose: function (selectedDate) {
                 $("#end-filter").datepicker("option", "minDate", selectedDate);
             }
@@ -27,6 +28,7 @@ $(document).ready(function () {
             beforeShowDay: $.datepicker.noWeekends,
             yearRange: '2005:2017',
             showButtonPanel: true,
+            dateFormat: 'yy-mm-dd',
             onClose: function (selectedDate) {
                 $("#start-filter").datepicker("option", "maxDate", selectedDate);
             }
