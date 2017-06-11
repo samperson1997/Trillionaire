@@ -59,6 +59,10 @@ public class DataUpdateServiceImpl implements DataUpdateService {
             System.out.println(pythonPath);
             System.out.println(classPath);
 
+            File f1 = new File(classPath);
+            if(!f1.isDirectory()){
+                f1.mkdirs();
+            }
 
             String[] cmd = CMDGetter.getCommand("python " + pythonPath + " " + year + " " + quarter + " " + classPath);
             Process p = Runtime.getRuntime().exec(cmd);
