@@ -178,16 +178,36 @@ public class BackTestController {
     @ResponseBody
     public Map<String, Object> runBackTest( BackTestParams params){
 
-        System.out.println("start backtest " + params);
+//        System.out.println("start backtest " + params);
+//
+//        Map<String, Object> result = backTestService.startBackTest(params);
+//
+//        System.out.println("success " + params.sid);
+//        System.out.println(result.get("msg"));
+//        System.out.println(result.get("errorLog"));
 
-        Map<String, Object> result = backTestService.startBackTest(params);
 
-        System.out.println("success " + params.sid);
-        System.out.println(result.get("msg"));
-        System.out.println(result.get("errorLog"));
+        return getExample();
+    }
+
+    private Map<String, Object> getExample(){
 
 
-        return result;
+        Map<String , Object> map = new HashMap<>();
+        List<String> datelist = new ArrayList<>();
+        List<Double> data1 = new ArrayList<>();
+        List<Double> data2 = new ArrayList<>();
+        for(int i=0; i<100; i++){
+            datelist.add(LocalDate.now().plusDays(i).toString());
+            data1.add(i+1.5);
+            data2.add(i+2.5);
+        }
+        map.put("msg","success");
+        map.put("datelist",datelist);
+        map.put("data1",data1);
+        map.put("data2",data2);
+
+        return map;
     }
 
 

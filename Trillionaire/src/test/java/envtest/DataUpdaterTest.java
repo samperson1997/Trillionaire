@@ -37,7 +37,7 @@ public class DataUpdaterTest {
 //        Map<String, Object> map = minutePriceDataService.getMinutePriceDate("000001");
 
         DataUpdateService dataUpdateService = ctx.getBean(DataUpdateServiceImpl.class);
-        dataUpdateService.updateAbility(2017,1);
+        dataUpdateService.updateAllData();
 
     }
 

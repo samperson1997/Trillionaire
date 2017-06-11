@@ -198,7 +198,13 @@ public class DataUpdateServiceImpl implements DataUpdateService {
 
         String codeString = "";
 
-        codeString = String.valueOf(code);
+        if(code<3000000){
+            codeString = String.valueOf(code);
+        }
+        else {
+            codeString = String.valueOf(code-3000000);
+        }
+
         while(codeString.length()<6){
             codeString = "0" + codeString;
         }
@@ -247,7 +253,7 @@ public class DataUpdateServiceImpl implements DataUpdateService {
         String[] strs = line.split(",");
         int index = 0;
         for(String string : strs){
-            if(index>=3 && index<=7){
+            if(index>=3 && index<=12){
                 if(string.equals("0.0") || string.equals("None")){
                     return null;
                 }
@@ -264,7 +270,7 @@ public class DataUpdateServiceImpl implements DataUpdateService {
         double change = Double.valueOf(strs[9]);
         long volume = Long.valueOf(strs[11]);
         double dealSum = Double.valueOf(strs[12]);
-        double turnoverRate = Double.valueOf(strs[10]);
+        double turnoverRate = strs[10].equals("")?-1:Double.valueOf(strs[10]);
 
         dayRecord.setDate(date);
         dayRecord.setOpen(open);
