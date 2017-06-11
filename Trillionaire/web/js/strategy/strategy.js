@@ -13,6 +13,19 @@ angular.module("mainapp", [])
         $scope.slippage = "0";
 
         $scope.loadReturnLine = function () {
+            if (sid < 0 && $("#stra-name-input").val() == "") {
+                $("#stra-name-input").fadeIn();
+            } else {
+                $("#stra-name-input").fadeOut();
+                $("#save-button").fadeOut();
+
+                if (namefade == 1) {
+                    saveStra_ajax(sid, $("#stra-name-input").val(), editor.getValue(), sessionStorage.getItem("userId"));
+                } else {
+                    saveStra_ajax(sid, $("#stra-name").text().substr(7), editor.getValue(), sessionStorage.getItem("userId"));
+                }
+            }
+
             if ($scope.cash != "" &&
                 $scope.sDate != "" &&
                 $scope.eDate != "" &&
@@ -97,7 +110,6 @@ angular.module("mainapp", [])
 
                         $("#log-content").html('<p>暂无错误 <i class="fa fa-smile-o"></i></p>');
 
-                        alert(result.summary.backtestReturns);
                         $("#backtestReturns").text(result.summary.backtestReturns);
                         $("#backtestAnnualizedReturns").text(result.summary.backtestAnnualizedReturns);
                         $("#benchReturns").text(result.summary.benchReturns);
