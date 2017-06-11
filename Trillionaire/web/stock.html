@@ -170,16 +170,11 @@
                 <div style="border-top: 1px solid #AAA; padding-top: 5%;">
                     <div class="stock-name" style="display: inline;">相关股票</div>
                     <div class="stock-code" style="margin-left: 15%;">&nbsp;&nbsp;<a href="help.html#ability-compare" target="_blank">>>什么是相关股票?</a></div>
-                    <div class="rel-figure">
+                    <div id="subject" class="rel-figure">
                         <h2>关联股票</h2>
-                        <p>blablabla</p>
-                        <p>blablabla</p>
-                        <p>blablabla</p>
-                        <p>blablabla</p>
                     </div>
-                    <div class="rel-figure">
+                    <div id="object" class="rel-figure">
                         <h2>被关联股票</h2>
-                        <p>plaplapla</p>
                     </div>
                 </div>
 
@@ -352,6 +347,7 @@
     $(document).ready(loadTargetPrice);
     $(document).ready(loadPrevail);
     $(document).ready(updateInfo);
+    $(document).ready(loadSimilarStock);
 
 </script>
 

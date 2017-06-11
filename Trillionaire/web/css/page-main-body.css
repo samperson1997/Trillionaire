@@ -72,18 +72,27 @@
 .rel-figure {
     background-color: transparent;
     font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, "PingFang SC", sans-serif;
-    font-size: 85%;
+    font-size: 90%;
     padding: 3%;
+    display: inline-block;
+    width: 40%;
+    text-align: center;
+    vertical-align: top;
 }
 
 .rel-figure h2 {
-    display: inline-block;
     font-weight: 400;
+    border-bottom: 1px solid #AAA;
 }
 
 .rel-figure p {
-    display: inline-block;
+    font-size: 120%;
+    padding: 3%;
     font-weight: 200;
+}
+
+.rel-figure a {
+    color: #000;
 }
 
 #main-figure {
