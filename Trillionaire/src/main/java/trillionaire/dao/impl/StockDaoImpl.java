@@ -1,6 +1,8 @@
 package trillionaire.dao.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.hibernate.Session;
@@ -22,6 +24,8 @@ public class StockDaoImpl implements StockDao{
 
     @Resource
     SessionFactory sessionFactory ;
+
+    private Map<String, Object> cnMap = null;
 
     public List<Stock> getAllStocks() {
         // TODO Auto-generated method stub
@@ -94,6 +98,51 @@ public class StockDaoImpl implements StockDao{
 
         tx.commit();
         session.close();
+
+        return result;
+    }
+
+    @Override
+    public Map<String, Object> getNameCodeMap() {
+
+        if(cnMap!=null){
+            return cnMap;
+        }
+
+        Map<String, Object> result = new HashMap<>();
+        Map<String, String> nameCodeMap = new HashMap<>();
+        Map<String, String> codeNameMap = new HashMap<>();
+
+
+        Session session = sessionFactory.openSession();
+        Transaction tx = session.beginTransaction();
+
+        Query<Stock> query = session.createQuery("from Stock");
+
+        List<Stock> stocks = query.list();
+        tx.commit();
+        session.close();
+
+        for(Stock stock:stocks){
+
+            nameCodeMap.put(stock.getName(), getSixString(stock.getCode()));
+            codeNameMap.put(getSixString(stock.getCode()), stock.getName());
+        }
+
+        result.put("nameCodeMap",nameCodeMap);
+        result.put("nameCodeMap",codeNameMap);
+
+        cnMap = result;
+
+        return result;
+    }
+
+    private String getSixString(int code){
+
+        String result = String.valueOf(code);
+        while(result.length() < 6){
+            result = "0"+result;
+        }
 
         return result;
     }

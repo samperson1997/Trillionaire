@@ -154,20 +154,27 @@ public class BackTestServiceImpl implements BackTestService{
             if(errorCt.getRes().size() > 0 && errorCt.getRes().get(0).contains("Traceback")){
                 checkTag = true;
             }
+            System.out.println("process value:"+runValue);
 
             if(runValue == 0 && !checkTag){
-
+                System.out.println("run2 before waitfor");
                 String[] cmd2 = CMDGetter.getCommand("python " + readerPath + " " + outPklFIle);
                 Process readerProcess = Runtime.getRuntime().exec(cmd2);
                 ClearThread ct2 = new ClearThread(readerProcess);
                 ct2.start();
                 readerProcess.waitFor();
+                System.out.println("run2 after waitfor");
                 int readValue = readerProcess.exitValue();
+                System.out.println("run2 value:"+readValue);
                 Thread.sleep(200);
                 ct2.setEnd(true);
 
                 if(readValue == 0){
 
+                    for(String s: ct2.getRes()){
+                        System.out.println(s);
+                    }
+                    System.out.println("start get result");
                     return getResult(ct2.getRes());
 
                 }

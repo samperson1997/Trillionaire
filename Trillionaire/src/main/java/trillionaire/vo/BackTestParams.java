@@ -15,6 +15,7 @@ public class BackTestParams {
     public String commissionMultiplier;
     public String slippage;
 
+
     public BackTestParams(){
         sid = 1;
         cash = "100000";
@@ -99,6 +100,21 @@ public class BackTestParams {
 
     public void setSlippage(String slippage) {
         this.slippage = slippage;
+    }
+
+    @Override
+    public String toString() {
+        return "BackTestParams{" +
+                "sid=" + sid +
+                ", cash='" + cash + '\'' +
+                ", sDate='" + sDate + '\'' +
+                ", eDate='" + eDate + '\'' +
+                ", frequency='" + frequency + '\'' +
+                ", matchingType='" + matchingType + '\'' +
+                ", benchmark='" + benchmark + '\'' +
+                ", commissionMultiplier='" + commissionMultiplier + '\'' +
+                ", slippage='" + slippage + '\'' +
+                '}';
     }
 
 

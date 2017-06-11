@@ -178,11 +178,14 @@ public class BackTestController {
     @ResponseBody
     public Map<String, Object> runBackTest( BackTestParams params){
 
-        System.out.println("start backtest" + params.sid);
+        System.out.println("start backtest " + params);
 
         Map<String, Object> result = backTestService.startBackTest(params);
 
         System.out.println("success " + params.sid);
+        System.out.println(result.get("msg"));
+        System.out.println(result.get("errorLog"));
+
 
         return result;
     }
