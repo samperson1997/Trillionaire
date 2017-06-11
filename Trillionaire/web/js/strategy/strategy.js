@@ -13,6 +13,7 @@ angular.module("mainapp", [])
         $scope.slippage = "0";
 
         $scope.loadReturnLine = function () {
+            // 保存
             if (sid < 0 && $("#stra-name-input").val() == "") {
                 $("#stra-name-input").fadeIn();
             } else {
@@ -20,56 +21,16 @@ angular.module("mainapp", [])
                 $("#save-button").fadeOut();
 
                 if (namefade == 1) {
-                    saveStra_ajax(sid, $("#stra-name-input").val(), editor.getValue(), sessionStorage.getItem("userId"));
+                    saveAndLoad_ajax(sid, $("#stra-name-input").val(), editor.getValue(), sessionStorage.getItem("userId"));
                 } else {
-                    saveStra_ajax(sid, $("#stra-name").text().substr(7), editor.getValue(), sessionStorage.getItem("userId"));
+                    saveAndLoad_ajax(sid, $("#stra-name").text().substr(7), editor.getValue(), sessionStorage.getItem("userId"));
                 }
             }
 
-            if ($scope.cash != "" &&
-                $scope.sDate != "" &&
-                $scope.eDate != "" &&
-                $scope.benchmark != "" &&
-                $scope.commissionMultiplier != "" &&
-                $scope.slippage != "") {
-                loadReturnLine_ajax(sid, $scope.cash, $scope.sDate, $scope.eDate, "1d", $scope.matchingType, $scope.benchmark, $scope.commissionMultiplier, $scope.slippage);
-
-            } else {
-                if ($scope.cash == "" || $scope.sDate == "" || $scope.eDate == "") {
-                    $("#stra-page-hint").html("请将回测设置填写完整");
-                    $("#stra-page-hint").fadeIn().delay(1000).fadeOut();
-
-                    $("#result-area").fadeOut();
-                    $("#return-area").fadeOut();
-                    $("#return-chart").fadeOut();
-                    $("#overreturn-area").fadeOut();
-                    $("#win-area").fadeOut();
-                    $("#overreturn-chart").fadeOut();
-                    $("#win-chart").fadeOut();
-                }
-            }
-            if ($scope.benchmark == "") {
-                $scope.benchmark = "000300.XSHG";
-                $("#stra-page-hint").html("已将基准合约设为默认值");
-                $("#stra-page-hint").fadeIn().delay(1000).fadeOut();
-
-                loadReturnLine_ajax(sid, $scope.cash, $scope.sDate, $scope.eDate, "1d", $scope.matchingType, $scope.benchmark, $scope.commissionMultiplier, $scope.slippage);
-            }
-            if ($scope.commissionMultiplier == "") {
-                $scope.commissionMultiplier = "1";
-                $("#stra-page-hint").html("已将佣金倍率设为默认值");
-                $("#stra-page-hint").fadeIn().delay(1000).fadeOut();
-
-                loadReturnLine_ajax(sid, $scope.cash, $scope.sDate, $scope.eDate, "1d", $scope.matchingType, $scope.benchmark, $scope.commissionMultiplier, $scope.slippage);
-            }
-            if ($scope.slippage == "") {
-                $scope.slippage = "0";
-                $("#stra-page-hint").html("已将滑点设为默认值");
-                $("#stra-page-hint").fadeIn().delay(1000).fadeOut();
-
-                loadReturnLine_ajax(sid, $scope.cash, $scope.sDate, $scope.eDate, "1d", $scope.matchingType, $scope.benchmark, $scope.commissionMultiplier, $scope.slippage);
-            }
-
+            $("#result-area").fadeOut();
+            $("#return-area").fadeIn();
+            $("#return-chart").fadeOut();
+            $("#return-spin").fadeIn();
         };
 
 
@@ -134,13 +95,13 @@ angular.module("mainapp", [])
                         } else {
                             $("#log-content").html('<p>代码有误，错误编码：' + result.msg + ' <i class="fa fa-frown-o"></i></p>');
                         }
-                        //                        $("#stra-page-hint").html(result.msg);
-                        //                        $("#stra-page-hint").fadeIn().delay(1000).fadeOut();
+
                         $("#result-area").fadeOut();
                         $("#return-area").fadeOut();
                         $("#return-chart").fadeOut();
                     }
 
+                    $("#return-spin").fadeOut();
                     $("#overreturn-area").fadeOut();
                     $("#win-area").fadeOut();
                     $("#overreturn-chart").fadeOut();
@@ -196,6 +157,86 @@ angular.module("mainapp", [])
                     });
                     sid = result.sid;
                     window.location.href = "strategy-edit.html?sid=" + sid;
+                },
+                error: function (request, status, err) {
+                    load.abort();
+                }
+            });
+        };
+
+        function saveAndLoad_ajax(sid, strategyName, content, userId) {
+            this.sid = sid;
+            this.content = content;
+            this.strategyName = strategyName;
+            this.userId = userId;
+
+            $.ajax({
+                type: "POST",
+                url: "/backtest/save_strategy",
+                data: {
+                    'sid': this.sid,
+                    'strategyName': this.strategyName,
+                    'content': this.content,
+                    'userId': this.userId
+                },
+                contentType: "application/x-www-form-urlencoded",
+                dataType: "json",
+                success: function (result) {
+                    $("#save-button").fadeOut(function () {
+                        $("#save-already").fadeIn().delay(1000).fadeOut(function () {
+                            $("#save-button").fadeIn();
+                            $("#stra-name").fadeIn(function () {
+                                namefade = 0;
+                            });
+                            $("#stra-name").text("策略名称 | " + strategyName);
+                        });
+                    });
+                    sid = result.sid;
+
+                    if ($scope.cash != "" &&
+                        $scope.sDate != "" &&
+                        $scope.eDate != "" &&
+                        $scope.benchmark != "" &&
+                        $scope.commissionMultiplier != "" &&
+                        $scope.slippage != "") {
+                        loadReturnLine_ajax(sid, $scope.cash, $scope.sDate, $scope.eDate, "1d", $scope.matchingType, $scope.benchmark, $scope.commissionMultiplier, $scope.slippage);
+
+                    } else {
+                        if ($scope.cash == "" || $scope.sDate == "" || $scope.eDate == "") {
+                            $("#stra-page-hint").html("请将回测设置填写完整");
+                            $("#stra-page-hint").fadeIn().delay(1000).fadeOut();
+
+                            $("#result-area").fadeOut();
+                            $("#return-area").fadeOut();
+                            $("#return-chart").fadeOut();
+                            $("#overreturn-area").fadeOut();
+                            $("#win-area").fadeOut();
+                            $("#overreturn-chart").fadeOut();
+                            $("#win-chart").fadeOut();
+                        }
+                    }
+                    if ($scope.benchmark == "") {
+                        $scope.benchmark = "000300.XSHG";
+                        $("#stra-page-hint").html("已将基准合约设为默认值");
+                        $("#stra-page-hint").fadeIn().delay(1000).fadeOut();
+
+                        loadReturnLine_ajax(sid, $scope.cash, $scope.sDate, $scope.eDate, "1d", $scope.matchingType, $scope.benchmark, $scope.commissionMultiplier, $scope.slippage);
+                    }
+                    if ($scope.commissionMultiplier == "") {
+                        $scope.commissionMultiplier = "1";
+                        $("#stra-page-hint").html("已将佣金倍率设为默认值");
+                        $("#stra-page-hint").fadeIn().delay(1000).fadeOut();
+
+                        loadReturnLine_ajax(sid, $scope.cash, $scope.sDate, $scope.eDate, "1d", $scope.matchingType, $scope.benchmark, $scope.commissionMultiplier, $scope.slippage);
+                    }
+                    if ($scope.slippage == "") {
+                        $scope.slippage = "0";
+                        $("#stra-page-hint").html("已将滑点设为默认值");
+                        $("#stra-page-hint").fadeIn().delay(1000).fadeOut();
+
+                        loadReturnLine_ajax(sid, $scope.cash, $scope.sDate, $scope.eDate, "1d", $scope.matchingType, $scope.benchmark, $scope.commissionMultiplier, $scope.slippage);
+                    }
+
                 },
                 error: function (request, status, err) {
                     load.abort();

@@ -127,57 +127,67 @@
 
                         <div align="center" id="result-figure">
 
-                            <div data-scroll-reveal="enter from bottom over 0.5s" class="res-spec-figure">
+                            <div class="res-spec-figure">
                                 <h2>回测收益</h2>
                                 <p id="backtestReturns">...</p>
                             </div>
 
-                            <div data-scroll-reveal="enter from bottom over 0.5s" class="res-spec-figure">
+                            <div class="res-spec-figure">
                                 <h2>回测年化收益</h2>
                                 <p id="backtestAnnualizedReturns">...</p>
                             </div>
 
-                            <div data-scroll-reveal="enter from bottom over 0.5s" class="res-spec-figure">
+                            <div class="res-spec-figure">
                                 <h2>基准收益</h2>
                                 <p id="benchReturns">...</p>
                             </div>
-                            <div data-scroll-reveal="enter from bottom over 0.5s" class="res-spec-figure">
+
+                            <div class="res-spec-figure">
                                 <h2>基准年化收益</h2>
                                 <p id="benchAnnualizedReturns">...</p>
                             </div>
-                            <div data-scroll-reveal="enter from bottom over 0.5s" class="res-spec-figure">
+
+                            <div class="res-spec-figure">
                                 <h2>Alpha</h2>
                                 <p id="alpha">...</p>
                             </div>
-                            <div data-scroll-reveal="enter from bottom over 0.5s" class="res-spec-figure">
+
+                            <div class="res-spec-figure">
                                 <h2>Beta</h2>
                                 <p id="beta">...</p>
                             </div>
-                            <div data-scroll-reveal="enter from bottom over 0.5s" class="res-spec-figure">
+
+                            <div class="res-spec-figure">
                                 <h2>Sharpe</h2>
                                 <p id="sharpe">...</p>
                             </div>
-                            <div data-scroll-reveal="enter from bottom over 0.5s" class="res-spec-figure">
+
+                            <div class="res-spec-figure">
                                 <h2>Sortino</h2>
                                 <p id="sortino">...</p>
                             </div>
-                            <div data-scroll-reveal="enter from bottom over 0.5s" class="res-spec-figure">
+
+                            <div class="res-spec-figure">
                                 <h2>Info Ratio</h2>
                                 <p id="infoRatio">...</p>
                             </div>
-                            <div data-scroll-reveal="enter from bottom over 0.5s" class="res-spec-figure">
+
+                            <div class="res-spec-figure">
                                 <h2>Volatility</h2>
                                 <p id="volatility">...</p>
                             </div>
-                            <div data-scroll-reveal="enter from bottom over 0.5s" class="res-spec-figure">
+
+                            <div class="res-spec-figure">
                                 <h2>最大回撤</h2>
                                 <p id="maxDrawdown">...</p>
                             </div>
-                            <div data-scroll-reveal="enter from bottom over 0.5s" class="res-spec-figure">
+
+                            <div class="res-spec-figure">
                                 <h2>跟踪误差</h2>
                                 <p id="trackingError">...</p>
                             </div>
-                            <div data-scroll-reveal="enter from bottom over 0.5s" class="res-spec-figure">
+
+                            <div class="res-spec-figure">
                                 <h2>下行风险</h2>
                                 <p id="downsideRisk">...</p>
                             </div>
@@ -186,16 +196,31 @@
                     <div align="center">
                         <div style="padding-top: 5%;">
                             <div class="stock-name" id="return-area">累计收益率与基准收益率</div>
+                            <div id="return-spin">
+                                <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+                                <span>加载中...</span>
+                            </div>
+
                             <div id="return-chart" style="height: 400%;"></div>
                         </div>
 
                         <div style="padding-top: 5%;">
-                            <div class="stock-name" id="overreturn-area">超额收益率</div>
+                            <div class="stock-name" id="overreturn-area">超额收益率 </div>
+                            <div id="overreturn-spin">
+                                <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+                                <span>加载中...</span>
+                            </div>
+
                             <div id="overreturn-chart" style="height: 400%;"></div>
                         </div>
 
                         <div style="padding-top: 5%;">
-                            <div class="stock-name" id="win-area">策略胜率</div>
+                            <div class="stock-name" id="win-area">策略胜率 </div>
+                            <div id="win-spin">
+                                <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+                                <span>加载中...</span>
+                            </div>
+
                             <div id="win-chart" style="height: 400%;"></div>
                         </div>
                     </div>
@@ -271,6 +296,9 @@
     $("#stra-name").fadeOut(function() {
         namefade = 1;
     });
+    $("#return-spin").fadeOut();
+    $("#overreturn-spin").fadeOut();
+    $("#win-spin").fadeOut();
 
 </script>
 
