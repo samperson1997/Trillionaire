@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import trillionaire.model.Strategy;
 import trillionaire.service.BackTestService;
 import trillionaire.vo.BackTestParams;
+import trillionaire.vo.BackTestSummary;
 import trillionaire.vo.StraIdName;
 import trillionaire.vo.StrategySimple;
 
@@ -163,6 +164,7 @@ public class BackTestController {
      * @param params
      * @return result{
      *              'msg'
+     *              'summary'
      *              'datelist':[{
      *                  (string)
      *              }...]
@@ -203,6 +205,7 @@ public class BackTestController {
             data2.add(i+2.5);
         }
         map.put("msg","success");
+        map.put("summary", new BackTestSummary());
         map.put("datelist",datelist);
         map.put("data1",data1);
         map.put("data2",data2);

@@ -19,6 +19,25 @@ public class BackTestSummary {
     private double trackingError;
     private double downsideRisk;
 
+    public BackTestSummary(){
+
+        this.backtestReturns = 666;
+        this.backtestAnnualizedReturns = 666;
+        this.benchReturns = 666;
+        this.benchAnnualizedReturns = 666;
+        this.alpha = 666;
+        this.beta = 666;
+        this.sharpe = 666;
+        this.sortino = 666;
+        this.infoRatio = 666;
+        this.volatility = 666;
+        this.maxDrawdown = 666;
+        this.trackingError = 666;
+        this.downsideRisk = 666;
+
+
+    }
+
 
     public double getBacktestReturns() {
         return backtestReturns;
