@@ -73,7 +73,11 @@ public class AbilityDaoImpl implements AbilityDao {
         Transaction tx = session.beginTransaction();
 
         int year = LocalDate.now().getYear();
-        int quarter = (LocalDate.now().getMonthValue()-1)/4 + 1;
+        int quarter = (LocalDate.now().getMonthValue()-1)/4;
+        if(quarter==0){
+            quarter=4;
+            year = year-1;
+        }
         Query<Profitability> query = session.createQuery("from Profitability where code = ? and year = ? and quarter = ?");
         query.setParameter(0,code);
         query.setParameter(1,year);
@@ -92,7 +96,11 @@ public class AbilityDaoImpl implements AbilityDao {
         Transaction tx = session.beginTransaction();
 
         int year = LocalDate.now().getYear();
-        int quarter = (LocalDate.now().getMonthValue()-1)/4 + 1;
+        int quarter = (LocalDate.now().getMonthValue()-1)/4;
+        if(quarter==0){
+            quarter=4;
+            year = year-1;
+        }
         Query<OperationAbility> query = session.createQuery("from OperationAbility where code = ? and year = ? and quarter = ?");
         query.setParameter(0,code);
         query.setParameter(1,year);
@@ -111,7 +119,11 @@ public class AbilityDaoImpl implements AbilityDao {
         Transaction tx = session.beginTransaction();
 
         int year = LocalDate.now().getYear();
-        int quarter = (LocalDate.now().getMonthValue()-1)/4 + 1;
+        int quarter = (LocalDate.now().getMonthValue()-1)/4;
+        if(quarter==0){
+            quarter=4;
+            year = year-1;
+        }
         Query<DevelopingAbility> query = session.createQuery("from DevelopingAbility where code = ? and year = ? and quarter = ?");
         query.setParameter(0,code);
         query.setParameter(1,year);
@@ -130,7 +142,11 @@ public class AbilityDaoImpl implements AbilityDao {
         Transaction tx = session.beginTransaction();
 
         int year = LocalDate.now().getYear();
-        int quarter = (LocalDate.now().getMonthValue()-1)/4 + 1;
+        int quarter = (LocalDate.now().getMonthValue()-1)/4;
+        if(quarter==0){
+            quarter=4;
+            year = year-1;
+        }
         Query<DebtPayingAbility> query = session.createQuery("from DebtPayingAbility where code = ? and year = ? and quarter = ?");
         query.setParameter(0,code);
         query.setParameter(1,year);
