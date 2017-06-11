@@ -224,6 +224,17 @@ public class BackTestServiceImpl implements BackTestService{
 
 
     private void creatFile(File file) throws IOException {
+
+        File f1 = new File(outputDir);
+        if(!f1.isDirectory()){
+            f1.mkdirs();
+        }
+
+        File f2 = new File(inputDir);
+        if(!f2.isDirectory()){
+            f2.mkdirs();
+        }
+
         if(!file.exists()){
             file.createNewFile();
         }
@@ -244,21 +255,21 @@ public class BackTestServiceImpl implements BackTestService{
             index++;
         }
         index++;
-
-        summary.setBacktestReturns(Double.valueOf(res.get(index++)));
-        summary.setBacktestAnnualizedReturns(Double.valueOf(res.get(index++)));
-        summary.setBenchReturns(Double.valueOf(res.get(index++)));
-        summary.setBenchAnnualizedReturns(Double.valueOf(res.get(index++)));
-        summary.setAlpha(Double.valueOf(res.get(index++)));
-        summary.setBeta(Double.valueOf(res.get(index++)));
-        summary.setSharpe(Double.valueOf(res.get(index++)));
-        summary.setSortino(Double.valueOf(res.get(index++)));
-        summary.setInfoRatio(Double.valueOf(res.get(index++)));
-        summary.setVolatility(Double.valueOf(res.get(index++)));
-        summary.setMaxDrawdown(Double.valueOf(res.get(index++)));
-        summary.setTrackingError(Double.valueOf(res.get(index++)));
-        summary.setDownsideRisk(Double.valueOf(res.get(index++)));
-
+        System.out.println("summary");
+        summary.setBacktestReturns((!res.get(index++).equals("nan")?Double.valueOf(index-1):-1));
+        summary.setBacktestAnnualizedReturns((!res.get(index++).equals("nan")?Double.valueOf(index-1):-1));
+        summary.setBenchReturns((!res.get(index++).equals("nan")?Double.valueOf(index-1):-1));
+        summary.setBenchAnnualizedReturns((!res.get(index++).equals("nan")?Double.valueOf(index-1):-1));
+        summary.setAlpha((!res.get(index++).equals("nan")?Double.valueOf(index-1):-1));
+        summary.setBeta((!res.get(index++).equals("nan")?Double.valueOf(index-1):-1));
+        summary.setSharpe((!res.get(index++).equals("nan")?Double.valueOf(index-1):-1));
+        summary.setSortino((!res.get(index++).equals("nan")?Double.valueOf(index-1):-1));
+        summary.setInfoRatio((!res.get(index++).equals("nan")?Double.valueOf(index-1):-1));
+        summary.setVolatility((!res.get(index++).equals("nan")?Double.valueOf(index-1):-1));
+        summary.setMaxDrawdown((!res.get(index++).equals("nan")?Double.valueOf(index-1):-1));
+        summary.setTrackingError((!res.get(index++).equals("nan")?Double.valueOf(index-1):-1));
+        summary.setDownsideRisk((!res.get(index++).equals("nan")?Double.valueOf(index-1):-1));
+        System.out.println("summary");
         index++;
 
         while(!res.get(index).equals("--------------------")){
