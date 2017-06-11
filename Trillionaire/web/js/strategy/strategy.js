@@ -96,7 +96,9 @@ angular.module("mainapp", [])
                         retChart.setOption(op);
 
                         $("#log-content").html('<p>暂无错误 <i class="fa fa-smile-o"></i></p>');
-                        $("#backtestReturn").text(result.summary.backtestReturn);
+
+                        alert(result.summary.backtestReturns);
+                        $("#backtestReturns").text(result.summary.backtestReturns);
                         $("#backtestAnnualizedReturns").text(result.summary.backtestAnnualizedReturns);
                         $("#benchReturns").text(result.summary.benchReturns);
                         $("#benchAnnualizedReturns").text(result.summary.benchAnnualizedReturns);
