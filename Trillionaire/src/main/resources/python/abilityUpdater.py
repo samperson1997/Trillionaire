@@ -3,8 +3,7 @@
 import tushare as ts
 import sys
 
-reload(sys)
-sys.setdefaultencoding('utf8')
+
 
 year = int(sys.argv[1])
 quarter = int(sys.argv[2])
