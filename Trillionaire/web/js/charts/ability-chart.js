@@ -67,28 +67,8 @@ function loadAbility() {
         error: function (request, status, err) {
             if (status == "timeout") {
                 load.abort();
-                loadAbility();
             }
+            $("#ability-spin").html('暂无数据');
         }
     })
 }
-
-
-var getParam = function (name) {
-    var search = document.location.search;
-    var pattern = new RegExp("[?&]" + name + "\=([^&]+)", "g");
-    var matcher = pattern.exec(search);
-    var items = null;
-    if (null != matcher) {
-        try {
-            items = decodeURIComponent(decodeURIComponent(matcher[1]));
-        } catch (e) {
-            try {
-                items = decodeURIComponent(matcher[1]);
-            } catch (e) {
-                items = matcher[1];
-            }
-        }
-    }
-    return items;
-};
