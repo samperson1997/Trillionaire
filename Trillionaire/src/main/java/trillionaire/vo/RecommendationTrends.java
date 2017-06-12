@@ -9,6 +9,7 @@ public class RecommendationTrends {
     private int hold;
     private int sell;
     private int strongSell;
+    private int trends;
 
     public RecommendationTrends(int strongBuy, int buy, int hold, int sell, int strongSell) {
 
