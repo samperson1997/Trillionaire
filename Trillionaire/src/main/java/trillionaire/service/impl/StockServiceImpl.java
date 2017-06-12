@@ -209,8 +209,49 @@ public class StockServiceImpl implements StockService {
 
     @Override
     public RecommendationTrends getRecommendationTrends(String code) {
-
-        return null;
+        int stock = Integer.parseInt(code);
+        List<DayRecord> list = dayRecordDao.getDayRecordsByCode(stock);
+        if (list.size() < 60) {
+            return null;
+        } else {
+            double result;
+            double AVS = 0.00;
+            double BVS = 0.00;
+            double CVS = 0.00;
+            for (int i = list.size() - 1; i > list.size() - 31; i--) {
+                if (Math.abs(list.get(i).getClose() - list.get(i).getOpen()) <= 0.02) {
+                    CVS += list.get(i).getVolume();
+                } else if (list.get(i).getClose() - list.get(i).getOpen() > 0.02) {
+                    AVS += list.get(i).getVolume();
+                } else {
+                    BVS += list.get(i).getVolume();
+                }
+            }
+            int buy = 0;
+            int hold = 0;
+            int sell = 0;
+            for (int i = list.size() - 30; i < list.size(); i++) {
+                if (Math.abs(list.get(i).getClose() - list.get(i).getOpen()) <= 0.02) {
+                    CVS += list.get(i).getVolume();
+                } else if (list.get(i).getClose() - list.get(i).getOpen() > 0.02) {
+                    AVS += list.get(i).getVolume();
+                } else {
+                    BVS += list.get(i).getVolume();
+                }
+                result = (2 * AVS + CVS) / (2 * BVS + CVS);
+                if (result > 160 && result < 400) {
+                    sell++;
+                } else if (result >= 70 && result <= 160) {
+                    hold++;
+                } else if (result < 70) {
+                    buy++;
+                } else if (result >= 400) {
+                    sell++;
+                }
+            }
+            RecommendationTrends recommendationTrends = new RecommendationTrends(buy, hold, sell);
+            return recommendationTrends;
+        }
     }
 
     @Override
@@ -244,9 +285,9 @@ public class StockServiceImpl implements StockService {
         List<DayRecord> list = dayRecordDao.getDayRecordsByCode(stockNum);
         Stock stock = list.get(0).getStock();
         for (int i = list.size() - 1; i > list.size() - 33; i--) {
-            if (Math.abs(list.get(i).getClose() - list.get(i).getOpen()) <= 0.03) {
+            if (Math.abs(list.get(i).getClose() - list.get(i).getOpen()) <= 0.02) {
                 CVS += list.get(i).getVolume();
-            } else if (list.get(i).getClose() - list.get(i).getOpen() > 0.03) {
+            } else if (list.get(i).getClose() - list.get(i).getOpen() > 0.02) {
                 AVS += list.get(i).getVolume();
             } else {
                 BVS += list.get(i).getVolume();

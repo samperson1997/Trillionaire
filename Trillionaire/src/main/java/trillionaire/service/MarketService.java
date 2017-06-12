@@ -16,10 +16,10 @@ public interface MarketService {
     /**
      * 获得涨跌幅版块的方块
      *
-     * @param category 股票版块
+     * @param board 股票版块
      * @return 版块涨跌的map
      */
-    public Map<String, Object> getSquare(String category);
+    public List<RankTable> getSquare(String board);
 
     /**
      * 获得不同版块的涨跌幅排名

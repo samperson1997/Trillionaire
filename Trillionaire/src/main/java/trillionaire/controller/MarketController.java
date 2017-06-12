@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import trillionaire.model.DayRecord;
 import trillionaire.model.RealTimeStock;
 import trillionaire.service.MarketService;
+import trillionaire.vo.RankTable;
 
 import java.util.List;
 import java.util.Map;
@@ -22,10 +23,10 @@ public class MarketController {
     @Autowired
     private MarketService marketService;
 
-    @RequestMapping(value = "category", method = RequestMethod.GET)
+    @RequestMapping(value = "/rank/category", method = RequestMethod.GET)
     @ResponseBody
-    public Map<String, Object> getCategoryCondition(@RequestParam("category") String category) {
-        return marketService.getSquare(category);
+    public List<RankTable> getCategoryCondition(@RequestParam("board") String board) {
+        return marketService.getSquare(board);
     }
 
 

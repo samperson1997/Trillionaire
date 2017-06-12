@@ -2,9 +2,11 @@ package trillionaire.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import trillionaire.dao.ConceptDao;
 import trillionaire.dao.DayRecordDao;
 import trillionaire.dao.RealTimeStockDao;
 import trillionaire.dao.StockDao;
+import trillionaire.model.DayRecord;
 import trillionaire.model.RealTimeStock;
 import trillionaire.model.Stock;
 import trillionaire.service.MarketService;
@@ -23,40 +25,78 @@ public class MarketServiceImpl implements MarketService {
     StockDao stockDao;
     @Autowired
     DayRecordDao dayRecordDao;
+    @Autowired
+    ConceptDao conceptDao;
 
     @Override
-    public Map<String, Object> getSquare(String category) {
-        Map<String, Object> map = new HashMap<>();
+    public List<RankTable> getSquare(String board) {
         List<RankTable> list = new ArrayList<>();
-        if (category.equals("industry")) {
-
-        } else if (category.equals("area")) {
-
-        } else if (category.equals("concept")) {
-
+        List<DayRecord> newRecord = new ArrayList<>();
+        List<DayRecord> oldRecord = new ArrayList<>();
+        Map<Integer, String> map;
+        if (board.equals("industry")) {
+            map = conceptDao.getAllIndustry();
+        } else if (board.equals("area")) {
+            map = conceptDao.getAllArea();
+        } else if (board.equals("concept")) {
+            map = conceptDao.getAllConcepts();
         } else {
-
+            return null;
         }
-        RankTable rankTable = new RankTable("金融业", 1.0, 2, 2, 2, "谭昕控股", 3.0);
-        RankTable rankTable2 = new RankTable("金融业", 20.0, 2, 2, 2, "谭昕控股", 3.0);
-        RankTable rankTable3 = new RankTable("金融业", 1.0, 2, 2, 2, "谭昕控股", 3.0);
-        RankTable rankTable4 = new RankTable("金融业", 1.0, 2, 2, 2, "谭昕控股", 3.0);
-        RankTable rankTable5 = new RankTable("金融业", 1.0, 2, 2, 2, "谭昕控股", 3.0);
-        RankTable rankTable6 = new RankTable("金融业", 1.0, 2, 2, 2, "谭昕控股", 3.0);
-        RankTable rankTable7 = new RankTable("金融业", 1.0, 2, 2, 2, "谭昕控股", 3.0);
-        RankTable rankTable8 = new RankTable("金融业", 1.0, 2, 2, 2, "谭昕控股", 3.0);
-        list.add(rankTable);
-        list.add(rankTable2);
-        list.add(rankTable3);
-        list.add(rankTable4);
-        list.add(rankTable5);
-        list.add(rankTable6);
-        list.add(rankTable7);
-        list.add(rankTable8);
-        map.put("up", list);
-        map.put("down", list);
-
-        return map;
+        for (Integer o : map.keySet()) {
+            String name = map.get(o);
+            Set<Stock> stockList = stockDao.getStocksByIndustry(name);
+            Iterator<Stock> it = stockList.iterator();
+            List<Integer> codeList = new ArrayList<>();
+            while (it.hasNext()) {
+                codeList.add(it.next().getCode());
+            }
+            for (int i = 0; i < codeList.size(); i++) {
+                List<DayRecord> recordList = dayRecordDao.getDayRecords(codeList.get(i), 2);
+                if (recordList.size() == 2 && recordList.get(0) != null && recordList.get(1) != null) {
+                    newRecord.add(recordList.get(0));
+                    oldRecord.add(recordList.get(1));
+                }
+            }
+            int up = 0;
+            int remain = 0;
+            int down = 0;
+            long newVolume = 0;
+            double newDealSum = 0.00;
+            long oldVolume = 0;
+            double oldDealSum = 0.00;
+            for (int i = 0; i < newRecord.size(); i++) {
+                newVolume += newRecord.get(i).getVolume();
+                newDealSum += newRecord.get(i).getDealSum();
+                if (newRecord.get(i).getChange() > 0) {
+                    up++;
+                } else if (newRecord.get(i).getChange() < 0) {
+                    down++;
+                } else {
+                    remain++;
+                }
+            }
+            for (int i = 0; i < oldRecord.size(); i++) {
+                oldVolume += newRecord.get(i).getVolume();
+                oldDealSum += newRecord.get(i).getDealSum();
+            }
+            double margin = (newDealSum / newVolume) / (oldDealSum / oldVolume) - 1;
+            Collections.sort(newRecord, new Comparator<DayRecord>() {
+                @Override
+                public int compare(DayRecord o1, DayRecord o2) {
+                    return new Double(o2.getChange()).compareTo(o1.getChange());
+                }
+            });
+            RankTable rankTable = new RankTable(name, margin, up, remain, down, newRecord.get(0).getStock().getName(), newRecord.get(0).getChange());
+            list.add(rankTable);
+        }
+        Collections.sort(list, new Comparator<RankTable>() {
+            @Override
+            public int compare(RankTable o1, RankTable o2) {
+                return new Double(o2.getMargin().substring(0, o1.getMargin().length() - 1)).compareTo(Double.valueOf(o1.getMargin().substring(0, o1.getMargin().length() - 1)));
+            }
+        });
+        return list;
     }
 
     @Override

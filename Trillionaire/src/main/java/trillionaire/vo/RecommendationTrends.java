@@ -4,17 +4,38 @@ package trillionaire.vo;
  * Created by michaeltan on 2017/5/16.
  */
 public class RecommendationTrends {
-    private double strongBuy;
-    private double buy;
-    private double hold;
-    private double underPerform;
-    private double shell;
+    private int buy;
+    private int hold;
+    private int sell;
 
-    public RecommendationTrends(double strongBuy, double buy, double hold, double underPerform, double shell) {
-        this.strongBuy = strongBuy;
+    public int getBuy() {
+        return buy;
+    }
+
+    public void setBuy(int buy) {
+        this.buy = buy;
+    }
+
+    public int getHold() {
+        return hold;
+    }
+
+    public void setHold(int hold) {
+        this.hold = hold;
+    }
+
+    public int getSell() {
+        return sell;
+    }
+
+    public void setSell(int sell) {
+        this.sell = sell;
+    }
+
+    public RecommendationTrends(int buy, int hold, int sell) {
+
         this.buy = buy;
         this.hold = hold;
-        this.underPerform = underPerform;
-        this.shell = shell;
+        this.sell = sell;
     }
 }
