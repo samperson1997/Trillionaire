@@ -28,8 +28,8 @@ function dataAnalyze(data, board) {
 function loadIndustry() {
     var load = $.ajax({
         type: "GET",
-        url: "/market/category",
-        data: {"category": "industry"},
+        url: "/market/rank/category",
+        data: {"board": "industry"},
         timeout: 180000,
         contentType: "application/x-www-form-urlencoded",
         dataType: "json",
@@ -47,8 +47,8 @@ function loadIndustry() {
 function loadArea() {
     var load = $.ajax({
         type: "GET",
-        url: "/market/category",
-        data: {"category": "area"},
+        url: "/market/rank/category",
+        data: {"board": "area"},
         timeout: 180000,
         contentType: "application/x-www-form-urlencoded",
         dataType: "json",
@@ -66,8 +66,8 @@ function loadArea() {
 function loadConcept() {
     var load = $.ajax({
         type: "GET",
-        url: "/market/category",
-        data: {"category": "concept"},
+        url: "/market/rank/category",
+        data: {"board": "concept"},
         timeout: 180000,
         contentType: "application/x-www-form-urlencoded",
         dataType: "json",
@@ -86,5 +86,4 @@ function load() {
     loadIndustry();
     loadArea();
     loadConcept();
-
 }

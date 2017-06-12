@@ -6,10 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import trillionaire.model.DayRecord;
 import trillionaire.model.RealTimeStock;
 import trillionaire.service.MarketService;
-import trillionaire.vo.RankTable;
 
 import java.util.List;
 import java.util.Map;
@@ -25,22 +23,14 @@ public class MarketController {
 
     @RequestMapping(value = "/rank/category", method = RequestMethod.GET)
     @ResponseBody
-    public List<RankTable> getCategoryCondition(@RequestParam("board") String board) {
+    public Map<String, Object> getCategoryCondition(@RequestParam("board") String board) {
         return marketService.getSquare(board);
     }
-
 
     @RequestMapping(value = "/board", method = RequestMethod.GET)
     @ResponseBody
     public Map<String, Object> getBoardCondition() {
         return marketService.getBoardRank();
-    }
-
-    @RequestMapping(value = "industry", method = RequestMethod.GET)
-    @ResponseBody
-    public List<DayRecord> getBoardRank(@RequestParam("industry") String board) {
-
-        return null;
     }
 
     @RequestMapping(value = "/rank/industry", method = RequestMethod.GET)

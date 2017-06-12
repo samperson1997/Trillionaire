@@ -1,9 +1,6 @@
 package trillionaire.service;
 
-import trillionaire.model.DayRecord;
 import trillionaire.model.RealTimeStock;
-import trillionaire.vo.RankTable;
-import trillionaire.model.Stock;
 
 import java.util.List;
 import java.util.Map;
@@ -19,7 +16,7 @@ public interface MarketService {
      * @param board 股票版块
      * @return 版块涨跌的map
      */
-    public List<RankTable> getSquare(String board);
+    public Map<String, Object> getSquare(String board);
 
     /**
      * 获得不同版块的涨跌幅排名

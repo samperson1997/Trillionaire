@@ -29,8 +29,9 @@ public class MarketServiceImpl implements MarketService {
     ConceptDao conceptDao;
 
     @Override
-    public List<RankTable> getSquare(String board) {
-        List<RankTable> list = new ArrayList<>();
+    public Map<String, Object> getSquare(String board) {
+        List<RankTable> upList = new ArrayList<>();
+        List<RankTable> downList = new ArrayList<>();
         List<DayRecord> newRecord = new ArrayList<>();
         List<DayRecord> oldRecord = new ArrayList<>();
         Map<Integer, String> map;
@@ -88,15 +89,29 @@ public class MarketServiceImpl implements MarketService {
                 }
             });
             RankTable rankTable = new RankTable(name, margin, up, remain, down, newRecord.get(0).getStock().getName(), newRecord.get(0).getChange());
-            list.add(rankTable);
+            if (margin>0){
+                upList.add(rankTable);
+            }else {
+                downList.add(rankTable);
+            }
         }
-        Collections.sort(list, new Comparator<RankTable>() {
+        Collections.sort(upList, new Comparator<RankTable>() {
             @Override
             public int compare(RankTable o1, RankTable o2) {
-                return new Double(o2.getMargin().substring(0, o1.getMargin().length() - 1)).compareTo(Double.valueOf(o1.getMargin().substring(0, o1.getMargin().length() - 1)));
+                return new Double(o2.getMargin().substring(0, o2.getMargin().length() - 1)).compareTo(Double.valueOf(o1.getMargin().substring(0, o1.getMargin().length() - 1)));
             }
         });
-        return list;
+        Collections.sort(downList, new Comparator<RankTable>() {
+            @Override
+            public int compare(RankTable o1, RankTable o2) {
+                return new Double(o1.getMargin().substring(0, o1.getMargin().length() - 1)).compareTo(Double.valueOf(o2.getMargin().substring(0, o2.getMargin().length() - 1)));
+            }
+        });
+
+        Map<String, Object> resultMap = new HashMap<>();
+        resultMap.put("up",upList);
+        resultMap.put("down",downList);
+        return resultMap;
     }
 
     @Override
