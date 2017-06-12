@@ -1,5 +1,7 @@
 package trillionaire.service;
 
+import trillionaire.model.DayRecord;
+import trillionaire.model.RealTimeStock;
 import trillionaire.vo.RankTable;
 import trillionaire.model.Stock;
 
@@ -27,4 +29,27 @@ public interface MarketService {
      */
     public Map<String, Object> getBoardRank();
 
+    /**
+     * 获得行业的涨跌幅排名
+     *
+     * @param industry 股票版块
+     * @return 行业涨跌股票
+     */
+    public List<RealTimeStock> getIndustryRank(String industry);
+
+    /**
+     * 获得行业的涨跌幅排名
+     *
+     * @param concept 股票版块
+     * @return 概念涨跌股票
+     */
+    public List<RealTimeStock> getConceptRank(String concept);
+
+    /**
+     * 获得行业的涨跌幅排名
+     *
+     * @param area 股票版块
+     * @return 地域涨跌股票
+     */
+    public List<RealTimeStock> getAreaRank(String area);
 }

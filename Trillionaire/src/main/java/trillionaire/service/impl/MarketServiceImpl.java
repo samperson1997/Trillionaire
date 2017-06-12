@@ -2,8 +2,11 @@ package trillionaire.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import trillionaire.dao.DayRecordDao;
 import trillionaire.dao.RealTimeStockDao;
+import trillionaire.dao.StockDao;
 import trillionaire.model.RealTimeStock;
+import trillionaire.model.Stock;
 import trillionaire.service.MarketService;
 import trillionaire.vo.RankTable;
 
@@ -16,6 +19,10 @@ import java.util.*;
 public class MarketServiceImpl implements MarketService {
     @Autowired
     RealTimeStockDao realTimeStockDao;
+    @Autowired
+    StockDao stockDao;
+    @Autowired
+    DayRecordDao dayRecordDao;
 
     @Override
     public Map<String, Object> getSquare(String category) {
@@ -91,5 +98,91 @@ public class MarketServiceImpl implements MarketService {
         map.put("gem", gem);
         map.put("sme", sme);
         return map;
+    }
+
+    @Override
+    public List<RealTimeStock> getIndustryRank(String industry) {
+        Set<Stock> list = stockDao.getStocksByIndustry(industry);
+        Iterator<Stock> it = list.iterator();
+        List<Integer> codeList = new ArrayList<>();
+        List<RealTimeStock> resultList = new ArrayList<>();
+        while (it.hasNext()) {
+            codeList.add(it.next().getCode());
+        }
+        for (int i = 0; i < codeList.size(); i++) {
+            RealTimeStock realTimeStock = realTimeStockDao.getRealTimeByCode(codeList.get(i));
+            if (realTimeStock != null) {
+                resultList.add(realTimeStock);
+            }
+        }
+        Collections.sort(resultList, new Comparator<RealTimeStock>() {
+            @Override
+            public int compare(RealTimeStock o1, RealTimeStock o2) {
+                return new Double(o2.getChangepercent()).compareTo(o1.getChangepercent());
+            }
+        });
+        if (resultList.size() != 0) {
+            return resultList;
+        } else {
+            return null;
+        }
+    }
+
+    @Override
+    public List<RealTimeStock> getConceptRank(String concept) {
+        Set<Stock> list = stockDao.getStocksByConcept(concept);
+        Iterator<Stock> it = list.iterator();
+        List<Integer> codeList = new ArrayList<>();
+        List<RealTimeStock> resultList = new ArrayList<>();
+        while (it.hasNext()) {
+            codeList.add(it.next().getCode());
+        }
+        for (int i = 0; i < codeList.size(); i++) {
+            RealTimeStock realTimeStock = realTimeStockDao.getRealTimeByCode(codeList.get(i));
+            if (realTimeStock != null) {
+                resultList.add(realTimeStock);
+            }
+        }
+        Collections.sort(resultList, new Comparator<RealTimeStock>() {
+            @Override
+            public int compare(RealTimeStock o1, RealTimeStock o2) {
+                return new Double(o2.getChangepercent()).compareTo(o1.getChangepercent());
+            }
+        });
+
+        if (resultList.size() != 0) {
+            return resultList;
+        } else {
+            return null;
+        }
+    }
+
+    @Override
+    public List<RealTimeStock> getAreaRank(String area) {
+        Set<Stock> list = stockDao.getStocksByArea(area);
+        Iterator<Stock> it = list.iterator();
+        List<Integer> codeList = new ArrayList<>();
+        List<RealTimeStock> resultList = new ArrayList<>();
+        while (it.hasNext()) {
+            codeList.add(it.next().getCode());
+        }
+        for (int i = 0; i < codeList.size(); i++) {
+            RealTimeStock realTimeStock = realTimeStockDao.getRealTimeByCode(codeList.get(i));
+            if (realTimeStock != null) {
+                resultList.add(realTimeStock);
+            }
+        }
+        Collections.sort(resultList, new Comparator<RealTimeStock>() {
+            @Override
+            public int compare(RealTimeStock o1, RealTimeStock o2) {
+                return new Double(o2.getChangepercent()).compareTo(o1.getChangepercent());
+            }
+        });
+
+        if (resultList.size() != 0) {
+            return resultList;
+        } else {
+            return null;
+        }
     }
 }
