@@ -35,6 +35,7 @@ public class MarketServiceImpl implements MarketService {
         List<DayRecord> newRecord = new ArrayList<>();
         List<DayRecord> oldRecord = new ArrayList<>();
         Map<Integer, String> map;
+        Set<Stock> stockList;
         if (board.equals("industry")) {
             map = conceptDao.getAllIndustry();
         } else if (board.equals("area")) {
@@ -46,7 +47,15 @@ public class MarketServiceImpl implements MarketService {
         }
         for (Integer o : map.keySet()) {
             String name = map.get(o);
-            Set<Stock> stockList = stockDao.getStocksByIndustry(name);
+            if (board.equals("industry")) {
+                stockList = stockDao.getStocksByIndustry(name);
+            } else if (board.equals("area")) {
+                stockList = stockDao.getStocksByArea(name);
+            } else if (board.equals("concept")) {
+                stockList = stockDao.getStocksByConcept(name);
+            } else {
+                continue;
+            }
             Iterator<Stock> it = stockList.iterator();
             List<Integer> codeList = new ArrayList<>();
             while (it.hasNext()) {
