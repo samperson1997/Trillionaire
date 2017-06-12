@@ -191,15 +191,15 @@ public class DataUpdateServiceImpl implements DataUpdateService {
             e.printStackTrace();
         }
 
-        if(newRecordNum>0){
-            updateWeekRecord(stock);
-            updateMonthRecord(stock);
-            updateMeanPrice(stock);
-        }
+//        if(newRecordNum>0){
+//            updateWeekRecord(stock);
+//            updateMonthRecord(stock);
+//            updateMeanPrice(stock);
+//        }
 
-//        updateWeekRecord(stock);
-//        updateMonthRecord(stock);
-//        updateMeanPrice(stock);
+        updateWeekRecord(stock);
+        updateMonthRecord(stock);
+        updateMeanPrice(stock);
 
 
     }

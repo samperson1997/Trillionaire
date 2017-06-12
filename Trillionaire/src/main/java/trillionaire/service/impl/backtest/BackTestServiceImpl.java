@@ -60,6 +60,7 @@ public class BackTestServiceImpl implements BackTestService{
             StraIdName straIdName = new StraIdName();
             straIdName.setStrategName(s.getStrategyName());
             straIdName.setSid(s.getSid());
+            straIdName.setUpdateTime(s.getChangingTime());
             result.add(straIdName);
         }
 
