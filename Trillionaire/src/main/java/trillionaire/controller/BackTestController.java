@@ -192,6 +192,33 @@ public class BackTestController {
         return result;
     }
 
+
+    /**
+     *
+     * @param params
+     * @param low
+     * @param high
+     * @return result{
+     *              'msg'
+     *              'paramList':[{
+     *                  (int)
+     *               }...]
+     *              'winRateList':[{
+     *                  (double)
+     *               }...]
+     *              'overReturnsList':[{
+     *                  (double)
+     *               }...]
+     *          }
+     */
+    @RequestMapping(value = "/find", method = RequestMethod.GET)
+    @ResponseBody
+    public Map<String, Object> runFindParams(BackTestParams params, int low, int high){
+
+        return backTestService.startFindBestParams(params, low, high);
+
+    }
+
     private Map<String, Object> getExample(){
 
 

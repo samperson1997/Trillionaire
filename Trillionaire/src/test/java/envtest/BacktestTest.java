@@ -36,11 +36,17 @@ public class BacktestTest {
         BackTestService backTestService = ctx.getBean(BackTestServiceImpl.class);
 
         BackTestParams params = new BackTestParams();
-        params.setSid(3);
+        params.setSid(7);
 
         long t1 = System.currentTimeMillis();
-        Map<String,Object> map = backTestService.startBackTest(params);
-        System.out.println(map.get("datelist"));
+        Map<String,Object> map = backTestService.startFindBestParams(params, 18, 21);
+        System.out.println(map.get("msg"));
+        System.out.println(map.get("winRateList"));
+        List<Double> list = (List<Double>) map.get("overReturnsList");
+        for(double d:list){
+            System.out.println(d);
+        }
+        System.out.println(list.size());
         long t2 = System.currentTimeMillis();
 
 //        System.out.println(map.get("errorLog"));
