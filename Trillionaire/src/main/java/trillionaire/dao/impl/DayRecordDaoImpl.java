@@ -163,7 +163,7 @@ public class DayRecordDaoImpl implements DayRecordDao{
 		Session session = sessionFactory.openSession();
 		Transaction tx = session.beginTransaction();
 
-		Query<DayRecord> query = session.createNativeQuery("select * from day_record where code = " +  code + " order by date desc limit " + limitNum);
+		Query<DayRecord> query = session.createNativeQuery("select * from day_record where code = " +  code + " order by date desc limit " + limitNum, DayRecord.class);
 		List<DayRecord> result = query.getResultList();
 
 

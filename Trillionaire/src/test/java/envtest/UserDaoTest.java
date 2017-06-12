@@ -4,7 +4,9 @@ import org.hibernate.SessionFactory;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import trillionaire.dao.DayRecordDao;
 import trillionaire.dao.UserDao;
+import trillionaire.dao.impl.DayRecordDaoImpl;
 import trillionaire.dao.impl.UserDaoImpl;
 
 import javax.sql.DataSource;
@@ -29,8 +31,8 @@ public class UserDaoTest {
         SessionFactory sessionFactory = ctx.getBean(SessionFactory.class);
         System.out.println(sessionFactory);
 
-        UserDao userDao = ctx.getBean(UserDaoImpl.class);
-        userDao.deleteConcernedStock(1,1);
+        DayRecordDao dayRecordDao = ctx.getBean(DayRecordDaoImpl.class);
+        System.out.println(dayRecordDao.getMonthRecordsByCode(10).get(dayRecordDao.getMonthRecordsByCode(10).size()-1).getDate());
 
 
     }

@@ -28,4 +28,6 @@ public interface BackTestService {
 
     public BackTestSummary getBackTestSummary(int sid);
 
+    public Map<String, Object> startFindBestParams(BackTestParams params, int low, int high);
+
 }

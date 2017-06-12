@@ -304,20 +304,28 @@ public class DataUpdateServiceImpl implements DataUpdateService {
         //Date lastWeekDate = dayRecordDao.getLastWeekDateOf(stock.getCode());
         List<WeekRecord> weekRecordList = dayRecordDao.getWeekRecordsByCode(stock.getCode());
 
+        WeekRecord lastWeekRecord = null;
+        if(weekRecordList.size()>0){
+            if(weekRecordList.size()>1){
+                lastWeekRecord = weekRecordList.get(weekRecordList.size()-2);
+            }
+            WeekRecord w = weekRecordList.get(weekRecordList.size()-1);
+            dayRecordDao.deletRecord(w);
+        }
+
         int index = 0;
         double lastAdjClose = -1;
-        if(weekRecordList.size() > 1 ){
+        if(lastWeekRecord != null ){
 
-            while(dayRecordList.get(index).getDate().before(weekRecordList.get(weekRecordList.size()-2).getDate())){
+            while(dayRecordList.get(index).getDate().before(lastWeekRecord.getDate())){
                 index++;
             }
             index++;
-            lastAdjClose = weekRecordList.get(weekRecordList.size()-2).getAdjClose();
+            lastAdjClose = lastWeekRecord==null?-1:lastWeekRecord.getAdjClose();
         }
 
         if(index >= dayRecordList.size()) return;
 
-        boolean isTheFirst = true;
         int startIndex = index;
         int endIndex = -1;
         int preDayOfWeek = 0;
@@ -375,18 +383,8 @@ public class DataUpdateServiceImpl implements DataUpdateService {
                 weekRecord.setVolume(volume);
                 weekRecord.setDealSum(dealSum);
 
-                if(isTheFirst && weekRecordList.size()>=1){
 
-                    WeekRecord w = weekRecordList.get(weekRecordList.size()-1);
-                    dayRecordDao.deletRecord(w);
-                    dayRecordDao.saveWeekRecord(weekRecord);
-                    isTheFirst = false;
-                }
-                else{
-                    dayRecordDao.saveWeekRecord(weekRecord);
-                }
-
-
+                dayRecordDao.saveWeekRecord(weekRecord);
 
                 preDayOfWeek = d.getDayOfWeek().getValue();
                 startIndex = index;
@@ -442,16 +440,9 @@ public class DataUpdateServiceImpl implements DataUpdateService {
             weekRecord.setVolume(volume);
             weekRecord.setDealSum(dealSum);
 
-            if(isTheFirst && weekRecordList.size()>=1){
 
-                WeekRecord w = weekRecordList.get(weekRecordList.size()-1);
-                dayRecordDao.deletRecord(w);
-                dayRecordDao.saveWeekRecord(weekRecord);
-                isTheFirst = false;
-            }
-            else{
-                dayRecordDao.saveWeekRecord(weekRecord);
-            }
+            dayRecordDao.saveWeekRecord(weekRecord);
+
         }
 
 
@@ -464,25 +455,30 @@ public class DataUpdateServiceImpl implements DataUpdateService {
         //Date lastMonthDate = dayRecordDao.getLastMonthDateOf(stock.getCode());
         List<MonthRecord> monthRecordList = dayRecordDao.getMonthRecordsByCode(stock.getCode());
 
+        MonthRecord lastMonthRecord = null;
+        if(monthRecordList.size()>0){
+            if(monthRecordList.size()>1){
+                lastMonthRecord = monthRecordList.get(monthRecordList.size()-2);
+            }
+            MonthRecord m = monthRecordList.get(monthRecordList.size()-1);
+            dayRecordDao.deletRecord(m);
+        }
+
+
         int index = 0;
         double lastAdjClose = -1; //用来记录上一个月的adjClose,用来计算change
-        if(monthRecordList.size() > 1){ //size大于1,说明最后一个是不稳定的，可能要更新
+        if(lastMonthRecord!=null){ //size大于1,说明最后一个是不稳定的，可能要更新
 
-            while(dayRecordList.get(index).getDate().before(monthRecordList.get(monthRecordList.size()-2).getDate())){
+            while(dayRecordList.get(index).getDate().before(lastMonthRecord.getDate())){
                 index++;
             }
             index++;
-
-            lastAdjClose = monthRecordList.get(monthRecordList.size()-2).getAdjClose();
-        }
-        else if(monthRecordList.size() == 1){
-
+            lastAdjClose = lastMonthRecord==null ? -1 : lastMonthRecord.getAdjClose();
         }
 
 
         if(index >= dayRecordList.size()) return;
 
-        boolean isTheFirst = true;
         int startIndex = index;
         int endIndex = -1;
         int preDayOfMonth = 0;
@@ -541,17 +537,9 @@ public class DataUpdateServiceImpl implements DataUpdateService {
                 monthRecord.setDealSum(dealSum);
 
 
-                if(isTheFirst && monthRecordList.size()>=1){
 
-                    MonthRecord m = monthRecordList.get(monthRecordList.size()-1);
-                    dayRecordDao.deletRecord(m);
-                    dayRecordDao.saveMonthRecord(m);
+                dayRecordDao.saveMonthRecord(monthRecord);
 
-                    isTheFirst = false;
-                }
-                else{
-                    dayRecordDao.saveMonthRecord(monthRecord);
-                }
 
                 preDayOfMonth = d.getDayOfMonth();
                 startIndex = index;
@@ -607,17 +595,9 @@ public class DataUpdateServiceImpl implements DataUpdateService {
             monthRecord.setVolume(volume);
             monthRecord.setDealSum(dealSum);
 
-            if(isTheFirst && monthRecordList.size()>=1){
 
-                MonthRecord m = monthRecordList.get(monthRecordList.size()-1);
-                dayRecordDao.deletRecord(m);
-                dayRecordDao.saveMonthRecord(m);
+            dayRecordDao.saveMonthRecord(monthRecord);
 
-                isTheFirst = false;
-            }
-            else{
-                dayRecordDao.saveMonthRecord(monthRecord);
-            }
         }
 
 
