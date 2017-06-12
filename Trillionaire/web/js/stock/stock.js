@@ -29,9 +29,9 @@ function loadTargetPrice() {
         },
         dataType: "json",
         success: function (data0) {
+            $("#target-spin").html('');
             $("#max-tprice").html('<p>' + String(data0.high) + '</p>');
             $("#min-tprice").html('<p>' + String(data0.low) + '</p>');
-            $("#av-tprice").html('<p>' + String(data0.average) + '</p>');
             $("#close-tprice").html('<p>' + String(data0.close) + '</p>');
         },
         error: function (request, status, err) {
@@ -54,7 +54,10 @@ function loadPrevail() {
         },
         dataType: "json",
         success: function (data0) {
-            $("#prevail").text('市场热度' + String(data0));
+            $("#prevail").text(data0.vr);
+            $("#spec-concept").text(data0.concept);
+            $("#spec-industry").text(data0.industry);
+            $("#spec-area").text(data0.area);
         },
         error: function (request, status, err) {
             if (status == "timeout") {
@@ -118,6 +121,7 @@ function loadSimilarStock() {
         },
         dataType: "json",
         success: function (data) {
+            $("#rel-spin").html('');
             if (data.subject.length == 0) {
                 $("#subject").append('<p>无关联股票</p>');
             } else {
