@@ -39,6 +39,8 @@ function loadMACD() {
                 },
                 yAxis: {
                     scale: true,
+                    min: 'dataMin',
+                    max: 'dataMax',
                     splitArea: {
                         show: true
                     }
