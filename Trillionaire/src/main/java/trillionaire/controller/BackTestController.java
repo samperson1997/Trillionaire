@@ -38,6 +38,7 @@ public class BackTestController {
      *              'nameList':[{
      *                  'sid',
      *                  'strategyName'
+     *                  'updateTime'
      *              }...]
      *          }
      */
