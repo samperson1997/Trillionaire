@@ -28,14 +28,6 @@ public interface UserService {
     public UserState register(String email, String password);
 
     /**
-     * 登出
-     *
-     * @param email 用户账号
-     * @return 当前登录状态
-     */
-    public UserState logout(String email);
-
-    /**
      * 重置密码
      *
      * @param email 用户账号
@@ -55,20 +47,20 @@ public interface UserService {
     /**
      * 关注股票
      *
-     * @param email 用户邮箱
+     * @param id 用户ID
      * @param code 股票代码
      * @return 关注是否成功
      */
-    public boolean follow(String email, String code);
+    public boolean follow(int id, String code);
 
     /**
      * 用户是否已关注股票
      *
-     * @param email 用户邮箱
+     * @param id 用户ID
      * @param code 股票代码
      * @return 是否已关注
      */
-    public boolean checkfollow(String email, String code);
+    public boolean checkfollow(int id, String code);
 
     /**
      * 用户是否已存在
@@ -77,5 +69,14 @@ public interface UserService {
      * @return 是否已存在
      */
     public boolean check(String email);
+
+    /**
+     * 取消关注股票
+     *
+     * @param id 用户ID
+     * @param code 股票代码
+     * @return 取消关注
+     */
+    public boolean cancelFollow(int id, String code);
 
 }

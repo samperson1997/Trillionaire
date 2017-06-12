@@ -35,14 +35,6 @@ public class UserController {
         return map;
     }
 
-    @RequestMapping(value = "/logout", method = RequestMethod.POST)
-    public String logout(HttpServletRequest request, String email) {
-        UserState state = userService.logout(email);
-        HttpSession session = request.getSession();
-        session.invalidate();
-        return state.toString();
-    }
-
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     @ResponseBody
     public String register(String email, String password) {
@@ -52,13 +44,13 @@ public class UserController {
 
     @RequestMapping(value = "/follow", method = RequestMethod.POST)
     @ResponseBody
-    public String follow(String email, String code) {
+    public String follow(String email, String code, int id) {
         return FollowState.FOLLOW_SUCCESS.toString();
     }
 
     @RequestMapping(value = "/ifFollow", method = RequestMethod.POST)
     @ResponseBody
-    public String checkFollow(String email, String code) {
+    public String checkFollow(String email, String code, int id) {
         return FollowState.HAS_FOLLOW.toString();
 
     }

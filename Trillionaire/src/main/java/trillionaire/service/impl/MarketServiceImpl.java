@@ -32,8 +32,6 @@ public class MarketServiceImpl implements MarketService {
     public Map<String, Object> getSquare(String board) {
         List<RankTable> upList = new ArrayList<>();
         List<RankTable> downList = new ArrayList<>();
-        List<DayRecord> newRecord = new ArrayList<>();
-        List<DayRecord> oldRecord = new ArrayList<>();
         Map<Integer, String> map;
         Set<Stock> stockList;
         if (board.equals("industry")) {
@@ -61,47 +59,41 @@ public class MarketServiceImpl implements MarketService {
             while (it.hasNext()) {
                 codeList.add(it.next().getCode());
             }
+            List<DayRecord> newRecord = new ArrayList<>();
             for (int i = 0; i < codeList.size(); i++) {
-                List<DayRecord> recordList = dayRecordDao.getDayRecords(codeList.get(i), 2);
-                if (recordList.size() == 2 && recordList.get(0) != null && recordList.get(1) != null) {
-                    newRecord.add(recordList.get(0));
-                    oldRecord.add(recordList.get(1));
+                List<DayRecord> recordList = dayRecordDao.getDayRecordsByCode(codeList.get(i));
+                if (recordList.size() >= 2 && recordList != null) {
+                    newRecord.add(recordList.get(recordList.size() - 1));
                 }
             }
-            int up = 0;
-            int remain = 0;
-            int down = 0;
-            long newVolume = 0;
-            double newDealSum = 0.00;
-            long oldVolume = 0;
-            double oldDealSum = 0.00;
-            for (int i = 0; i < newRecord.size(); i++) {
-                newVolume += newRecord.get(i).getVolume();
-                newDealSum += newRecord.get(i).getDealSum();
-                if (newRecord.get(i).getChange() > 0) {
-                    up++;
-                } else if (newRecord.get(i).getChange() < 0) {
-                    down++;
-                } else {
-                    remain++;
+            if (newRecord.size() != 0) {
+                int up = 0;
+                int remain = 0;
+                int down = 0;
+                double margin = 0.00;
+                for (int i = 0; i < newRecord.size(); i++) {
+                    margin += newRecord.get(i).getChange();
+                    if (newRecord.get(i).getChange() > 0) {
+                        up++;
+                    } else if (newRecord.get(i).getChange() < 0) {
+                        down++;
+                    } else {
+                        remain++;
+                    }
                 }
-            }
-            for (int i = 0; i < oldRecord.size(); i++) {
-                oldVolume += newRecord.get(i).getVolume();
-                oldDealSum += newRecord.get(i).getDealSum();
-            }
-            double margin = (newDealSum / newVolume) / (oldDealSum / oldVolume) - 1;
-            Collections.sort(newRecord, new Comparator<DayRecord>() {
-                @Override
-                public int compare(DayRecord o1, DayRecord o2) {
-                    return new Double(o2.getChange()).compareTo(o1.getChange());
+                margin = margin / newRecord.size();
+                Collections.sort(newRecord, new Comparator<DayRecord>() {
+                    @Override
+                    public int compare(DayRecord o1, DayRecord o2) {
+                        return new Double(o2.getChange()).compareTo(o1.getChange());
+                    }
+                });
+                RankTable rankTable = new RankTable(name, margin, up, remain, down, newRecord.get(0).getStock().getName(), newRecord.get(0).getChange());
+                if (margin > 0) {
+                    upList.add(rankTable);
+                } else if (margin < 0) {
+                    downList.add(rankTable);
                 }
-            });
-            RankTable rankTable = new RankTable(name, margin, up, remain, down, newRecord.get(0).getStock().getName(), newRecord.get(0).getChange());
-            if (margin>0){
-                upList.add(rankTable);
-            }else {
-                downList.add(rankTable);
             }
         }
         Collections.sort(upList, new Comparator<RankTable>() {
@@ -118,8 +110,8 @@ public class MarketServiceImpl implements MarketService {
         });
 
         Map<String, Object> resultMap = new HashMap<>();
-        resultMap.put("up",upList);
-        resultMap.put("down",downList);
+        resultMap.put("up", upList);
+        resultMap.put("down", downList);
         return resultMap;
     }
 
