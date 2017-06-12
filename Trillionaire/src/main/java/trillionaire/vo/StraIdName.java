@@ -1,7 +1,5 @@
 package trillionaire.vo;
 
-import java.util.Date;
-
 /**
  * Created by USER on 2017/6/4.
  */
@@ -9,7 +7,7 @@ public class StraIdName {
 
     private int sid;
     private String strategName;
-    private Date updateTime;
+    private String updateTime;
 
     public StraIdName(){
 
@@ -31,11 +29,11 @@ public class StraIdName {
         this.strategName = strategName;
     }
 
-    public Date getUpdateTime() {
+    public String getUpdateTime() {
         return updateTime;
     }
 
-    public void setUpdateTime(Date updateTime) {
+    public void setUpdateTime(String updateTime) {
         this.updateTime = updateTime;
     }
 }

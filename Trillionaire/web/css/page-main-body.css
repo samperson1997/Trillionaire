@@ -1,4 +1,4 @@
-#search-box {
+#searchBox {
     font-size: 90%;
     border: 1px solid #000;
     border-radius: 5px;
@@ -484,4 +484,11 @@
     top: 30%;
     font-size: 150%;
     display: none;
+}
+
+.search-results {
+    background-color: rgba(245, 245, 245, 0.8);
+    border: 1px solid #AAA;
+    padding: 1%;
+    width: 60%;
 }

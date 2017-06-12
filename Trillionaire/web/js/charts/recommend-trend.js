@@ -40,7 +40,7 @@ function loadTrends() {
                                 color: 'red',
                             }
                         },
-                        data: [data0.buy]
+                        data: [data0.strongBuy]
                 },
                     {
                         name: '增持',
@@ -57,7 +57,7 @@ function loadTrends() {
                                 color: 'salmon',
                             }
                         },
-                        data: [0]
+                        data: [data0.buy]
                 },
                     {
                         name: '观望',
@@ -91,7 +91,7 @@ function loadTrends() {
                                 color: 'yellowgreen',
                             }
                         },
-                        data: [0]
+                        data: [data0.sell]
                 },
                     {
                         name: '卖出',
@@ -108,7 +108,7 @@ function loadTrends() {
                                 color: 'green',
                             }
                         },
-                        data: [data0.sell]
+                        data: [data0.strongSell]
                 }
         ]
             };

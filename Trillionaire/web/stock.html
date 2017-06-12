@@ -55,14 +55,17 @@
             <div id="title" onselectstart="return false;" align="left" style="display:inline-block;">
                 <h1 class="page-main-title">个股信息<span class="page-sub-title">&nbsp;&nbsp;|&nbsp;&nbsp;轻松查看个股数据</span></h1>
             </div>
-            <div class="input-area" onselectstart="return false;" style="display:inline-block;">
+
+            <div class="input-area" onselectstart="return false;" style="display:inline-block;" ng-app="searchApp">
 
                 <!-- search box -->
-                <div style="display: inline;">
-                    <input style="display: inline-block;" id="search-box" class="form-control search-input" placeholder="请输入股票名称或代码" />
-                    <ul style="display: inline;" id="results" class="search-results"></ul>
+                <div style="display: inline-block;" ng-controller="StockController">
+                    <input style="display: inline-block;" id="searchBox" class="search-input" placeholder="输入股票名称或代码" ng-keypress="associate($event)" ng-model="inputString" />
+                    <div style="display: inline-block;" class="button-page" id="search-button"><i class="fa fa-search"></i>检索</div>
                 </div>
-                <div style="display: inline-block;" class="button-page" id="search-button"><i class="fa fa-search"></i>检索</div>
+
+                <ul id="search-results" class="search-results"></ul>
+
             </div>
         </div>
 
@@ -170,9 +173,11 @@
                     <div class="stock-name" style="display: inline;">推荐趋势</div>
                     <div class="stock-code" style="display: inline;">&nbsp;|&nbsp;Recommendation Trends</div>
                     <div class="stock-code" style="margin-left: 15%;">&nbsp;&nbsp;<a href="help.html#rec-trend" target="_blank">>>推荐依据</a></div>
-                    <div align="center" class="margin" style="background-color: yellowgreen;">
-                        <h2>推荐：减持</h2>
-                    </div>
+                    <!--
+<div align="center" class="margin" style="background-color: yellowgreen;">
+    <h2>推荐：减持</h2>
+</div>
+-->
 
                     <div id="reco-trend" style="width: 100%; height: 200%;"></div>
 
@@ -351,6 +356,7 @@
 <script src="js/charts/macd-chart.js"></script>
 <script src="js/user/log_state.js"></script>
 <script src="js/stock/stockChooseBoard.js"></script>
+<script src="js/stock/search.js"></script>
 <script src="js/stock/stock.js"></script>
 
 <script>
