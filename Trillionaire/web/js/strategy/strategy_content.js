@@ -33,7 +33,6 @@ function deleteStra(ob) {
         dataType: "json",
         success: function (data0) {
             loadStraList();
-            alert("success deleted");
         },
         error: function (request, status, err) {
             if (status == "timeout") {

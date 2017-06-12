@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import trillionaire.model.DayRecord;
+import trillionaire.model.RealTimeStock;
 import trillionaire.service.MarketService;
 
 import java.util.List;
@@ -41,5 +42,22 @@ public class MarketController {
         return null;
     }
 
+    @RequestMapping(value = "/rank/industry", method = RequestMethod.GET)
+    @ResponseBody
+    public List<RealTimeStock> getIndustryRank(String industry) {
+        return marketService.getIndustryRank(industry);
+    }
+
+    @RequestMapping(value = "/rank/concept", method = RequestMethod.GET)
+    @ResponseBody
+    public List<RealTimeStock> getConceptRank(String concept) {
+        return marketService.getConceptRank(concept);
+    }
+
+    @RequestMapping(value = "/rank/area", method = RequestMethod.GET)
+    @ResponseBody
+    public List<RealTimeStock> getAreaRank(String area) {
+        return marketService.getAreaRank(area);
+    }
 
 }
