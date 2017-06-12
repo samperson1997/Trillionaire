@@ -12,13 +12,6 @@ function getOP(datelist, d1, d2) {
             textStyle: {
                 color: '#000'
             },
-            position: function (pos, params, el, elRect, size) {
-                var obj = {
-                    top: 10
-                };
-                obj[['left', 'right'][+(pos[0] < size.viewSize[0] / 2)]] = 30;
-                return obj;
-            },
             extraCssText: 'width: 170px'
         },
         legend: {

@@ -92,11 +92,13 @@
                         </div>
                         <div style="margin-top: -2%;">
                             <div class="button-page" onclick="switchTheme()" id="switch-theme-button"><i class="fa fa-eye"></i> 护眼模式</div>
-                            <div class="button-green" ng-click="loadReturnLine()"><i class="fa fa-forward"></i> 编译运行</div>
-                            <div class="button-green"><i class="fa fa-envira"></i> 参数调优</div>
                             <div id="remove-all" class="button-red" onclick="remove()"><i class="fa fa-trash-o"></i> 清空</div>
-                            <div class="stock-code" style="display: inline-block;">
-                                <span>注意: 选择"参数调优"功能可能导致回测速度变慢。</span><a href="help.html#stra-setting" target="_blank">>>如何进行回测设置? </a></div>
+                            <div class="button-green" ng-click="loadReturnLine()"><i class="fa fa-forward"></i> 编译运行</div>
+                            <div class="button-green" ng-click="loadOverReturnLine()"><i class="fa fa-envira"></i> 参数调优</div>
+                            参数下限 <input style="display: inline-block;" class="num-box" ng-model="lowp" /> 参数上限 <input style="display: inline-block;" class="num-box" ng-model="highp" />
+
+                            <div class="stock-code" style="margin-bottom: 1%;">
+                                <span>注意: 选择"参数调优"功能必须设置参数上限和参数下限，且可能导致回测速度变慢。</span><a href="help.html#stra-setting" target="_blank">>>如何进行回测设置? </a></div>
                         </div>
 
                     </form>
