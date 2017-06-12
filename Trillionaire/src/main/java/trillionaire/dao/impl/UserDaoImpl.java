@@ -7,9 +7,12 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import trillionaire.dao.UserDao;
+import trillionaire.model.Stock;
 import trillionaire.model.User;
 
 import java.sql.Date;
+import java.util.List;
+import java.util.Set;
 
 /**
  * Created by michaeltan on 2017/5/9.
@@ -62,6 +65,52 @@ public class UserDaoImpl implements UserDao{
         tx.commit();
         session.close();
 
+    }
+
+    @Override
+    public void addConcernedStock(int userId, int code) {
+
+        Session session = sessionFactory.openSession();
+        Transaction tx = session.beginTransaction();
+
+        User user = session.get(User.class, userId);
+        Stock stock = session.get(Stock.class, code);
+        user.getConcernedStocks().add(stock);
+        session.save(user);
+
+        tx.commit();
+        session.close();
+
+    }
+
+    @Override
+    public void deleteConcernedStock(int userId, int code) {
+
+        Session session = sessionFactory.openSession();
+        Transaction tx = session.beginTransaction();
+
+        User user = session.get(User.class, userId);
+        Stock stock = session.get(Stock.class, code);
+        user.getConcernedStocks().remove(stock);
+        session.save(user);
+
+        tx.commit();
+        session.close();
+
+    }
+
+    @Override
+    public Set<Stock> getUserStocks(int userId) {
+        Session session = sessionFactory.openSession();
+        Transaction tx = session.beginTransaction();
+
+        User user = session.get(User.class, userId);
+        Set<Stock> set = user.getConcernedStocks();
+
+        tx.commit();
+        session.close();
+
+        return set;
     }
 
 
