@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import trillionaire.service.UserService;
-import trillionaire.util.FollowState;
 import trillionaire.util.UserState;
 
 import javax.servlet.http.HttpServletRequest;
@@ -27,7 +26,7 @@ public class UserController {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody
     public Map<String, Object> login(HttpServletRequest request, String email, String password) {
-        Map<String, Object> map = userService.login(email,password);
+        Map<String, Object> map = userService.login(email, password);
         if (map.get("msg") == "success") {
             HttpSession session = request.getSession();
             session.setAttribute("email", email);
@@ -44,14 +43,20 @@ public class UserController {
 
     @RequestMapping(value = "/follow", method = RequestMethod.POST)
     @ResponseBody
-    public String follow(String email, String code, int id) {
-        return FollowState.FOLLOW_SUCCESS.toString();
+    public boolean follow(int id, String code) {
+        return userService.follow(id, code);
+    }
+
+    @RequestMapping(value = "/cancelFollow", method = RequestMethod.POST)
+    @ResponseBody
+    public boolean cancelFollow(int id, String code) {
+        return userService.cancelFollow(id, code);
     }
 
     @RequestMapping(value = "/ifFollow", method = RequestMethod.POST)
     @ResponseBody
-    public String checkFollow(String email, String code, int id) {
-        return FollowState.HAS_FOLLOW.toString();
+    public boolean checkFollow(int id, String code) {
+        return userService.checkfollow(id, code);
 
     }
 
