@@ -227,9 +227,11 @@ public class StockServiceImpl implements StockService {
                     BVS += list.get(i).getVolume();
                 }
             }
+            int strongBuy = 0;
             int buy = 0;
             int hold = 0;
             int sell = 0;
+            int strongSell = 0;
             for (int i = list.size() - 30; i < list.size(); i++) {
                 if (Math.abs(list.get(i).getClose() - list.get(i).getOpen()) <= 0.02) {
                     CVS += list.get(i).getVolume();
@@ -238,18 +240,20 @@ public class StockServiceImpl implements StockService {
                 } else {
                     BVS += list.get(i).getVolume();
                 }
-                result = (2 * AVS + CVS) / (2 * BVS + CVS);
+                result = 100 * (2 * AVS + CVS) / (2 * BVS + CVS);
                 if (result > 160 && result < 400) {
                     sell++;
                 } else if (result >= 70 && result <= 160) {
                     hold++;
-                } else if (result < 70) {
+                } else if (result <= 35) {
+                    strongBuy++;
+                } else if (result > 35 && result < 70) {
                     buy++;
                 } else if (result >= 400) {
-                    sell++;
+                    strongSell++;
                 }
             }
-            RecommendationTrends recommendationTrends = new RecommendationTrends(buy, hold, sell);
+            RecommendationTrends recommendationTrends = new RecommendationTrends(strongBuy, buy, hold, sell, strongSell);
             return recommendationTrends;
         }
     }

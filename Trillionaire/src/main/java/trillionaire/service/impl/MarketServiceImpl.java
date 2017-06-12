@@ -12,6 +12,7 @@ import trillionaire.model.Stock;
 import trillionaire.service.MarketService;
 import trillionaire.vo.RankTable;
 
+import java.text.Collator;
 import java.util.*;
 
 /**
@@ -240,5 +241,71 @@ public class MarketServiceImpl implements MarketService {
         } else {
             return null;
         }
+    }
+
+    @Override
+    public LinkedHashMap<Integer, String> getAreaList() {
+        Map<Integer, String> map = conceptDao.getAllArea();
+        List<Map.Entry<Integer, String>> list = new ArrayList<>(map.entrySet());
+        //然后通过比较器来实现排序
+        Collections.sort(list, new Comparator<Map.Entry<Integer, String>>() {
+            //升序排序
+            public int compare(Map.Entry<Integer, String> o1, Map.Entry<Integer, String> o2) {
+                Collator collator = Collator.getInstance(Locale.CHINA);
+                return collator.compare(o1.getValue(), o2.getValue());
+            }
+        });
+        LinkedHashMap<Integer, String> sortedMap = new LinkedHashMap<>();
+        Iterator<Map.Entry<Integer, String>> iter = list.iterator();
+        Map.Entry<Integer, String> tmpEntry;
+        while (iter.hasNext()) {
+            tmpEntry = iter.next();
+            sortedMap.put(tmpEntry.getKey(), tmpEntry.getValue());
+        }
+        return sortedMap;
+    }
+
+    @Override
+    public LinkedHashMap<Integer, String> getConceptList() {
+        Map<Integer, String> map = conceptDao.getAllConcepts();
+        List<Map.Entry<Integer, String>> list = new ArrayList<>(map.entrySet());
+        //然后通过比较器来实现排序
+        Collections.sort(list, new Comparator<Map.Entry<Integer, String>>() {
+            //升序排序
+            public int compare(Map.Entry<Integer, String> o1, Map.Entry<Integer, String> o2) {
+                Collator collator = Collator.getInstance(Locale.CHINA);
+                return collator.compare(o1.getValue(), o2.getValue());
+            }
+        });
+        LinkedHashMap<Integer, String> sortedMap = new LinkedHashMap<>();
+        Iterator<Map.Entry<Integer, String>> iter = list.iterator();
+        Map.Entry<Integer, String> tmpEntry;
+        while (iter.hasNext()) {
+            tmpEntry = iter.next();
+            sortedMap.put(tmpEntry.getKey(), tmpEntry.getValue());
+        }
+        return sortedMap;
+    }
+
+    @Override
+    public LinkedHashMap<Integer, String> getIndustryList() {
+        Map<Integer, String> map = conceptDao.getAllIndustry();
+        List<Map.Entry<Integer, String>> list = new ArrayList<>(map.entrySet());
+        //然后通过比较器来实现排序
+        Collections.sort(list, new Comparator<Map.Entry<Integer, String>>() {
+            //升序排序
+            public int compare(Map.Entry<Integer, String> o1, Map.Entry<Integer, String> o2) {
+                Collator collator = Collator.getInstance(Locale.CHINA);
+                return collator.compare(o1.getValue(), o2.getValue());
+            }
+        });
+        LinkedHashMap<Integer, String> sortedMap = new LinkedHashMap<>();
+        Iterator<Map.Entry<Integer, String>> iter = list.iterator();
+        Map.Entry<Integer, String> tmpEntry;
+        while (iter.hasNext()) {
+            tmpEntry = iter.next();
+            sortedMap.put(tmpEntry.getKey(), tmpEntry.getValue());
+        }
+        return sortedMap;
     }
 }

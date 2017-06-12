@@ -79,6 +79,7 @@ function updateInfo() {
         },
         dataType: "json",
         success: function (data0) {
+            alert('123');
             $("#name").text(String(data0.name));
             $("#code").text(' | ' + String(data0.code));
             if (data0.changepercent > 0) {

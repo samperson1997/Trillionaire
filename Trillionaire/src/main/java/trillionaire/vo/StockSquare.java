@@ -34,7 +34,6 @@ public class StockSquare {
         Iterator<Concept> it = concept.iterator();
         while (it.hasNext()) {
             s = s + "," + it.next().getName();
-            System.out.println(s);
         }
         s = s.substring(1);
         return s;

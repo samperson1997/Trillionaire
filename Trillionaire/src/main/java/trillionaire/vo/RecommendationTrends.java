@@ -4,9 +4,20 @@ package trillionaire.vo;
  * Created by michaeltan on 2017/5/16.
  */
 public class RecommendationTrends {
+    private int strongBuy;
     private int buy;
     private int hold;
     private int sell;
+    private int strongSell;
+
+    public RecommendationTrends(int strongBuy, int buy, int hold, int sell, int strongSell) {
+
+        this.strongBuy = strongBuy;
+        this.buy = buy;
+        this.hold = hold;
+        this.sell = sell;
+        this.strongSell = strongSell;
+    }
 
     public int getBuy() {
         return buy;
@@ -32,10 +43,19 @@ public class RecommendationTrends {
         this.sell = sell;
     }
 
-    public RecommendationTrends(int buy, int hold, int sell) {
+    public int getStrongBuy() {
+        return strongBuy;
+    }
 
-        this.buy = buy;
-        this.hold = hold;
-        this.sell = sell;
+    public void setStrongBuy(int strongBuy) {
+        this.strongBuy = strongBuy;
+    }
+
+    public int getStrongSell() {
+        return strongSell;
+    }
+
+    public void setStrongSell(int strongSell) {
+        this.strongSell = strongSell;
     }
 }
