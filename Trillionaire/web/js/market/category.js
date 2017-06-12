@@ -1,5 +1,5 @@
 function dataAnalyze(data, board) {
-    var array = data.up;//领涨的数组
+    var array = data.up; //领涨的数组
     var finalList;
     $("#" + board + "-spin").html('');
     if (array != null) {
@@ -12,7 +12,7 @@ function dataAnalyze(data, board) {
         finalList = '无股票上涨';
         $("#up" + board + "-List").append(finalList);
     }
-    array = data.down;//获取领跌的数组
+    array = data.down; //获取领跌的数组
     if (array != null) {
         for (var i = 0; i < array.length; i++) {
             //对数组遍历
@@ -25,11 +25,14 @@ function dataAnalyze(data, board) {
     }
 
 }
+
 function loadIndustry() {
     var load = $.ajax({
         type: "GET",
         url: "/market/rank/category",
-        data: {"board": "industry"},
+        data: {
+            "board": "industry"
+        },
         timeout: 180000,
         contentType: "application/x-www-form-urlencoded",
         dataType: "json",
@@ -37,18 +40,21 @@ function loadIndustry() {
             dataAnalyze(data, "Industry");
         },
         error: function (request, status, err) {
-            if (status == "timeout") {
-                load.abort();
-                loadIndustry();
-            }
+            //            if (status == "timeout") {
+            //                load.abort();
+            //                loadIndustry();
+            //            }
         }
     })
 }
+
 function loadArea() {
     var load = $.ajax({
         type: "GET",
         url: "/market/rank/category",
-        data: {"board": "area"},
+        data: {
+            "board": "area"
+        },
         timeout: 180000,
         contentType: "application/x-www-form-urlencoded",
         dataType: "json",
@@ -56,18 +62,21 @@ function loadArea() {
             dataAnalyze(data, "Area");
         },
         error: function (request, status, err) {
-            if (status == "timeout") {
-                load.abort();
-                loadArea();
-            }
+            //            if (status == "timeout") {
+            //                load.abort();
+            //                loadArea();
+            //            }
         }
     })
 }
+
 function loadConcept() {
     var load = $.ajax({
         type: "GET",
         url: "/market/rank/category",
-        data: {"board": "concept"},
+        data: {
+            "board": "concept"
+        },
         timeout: 180000,
         contentType: "application/x-www-form-urlencoded",
         dataType: "json",
@@ -75,13 +84,14 @@ function loadConcept() {
             dataAnalyze(data, "Concept");
         },
         error: function (request, status, err) {
-            if (status == "timeout") {
-                load.abort();
-                loadConcept();
-            }
+            //            if (status == "timeout") {
+            //                load.abort();
+            //                loadConcept();
+            //            }
         }
     })
 }
+
 function load() {
     loadIndustry();
     loadArea();

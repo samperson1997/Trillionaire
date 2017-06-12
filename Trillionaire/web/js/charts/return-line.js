@@ -31,6 +31,8 @@ function getOP(datelist, d1, d2) {
         },
         yAxis: {
             type: 'value',
+            min: 'dataMin',
+            max: 'dataMax',
             boundaryGap: [0, '100%']
         },
         dataZoom: [

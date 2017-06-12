@@ -5,8 +5,12 @@ function loadCandle() {
     var urll;
 
     if ($("#realtime").attr('class').indexOf("active") >= 0) {
-        loadRealTimeChart();
+        $("#real-chart").fadeIn();
+        $("#k-chart").fadeOut();
     } else {
+        $("#real-chart").fadeOut();
+        $("#k-chart").fadeIn();
+
         if ($("#daily").attr('class').indexOf("active") >= 0) {
             urll = "/stock/" + code + "/daily";
         } else if ($("#weekly").attr('class').indexOf("active") >= 0) {

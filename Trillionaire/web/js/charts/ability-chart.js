@@ -15,6 +15,7 @@ function loadAbility() {
         contentType: "application/x-www-form-urlencoded",
         dataType: "json",
         success: function (data) {
+            $("#ability-spin").html('');
             data0 = data;
             option = {
                 title: {},
@@ -23,7 +24,7 @@ function loadAbility() {
                     data: ['深发展']
                 },
                 radar: {
-                    // shape: 'circle',
+                    shape: 'circle',
                     indicator: [
                         {
                             name: '盈利能力',
