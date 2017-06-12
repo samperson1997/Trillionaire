@@ -227,6 +227,11 @@ public class BackTestServiceImpl implements BackTestService{
         return null;
     }
 
+    @Override
+    public Map<String, Object> startFindBestParams(BackTestParams params, int low, int high) {
+        return null;
+    }
+
 
     private void creatFile(File file) throws IOException {
 
