@@ -167,11 +167,16 @@
                 </div>
 
                 <div style="border-top: 1px solid #AAA; padding-top: 5%;">
-                    <div class="stock-name" style="display: inline;">能力比对</div>
-                    <div class="stock-code" style="display: inline;">&nbsp;|&nbsp;Ability Comparison</div>
-                    <div class="stock-code" style="margin-left: 15%;">&nbsp;&nbsp;<a href="help.html#ability-compare" target="_blank">>>能力对比参数</a></div>
-                    <div id="ability-chart" style="width: 100%; height: 400%;"></div>
-                    <div align="center" id="ability-spin">
+                    <div class="stock-name" style="display: inline;">推荐趋势</div>
+                    <div class="stock-code" style="display: inline;">&nbsp;|&nbsp;Recommendation Trends</div>
+                    <div class="stock-code" style="margin-left: 15%;">&nbsp;&nbsp;<a href="help.html#rec-trend" target="_blank">>>推荐依据</a></div>
+                    <div align="center" class="margin" style="background-color: yellowgreen;">
+                        <h2>推荐：减持</h2>
+                    </div>
+
+                    <div id="reco-trend" style="width: 100%; height: 200%;"></div>
+
+                    <div align="center" id="trend-spin">
                         <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
                         <span>加载中...</span>
                     </div>
@@ -184,10 +189,10 @@
 
                 <!--        chart area-->
 
-                <div style="padding-top: 5%;">
+                <div style="padding-top: 2%;">
                     <div class="stock-name" style="display: inline;">KDJ</div>
                     <div class="stock-code" style="display: inline;">&nbsp;&nbsp;<a href="help.html#kdj" target="_blank">>>应该如何使用KDJ?</a></div>
-                    <div id="kdj-chart" style="width:100%; height: 300%;"></div>
+                    <div id="kdj-chart" style="width:100%; height: 200%;"></div>
                     <div id="kdj-spin">
                         <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
                         <span>加载中...</span>
@@ -197,7 +202,7 @@
                 <div style="padding-top: 2%;">
                     <div class="stock-name" style="display: inline;">BIAS</div>
                     <div class="stock-code" style="display: inline;">&nbsp;&nbsp;<a href="help.html#bias" target=" _blank">>>应该如何使用BIAS?</a></div>
-                    <div id="bias-chart" style="width:100%; height: 300%;"></div>
+                    <div id="bias-chart" style="width:100%; height: 200%;"></div>
                     <div id="bias-spin">
                         <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
                         <span>加载中...</span>
@@ -207,7 +212,7 @@
                 <div style="padding-top: 2%;">
                     <div class="stock-name" style="display: inline;">MACD</div>
                     <div class="stock-code" style="display: inline;">&nbsp;&nbsp;<a href="help.html#macd" target=" _blank">>>应该如何使用MACD?</a></div>
-                    <div id="macd-chart" style="width:100%; height: 300%;"></div>
+                    <div id="macd-chart" style="width:100%; height: 200%;"></div>
                     <div id="macd-spin">
                         <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
                         <span>加载中...</span>
@@ -249,22 +254,16 @@
                         <span>加载中...</span>
                     </div>
                 </div>
+
                 <div style="border-top: 1px solid #AAA; padding-top: 5%;">
-                    <div class="stock-name" style="display: inline;">推荐趋势</div>
-                    <div class="stock-code" style="display: inline;">&nbsp;|&nbsp;Recommendation Trends</div>
-                    <div class="stock-code" style="margin-left: 15%;">&nbsp;&nbsp;<a href="help.html#rec-trend" target="_blank">>>推荐依据</a></div>
-
-                    <div id="reco-trend" style="width:100%; height: 500%;"></div>
-
-                    <div align="center" class="margin" style="background-color: yellowgreen;">
-                        <h2>推荐：减持</h2>
+                    <div class="stock-name" style="display: inline;">能力比对</div>
+                    <div class="stock-code" style="display: inline;">&nbsp;|&nbsp;Ability Comparison</div>
+                    <div class="stock-code" style="margin-left: 15%;">&nbsp;&nbsp;<a href="help.html#ability-compare" target="_blank">>>能力对比参数</a></div>
+                    <div id="ability-chart" style="width: 100%; height: 400%;"></div>
+                    <div align="center" id="ability-spin">
+                        <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+                        <span>加载中...</span>
                     </div>
-                </div>
-
-                <div style="border-top: 1px solid #AAA; padding-top: 5%;">
-                    <div class="stock-name" style="display: inline;">近期收益</div>
-                    <div class="stock-code" style="display: inline;">&nbsp;|&nbsp;Earnings</div>
-                    <div id="earning-chart" style="width:100%; height: 400%;"></div>
                 </div>
 
                 <div style="border-top: 1px solid #AAA; padding-top: 5%;">
@@ -347,7 +346,6 @@
 <script src="js/charts/k-chart.js"></script>
 <script src="js/charts/kdj-line.js"></script>
 <script src="js/charts/ability-chart.js"></script>
-<script src="js/charts/earning-chart.js"></script>
 <script src="js/charts/recommend-trend.js"></script>
 <script src="js/charts/bias-line.js"></script>
 <script src="js/charts/macd-chart.js"></script>
@@ -374,7 +372,8 @@
     $(document).ready(loadPrevail);
     $(document).ready(updateInfo);
     $(document).ready(loadSimilarStock);
-    $(document).ready(loadRealTimeChart());
+    $(document).ready(loadTrends);
+    $(document).ready(loadRealTimeChart);
 
 </script>
 

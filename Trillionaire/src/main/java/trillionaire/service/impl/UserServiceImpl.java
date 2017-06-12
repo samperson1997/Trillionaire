@@ -3,14 +3,14 @@ package trillionaire.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import trillionaire.dao.UserDao;
+import trillionaire.model.Stock;
 import trillionaire.model.User;
 import trillionaire.service.UserService;
 import trillionaire.util.MailUtil;
 import trillionaire.util.RandomCodeUtil;
 import trillionaire.util.UserState;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by michaeltan on 2017/5/9.
@@ -53,11 +53,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserState logout(String email) {
-        return null;
-    }
-
-    @Override
     public UserState resetPassword(String email, String newPassword) {
         return null;
     }
@@ -68,6 +63,25 @@ public class UserServiceImpl implements UserService {
         if (user != null) {
             return true;
         } else {
+            return false;
+        }
+    }
+
+    @Override
+    public boolean cancelFollow(int id, String code) {
+        Set<Stock> list = userDao.getUserStocks(id);
+        boolean iffollow = false;
+        Iterator<Stock> it = list.iterator();
+        while (it.hasNext()) {
+            if (code.equals(it.next().getCode())){
+                iffollow = true;
+            }
+        }
+        if (iffollow){
+            int stock = Integer.parseInt(code);
+            userDao.deleteConcernedStock(id,stock);
+            return true;
+        }else {
             return false;
         }
     }
@@ -85,12 +99,34 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean follow(String email, String code) {
-        return false;
+    public boolean follow(int id, String code) {
+        Set<Stock> list = userDao.getUserStocks(id);
+        boolean follow = false;
+        Iterator<Stock> it = list.iterator();
+        while (it.hasNext()) {
+            if (code.equals(it.next().getCode())){
+                follow = true;
+            }
+        }
+        if (!follow){
+            int stock = Integer.parseInt(code);
+            userDao.addConcernedStock(id,stock);
+            return true;
+        }else {
+            return false;
+        }
     }
 
     @Override
-    public boolean checkfollow(String email, String code) {
-        return false;
+    public boolean checkfollow(int id, String code) {
+        Set<Stock> list = userDao.getUserStocks(id);
+        boolean iffollow = false;
+        Iterator<Stock> it = list.iterator();
+        while (it.hasNext()) {
+            if (code.equals(it.next().getCode())){
+                iffollow = true;
+            }
+        }
+        return iffollow;
     }
 }

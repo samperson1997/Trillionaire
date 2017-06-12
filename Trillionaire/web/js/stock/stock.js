@@ -54,7 +54,7 @@ function loadPrevail() {
         },
         dataType: "json",
         success: function (data0) {
-            $("#prevail").text(data0.vr);
+            $("#prevail").text("热度" + data0.vr);
             $("#spec-concept").text(data0.concept);
             $("#spec-industry").text(data0.industry);
             $("#spec-area").text(data0.area);
@@ -120,6 +120,7 @@ function loadSimilarStock() {
             "code": code
         },
         dataType: "json",
+        timeout: 180000,
         success: function (data) {
             $("#rel-spin").html('');
             if (data.subject.length == 0) {
@@ -134,16 +135,17 @@ function loadSimilarStock() {
                 $("#object").append('<p>无被关联股票</p>');
             } else {
                 $.each(data.object, function (i, value) {
-                    $("#object").append('<p><a href=\"stock.html?code=' + value.code + '\" target=\"_blank\>' + value.stock1 + '</a></p>');
+                    $("#object").append('<p><a href=\"stock.html?code=' + value.code + '\" target=\"_blank\">' + value.stock1 + '</a></p>');
                 })
             }
         },
         error: function (request, status, err) {
             if (status == "timeout") {
                 load.abort();
-                $("#subject").append('<p>无关联股票</p>');
-                $("#object").append('<p>无被关联股票</p>');
             }
+            $("#subject").append('<p>无关联股票</p>');
+            $("#object").append('<p>无被关联股票</p>');
+            $("#ability-spin").html('暂无数据');
         }
     })
 }
