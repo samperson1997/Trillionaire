@@ -2,6 +2,7 @@ package trillionaire.service;
 
 import trillionaire.model.RealTimeStock;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -21,7 +22,6 @@ public interface MarketService {
     /**
      * 获得不同版块的涨跌幅排名
      *
-     * @param board 股票版块
      * @return 版块涨跌的map
      */
     public Map<String, Object> getBoardRank();
@@ -49,4 +49,25 @@ public interface MarketService {
      * @return 地域涨跌股票
      */
     public List<RealTimeStock> getAreaRank(String area);
+
+    /**
+     * 获得地域列表
+     *
+     * @return 地域的map
+     */
+    public LinkedHashMap<Integer, String> getAreaList();
+
+    /**
+     * 获得概念列表
+     *
+     * @return 概念的map
+     */
+    public LinkedHashMap<Integer, String> getConceptList();
+
+    /**
+     * 获得行业列表
+     *
+     * @return 行业的map
+     */
+    public LinkedHashMap<Integer, String> getIndustryList();
 }

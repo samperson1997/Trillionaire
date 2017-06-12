@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import trillionaire.model.RealTimeStock;
 import trillionaire.service.MarketService;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -50,5 +51,24 @@ public class MarketController {
     public List<RealTimeStock> getAreaRank(String area) {
         return marketService.getAreaRank(area);
     }
+
+    @RequestMapping(value = "/list/concept", method = RequestMethod.GET)
+    @ResponseBody
+    public LinkedHashMap<Integer, String> getConceptList() {
+        return marketService.getConceptList();
+    }
+
+    @RequestMapping(value = "/list/area", method = RequestMethod.GET)
+    @ResponseBody
+    public LinkedHashMap<Integer, String> getAreaList() {
+        return marketService.getAreaList();
+    }
+
+    @RequestMapping(value = "/list/industry", method = RequestMethod.GET)
+    @ResponseBody
+    public LinkedHashMap<Integer, String> getIndustryList() {
+        return marketService.getIndustryList();
+    }
+
 
 }
