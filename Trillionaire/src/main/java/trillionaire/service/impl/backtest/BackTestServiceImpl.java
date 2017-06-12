@@ -27,6 +27,8 @@ public class BackTestServiceImpl implements BackTestService{
     private String readerPath;
     private String inputDir;
     private String outputDir;
+    private String paramsRunnerPath;
+    private String simpleReaderPath;
 
     @Autowired
     StrategyDao strategyDao;
@@ -38,8 +40,11 @@ public class BackTestServiceImpl implements BackTestService{
 
         runnerPath = this.getClass().getResource("/python/backtest_runner.py").getPath().substring(CMDGetter.getOSPathStarter());
         readerPath = this.getClass().getResource("/python/backtest_reader.py").getPath().substring(CMDGetter.getOSPathStarter());
+        paramsRunnerPath = this.getClass().getResource("/python/params_runner.py").getPath().substring(CMDGetter.getOSPathStarter());
+        simpleReaderPath = this.getClass().getResource("/python/simple_reader.py").getPath().substring(CMDGetter.getOSPathStarter());
         inputDir = this.getClass().getResource("/").getPath().substring(CMDGetter.getOSPathStarter()) + "TempFiles/TempStrategy/BackTestStrategy/";
         outputDir = this.getClass().getResource("/").getPath().substring(CMDGetter.getOSPathStarter()) + "TempFiles/TempStrategy/BacktestResult/";
+
 
     }
 
@@ -176,9 +181,7 @@ public class BackTestServiceImpl implements BackTestService{
 
                 if(readValue == 0){
 
-                    for(String s: ct2.getRes()){
-                        System.out.println(s);
-                    }
+
                     System.out.println("start get result");
                     return getResult(ct2.getRes());
 
@@ -229,7 +232,145 @@ public class BackTestServiceImpl implements BackTestService{
 
     @Override
     public Map<String, Object> startFindBestParams(BackTestParams params, int low, int high) {
-        return null;
+
+        if(params.sid < 0){
+            Map<String, Object> result = new HashMap<>();
+            result.put("msg", "error1");
+            return  result;
+        }
+
+        Strategy strategy = strategyDao.getStrategy(params.sid);
+        if(strategy == null){
+            Map<String, Object> result = new HashMap<>();
+            result.put("msg", "error2");
+            return  result;
+        }
+
+        File strategyFile = new File(inputDir + params.sid + ".py");
+        try {
+            creatFile(strategyFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+            Map<String, Object> result = new HashMap<>();
+            result.put("msg", "error3");
+            return  result;
+        }
+
+        try {
+            BufferedWriter bw = new BufferedWriter(new FileWriter(strategyFile));
+            bw.write(strategy.getContent());
+            bw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+            Map<String, Object> result = new HashMap<>();
+            result.put("msg", "error4");
+            return  result;
+        }
+
+
+        Map<String, Object> map = new HashMap<>();
+        List<Integer> paramList = new ArrayList<>();
+        List<Double> overReturnsList = new ArrayList<>();
+        List<Double> winRateList = new ArrayList<>();
+        map.put("paramList", paramList);
+        map.put("overReturnsList", overReturnsList);
+        map.put("winRateList", winRateList);
+
+
+        for(int i=low; i<=high; i++){
+
+            File outPklFIle = new File(outputDir + params.sid + "_" + i + ".pkl");
+            try {
+                creatFile(outPklFIle);
+            } catch (IOException e) {
+                Map<String, Object> result = new HashMap<>();
+                result.put("msg", "error3");
+                return  result;
+            }
+
+            try {
+                String paramString = "";
+                paramString = params.sid + " " + params.cash + " " + params.sDate + " " + params.eDate + " " + params.frequency + " " + params.matchingType + " " +
+                        params.benchmark + " " + params.commissionMultiplier + " " + params.slippage + " " + strategyFile.getPath() + " " + outPklFIle.getPath() + " " + i;
+                String[] cmd = CMDGetter.getCommand("python " + paramsRunnerPath + " " + paramString);
+                Process runnerProcess = Runtime.getRuntime().exec(cmd);
+                ClearThread ct = new ClearThread(runnerProcess);
+                ct.start();
+                ClearThread errorCt = new ClearThread(runnerProcess, true);
+                errorCt.start();
+                runnerProcess.waitFor();
+                int runValue = runnerProcess.exitValue();
+                Thread.sleep(200);
+                ct.setEnd(true);
+                errorCt.setEnd(true);
+
+                boolean checkTag = false;
+                if(errorCt.getRes().size() > 0 && errorCt.getRes().get(0).contains("Traceback")){
+                    checkTag = true;
+                }
+                System.out.println("process value:"+runValue);
+                if(runValue==1){
+                    for (String s: errorCt.getRes()){
+                        System.out.println(s);
+                    }
+                }
+
+                if(runValue == 0 && !checkTag){
+                    System.out.println("run2 before waitfor");
+                    String[] cmd2 = CMDGetter.getCommand("python " + simpleReaderPath + " " + outPklFIle);
+                    Process readerProcess = Runtime.getRuntime().exec(cmd2);
+                    ClearThread ct2 = new ClearThread(readerProcess);
+                    ct2.start();
+                    readerProcess.waitFor();
+                    System.out.println("run2 after waitfor");
+                    int readValue = readerProcess.exitValue();
+                    System.out.println("run2 value:"+readValue);
+                    Thread.sleep(200);
+                    ct2.setEnd(true);
+
+                    if(readValue == 0){
+
+                        addParamResult(map, ct2.getRes(),i);
+
+
+                    }
+                    else {
+                        Map<String, Object> result = new HashMap<>();
+                        result.put("msg", "error5");
+                        return  result;
+                    }
+
+                }
+                else {
+                    Map<String, Object> result = new HashMap<>();
+                    result.put("msg", "error6");
+                    String errorLog = "";
+
+                    ClearThread clearThread = null;
+                    if(checkTag){
+                        clearThread = errorCt;
+                    }
+                    else {
+                        clearThread = ct;
+                    }
+
+                    for(String str: clearThread.getRes()){
+                        errorLog += str + "\n";
+                    }
+                    result.put("errorLog", errorLog);
+                    return  result;
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+
+        }
+
+        map.put("msg","success");
+        return map;
     }
 
 
@@ -305,6 +446,20 @@ public class BackTestServiceImpl implements BackTestService{
         result.put("data2", data2);
 
         return result;
+    }
+
+    private void addParamResult(Map<String, Object> map, List<String> res, int param){
+
+        double overReturns = Double.valueOf(res.get(1));
+        double winRate = Double.valueOf(res.get(3));
+
+        List<Integer> paramList = (List<Integer>) map.get("paramList");
+        List<Double> overReturnsList = (List<Double>) map.get("overReturnsList");
+        List<Double> winRateList = (List<Double>) map.get("winRateList");
+        paramList.add(param);
+        overReturnsList.add(overReturns);
+        winRateList.add(winRate);
+
     }
 
     class ClearThread extends Thread {
