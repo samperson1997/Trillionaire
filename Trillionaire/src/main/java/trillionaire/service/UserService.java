@@ -1,5 +1,6 @@
 package trillionaire.service;
 
+import trillionaire.model.RealTimeStock;
 import trillionaire.model.Stock;
 import trillionaire.util.FollowState;
 import trillionaire.util.UserState;
@@ -89,6 +90,6 @@ public interface UserService {
      * @param id 用户邮箱
      * @return 股票列表
      */
-    public List<FollowListVO> getFollowList(int id);
+    public List<RealTimeStock> getFollowList(int id);
 
 }

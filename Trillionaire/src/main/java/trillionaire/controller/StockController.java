@@ -120,4 +120,5 @@ public class StockController {
         return stockService.getMargin(code1, code2, code3);
     }
 
+
 }

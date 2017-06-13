@@ -21,16 +21,6 @@
         RequestMappingHandlerMapping 替代了 DefaultAnnotationHandlerMapping-->
     <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping " />
 
-    <mvc:interceptors>
-        <!-- 配置自定义拦截器 -->
-        <mvc:interceptor>
-            <!-- 需排除拦截的地址 -->
-            <mvc:exclude-mapping path="/index.html"/>
-            <mvc:exclude-mapping path="/login.html"/>
-            <bean class="trillionaire.interceptor.LoginInterceptor"></bean>
-        </mvc:interceptor>
-        <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor"></bean>
-    </mvc:interceptors>
     <!-- 视图解析 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/"></property>

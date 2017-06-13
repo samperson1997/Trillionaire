@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import trillionaire.model.RealTimeStock;
 import trillionaire.model.Stock;
 import trillionaire.service.UserService;
 import trillionaire.util.FollowState;
@@ -89,7 +90,7 @@ public class UserController {
 
     @RequestMapping(value = "/followlist", method = RequestMethod.GET)
     @ResponseBody
-    public List<FollowListVO> getFollowList(int id) {
+    public List<RealTimeStock> getFollowList(int id) {
         return userService.getFollowList(id);
     }
 

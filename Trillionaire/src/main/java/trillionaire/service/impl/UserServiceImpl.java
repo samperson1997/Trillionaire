@@ -3,8 +3,10 @@ package trillionaire.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import trillionaire.dao.DayRecordDao;
+import trillionaire.dao.RealTimeStockDao;
 import trillionaire.dao.UserDao;
 import trillionaire.model.DayRecord;
+import trillionaire.model.RealTimeStock;
 import trillionaire.model.Stock;
 import trillionaire.model.User;
 import trillionaire.service.UserService;
@@ -27,7 +29,7 @@ public class UserServiceImpl implements UserService {
     @Autowired
     UserDao userDao;
     @Autowired
-    DayRecordDao dayRecordDao;
+    RealTimeStockDao realTimeStockDao;
 
     @Override
     public Map<String, Object> login(String email, String password) {
@@ -94,16 +96,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<FollowListVO> getFollowList(int id) {
+    public List<RealTimeStock> getFollowList(int id) {
         Set<Stock> list = userDao.getUserStocks(id);
-        List<FollowListVO> followList = new ArrayList<>();
+        List<RealTimeStock> followList = new ArrayList<>();
         Iterator<Stock> iterator = list.iterator();
         while (iterator.hasNext()) {
-            List<DayRecord> recordList = dayRecordDao.getDayRecords(iterator.next().getCode(), 1);
-            if (recordList.size() != 0) {
-                DayRecord dayRecord = recordList.get(0);
-                followList.add(new FollowListVO(dayRecord.getStock().getName(), CodeUtil.TransferCode(dayRecord.getStock().getCode()), dayRecord));
-            }
+            RealTimeStock realTimeStock = realTimeStockDao.getRealTimeByCode(iterator.next().getCode());
+                followList.add(realTimeStock);
         }
         return followList;
     }
