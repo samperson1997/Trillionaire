@@ -31,8 +31,8 @@ public class UserDaoTest {
         SessionFactory sessionFactory = ctx.getBean(SessionFactory.class);
         System.out.println(sessionFactory);
 
-        DayRecordDao dayRecordDao = ctx.getBean(DayRecordDaoImpl.class);
-        System.out.println(dayRecordDao.getMonthRecordsByCode(10).get(dayRecordDao.getMonthRecordsByCode(10).size()-1).getDate());
+        UserDao userDao = ctx.getBean(UserDaoImpl.class);
+        userDao.deleteConcernedStock(1,4);
 
 
     }

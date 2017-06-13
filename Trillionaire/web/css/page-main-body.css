@@ -359,7 +359,7 @@
 
 .whole-table {
     margin: 0.5%;
-    width: 90%;
+    width: 95%;
     display: inline-table;
     border-collapse: collapse;
     text-align: center;
@@ -369,12 +369,13 @@
     color: #AAA;
     font-size: 80%;
     font-weight: 400;
+    padding: 0 0.2%;
 }
 
 .whole-table td {
     border-bottom: 1px solid #AAA;
     border-top: 1px solid #AAA;
-    padding: 0.5% 0;
+    padding: 0.5% 0.2%;
 }
 
 .whole-table tr td:first-child + td + td + td,
@@ -420,8 +421,12 @@
     cursor: pointer;
 }
 
-.page-content-fix li:hover {
+.page-content-fix li a:hover {
     color: red;
+}
+
+.page-content-fix li a {
+    color: #000;
 }
 
 .compare-stock,

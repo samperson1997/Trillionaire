@@ -4,7 +4,7 @@ function firstPage() {
     showCurrPage(currPageNum);
     showTotalPage();
     for (i = 1; i < pageCount + 1; i++) {
-        blockTable.rows[i].style.display = "";
+        blockTable.rows[i].style.display = '';
     }
     if (pageNum == 1) {
         preText();
