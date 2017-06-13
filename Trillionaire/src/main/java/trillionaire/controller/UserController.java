@@ -41,19 +41,19 @@ public class UserController {
         return userState.toString();
     }
 
-    @RequestMapping(value = "/follow", method = RequestMethod.POST)
+    @RequestMapping(value = "/follow", method = RequestMethod.GET)
     @ResponseBody
     public boolean follow(int id, String code) {
         return userService.follow(id, code);
     }
 
-    @RequestMapping(value = "/cancelFollow", method = RequestMethod.POST)
+    @RequestMapping(value = "/cancelFollow", method = RequestMethod.GET)
     @ResponseBody
     public boolean cancelFollow(int id, String code) {
         return userService.cancelFollow(id, code);
     }
 
-    @RequestMapping(value = "/ifFollow", method = RequestMethod.POST)
+    @RequestMapping(value = "/ifFollow", method = RequestMethod.GET)
     @ResponseBody
     public boolean checkFollow(int id, String code) {
         return userService.checkfollow(id, code);

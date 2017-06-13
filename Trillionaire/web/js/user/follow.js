@@ -3,7 +3,7 @@ jQuery(function () {
     var code = getParam('code');
     if (sessionStorage.getItem("log_state") == "true") {
         var check = $.ajax({
-            type: "POST",
+            type: "GET",
             url: "/user/ifFollow",
             data: {
                 "id": email,
@@ -49,7 +49,7 @@ function follow_ajax(username, code) {
     this.code = code;
 
     $.ajax({
-        type: "POST",
+        type: "GET",
         url: "/user/follow",
         data: {
             "id": this.username,
@@ -69,7 +69,7 @@ function cancelfollow_ajax(username, code) {
     this.code = code;
 
     $.ajax({
-        type: "POST",
+        type: "GET",
         url: "/user/cancelFollow",
         data: {
             "id": this.username,
