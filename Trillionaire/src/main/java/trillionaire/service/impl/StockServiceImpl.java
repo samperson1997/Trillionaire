@@ -251,7 +251,7 @@ public class StockServiceImpl implements StockService {
                 }
                 result = 100 * (2 * AVS + CVS) / (2 * BVS + CVS);
                 if (i == list.size() - 1) {
-                    if (result > 160 && result < 400) {
+                    if (result > 160 && result < 350) {
                         trends = "减持";
                     } else if (result >= 70 && result <= 160) {
                         trends = "观望";
@@ -259,7 +259,7 @@ public class StockServiceImpl implements StockService {
                         trends = "买入";
                     } else if (result > 35 && result < 70) {
                         trends = "增持";
-                    } else if (result >= 400) {
+                    } else if (result >= 350) {
                         trends = "卖出";
                     }
                 } else {
