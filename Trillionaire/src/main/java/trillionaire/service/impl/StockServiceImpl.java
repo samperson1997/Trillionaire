@@ -232,7 +232,7 @@ public class StockServiceImpl implements StockService {
             int hold = 0;
             int sell = 0;
             int strongSell = 0;
-            for (int i = list.size() - 31; i < list.size(); i++) {
+            for (int i = list.size() - 31; i < list.size()-1; i++) {
                 if (Math.abs(list.get(i).getClose() - list.get(i).getOpen()) <= 0.02) {
                     CVS += list.get(i).getVolume();
                 } else if (list.get(i).getClose() - list.get(i).getOpen() > 0.02) {

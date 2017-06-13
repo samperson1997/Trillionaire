@@ -1,8 +1,8 @@
 package trillionaire.service;
 
 import trillionaire.model.RealTimeStock;
+import trillionaire.vo.BoardVO;
 
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -55,19 +55,19 @@ public interface MarketService {
      *
      * @return 地域的map
      */
-    public LinkedHashMap<Integer, String> getAreaList();
+    public List<BoardVO> getAreaList();
 
     /**
      * 获得概念列表
      *
      * @return 概念的map
      */
-    public LinkedHashMap<Integer, String> getConceptList();
+    public List<BoardVO> getConceptList();
 
     /**
      * 获得行业列表
      *
      * @return 行业的map
      */
-    public LinkedHashMap<Integer, String> getIndustryList();
+    public List<BoardVO> getIndustryList();
 }
