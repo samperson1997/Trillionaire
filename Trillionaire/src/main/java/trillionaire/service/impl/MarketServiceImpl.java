@@ -10,6 +10,7 @@ import trillionaire.model.DayRecord;
 import trillionaire.model.RealTimeStock;
 import trillionaire.model.Stock;
 import trillionaire.service.MarketService;
+import trillionaire.vo.BoardVO;
 import trillionaire.vo.RankTable;
 
 import java.text.Collator;
@@ -244,9 +245,10 @@ public class MarketServiceImpl implements MarketService {
     }
 
     @Override
-    public LinkedHashMap<Integer, String> getAreaList() {
+    public List<BoardVO> getAreaList() {
         Map<Integer, String> map = conceptDao.getAllArea();
         List<Map.Entry<Integer, String>> list = new ArrayList<>(map.entrySet());
+        List<BoardVO> result = new ArrayList<>();
         //然后通过比较器来实现排序
         Collections.sort(list, new Comparator<Map.Entry<Integer, String>>() {
             //升序排序
@@ -255,20 +257,20 @@ public class MarketServiceImpl implements MarketService {
                 return collator.compare(o1.getValue(), o2.getValue());
             }
         });
-        LinkedHashMap<Integer, String> sortedMap = new LinkedHashMap<>();
         Iterator<Map.Entry<Integer, String>> iter = list.iterator();
         Map.Entry<Integer, String> tmpEntry;
         while (iter.hasNext()) {
             tmpEntry = iter.next();
-            sortedMap.put(tmpEntry.getKey(), tmpEntry.getValue());
+            result.add(new BoardVO(tmpEntry.getKey(), tmpEntry.getValue()));
         }
-        return sortedMap;
+        return result;
     }
 
     @Override
-    public LinkedHashMap<Integer, String> getConceptList() {
+    public List<BoardVO> getConceptList() {
         Map<Integer, String> map = conceptDao.getAllConcepts();
         List<Map.Entry<Integer, String>> list = new ArrayList<>(map.entrySet());
+        List<BoardVO> result = new ArrayList<>();
         //然后通过比较器来实现排序
         Collections.sort(list, new Comparator<Map.Entry<Integer, String>>() {
             //升序排序
@@ -277,20 +279,20 @@ public class MarketServiceImpl implements MarketService {
                 return collator.compare(o1.getValue(), o2.getValue());
             }
         });
-        LinkedHashMap<Integer, String> sortedMap = new LinkedHashMap<>();
         Iterator<Map.Entry<Integer, String>> iter = list.iterator();
         Map.Entry<Integer, String> tmpEntry;
         while (iter.hasNext()) {
             tmpEntry = iter.next();
-            sortedMap.put(tmpEntry.getKey(), tmpEntry.getValue());
+            result.add(new BoardVO(tmpEntry.getKey(), tmpEntry.getValue()));
         }
-        return sortedMap;
+        return result;
     }
 
     @Override
-    public LinkedHashMap<Integer, String> getIndustryList() {
+    public List<BoardVO> getIndustryList() {
         Map<Integer, String> map = conceptDao.getAllIndustry();
         List<Map.Entry<Integer, String>> list = new ArrayList<>(map.entrySet());
+        List<BoardVO> result = new ArrayList<>();
         //然后通过比较器来实现排序
         Collections.sort(list, new Comparator<Map.Entry<Integer, String>>() {
             //升序排序
@@ -299,13 +301,12 @@ public class MarketServiceImpl implements MarketService {
                 return collator.compare(o1.getValue(), o2.getValue());
             }
         });
-        LinkedHashMap<Integer, String> sortedMap = new LinkedHashMap<>();
         Iterator<Map.Entry<Integer, String>> iter = list.iterator();
         Map.Entry<Integer, String> tmpEntry;
         while (iter.hasNext()) {
             tmpEntry = iter.next();
-            sortedMap.put(tmpEntry.getKey(), tmpEntry.getValue());
+            result.add(new BoardVO(tmpEntry.getKey(), tmpEntry.getValue()));
         }
-        return sortedMap;
+        return result;
     }
 }

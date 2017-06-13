@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import trillionaire.model.RealTimeStock;
 import trillionaire.service.MarketService;
+import trillionaire.vo.BoardVO;
 
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -54,19 +54,19 @@ public class MarketController {
 
     @RequestMapping(value = "/list/concept", method = RequestMethod.GET)
     @ResponseBody
-    public LinkedHashMap<Integer, String> getConceptList() {
+    public List<BoardVO> getConceptList() {
         return marketService.getConceptList();
     }
 
     @RequestMapping(value = "/list/area", method = RequestMethod.GET)
     @ResponseBody
-    public LinkedHashMap<Integer, String> getAreaList() {
+    public List<BoardVO> getAreaList() {
         return marketService.getAreaList();
     }
 
     @RequestMapping(value = "/list/industry", method = RequestMethod.GET)
     @ResponseBody
-    public LinkedHashMap<Integer, String> getIndustryList() {
+    public List<BoardVO> getIndustryList() {
         return marketService.getIndustryList();
     }
 
