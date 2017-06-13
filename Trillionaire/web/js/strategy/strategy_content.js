@@ -5,7 +5,7 @@ function loadStraList() {
         url: "/backtest/get_strategy_list",
         contentType: "application/x-www-form-urlencoded",
         data: {
-            'userId': 1
+            'userId': sessionStorage.getItem('userId')
         },
         dataType: "json",
         success: function (data0) {
