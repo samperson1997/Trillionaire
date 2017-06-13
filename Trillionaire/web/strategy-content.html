@@ -177,7 +177,11 @@
 <script src="js/strategy/strategy_content.js"></script>
 
 <script>
-    $(document).ready(loadStraList);
+    if (sessionStorage.getItem("log_state") == null) {
+        window.location.href = "login.html";
+    } else {
+        $(document).ready(loadStraList);
+    }
 
 </script>
 

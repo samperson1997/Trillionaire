@@ -33,3 +33,7 @@ angular.module("searchApp", [])
             })
         }
     })
+
+function search() {
+    window.location.href = "stock.html?code=" + $("#searchBox").value();
+}

@@ -29,3 +29,13 @@
 #top-bar ul {
     margin-top: -3%;
 }
+
+.search-results {
+    top: 10%;
+    left: 50%;
+    position: fixed;
+
+    background-color: rgba(245, 245, 245, 0.8);
+    border: 1px solid #AAA;
+    width: 60%;
+}

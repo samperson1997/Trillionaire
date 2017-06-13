@@ -59,7 +59,7 @@
                 <!-- search box -->
                 <div style="display: inline-block;" ng-controller="StockController">
                     <input style="display: inline-block;" id="searchBox" class="search-input" placeholder="输入股票名称或代码" ng-keypress="associate($event)" ng-model="inputString" />
-                    <div style="display: inline-block;" class="button-page" id="search-button"><i class="fa fa-search"></i>检索</div>
+                    <div style="display: inline-block;" class="button-page" id="search-button" onclick="search()"><i class="fa fa-search"></i>检索</div>
                 </div>
 
                 <ul id="search-results" class="search-results"></ul>

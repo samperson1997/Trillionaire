@@ -489,10 +489,3 @@
     font-size: 150%;
     display: none;
 }
-
-.search-results {
-    background-color: rgba(245, 245, 245, 0.8);
-    border: 1px solid #AAA;
-    padding: 1%;
-    width: 60%;
-}
