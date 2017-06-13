@@ -16,8 +16,6 @@
     <script src="js/jquery-3.2.1.min.js"></script>
     <script src="js/scrollReveal.js"></script>
     <script src="js/angular/angular.js"></script>
-    <script src="js/user/follow.js"></script>
-    <script src="js/stock/show.js"></script>
 
 </head>
 
@@ -69,7 +67,7 @@
             </div>
         </div>
 
-        <div onselectstart="return false;" ng-app="followApp">
+        <div onselectstart="return false;">
 
             <!--        chart area-->
             <div style="float: left; width: 65%;" align="center">
@@ -119,10 +117,10 @@
 
 
             <!--        figure area-->
-            <div class="info-board" ng-controller="UserController">
+            <div class="info-board">
                 <div id="name" class="stock-name" style="display: inline;">暂无</div>
                 <div id="code" class="stock-code" style="display: inline;">&nbsp;|&nbsp;暂无</div>
-                <div style="display: inline-block;" class="button-page" ng-click="follow()"><i class="fa fa-plus"></i> 关注&nbsp;</div>
+                <div id="follow-button" style="display: inline-block;" class="button-page" onclick="follow()"><i class="fa fa-plus"></i> 关注&nbsp;</div>
                 <div align="center" class="margin">
                     <h2 id="change">...</h2>
                 </div>
@@ -189,7 +187,7 @@
             </div>
         </div>
 
-        <div id="more" onselectstart="return false;" ng-app="followApp" style="clear: both;">
+        <div id="more" onselectstart="return false;" style="clear: both;">
             <div style="float: left; width: 65%;" align="center">
 
                 <!--        chart area-->
@@ -356,6 +354,8 @@
 <script src="js/charts/macd-chart.js"></script>
 <script src="js/user/log_state.js"></script>
 <script src="js/stock/stockChooseBoard.js"></script>
+<script src="js/user/follow.js"></script>
+<script src="js/stock/show.js"></script>
 <script src="js/stock/search.js"></script>
 <script src="js/stock/stock.js"></script>
 

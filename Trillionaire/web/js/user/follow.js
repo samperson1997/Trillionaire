@@ -1,94 +1,85 @@
-jQuery(function() {
-    checkFollow();
+jQuery(function () {
+    var email = window.sessionStorage.getItem('userId');
+    var code = getParam('code');
+    if (sessionStorage.getItem("log_state") == "true") {
+        var check = $.ajax({
+            type: "POST",
+            url: "/user/ifFollow",
+            data: {
+                "id": email,
+                "code": code
+            },
+            timeout: 180000,
+            contentType: "application/x-www-form-urlencoded",
+            dataType: "json",
+            success: function (data) {
+                if (data == true) {
+                    alert('已关注');
+                    $("#follow-button").html("<i class=\"fa fa-minus\"></i> 取消关注&nbsp;");
+                    $("#follow-button").addClass('button-red');
+                    $("#follow-button").removeClass('button-page');
+                }
+            },
+            error: function (request, status, err) {
+                if (status == "timeout") {
+                    check.abort();
+                    checkFollow();
+                }
+            }
+        })
+    }
 });
 
-angular.module("followApp", [])
-    .controller("UserController", function ($scope) {
-        $scope.inputUsername = "";
-        $scope.email = window.sessionStorage.getItem("username");
-        //关注
-        $scope.follow = function () {
-            if (checkFirst() != false) {
-                follow_ajax($scope.email);
-            } else {
-            }
-            ;
-        };
-        function checkFirst() {
-            return true;
-        }
+function follow() {
+    //关注
 
-        /*
-         if($scope.inputUsername!=null && $scope.inputUsername!=""
-         && $scope.inputPassword!=null && $scope.inputPassword!=""){
-         return true;
-         }else{
-         return false;
-         }
-         };*/
-        function follow_ajax(username, code) {
-            this.username = username;
-            this.code = getParam('code');
-            $.ajax({
-                type: "POST",
-                url: "/user/follow",
-                data: {"email": this.username, "code": this.code},
-                contentType: "application/x-www-form-urlencoded",
-                success: function (data, status, XMLHttpRequest) {
-                    console.log(data);
-                    console.log(XMLHttpRequest);
-                    console.log(status);
-                    var sessionstatus = XMLHttpRequest.getResponseHeader("sessionstatus");
-                    if (sessionstatus === "logout") {
-                        //如果未登陆就跳转
-                       window.location.href="../../login.html";
-                    }
-                }
-            });
-        }
-    });
-
-var getParam = function (name) {
-    var search = document.location.search;
-    var pattern = new RegExp("[?&]" + name + "\=([^&]+)", "g");
-    var matcher = pattern.exec(search);
-    var items = null;
-    if (null != matcher) {
-        try {
-            items = decodeURIComponent(decodeURIComponent(matcher[1]));
-        } catch (e) {
-            try {
-                items = decodeURIComponent(matcher[1]);
-            } catch (e) {
-                items = matcher[1];
-            }
+    if (sessionStorage.getItem("log_state") == null) { //如果未登陆就跳转
+        window.location.href = "../../login.html";
+    } else {
+        if ($("#follow-button").text().indexOf("取消") >= 0) {
+            cancelfollow_ajax(window.sessionStorage.getItem("userId"), getParam('code'));
+        } else {
+            follow_ajax(window.sessionStorage.getItem("userId"), getParam('code'));
         }
     }
-    return items;
 };
 
-function checkFollow() {
-    var email = window.sessionStorage.getItem('username');
-    var code = getParam('code');
-    var check =$.ajax({
+function follow_ajax(username, code) {
+    this.username = username;
+    this.code = code;
+
+    $.ajax({
         type: "POST",
-        url: "/user/ifFollow",
+        url: "/user/follow",
         data: {
-            "email": email,
-            "code": code
+            "id": this.username,
+            "code": this.code
         },
-        timeout:180000,
         contentType: "application/x-www-form-urlencoded",
-        dataType: "json",
         success: function (data) {
-            console.log('123');
-            alert('已关注');
-        },
-        error: function (request, status, err) {
-            if (status=="timeout"){
-                check.abort();
-                checkFollow();
-            }
+            $("#follow-button").html("<i class=\"fa fa-minus\"></i> 取消关注&nbsp;");
+            $("#follow-button").addClass('button-red');
+            $("#follow-button").removeClass('button-page');
         }
-    })
+    });
+}
+
+function cancelfollow_ajax(username, code) {
+    this.username = username;
+    this.code = code;
+
+    $.ajax({
+        type: "POST",
+        url: "/user/cancelFollow",
+        data: {
+            "id": this.username,
+            "code": this.code
+        },
+        contentType: "application/x-www-form-urlencoded",
+        success: function (data) {
+            $("#follow-button").html("<i class=\"fa fa-plus\"></i> 关注&nbsp;");
+            $("#follow-button").addClass('button-page');
+            $("#follow-button").removeClass('button-red');
+        }
+    });
 }
