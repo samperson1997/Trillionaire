@@ -25,6 +25,11 @@ function loadCandle() {
             contentType: "application/x-www-form-urlencoded",
             dataType: "json",
             success: function (data0) {
+
+                if (data0 == null) {
+                    $("#stock-page-hint").fadeIn().delay(1000).fadeOut();
+                }
+
                 dataK = splitData(data0);
                 $("#candle-spin").html('');
                 var option = {

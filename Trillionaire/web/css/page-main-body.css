@@ -184,6 +184,15 @@
     color: #FFF;
 }
 
+.reco-sum {
+    font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, "PingFang SC", sans-serif;
+    margin: 5% 1%;
+    padding: 3% 1%;
+
+    color: #000;
+    border: 1px solid #AAA;
+}
+
 .rank {
     font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, "PingFang SC", sans-serif;
     margin: 5% 1%;

@@ -31,17 +31,11 @@
                 <a href="concern.html">
                     <li id="star-button" class="head-button">关注股票</li>
                 </a>
-                <a href="predict.html">
-                    <li id="pre-button" class="head-button">股市预测</li>
-                </a>
                 <a href="strategy-content.html">
                     <li id="strategy-button" class="head-button">策略回测</li>
                 </a>
                 <a href="market.html">
                     <li id="market-button" class="head-button">市场行情</li>
-                </a>
-                <a href="compare.html">
-                    <li id="compare-button" class="head-button">股票对比</li>
                 </a>
                 <a href="login.html">
                     <li id="log-button" class="head-button" class="button-blue">用户登录</li>
@@ -62,7 +56,7 @@
                     <div style="display: inline-block;" class="button-page" id="search-button" onclick="search()"><i class="fa fa-search"></i>检索</div>
                 </div>
 
-                <ul id="search-results" class="search-results"></ul>
+                <!--                <ul id="search-results" class="search-results"></ul>-->
 
             </div>
         </div>
@@ -97,7 +91,7 @@
                         </div>
                     </a>
 
-                    <a href="industry.html">
+                    <a href="industry.html?iid=85">
                         <div data-scroll-reveal="enter from bottom over 1s" class="spec-func indu-func">
                             <h2><i class="fa fa-industry"></i> 所属行业</h2>
                             <p id="spec-industry">暂无</p>
@@ -105,7 +99,7 @@
                         </div>
                     </a>
 
-                    <a href="area.html">
+                    <a href="area.html?aid=26">
                         <div data-scroll-reveal="enter from bottom over 1s" class="spec-func comp-func">
                             <h2><i class="fa fa-balance-scale"></i> 所属地域</h2>
                             <p id="spec-area">暂无</p>
@@ -171,11 +165,10 @@
                     <div class="stock-name" style="display: inline;">推荐趋势</div>
                     <div class="stock-code" style="display: inline;">&nbsp;|&nbsp;Recommendation Trends</div>
                     <div class="stock-code" style="margin-left: 15%;">&nbsp;&nbsp;<a href="help.html#rec-trend" target="_blank">>>推荐依据</a></div>
-                    <!--
-<div align="center" class="margin" style="background-color: yellowgreen;">
-    <h2>推荐：减持</h2>
-</div>
--->
+
+                    <div align="center" class="reco-sum">
+                        <h2 id="reco-sum-content"></h2>
+                    </div>
 
                     <div id="reco-trend" style="width: 100%; height: 200%;"></div>
 
@@ -195,7 +188,7 @@
                 <div style="padding-top: 2%;">
                     <div class="stock-name" style="display: inline;">KDJ</div>
                     <div class="stock-code" style="display: inline;">&nbsp;&nbsp;<a href="help.html#kdj" target="_blank">>>应该如何使用KDJ?</a></div>
-                    <div id="kdj-chart" style="width:100%; height: 200%;"></div>
+                    <div id="kdj-chart" style="width:100%; height: 300%;"></div>
                     <div id="kdj-spin">
                         <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
                         <span>加载中...</span>
@@ -205,7 +198,7 @@
                 <div style="padding-top: 2%;">
                     <div class="stock-name" style="display: inline;">BIAS</div>
                     <div class="stock-code" style="display: inline;">&nbsp;&nbsp;<a href="help.html#bias" target=" _blank">>>应该如何使用BIAS?</a></div>
-                    <div id="bias-chart" style="width:100%; height: 200%;"></div>
+                    <div id="bias-chart" style="width:100%; height: 300%;"></div>
                     <div id="bias-spin">
                         <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
                         <span>加载中...</span>
@@ -215,7 +208,7 @@
                 <div style="padding-top: 2%;">
                     <div class="stock-name" style="display: inline;">MACD</div>
                     <div class="stock-code" style="display: inline;">&nbsp;&nbsp;<a href="help.html#macd" target=" _blank">>>应该如何使用MACD?</a></div>
-                    <div id="macd-chart" style="width:100%; height: 200%;"></div>
+                    <div id="macd-chart" style="width:100%; height: 300%;"></div>
                     <div id="macd-spin">
                         <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
                         <span>加载中...</span>
@@ -286,9 +279,11 @@
             </div>
         </div>
 
-        <div onselectstart="return false;" align="center" onclick="showMore()">
+        <div onselectstart="return false;" align="center" onclick="showMore()" style="margin-top: 10%;">
             <div id="show-more-button"><i class="fa fa-chevron-up"></i> 查看更少</div>
         </div>
+
+        <div id="stock-page-hint" class="page-hint">无此股，请重新选择</div>
 
     </header>
 
