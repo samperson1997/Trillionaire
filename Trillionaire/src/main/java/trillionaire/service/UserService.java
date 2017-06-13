@@ -1,7 +1,11 @@
 package trillionaire.service;
 
+import trillionaire.model.Stock;
+import trillionaire.util.FollowState;
 import trillionaire.util.UserState;
+import trillionaire.vo.FollowListVO;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -78,5 +82,13 @@ public interface UserService {
      * @return 取消关注
      */
     public boolean cancelFollow(int id, String code);
+
+    /**
+     * 用户关注股票列表
+     *
+     * @param id 用户邮箱
+     * @return 股票列表
+     */
+    public List<FollowListVO> getFollowList(int id);
 
 }

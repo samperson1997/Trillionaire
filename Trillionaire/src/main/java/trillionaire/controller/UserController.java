@@ -6,12 +6,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import trillionaire.model.Stock;
 import trillionaire.service.UserService;
+import trillionaire.util.FollowState;
 import trillionaire.util.UserState;
+import trillionaire.vo.FollowListVO;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -41,19 +45,19 @@ public class UserController {
         return userState.toString();
     }
 
-    @RequestMapping(value = "/follow", method = RequestMethod.POST)
+    @RequestMapping(value = "/follow", method = RequestMethod.GET)
     @ResponseBody
     public boolean follow(int id, String code) {
         return userService.follow(id, code);
     }
 
-    @RequestMapping(value = "/cancelFollow", method = RequestMethod.POST)
+    @RequestMapping(value = "/cancelFollow", method = RequestMethod.GET)
     @ResponseBody
     public boolean cancelFollow(int id, String code) {
         return userService.cancelFollow(id, code);
     }
 
-    @RequestMapping(value = "/ifFollow", method = RequestMethod.POST)
+    @RequestMapping(value = "/ifFollow", method = RequestMethod.GET)
     @ResponseBody
     public boolean checkFollow(int id, String code) {
         return userService.checkfollow(id, code);
@@ -71,7 +75,7 @@ public class UserController {
         }
     }
 
-    @RequestMapping(value = "/check", method = RequestMethod.POST)
+    @RequestMapping(value = "/check", method = RequestMethod.GET)
     @ResponseBody
     public String check(String email) {
         boolean exist = userService.check(email);
@@ -80,6 +84,12 @@ public class UserController {
         } else {
             return "none";
         }
+    }
+
+    @RequestMapping(value = "/followlist", method = RequestMethod.GET)
+    @ResponseBody
+    public List<FollowListVO> getFollowList(int id) {
+        return userService.getFollowList(id);
     }
 
 }
