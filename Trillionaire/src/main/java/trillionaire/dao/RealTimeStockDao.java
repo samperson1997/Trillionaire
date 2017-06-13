@@ -9,8 +9,17 @@ import java.util.List;
  */
 public interface RealTimeStockDao {
 
+    /**
+     *
+     * @param code
+     * @return
+     */
     public RealTimeStock getRealTimeByCode(int code);
 
+    /**
+     *
+     * @return
+     */
     public List<RealTimeStock> getAll();
 
 }

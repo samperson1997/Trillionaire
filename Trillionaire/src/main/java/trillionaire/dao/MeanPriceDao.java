@@ -10,7 +10,16 @@ import java.util.List;
  */
 public interface MeanPriceDao {
 
+    /**
+     *
+     * @param meanPrice
+     */
     public void saveMeanPrice(MeanPrice meanPrice);
 
+    /**
+     *
+     * @param code
+     * @return
+     */
     public List<MeanPrice> getMeanPriceListByCode(int code);
 }

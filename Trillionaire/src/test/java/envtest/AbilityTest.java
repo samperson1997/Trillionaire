@@ -4,6 +4,8 @@ import org.hibernate.SessionFactory;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import trillionaire.dao.ConceptDao;
+import trillionaire.dao.impl.ConceptDaoImpl;
 import trillionaire.service.BackTestService;
 import trillionaire.service.impl.backtest.BackTestServiceImpl;
 import trillionaire.vo.BackTestParams;
@@ -31,6 +33,8 @@ public class AbilityTest {
         SessionFactory sessionFactory = ctx.getBean(SessionFactory.class);
         System.out.println(sessionFactory);
 
+        ConceptDao conceptDao = ctx.getBean(ConceptDaoImpl.class);
+        System.out.println(conceptDao.getAllArea());
 
 
     }

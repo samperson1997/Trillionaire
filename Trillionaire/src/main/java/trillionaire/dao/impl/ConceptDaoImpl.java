@@ -26,7 +26,7 @@ public class ConceptDaoImpl implements ConceptDao{
 
     @Override
     public Map<Integer, String> getAllConcepts() {
-        Session session = sessionFactory.openSession();
+        Session session = sessionFactory.getCurrentSession();
         Transaction tx = session.beginTransaction();
 
         Map<Integer, String> result = new HashMap<>();
@@ -38,14 +38,14 @@ public class ConceptDaoImpl implements ConceptDao{
         }
 
         tx.commit();
-        session.close();
+        //session.close();
 
         return result;
     }
 
     @Override
     public Map<Integer, String> getAllIndustry() {
-        Session session = sessionFactory.openSession();
+        Session session = sessionFactory.getCurrentSession();
         Transaction tx = session.beginTransaction();
 
         Map<Integer, String> result = new HashMap<>();
@@ -57,14 +57,14 @@ public class ConceptDaoImpl implements ConceptDao{
         }
 
         tx.commit();
-        session.close();
+        //session.close();
 
         return result;
     }
 
     @Override
     public Map<Integer, String> getAllArea() {
-        Session session = sessionFactory.openSession();
+        Session session = sessionFactory.getCurrentSession();
         Transaction tx = session.beginTransaction();
 
         Map<Integer, String> result = new HashMap<>();
@@ -76,7 +76,7 @@ public class ConceptDaoImpl implements ConceptDao{
         }
 
         tx.commit();
-        session.close();
+        //session.close();
 
         return result;
     }

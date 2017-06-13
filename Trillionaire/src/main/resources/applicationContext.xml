@@ -19,6 +19,11 @@
     </bean>
     <!-- 使用Tomcat JDBC连接池 -->
     <bean id="dataSource" class="org.apache.tomcat.jdbc.pool.DataSource" destroy-method="close">
+
+        <property name="maxWait" value="60000" />
+        <property name="maxIdle" value="4000"/>
+        <property name="maxActive" value="4000"/>
+
         <property name="driverClassName" value="${jdbc.driverClass}"/>
         <property name="url" value="${jdbc.url}"/>
         <property name="username" value="${jdbc.username}"/>

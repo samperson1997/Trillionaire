@@ -7,10 +7,22 @@ import java.util.Map;
  */
 public interface ConceptDao {
 
+    /**
+     *
+     * @return
+     */
     public Map<Integer, String> getAllConcepts();
 
+    /**
+     *
+     * @return
+     */
     public Map<Integer, String> getAllIndustry();
 
+    /**
+     *
+     * @return
+     */
     public Map<Integer, String> getAllArea();
 
 }

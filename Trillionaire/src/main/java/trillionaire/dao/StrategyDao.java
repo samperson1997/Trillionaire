@@ -10,12 +10,31 @@ import java.util.Set;
  */
 public interface StrategyDao {
 
+    /**
+     *
+     * @param strategy
+     * @return
+     */
     public int saveStrategy(Strategy strategy);
 
+    /**
+     *
+     * @param sid
+     */
     public void deletStrategy(int sid);
 
+    /**
+     *
+     * @param userId
+     * @return
+     */
     public Set<Strategy> getUserStrategy(int userId);
 
+    /**
+     *
+     * @param sid
+     * @return
+     */
     public Strategy getStrategy(int sid);
 
 }
