@@ -3,10 +3,8 @@ package trillionaire.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import trillionaire.dao.ConceptDao;
-import trillionaire.dao.DayRecordDao;
 import trillionaire.dao.RealTimeStockDao;
 import trillionaire.dao.StockDao;
-import trillionaire.model.DayRecord;
 import trillionaire.model.RealTimeStock;
 import trillionaire.model.Stock;
 import trillionaire.service.MarketService;
@@ -25,8 +23,6 @@ public class MarketServiceImpl implements MarketService {
     RealTimeStockDao realTimeStockDao;
     @Autowired
     StockDao stockDao;
-    @Autowired
-    DayRecordDao dayRecordDao;
     @Autowired
     ConceptDao conceptDao;
 
@@ -61,11 +57,11 @@ public class MarketServiceImpl implements MarketService {
             while (it.hasNext()) {
                 codeList.add(it.next().getCode());
             }
-            List<DayRecord> newRecord = new ArrayList<>();
+            List<RealTimeStock> newRecord = new ArrayList<>();
             for (int i = 0; i < codeList.size(); i++) {
-                List<DayRecord> recordList = dayRecordDao.getDayRecordsByCode(codeList.get(i));
-                if (recordList.size() >= 2 && recordList != null) {
-                    newRecord.add(recordList.get(recordList.size() - 1));
+                RealTimeStock realTimeStock = realTimeStockDao.getRealTimeByCode(codeList.get(i));
+                if (realTimeStock != null) {
+                    newRecord.add(realTimeStock);
                 }
             }
             if (newRecord.size() != 0) {
@@ -74,23 +70,23 @@ public class MarketServiceImpl implements MarketService {
                 int down = 0;
                 double margin = 0.00;
                 for (int i = 0; i < newRecord.size(); i++) {
-                    margin += newRecord.get(i).getChange();
-                    if (newRecord.get(i).getChange() > 0) {
+                    margin += newRecord.get(i).getChangepercent();
+                    if (newRecord.get(i).getChangepercent() > 0) {
                         up++;
-                    } else if (newRecord.get(i).getChange() < 0) {
+                    } else if (newRecord.get(i).getChangepercent() < 0) {
                         down++;
                     } else {
                         remain++;
                     }
                 }
                 margin = margin / newRecord.size();
-                Collections.sort(newRecord, new Comparator<DayRecord>() {
+                Collections.sort(newRecord, new Comparator<RealTimeStock>() {
                     @Override
-                    public int compare(DayRecord o1, DayRecord o2) {
-                        return new Double(o2.getChange()).compareTo(o1.getChange());
+                    public int compare(RealTimeStock o1, RealTimeStock o2) {
+                        return new Double(o2.getChangepercent()).compareTo(o1.getChangepercent());
                     }
                 });
-                RankTable rankTable = new RankTable(name, margin, up, remain, down, newRecord.get(0).getStock().getName(), newRecord.get(0).getChange());
+                RankTable rankTable = new RankTable(name, margin, up, remain, down, newRecord.get(0).getName(), newRecord.get(0).getChangepercent());
                 if (margin > 0) {
                     upList.add(rankTable);
                 } else if (margin < 0) {
