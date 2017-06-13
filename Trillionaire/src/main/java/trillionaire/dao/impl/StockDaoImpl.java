@@ -24,17 +24,25 @@ public class StockDaoImpl implements StockDao{
 
     @Resource
     SessionFactory sessionFactory ;
+    private List<Stock> allStockList;
 
     private Map<String, Object> cnMap = null;
 
+
+
     public List<Stock> getAllStocks() {
         // TODO Auto-generated method stub
+        if(allStockList!=null){
+            return  allStockList;
+        }
+
         Session session = sessionFactory.openSession();
         Transaction tx = session.beginTransaction();
 
         Query<Stock> query = session.createQuery("from Stock");
 
         List<Stock> result = query.list();
+        allStockList = result;
 
         tx.commit();
         session.close();
