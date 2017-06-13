@@ -6,7 +6,9 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import trillionaire.dao.DayRecordDao;
 import trillionaire.dao.RealTimeStockDao;
+import trillionaire.model.DayRecord;
 import trillionaire.model.RealTimeStock;
 import trillionaire.model.Stock;
 
@@ -25,6 +27,9 @@ public class RealTimeStockDaoImpl implements RealTimeStockDao{
 
     @Autowired
     SessionFactory sessionFactory;
+
+    @Autowired
+    DayRecordDao dayRecordDao;
 
     public RealTimeStockDaoImpl(){
 
@@ -47,6 +52,20 @@ public class RealTimeStockDaoImpl implements RealTimeStockDao{
         if(stockMap!=null){
             if(stockMap.get(code)!=null){
                 return stockMap.get(code).clone();
+            }
+            else{
+                Session session = sessionFactory.openSession();
+                Transaction tx = session.beginTransaction();
+
+                Stock stock = session.get(Stock.class, code);
+                String codeString = String.valueOf(stock.getCode());
+                while(codeString.length()<6){
+                    codeString = "0" + codeString;
+                }
+                List<DayRecord> list = dayRecordDao.getDayRecordsByCode(code);
+                DayRecord dayRecord = list.get(list.size()-1);
+
+                return new RealTimeStock(codeString, stock.getName(), dayRecord.getChange(), dayRecord.getClose(), dayRecord.getOpen(), dayRecord.getHigh(), dayRecord.getLow(), dayRecord.getClose(), dayRecord.getVolume(), 0, (long)(dayRecord.getDealSum()), 0, 0, 0, 0);
             }
         }
 

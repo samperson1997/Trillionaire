@@ -12,6 +12,7 @@ import trillionaire.model.Stock;
 
 import javax.sql.DataSource;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by USER on 2017/6/10.
@@ -34,9 +35,8 @@ public class StockDaoTest {
         System.out.println(sessionFactory);
 
         StockDao stockDao = ctx.getBean(StockDaoImpl.class);
-        List<Stock> list = stockDao.getAllStocks();
+        Set<Stock> list = stockDao.getStocksByIndustry("白酒");
         System.out.println(list.size());
-        System.out.println(list.get(0).getName());
     }
 
 }
