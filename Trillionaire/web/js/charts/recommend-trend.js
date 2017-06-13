@@ -114,7 +114,7 @@ function loadTrends() {
             };
             var recoTrend = echarts.init(document.getElementById('reco-trend'));
             recoTrend.setOption(option);
-
+            $("#reco-sum-content").text("综合推荐：" + data0.trends);
         },
         error: function (request, status, err) {
             if (status == "timeout") {

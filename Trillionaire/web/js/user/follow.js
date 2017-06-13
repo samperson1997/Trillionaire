@@ -79,6 +79,8 @@ function cancelfollow_ajax(username, code) {
             $("#follow-button").html("<i class=\"fa fa-plus\"></i> 关注&nbsp;");
             $("#follow-button").addClass('button-page');
             $("#follow-button").removeClass('button-red');
+
+            loadFollowList();
         }
     });
 }
