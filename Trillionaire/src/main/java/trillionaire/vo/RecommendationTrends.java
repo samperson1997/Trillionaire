@@ -9,15 +9,23 @@ public class RecommendationTrends {
     private int hold;
     private int sell;
     private int strongSell;
-    private int trends;
+    private String trends;
 
-    public RecommendationTrends(int strongBuy, int buy, int hold, int sell, int strongSell) {
-
+    public RecommendationTrends(int strongBuy, int buy, int hold, int sell, int strongSell, String trends) {
         this.strongBuy = strongBuy;
         this.buy = buy;
         this.hold = hold;
         this.sell = sell;
         this.strongSell = strongSell;
+        this.trends = trends;
+    }
+
+    public String getTrends() {
+        return trends;
+    }
+
+    public void setTrends(String trends) {
+        this.trends = trends;
     }
 
     public int getBuy() {
