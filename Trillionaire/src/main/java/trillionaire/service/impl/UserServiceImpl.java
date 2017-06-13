@@ -104,6 +104,13 @@ public class UserServiceImpl implements UserService {
             RealTimeStock realTimeStock = realTimeStockDao.getRealTimeByCode(iterator.next().getCode());
                 followList.add(realTimeStock);
         }
+        followList.sort(new Comparator<RealTimeStock>() {
+            @Override
+            public int compare(RealTimeStock o1, RealTimeStock o2) {
+
+                return Double.valueOf(o2.getChangepercent()).compareTo(Double.valueOf(o1.getChangepercent()));
+            }
+        });
         return followList;
     }
 
