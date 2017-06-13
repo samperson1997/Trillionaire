@@ -34,12 +34,15 @@ public class AssociateTest {
 
         StockService stockService = ctx.getBean(StockServiceImpl.class);
         long t1 = System.currentTimeMillis();
-        List<AssociateStock> list = stockService.associate("000");
+        List<AssociateStock> list = stockService.associate("000001");
         long t2 = System.currentTimeMillis();
         System.out.println(t2-t1);
 
         t1 = System.currentTimeMillis();
-        List<AssociateStock> list2 = stockService.associate("000");
+        List<AssociateStock> list2 = stockService.associate("0");
+        for(AssociateStock a: list2){
+            System.out.println(a.getName());
+        }
         t2 = System.currentTimeMillis();
         System.out.println(t2-t1);
     }

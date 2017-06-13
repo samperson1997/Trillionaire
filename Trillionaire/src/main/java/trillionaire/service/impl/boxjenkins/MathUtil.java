@@ -122,7 +122,6 @@ public class MathUtil {
             return (n - (q - 1)) * Math.log(sumErr / (n - (q - 1))) + (q + 1) * 2;
             // return
             // (n-(q-1))*Math.log(sumErr/(n-(q-1)))+(q)*Math.log(n-(q-1)); //AIC
-            // 最小二乘估计
         }
 		/* AR */
         else if (type == 2) {
@@ -140,7 +139,6 @@ public class MathUtil {
             return (n - (p - 1)) * Math.log(sumErr / (n - (p - 1))) + (p + 1) * 2;
             // return
             // (n-(p-1))*Math.log(sumErr/(n-(p-1)))+(p)*Math.log(n-(p-1)); //AIC
-            // 最小二乘估计
         }
 		/* ARMA */
         else {
