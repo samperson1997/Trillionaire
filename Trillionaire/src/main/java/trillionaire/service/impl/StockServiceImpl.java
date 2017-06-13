@@ -212,7 +212,8 @@ public class StockServiceImpl implements StockService {
         int stock = Integer.parseInt(code);
         List<DayRecord> list = dayRecordDao.getDayRecordsByCode(stock);
         if (list.size() < 60) {
-            return null;
+            RecommendationTrends recommendationTrends = new RecommendationTrends(0, 0, 0, 0, 0, "");
+            return recommendationTrends;
         } else {
             double result;
             double AVS = 0.00;
@@ -232,7 +233,8 @@ public class StockServiceImpl implements StockService {
             int hold = 0;
             int sell = 0;
             int strongSell = 0;
-            for (int i = list.size() - 31; i < list.size()-1; i++) {
+            String trends = "";
+            for (int i = list.size() - 31; i < list.size(); i++) {
                 if (Math.abs(list.get(i).getClose() - list.get(i).getOpen()) <= 0.02) {
                     CVS += list.get(i).getVolume();
                 } else if (list.get(i).getClose() - list.get(i).getOpen() > 0.02) {
@@ -241,19 +243,33 @@ public class StockServiceImpl implements StockService {
                     BVS += list.get(i).getVolume();
                 }
                 result = 100 * (2 * AVS + CVS) / (2 * BVS + CVS);
-                if (result > 160 && result < 400) {
-                    sell++;
-                } else if (result >= 70 && result <= 160) {
-                    hold++;
-                } else if (result <= 35) {
-                    strongBuy++;
-                } else if (result > 35 && result < 70) {
-                    buy++;
-                } else if (result >= 400) {
-                    strongSell++;
+                if (i == list.size() - 1) {
+                    if (result > 160 && result < 400) {
+                        trends = "减持";
+                    } else if (result >= 70 && result <= 160) {
+                        trends = "观望";
+                    } else if (result <= 35) {
+                        trends = "买入";
+                    } else if (result > 35 && result < 70) {
+                        trends = "增持";
+                    } else if (result >= 400) {
+                        trends = "卖出";
+                    }
+                } else {
+                    if (result > 160 && result < 400) {
+                        sell++;
+                    } else if (result >= 70 && result <= 160) {
+                        hold++;
+                    } else if (result <= 35) {
+                        strongBuy++;
+                    } else if (result > 35 && result < 70) {
+                        buy++;
+                    } else if (result >= 400) {
+                        strongSell++;
+                    }
                 }
             }
-            RecommendationTrends recommendationTrends = new RecommendationTrends(strongBuy, buy, hold, sell, strongSell);
+            RecommendationTrends recommendationTrends = new RecommendationTrends(strongBuy, buy, hold, sell, strongSell, trends);
             return recommendationTrends;
         }
     }
