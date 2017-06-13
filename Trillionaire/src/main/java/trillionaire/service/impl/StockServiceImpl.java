@@ -320,7 +320,7 @@ public class StockServiceImpl implements StockService {
                 BVS += list.get(i).getVolume();
             }
         }
-        result = (2 * AVS + CVS) / (2 * BVS + CVS);
+        result = 100 * (2 * AVS + CVS) / (2 * BVS + CVS);
         StockSquare stockSquare = new StockSquare(Double.parseDouble(DecimalUtil.RemainTwoDecimal(result)), stock.getConcepts(), stock.getArea().getName(), stock.getIndustry().getName());
 
         return stockSquare;
