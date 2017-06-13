@@ -14,7 +14,6 @@ jQuery(function () {
             dataType: "json",
             success: function (data) {
                 if (data == true) {
-                    alert('已关注');
                     $("#follow-button").html("<i class=\"fa fa-minus\"></i> 取消关注&nbsp;");
                     $("#follow-button").addClass('button-red');
                     $("#follow-button").removeClass('button-page');
@@ -23,7 +22,6 @@ jQuery(function () {
             error: function (request, status, err) {
                 if (status == "timeout") {
                     check.abort();
-                    checkFollow();
                 }
             }
         })
@@ -57,6 +55,7 @@ function follow_ajax(username, code) {
         },
         contentType: "application/x-www-form-urlencoded",
         success: function (data) {
+
             $("#follow-button").html("<i class=\"fa fa-minus\"></i> 取消关注&nbsp;");
             $("#follow-button").addClass('button-red');
             $("#follow-button").removeClass('button-page');

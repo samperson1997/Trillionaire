@@ -76,10 +76,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean cancelFollow(int id, String code) {
         Set<Stock> list = userDao.getUserStocks(id);
+        int codeValue = Integer.parseInt(code);
         boolean iffollow = false;
         Iterator<Stock> it = list.iterator();
         while (it.hasNext()) {
-            if (code.equals(it.next().getCode())) {
+            if (codeValue == (it.next().getCode())) {
                 iffollow = true;
             }
         }
@@ -122,10 +123,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean follow(int id, String code) {
         Set<Stock> list = userDao.getUserStocks(id);
+        int codeValue = Integer.parseInt(code);
         boolean follow = false;
         Iterator<Stock> it = list.iterator();
         while (it.hasNext()) {
-            if (code.equals(it.next().getCode())) {
+            if (codeValue == it.next().getCode()) {
                 follow = true;
             }
         }
@@ -141,10 +143,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean checkfollow(int id, String code) {
         Set<Stock> list = userDao.getUserStocks(id);
+        int codeValue = Integer.parseInt(code);
         boolean iffollow = false;
         Iterator<Stock> it = list.iterator();
         while (it.hasNext()) {
-            if (code.equals(it.next().getCode())) {
+            if (codeValue == it.next().getCode()) {
                 iffollow = true;
             }
         }

@@ -106,6 +106,7 @@ public class UserDaoImpl implements UserDao{
 
         User user = session.get(User.class, userId);
         Set<Stock> set = user.getConcernedStocks();
+        set.size();
 
         tx.commit();
         session.close();

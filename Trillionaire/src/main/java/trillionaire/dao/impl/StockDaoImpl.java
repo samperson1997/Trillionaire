@@ -46,7 +46,7 @@ public class StockDaoImpl implements StockDao{
         Session session = sessionFactory.openSession();
         Transaction tx = session.beginTransaction();
 
-        Query<Industry> query = session.createQuery("from Industry where name = ?");
+        Query<Industry> query = session.createQuery("from Industry where name = ?",Industry.class);
         query.setParameter(0, industryName);
 
         Industry industry = query.uniqueResult();

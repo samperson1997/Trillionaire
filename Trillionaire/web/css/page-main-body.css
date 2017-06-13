@@ -378,9 +378,12 @@
     padding: 0.5% 0.2%;
 }
 
-.whole-table tr td:first-child + td + td + td,
-.whole-table tr td:first-child + td + td + td + td {
-    color: red;
+.whole-table a {
+    color: #000;
+}
+
+.whole-table a:hover {
+    color: #0080ff;
 }
 
 .page-content {

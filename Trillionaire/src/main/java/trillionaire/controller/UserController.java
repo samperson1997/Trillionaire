@@ -48,6 +48,7 @@ public class UserController {
     @RequestMapping(value = "/follow", method = RequestMethod.GET)
     @ResponseBody
     public boolean follow(int id, String code) {
+        System.out.print("!!!!!!!!!!!!!!!!");
         return userService.follow(id, code);
     }
 

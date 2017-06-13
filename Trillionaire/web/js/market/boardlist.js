@@ -39,28 +39,11 @@ function loadArea_ajax(area) {
         success: function (data) {
 
             $.each(data, function (i, value) {
-                $("#area-table").append('<tr><td>' + (i + 1) + '</td><td>' + value.code + '</td><td>' + value.name + '</td><td>' + String(value.changepercent).substr(0, String(value.changepercent).indexOf('.') + 3) + '</td><td>' + value.open + '</td><td>' + value.settlement + '</td><td>' + value.high + '</td><td>' + value.low + '</td><td>' + value.volume + '</td><td>' + value.amount + '</td><td>' + String(value.turnoverratio).substr(0, String(value.turnoverratio).indexOf('.') + 3) + '</td><td>' + String(value.per).substr(0, String(value.per).indexOf('.') + 3) + '</td><td>' + String(value.pb).substr(0, String(value.pb).indexOf('.') + 3) + '</td><td>' + String(value.mktcap).substr(0, 2) + '.' + String(value.mktcap).substr(2, 4) + '</td><td>' + String(value.nmc).substr(0, 2) + '.' + String(value.nmc).substr(2, 4) + '</td></tr>');
+                $("#area-table").append('<tr><td>' + (i + 1) + '</td><td><a href=\"stock.html?code=' + value.code + '\">' + value.code + '</a></td><td><a href=\"stock.html?code=' + value.code + '\">' + value.name + '</a></td><td>' + String(value.changepercent).substr(0, String(value.changepercent).indexOf('.') + 3) + '</td><td>' + value.open + '</td><td>' + value.settlement + '</td><td>' + value.high + '</td><td>' + value.low + '</td><td>' + value.volume + '</td><td>' + value.amount + '</td><td>' + String(value.turnoverratio).substr(0, String(value.turnoverratio).indexOf('.') + 3) + '</td><td>' + String(value.per).substr(0, String(value.per).indexOf('.') + 3) + '</td><td>' + String(value.pb).substr(0, String(value.pb).indexOf('.') + 3) + '</td><td>' + String(value.mktcap).substr(0, 2) + '.' + String(value.mktcap).substr(2, 4) + '</td><td>' + String(value.nmc).substr(0, 2) + '.' + String(value.nmc).substr(2, 4) + '</td></tr>');
             });
             console.log(data);
 
-            //页面标签变量
-            blockTable = document.getElementById("area-table");
-            preSpan = document.getElementById("spanPre");
-            firstSpan = document.getElementById("spanFirst");
-            nextSpan = document.getElementById("spanNext");
-            lastSpan = document.getElementById("spanLast");
-            pageNumSpan = document.getElementById("spanTotalPage");
-            currPageSpan = document.getElementById("spanPageNum");
-
-            numCount = document.getElementById("area-table").rows.length - 1; //取table的行数作为数据总数量（减去标题行1）
-            columnsCounts = blockTable.rows[0].cells.length;
-            pageCount = 15;
-            pageNum = parseInt(numCount / pageCount);
-            if (0 != numCount % pageCount) {
-                pageNum += 1;
-            }
-
-            firstPage();
+            pagination("area-table", 15);
 
         },
         error: function (request, status, err) {
@@ -77,14 +60,17 @@ function loadInduList() {
         contentType: "application/x-www-form-urlencoded",
         dataType: "json",
         success: function (data) {
+            var currentIndu;
             $.each(data, function (i, value) {
                 if (value.id == getParam('iid')) {
                     $("#indu-list").append('<li style="color: red;"><a style="color: red;" href=\"industry.html?iid=' + value.id + '\">' + value.name + '</a></li>');
+                    currentIndu = value.name;
                 } else {
                     $("#indu-list").append('<li><a href=\"industry.html?iid=' + value.id + '\">' + value.name + '</a></li>');
                 }
             });
             console.log(data);
+            loadIndu_ajax(currentIndu);
         },
         error: function (request, status, err) {
             if (status == "timeout") {
@@ -94,6 +80,31 @@ function loadInduList() {
     })
 }
 
+function loadIndu_ajax(indu) {
+    this.indu = indu;
+    $.ajax({
+        type: "GET",
+        url: "/market/rank/industry",
+        contentType: "application/x-www-form-urlencoded",
+        data: {
+            'industry': this.indu
+        },
+        dataType: "json",
+        success: function (data) {
+
+            $.each(data, function (i, value) {
+                $("#indu-table").append('<tr><td>' + (i + 1) + '</td><td><a href=\"stock.html?code=' + value.code + '\">' + value.code + '</a></td><td><a href=\"stock.html?code=' + value.code + '\">' + value.name + '</a></td><td>' + String(value.changepercent).substr(0, String(value.changepercent).indexOf('.') + 3) + '</td><td>' + value.open + '</td><td>' + value.settlement + '</td><td>' + value.high + '</td><td>' + value.low + '</td><td>' + value.volume + '</td><td>' + value.amount + '</td><td>' + String(value.turnoverratio).substr(0, String(value.turnoverratio).indexOf('.') + 3) + '</td><td>' + String(value.per).substr(0, String(value.per).indexOf('.') + 3) + '</td><td>' + String(value.pb).substr(0, String(value.pb).indexOf('.') + 3) + '</td><td>' + String(value.mktcap).substr(0, 2) + '.' + String(value.mktcap).substr(2, 4) + '</td><td>' + String(value.nmc).substr(0, 2) + '.' + String(value.nmc).substr(2, 4) + '</td></tr>');
+            });
+            console.log(data);
+            pagination("indu-table", 65);
+        },
+        error: function (request, status, err) {
+
+        }
+    })
+}
+
+
 function loadConcList() {
     var load = $.ajax({
         type: "GET",
@@ -102,19 +113,47 @@ function loadConcList() {
         contentType: "application/x-www-form-urlencoded",
         dataType: "json",
         success: function (data) {
+            var currentConc;
             $.each(data, function (i, value) {
                 if (value.id == getParam('cid')) {
                     $("#conc-list").append('<li style="color: red;"><a style="color: red;" href=\"concept.html?cid=' + value.id + '\">' + value.name + '</a></li>');
+                    currentConc = value.name;
                 } else {
                     $("#conc-list").append('<li><a href=\"concept.html?cid=' + value.id + '\">' + value.name + '</a></li>');
                 }
             });
             console.log(data);
+            loadConc_ajax(currentConc);
         },
         error: function (request, status, err) {
             if (status == "timeout") {
                 load.abort();
             }
+        }
+    })
+}
+
+function loadConc_ajax(conc) {
+    this.conc = conc;
+    $.ajax({
+        type: "GET",
+        url: "/market/rank/concept",
+        contentType: "application/x-www-form-urlencoded",
+        data: {
+            'concept': this.conc
+        },
+        dataType: "json",
+        success: function (data) {
+
+            $.each(data, function (i, value) {
+                $("#conc-table").append('<tr><td>' + (i + 1) + '</td><td><a href=\"stock.html?code=' + value.code + '\">' + value.code + '</a></td><td><a href=\"stock.html?code=' + value.code + '\">' + value.name + '</a></td><td>' + String(value.changepercent).substr(0, String(value.changepercent).indexOf('.') + 3) + '</td><td>' + value.open + '</td><td>' + value.settlement + '</td><td>' + value.high + '</td><td>' + value.low + '</td><td>' + value.volume + '</td><td>' + value.amount + '</td><td>' + String(value.turnoverratio).substr(0, String(value.turnoverratio).indexOf('.') + 3) + '</td><td>' + String(value.per).substr(0, String(value.per).indexOf('.') + 3) + '</td><td>' + String(value.pb).substr(0, String(value.pb).indexOf('.') + 3) + '</td><td>' + String(value.mktcap).substr(0, 2) + '.' + String(value.mktcap).substr(2, 4) + '</td><td>' + String(value.nmc).substr(0, 2) + '.' + String(value.nmc).substr(2, 4) + '</td></tr>');
+            });
+            console.log(data);
+
+            pagination("conc-table", 100);
+        },
+        error: function (request, status, err) {
+
         }
     })
 }

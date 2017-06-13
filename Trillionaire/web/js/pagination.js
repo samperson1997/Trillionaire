@@ -1,3 +1,24 @@
+function pagination(id, cnt) {
+    //页面标签变量
+    blockTable = document.getElementById(id);
+    preSpan = document.getElementById("spanPre");
+    firstSpan = document.getElementById("spanFirst");
+    nextSpan = document.getElementById("spanNext");
+    lastSpan = document.getElementById("spanLast");
+    pageNumSpan = document.getElementById("spanTotalPage");
+    currPageSpan = document.getElementById("spanPageNum");
+
+    numCount = document.getElementById(id).rows.length - 1; //取table的行数作为数据总数量（减去标题行1）
+    columnsCounts = blockTable.rows[0].cells.length;
+    pageCount = cnt;
+    pageNum = parseInt(numCount / pageCount);
+    if (0 != numCount % pageCount) {
+        pageNum += 1;
+    }
+
+    firstPage();
+}
+
 function firstPage() {
     hide();
     currPageNum = 1;
