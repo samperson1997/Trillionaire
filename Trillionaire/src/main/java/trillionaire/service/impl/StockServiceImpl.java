@@ -114,9 +114,9 @@ public class StockServiceImpl implements StockService {
                     AssociateStock associateStock = new AssociateStock(list.get(i).getName(), s);
                     stockList.add(associateStock);
                 }
-                if(stockList.size()>5){
-                    break;
-                }
+//                if(stockList.size()>5){
+//                    break;
+//                }
             }
         } else {
             for (int i = 0; i < list.size(); i++) {
@@ -125,9 +125,9 @@ public class StockServiceImpl implements StockService {
                     AssociateStock associateStock = new AssociateStock(list.get(i).getName(), s);
                     stockList.add(associateStock);
                 }
-                if(stockList.size()>5){
-                    break;
-                }
+//                if(stockList.size()>5){
+//                    break;
+//                }
             }
 
         }
