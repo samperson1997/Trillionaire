@@ -417,14 +417,10 @@
 
 .page-content-fix li {
     list-style: square;
-}
-
-.page-content-fix li ul li {
     cursor: pointer;
-    list-style: none;
 }
 
-.page-content-fix li ul li:hover {
+.page-content-fix li:hover {
     color: red;
 }
 
