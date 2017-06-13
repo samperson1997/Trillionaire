@@ -420,8 +420,12 @@
     cursor: pointer;
 }
 
-.page-content-fix li:hover {
+.page-content-fix li a:hover {
     color: red;
+}
+
+.page-content-fix li a {
+    color: #000;
 }
 
 .compare-stock,
