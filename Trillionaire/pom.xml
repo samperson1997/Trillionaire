@@ -20,17 +20,7 @@
         </plugins>
     </build>
 
-
-
     <dependencies>
-        <!-- junit -->
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.12</version>
-            <scope>test</scope>
-        </dependency>
-
         <!-- JavaEE -->
         <dependency>
             <groupId>javax</groupId>
@@ -192,11 +182,6 @@
             <artifactId>junit</artifactId>
             <version>4.12</version>
         </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-test</artifactId>
-            <version>4.3.4.RELEASE</version>
-        </dependency>
 
         <!-- WebSocket -->
         <dependency>
@@ -227,7 +212,6 @@
         </dependency>
 
     </dependencies>
-
 
 
 </project>
