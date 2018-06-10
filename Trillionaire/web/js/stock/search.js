@@ -13,6 +13,7 @@ angular.module("searchApp", [])
             var newTimestamp = (new Date()).valueOf();
             if (newTimestamp - timestamp > 1000) {
 
+
                 var load = $.ajax({
                     type: "GET",
                     url: "/stock/associate",

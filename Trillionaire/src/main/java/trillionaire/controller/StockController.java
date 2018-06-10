@@ -51,7 +51,7 @@ public class StockController {
 
     @RequestMapping(value = "/associate", method = RequestMethod.GET)
     @ResponseBody
-    public List<AssociateStock> associate(String input) {
+    public List<AssociateStock> associate( String input) {
         return stockService.associate(input);
     }
 

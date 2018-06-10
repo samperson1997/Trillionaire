@@ -17,21 +17,22 @@
     <bean id="placeholderConfig" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="locations" value="classpath:jdbc.properties"/>
     </bean>
-    <!-- 使用Tomcat JDBC连接池 -->
-    <bean id="dataSource" class="org.apache.tomcat.jdbc.pool.DataSource" destroy-method="close">
+    <!-- 使用c3p0连接池 -->
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+          destroy-method="close">
 
-        <property name="maxWait" value="60000" />
-        <property name="maxIdle" value="4000"/>
-        <property name="maxActive" value="4000"/>
+        <!--<property name="maxWait" value="60000" />-->
+        <!--<property name="maxIdle" value="4000"/>-->
+        <!--<property name="maxActive" value="4000"/>-->
 
-        <property name="driverClassName" value="${jdbc.driverClass}"/>
-        <property name="url" value="${jdbc.url}"/>
-        <property name="username" value="${jdbc.username}"/>
+        <property name="driverClass" value="com.mysql.jdbc.Driver" />
+        <property name="jdbcUrl" value="${jdbc.url}"/>
+        <property name="user" value="${jdbc.username}"/>
         <property name="password" value="${jdbc.password}"/>
     </bean>
 
     <!-- 配置sessionFactory-->
-    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
         <property name="packagesToScan">
             <list>
                 <value>trillionaire.model</value>
@@ -45,14 +46,14 @@
                 <prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
                 <prop key="hibernate.hbm2ddl.auto">validate</prop>
                 <!-- 使用getCurrentSession()方法，必须配置此属性 -->
-                <prop key="hibernate.current_session_context_class">thread</prop>
+                <!--<prop key="hibernate.current_session_context_class">thread</prop>-->
             </props>
         </property>
     </bean>
 
     <!-- 配置事物管理器 -->
     <bean id="transactionManager"
-          class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+          class="org.springframework.orm.hibernate5.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory"></property>
     </bean>
 </beans>
