@@ -1,24 +1,22 @@
 #title {
-    background-image: url("../img/background.png");
-    background-size: 110% 110%;
-    background-position: 30% 50%;
-    font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, "PingFang SC", sans-serif;
-    padding: 10% 2%;
+    background: url("../img/background.jpg");
+    padding: 3%;
+    background-size: cover;
     color: #FFF;
 }
 
 #main-title {
-    font-size: 50px;
+    font-size: 30px;
 }
 
 #english-title {
-    font-size: 50px;
+    font-size: 30px;
     font-style: italic;
 }
 
 #sub-title {
-    font-size: 25px;
-    padding-bottom: 70px;
+    font-size: 20px;
+    padding-bottom: 30px;
     font-weight: 400;
 }
 
@@ -31,7 +29,7 @@
     text-align: center;
     color: #FFF;
     font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, "PingFang SC", sans-serif;
-    padding: 5% 10% 0% 10%;
+    padding: 5% 10% 0 10%;
 
     font-weight: lighter;
 }
@@ -55,13 +53,12 @@
     font-size: 18px;
     color: #FFF;
     margin: 3%;
+    cursor: auto;
 }
 
 #introduce-function h1 {
     border-radius: 100px;
-    border-style: solid;
-    border-color: white;
-    border-width: 5px;
+    border: 5px solid white;
     background-color: white;
     color: rgb(102, 102, 255);
 

@@ -1,17 +1,14 @@
 .effect h2 {
-    transition: transform 0.35s;
+    transition: transform 0.5s;
     font-size: 30px;
-    -webkit-transform: translate3d(0, 40px, 0);
-    transform: translate3d(0, 40px, 0);
 }
 
 .effect p {
-    margin-top: 20px;
-    opacity: 0;
+    margin-top: 10px;
+    color: #000;
     font-weight: 300;
-    transform: translate3d(0, 40px, 0);
-    -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
-    transition: opacity 0.35s, transform 0.35s;
+    -webkit-transition: opacity 0.5s, -webkit-transform 0.5s;
+    transition: opacity 0.5s, transform 0.5s;
 }
 
 .effect a {
@@ -22,12 +19,8 @@
 .effect:hover p,
 .effect a:hover h2,
 .effect a:hover p {
-    opacity: 1;
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-    -webkit-transition-delay: 0.15s;
-    transition-delay: 0.15s;
     color: #FFF;
+    font-size: 18px;
 }
 
 .grid {
@@ -51,25 +44,24 @@
     display: inline-block;
     overflow: hidden;
     width: 25%;
-    margin: 2%;
     padding: 4% 1%;
 
-    border-color: #000;
-    border-style: solid;
-    border-width: 1px;
+    border: 1px solid #000;
+    border-radius: 10px;
 
     cursor: pointer;
     color: #000;
     font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, "PingFang SC", sans-serif;
-    margin-bottom: 80px;
-    color: #000;
+    margin: 2% 2% 80px;
+    -webkit-transition: opacity 0.5s, -webkit-transform 0.5s;
+    transition: opacity 0.5s, transform 0.5s;
 }
 
 .effect:hover {
-    border-color: rgb(102, 102, 255);
-    border-style: solid;
-    border-width: 1px;
+    border: 1px solid rgb(102, 102, 255);
     background-color: rgb(102, 102, 255);
+    -webkit-transition: opacity 0.5s, -webkit-transform 0.5s;
+    transition: opacity 0.5s, transform 0.5s;
 }
 
 #next-grid {

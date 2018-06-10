@@ -1,5 +1,3 @@
-
-
 function loadTargetPrice() {
     var code = getParam('code');
 
