@@ -28,262 +28,284 @@
 </head>
 
 <body>
-    <header>
-        <div id="top-bar" onselectstart="return false;">
-            <a href="index.html">
-                <img src="img/logo.png" width="15%"></a>
-            <ul align="center">
-                <a href="stock.html?code=600000">
-                    <li id="spec-button" class="head-button">个股信息</li>
-                </a>
-                <a href="concern.html">
-                    <li id="star-button" class="head-button">关注股票</li>
-                </a>
-                <a href="strategy-content.html">
-                    <li id="strategy-button" class="head-button">策略回测</li>
-                </a>
-                <a href="market.html">
-                    <li id="market-button" class="head-button">市场行情</li>
-                </a>
-                <a href="login.html">
-                    <li id="log-button" class="head-button" class="button-blue">用户登录</li>
-                </a>
-            </ul>
+<header>
+    <div id="top-bar" onselectstart="return false;">
+        <a href="index.html">
+            <img src="img/logo.png" width="15%"></a>
+        <ul align="center">
+            <a href="stock.html?code=600000">
+                <li id="spec-button" class="head-button">个股信息</li>
+            </a>
+            <a href="concern.html">
+                <li id="star-button" class="head-button">关注股票</li>
+            </a>
+            <a href="strategy-content.html">
+                <li id="strategy-button" class="head-button">策略回测</li>
+            </a>
+            <a href="market.html">
+                <li id="market-button" class="head-button">市场行情</li>
+            </a>
+            <a href="login.html">
+                <li id="log-button" class="head-button" class="button-blue">用户登录</li>
+            </a>
+        </ul>
+    </div>
+    <div>
+        <div id="title" onselectstart="return false;" align="left" style="display:inline-block;">
+            <h1 class="page-main-title">策略回测<span class="page-sub-title">&nbsp;&nbsp;|&nbsp;&nbsp;强大而精准的在线研究平台</span>
+            </h1>
         </div>
-        <div>
-            <div id="title" onselectstart="return false;" align="left" style="display:inline-block;">
-                <h1 class="page-main-title">策略回测<span class="page-sub-title">&nbsp;&nbsp;|&nbsp;&nbsp;强大而精准的在线研究平台</span></h1>
+    </div>
+
+    <div style="margin: 0 3%;">
+        <div ng-app="mainapp" ng-controller="BackTestController">
+
+            <div onselectstart="return false;">
+                <div class="stock-name" style="display: inline;">编写策略</div>
+
+                <div id="save-button" class="button-blue" ng-click="saveStra()"><i class="fa fa-save"></i> 保存</div>
+                <div id="save-already"><i class="fa fa-check-circle"></i> 成功</div>
+
+                <input id="stra-name-input" class="input-box" style="display: inline-block;" placeholder="给策略起一个名称"/>
+                <div class="stock-code" style="display: inline-block;" id="stra-name">策略名称 |</div>
+
+                <div class="stock-code" style="display: inline-block;"><a href="strategy-content.html#new-stra"
+                                                                          target="_blank">>>新手入门</a></div>
+                <div class="stock-code" style="display: inline-block;"><a href="strategy-content.html">>>返回策略列表</a>
+                </div>
+                <div class="stock-code" style="display: inline-block;"><a href="api.html" target="_blank">>>API文档</a>
+                </div>
+
             </div>
-        </div>
+            <div align="center" onselectstart="return false;">
+                <form method="post">
 
-        <div style="margin: 0 3%;">
-            <div ng-app="mainapp" ng-controller="BackTestController">
-
-                <div onselectstart="return false;">
-                    <div class="stock-name" style="display: inline;">编写策略</div>
-
-                    <div id="save-button" class="button-blue" ng-click="saveStra()"><i class="fa fa-save"></i> 保存</div>
-                    <div id="save-already"><i class="fa fa-check-circle"></i> 成功</div>
-
-                    <input id="stra-name-input" class="input-box" style="display: inline-block;" placeholder="给策略起一个名称" />
-                    <div class="stock-code" style="display: inline-block;" id="stra-name">策略名称 | </div>
-
-                    <div class="stock-code" style="display: inline-block;"><a href="strategy-content.html#new-stra" target="_blank">>>新手入门</a></div>
-                    <div class="stock-code" style="display: inline-block;"><a href="strategy-content.html">>>返回策略列表</a></div>
-                    <div class="stock-code" style="display: inline-block;"><a href="api.html" target="_blank">>>API文档</a></div>
-
-                </div>
-                <div align="center" onselectstart="return false;">
-                    <form method="post">
-
-                        <div style="margin: 2%;">
-                            股票¥ <input type="text" style="display: inline-block;" class="input-box" ng-model="cash" />
-                            <input style="display: inline-block;" class="date-picker" type="text" id="start-filter" placeholder="开始日期" ng-model="sDate" />—<input style="display: inline-block;" class="date-picker" type="text" id="end-filter" placeholder="截止日期" ng-model="eDate" /> 撮合方式 <select style="display: inline-block;" ng-model="matchingType">
-                                <option value="current_bar">当前bar收盘</option>
-                                <option value="next_bar">下一bar开盘</option>
-                            </select> 基准合约 <input style="display: inline-block;" class="input-box" ng-model="benchmark" /> 佣金倍率 <input style="display: inline-block;" class="num-box" ng-model="commissionMultiplier" /> 滑点 <input style="display: inline-block;" class="num-box" ng-model="slippage" />
-                        </div>
-                        <div style="margin-top: -2%;">
-                            <div class="button-page" onclick="switchTheme()" id="switch-theme-button"><i class="fa fa-eye"></i> 护眼模式</div>
-                            <div id="remove-all" class="button-red" onclick="remove()"><i class="fa fa-trash-o"></i> 清空</div>
-                            <div class="button-green" ng-click="loadReturnLine()"><i class="fa fa-forward"></i> 编译运行</div>
-                            <div class="button-green" ng-click="loadOverReturnLine()"><i class="fa fa-envira"></i> 参数调优</div>
-                            参数下限 <input style="display: inline-block;" class="num-box" ng-model="lowp" /> 参数上限 <input style="display: inline-block;" class="num-box" ng-model="highp" />
-
-                            <div class="stock-code" style="margin-bottom: 1%;">
-                                <span>注意: 选择"参数调优"功能必须设置参数上限和参数下限，且可能导致回测速度变慢。</span><a href="help.html#stra-setting" target="_blank">>>如何进行回测设置? </a></div>
-                        </div>
-
-                    </form>
-                </div>
-
-                <div style="width: 50%; float: left;">
-                    <div>
-                        <pre id="code" class="ace_editor" style="min-height: 500px;"><textarea class="ace_text-input" id="code-area" spellcheck="false" ng-model="content"></textarea></pre>
+                    <div style="margin: 2%;">
+                        股票¥ <input type="text" style="display: inline-block;" class="input-box" ng-model="cash"/>
+                        <input style="display: inline-block;" class="date-picker" type="text" id="start-filter"
+                               placeholder="开始日期" ng-model="sDate"/>—<input style="display: inline-block;"
+                                                                            class="date-picker" type="text"
+                                                                            id="end-filter" placeholder="截止日期"
+                                                                            ng-model="eDate"/> 撮合方式 <select
+                            style="display: inline-block;" ng-model="matchingType">
+                        <option value="current_bar">当前bar收盘</option>
+                        <option value="next_bar">下一bar开盘</option>
+                    </select> 基准合约 <input style="display: inline-block;" class="input-box" ng-model="benchmark"/> 佣金倍率
+                        <input style="display: inline-block;" class="num-box" ng-model="commissionMultiplier"/> 滑点
+                        <input style="display: inline-block;" class="num-box" ng-model="slippage"/>
                     </div>
-
-                </div>
-
-                <div class="log-area">
-                    <div class="log-title">
-                        <i class="fa fa-file-text"></i> 错误日志&nbsp;Error Log
-                    </div>
-                    <div id="log-content">
-                        <p>暂无错误 <i class="fa fa-smile-o"></i></p>
-                    </div>
-                </div>
-
-                <div style="margin-bottom: 40%;"></div>
-
-                <div style="clear: both;" onselectstart="return false;">
-                    <div id="result-area">
-                        <div class="stock-name" style="display: inline;">回测结果</div>
-                        <div class="stock-code" style="display: inline-block;">&nbsp;&nbsp;|&nbsp;&nbsp;Back Test Result</div>
-
-                        <div align="center" id="result-figure">
-
-                            <div class="res-spec-figure">
-                                <h2>回测收益</h2>
-                                <p id="backtestReturns">...</p>
-                            </div>
-
-                            <div class="res-spec-figure">
-                                <h2>回测年化收益</h2>
-                                <p id="backtestAnnualizedReturns">...</p>
-                            </div>
-
-                            <div class="res-spec-figure">
-                                <h2>基准收益</h2>
-                                <p id="benchReturns">...</p>
-                            </div>
-
-                            <div class="res-spec-figure">
-                                <h2>基准年化收益</h2>
-                                <p id="benchAnnualizedReturns">...</p>
-                            </div>
-
-                            <div class="res-spec-figure">
-                                <h2>Alpha</h2>
-                                <p id="alpha">...</p>
-                            </div>
-
-                            <div class="res-spec-figure">
-                                <h2>Beta</h2>
-                                <p id="beta">...</p>
-                            </div>
-
-                            <div class="res-spec-figure">
-                                <h2>Sharpe</h2>
-                                <p id="sharpe">...</p>
-                            </div>
-
-                            <div class="res-spec-figure">
-                                <h2>Sortino</h2>
-                                <p id="sortino">...</p>
-                            </div>
-
-                            <div class="res-spec-figure">
-                                <h2>Info Ratio</h2>
-                                <p id="infoRatio">...</p>
-                            </div>
-
-                            <div class="res-spec-figure">
-                                <h2>Volatility</h2>
-                                <p id="volatility">...</p>
-                            </div>
-
-                            <div class="res-spec-figure">
-                                <h2>最大回撤</h2>
-                                <p id="maxDrawdown">...</p>
-                            </div>
-
-                            <div class="res-spec-figure">
-                                <h2>跟踪误差</h2>
-                                <p id="trackingError">...</p>
-                            </div>
-
-                            <div class="res-spec-figure">
-                                <h2>下行风险</h2>
-                                <p id="downsideRisk">...</p>
-                            </div>
+                    <div style="margin-top: -2%;">
+                        <div class="button-page" onclick="switchTheme()" id="switch-theme-button"><i
+                                class="fa fa-eye"></i> 护眼模式
                         </div>
-                    </div>
-                    <div align="center">
-                        <div style="padding-top: 5%;">
-                            <div class="stock-name" id="return-area">累计收益率与基准收益率</div>
-                            <div id="return-spin">
-                                <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
-                                <span>加载中...</span>
-                            </div>
-
-                            <div id="return-chart" style="weight: 100%; height: 400%;"></div>
+                        <div id="remove-all" class="button-red" onclick="remove()"><i class="fa fa-trash-o"></i> 清空
                         </div>
-
-                        <div style="padding-top: 5%;">
-                            <div class="stock-name" id="overreturn-area">超额收益率 </div>
-                            <div id="overreturn-spin">
-                                <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
-                                <span>加载中...</span>
-                            </div>
-
-                            <div id="overreturn-chart" style="weight: 100%; height: 400%;"></div>
+                        <div class="button-green" ng-click="loadReturnLine()"><i class="fa fa-forward"></i> 编译运行</div>
+                        <div class="button-green" ng-click="loadOverReturnLine()"><i class="fa fa-envira"></i> 参数调优
                         </div>
+                        参数下限 <input style="display: inline-block;" class="num-box" ng-model="lowp"/> 参数上限 <input
+                            style="display: inline-block;" class="num-box" ng-model="highp"/>
 
-                        <div style="padding-top: 5%;">
-                            <div class="stock-name" id="win-area">策略胜率 </div>
-                            <div id="win-spin">
-                                <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
-                                <span>加载中...</span>
-                            </div>
-
-                            <div id="win-chart" style="weight: 100%; height: 400%;"></div>
+                        <div class="stock-code" style="margin-bottom: 1%;">
+                            <span>注意: 选择"参数调优"功能必须设置参数上限和参数下限，且可能导致回测速度变慢。</span><a href="help.html#stra-setting"
+                                                                                    target="_blank">>>如何进行回测设置? </a>
                         </div>
                     </div>
 
-                </div>
+                </form>
             </div>
-            <div style="margin-bottom: 10%;"></div>
 
-
-        </div>
-        <div id="stra-page-hint" class="page-hint">提示</div>
-    </header>
-
-    <footer>
-        <div id="footer" onselectstart="return false;">
-            <div id="footer-div">
+            <div style="width: 50%; float: left;">
                 <div>
-                    <div class="big-li">
-                        <h4>关于</h4>
-                        <p>
-                            <a href="mailto:feedback@trillionaire.me?subject=[FeedBack]">
-                                <i class="fa fa-envelope"></i> 联系我们
-                            </a>
-                        </p>
+                    <pre id="code" class="ace_editor" style="min-height: 500px;"><textarea class="ace_text-input"
+                                                                                           id="code-area"
+                                                                                           spellcheck="false"
+                                                                                           ng-model="content"></textarea></pre>
+                </div>
 
-                        <p>
-                            <a href="log.html">
-                                <p><i class="fa fa-file-text-o"></i> 系统更新日志</p>
-                            </a>
-                        </p>
-                    </div>
+            </div>
 
-                    <div class="big-li">
-                        <h4>帮助</h4>
-                        <p>
-                            <a href="api.html">
-                                <i class="fa fa-file-o"></i> API文档
-                            </a>
-                        </p>
-
-                        <p>
-                            <a href="help.html">
-                                <i class="fa fa-file"></i> 帮助文档
-                            </a>
-                        </p>
-
-                    </div>
-
-                    <div class="big-li">
-                        <h4>反馈</h4>
-                        <p>
-                            <a href="mailto:feedback@trillionaire.me?subject=[FeedBack]">
-                                <i class="fa fa-comments-o"></i> 反馈
-                            </a>
-                        </p>
-
-                    </div>
+            <div class="log-area">
+                <div class="log-title">
+                    <i class="fa fa-file-text"></i> 错误日志&nbsp;Error Log
+                </div>
+                <div id="log-content">
+                    <p>暂无错误 <i class="fa fa-smile-o"></i></p>
                 </div>
             </div>
 
-            <div id="cr">Copyright &copy; 2017 All Rights Reserved</div>
+            <div style="margin-bottom: 40%;"></div>
+
+            <div style="clear: both;" onselectstart="return false;">
+                <div id="result-area">
+                    <div class="stock-name" style="display: inline;">回测结果</div>
+                    <div class="stock-code" style="display: inline-block;">&nbsp;&nbsp;|&nbsp;&nbsp;Back Test Result
+                    </div>
+
+                    <div align="center" id="result-figure">
+
+                        <div class="res-spec-figure">
+                            <h2>回测收益</h2>
+                            <p id="backtestReturns">...</p>
+                        </div>
+
+                        <div class="res-spec-figure">
+                            <h2>回测年化收益</h2>
+                            <p id="backtestAnnualizedReturns">...</p>
+                        </div>
+
+                        <div class="res-spec-figure">
+                            <h2>基准收益</h2>
+                            <p id="benchReturns">...</p>
+                        </div>
+
+                        <div class="res-spec-figure">
+                            <h2>基准年化收益</h2>
+                            <p id="benchAnnualizedReturns">...</p>
+                        </div>
+
+                        <div class="res-spec-figure">
+                            <h2>Alpha</h2>
+                            <p id="alpha">...</p>
+                        </div>
+
+                        <div class="res-spec-figure">
+                            <h2>Beta</h2>
+                            <p id="beta">...</p>
+                        </div>
+
+                        <div class="res-spec-figure">
+                            <h2>Sharpe</h2>
+                            <p id="sharpe">...</p>
+                        </div>
+
+                        <div class="res-spec-figure">
+                            <h2>Sortino</h2>
+                            <p id="sortino">...</p>
+                        </div>
+
+                        <div class="res-spec-figure">
+                            <h2>Info Ratio</h2>
+                            <p id="infoRatio">...</p>
+                        </div>
+
+                        <div class="res-spec-figure">
+                            <h2>Volatility</h2>
+                            <p id="volatility">...</p>
+                        </div>
+
+                        <div class="res-spec-figure">
+                            <h2>最大回撤</h2>
+                            <p id="maxDrawdown">...</p>
+                        </div>
+
+                        <div class="res-spec-figure">
+                            <h2>跟踪误差</h2>
+                            <p id="trackingError">...</p>
+                        </div>
+
+                        <div class="res-spec-figure">
+                            <h2>下行风险</h2>
+                            <p id="downsideRisk">...</p>
+                        </div>
+                    </div>
+                </div>
+                <div align="center">
+                    <div style="padding-top: 5%;">
+                        <div class="stock-name" id="return-area">累计收益率与基准收益率</div>
+                        <div id="return-spin">
+                            <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+                            <span>加载中...</span>
+                        </div>
+
+                        <div id="return-chart" style="weight: 100%; height: 400%;"></div>
+                    </div>
+
+                    <div style="padding-top: 5%;">
+                        <div class="stock-name" id="overreturn-area">超额收益率</div>
+                        <div id="overreturn-spin">
+                            <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+                            <span>加载中...</span>
+                        </div>
+
+                        <div id="overreturn-chart" style="weight: 100%; height: 400%;"></div>
+                    </div>
+
+                    <div style="padding-top: 5%;">
+                        <div class="stock-name" id="win-area">策略胜率</div>
+                        <div id="win-spin">
+                            <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+                            <span>加载中...</span>
+                        </div>
+
+                        <div id="win-chart" style="weight: 100%; height: 400%;"></div>
+                    </div>
+                </div>
+
+            </div>
         </div>
-    </footer>
+        <div style="margin-bottom: 10%;"></div>
+
+
+    </div>
+    <div id="stra-page-hint" class="page-hint">提示</div>
+</header>
+
+<footer>
+    <div id="footer" onselectstart="return false;">
+        <div id="footer-div">
+            <div>
+                <div class="big-li">
+                    <h4>关于</h4>
+                    <p>
+                        <a href="mailto:feedback@trillionaire.me?subject=[FeedBack]">
+                            <i class="fa fa-envelope"></i> 联系我们
+                        </a>
+                    </p>
+
+                    <p>
+                        <a href="log.html">
+                    <p><i class="fa fa-file-text-o"></i> 系统更新日志</p>
+                    </a>
+                    </p>
+                </div>
+
+                <div class="big-li">
+                    <h4>帮助</h4>
+                    <p>
+                        <a href="api.html">
+                            <i class="fa fa-file-o"></i> API文档
+                        </a>
+                    </p>
+
+                    <p>
+                        <a href="help.html">
+                            <i class="fa fa-file"></i> 帮助文档
+                        </a>
+                    </p>
+
+                </div>
+
+                <div class="big-li">
+                    <h4>反馈</h4>
+                    <p>
+                        <a href="mailto:feedback@trillionaire.me?subject=[FeedBack]">
+                            <i class="fa fa-comments-o"></i> 反馈
+                        </a>
+                    </p>
+
+                </div>
+            </div>
+        </div>
+
+        <div id="cr">Copyright &copy; 2017 All Rights Reserved</div>
+    </div>
+</footer>
 </body>
 
 <script src="js/scrollReveal.js"></script>
 <script>
-    (function() {
+    (function () {
         window.scrollReveal = new scrollReveal({
             reset: false,
             move: '50px'
@@ -308,7 +330,7 @@
     $("#save-spin").fadeOut();
     $("#save-already").fadeOut();
     $("#stra-name-input").fadeOut();
-    $("#stra-name").fadeOut(function() {
+    $("#stra-name").fadeOut(function () {
         namefade = 1;
     });
     $("#return-spin").fadeOut();

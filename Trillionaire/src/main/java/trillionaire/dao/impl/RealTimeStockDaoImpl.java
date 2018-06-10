@@ -43,7 +43,7 @@ public class RealTimeStockDaoImpl implements RealTimeStockDao{
 
         updateThread = new UpdateThread(new RealTimeUpdater());
         timer = new Timer(true);
-        timer.schedule(updateThread,0,1000*60);
+//        timer.schedule(updateThread,0,1000*60);
 
 
     }
