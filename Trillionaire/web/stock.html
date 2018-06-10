@@ -65,7 +65,7 @@
     </div>
 
     <div onselectstart="return false;">
-        <div style="float: left; width: 65%; border-right: 1px solid #AAA; margin-bottom: 5%" align="center">
+        <div style="float: left; width: 65%; margin-bottom: 5%" align="center">
             <div style="padding-top: 2%;">
                 <div class="button-group">
                     <ul id="select-menu" onclick="set()">
@@ -158,45 +158,37 @@
             </div>
             <div align="center" id="main-figure">
 
-                <div data-scroll-reveal="enter from bottom over 0.5s" class="spec-figure">
-                    <h2>今开</h2>
+                <div class="spec-figure"><h2>今开</h2>
                     <p id="open">暂无</p>
                 </div>
 
-                <div data-scroll-reveal="enter from bottom over 0.5s" class="spec-figure">
-                    <h2>最高价</h2>
+                <div class="spec-figure"><h2>最高价</h2>
                     <p id="high">暂无</p>
                 </div>
 
-                <div data-scroll-reveal="enter from bottom over 0.5s" class="spec-figure">
-                    <h2>最低价</h2>
+                <div class="spec-figure"><h2>最低价</h2>
                     <p id="low">暂无</p>
                 </div>
-                <div data-scroll-reveal="enter from bottom over 0.5s" class="spec-figure">
-                    <h2>昨收</h2>
+                <div class="spec-figure"><h2>昨收</h2>
                     <p id="settlement">暂无</p>
                 </div>
-                <div data-scroll-reveal="enter from bottom over 0.5s" class="spec-figure">
-                    <h2>成交量</h2>
+                <div class="spec-figure"><h2>成交量</h2>
                     <p id="volume">暂无</p>
                 </div>
-                <div data-scroll-reveal="enter from bottom over 0.5s" class="spec-figure">
-                    <h2>成交额</h2>
+                <div class="spec-figure"><h2>成交额</h2>
                     <p id="amount">暂无</p>
                 </div>
-                <div data-scroll-reveal="enter from bottom over 0.5s" class="spec-figure">
-                    <h2>换手率</h2>
+                <div class="spec-figure"><h2>换手率</h2>
                     <p id="turnoverrate">暂无</p>
                 </div>
-                <div data-scroll-reveal="enter from bottom over 0.5s" class="spec-figure">
-                    <h2>市盈率</h2>
+                <div class="spec-figure"><h2>市盈率</h2>
                     <p id="per">暂无</p>
                 </div>
             </div>
 
-            <div style="border-top: 1px solid #AAA; padding-top: 5%;">
-                <div class="stock-name" style="display: inline;">所属概念</div>
-                <div id="spec-concept" style="padding: 4%;">暂无</div>
+            <div style="padding: 2%;">
+                <div style="display: inline;">所属概念: </div>
+                <div id="spec-concept" style="padding: 2%; display: inline;">暂无</div>
             </div>
 
             <!--<div style="border-top: 1px solid #AAA; padding-top: 5%;">-->
@@ -370,7 +362,7 @@
     $(document).ready(updateInfo);
     $(document).ready(loadSimilarStock);
     $(document).ready(loadTrends);
-//    $(document).ready(loadRealTimeChart);
+    //    $(document).ready(loadRealTimeChart);
 
 </script>
 
