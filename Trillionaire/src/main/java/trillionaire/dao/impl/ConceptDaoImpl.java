@@ -6,6 +6,7 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 import trillionaire.dao.ConceptDao;
 import trillionaire.model.Area;
 import trillionaire.model.Concept;
@@ -19,6 +20,7 @@ import java.util.Map;
  * Created by USER on 2017/6/12.
  */
 @Repository
+@Transactional
 public class ConceptDaoImpl implements ConceptDao{
 
     @Autowired
@@ -27,7 +29,7 @@ public class ConceptDaoImpl implements ConceptDao{
     @Override
     public Map<Integer, String> getAllConcepts() {
         Session session = sessionFactory.getCurrentSession();
-        Transaction tx = session.beginTransaction();
+//        Transaction tx = session.beginTransaction();
 
         Map<Integer, String> result = new HashMap<>();
 
@@ -37,7 +39,7 @@ public class ConceptDaoImpl implements ConceptDao{
             result.put(c.getCid(), c.getName());
         }
 
-        tx.commit();
+//        tx.commit();
         //session.close();
 
         return result;
@@ -46,7 +48,7 @@ public class ConceptDaoImpl implements ConceptDao{
     @Override
     public Map<Integer, String> getAllIndustry() {
         Session session = sessionFactory.getCurrentSession();
-        Transaction tx = session.beginTransaction();
+//        Transaction tx = session.beginTransaction();
 
         Map<Integer, String> result = new HashMap<>();
 
@@ -56,7 +58,7 @@ public class ConceptDaoImpl implements ConceptDao{
             result.put(i.getIid(), i.getName());
         }
 
-        tx.commit();
+//        tx.commit();
         //session.close();
 
         return result;
@@ -65,7 +67,7 @@ public class ConceptDaoImpl implements ConceptDao{
     @Override
     public Map<Integer, String> getAllArea() {
         Session session = sessionFactory.getCurrentSession();
-        Transaction tx = session.beginTransaction();
+//        Transaction tx = session.beginTransaction();
 
         Map<Integer, String> result = new HashMap<>();
 
@@ -75,7 +77,7 @@ public class ConceptDaoImpl implements ConceptDao{
             result.put(a.getAid(), a.getName());
         }
 
-        tx.commit();
+//        tx.commit();
         //session.close();
 
         return result;

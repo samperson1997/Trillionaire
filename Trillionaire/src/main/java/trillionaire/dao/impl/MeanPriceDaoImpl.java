@@ -6,6 +6,7 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 import trillionaire.dao.MeanPriceDao;
 import trillionaire.model.MeanPrice;
 
@@ -15,6 +16,7 @@ import java.util.List;
  * Created by USER on 2017/5/27.
  */
 @Repository
+@Transactional
 public class MeanPriceDaoImpl implements MeanPriceDao{
 
     @Autowired
@@ -22,27 +24,27 @@ public class MeanPriceDaoImpl implements MeanPriceDao{
 
 
     public void saveMeanPrice(MeanPrice meanPrice) {
-
-        Session session = sessionFactory.openSession();
-        Transaction tx = session.beginTransaction();
-
+//
+//        Session session = sessionFactory.openSession();
+//        Transaction tx = session.beginTransaction();
+        Session session = sessionFactory.getCurrentSession();
         session.saveOrUpdate(meanPrice);
 
-        tx.commit();
-        session.close();
+//        tx.commit();
+//        session.close();
 
     }
 
     public List<MeanPrice> getMeanPriceListByCode(int code) {
 
-        Session session = sessionFactory.openSession();
-        Transaction tx = session.beginTransaction();
-
+//        Session session = sessionFactory.openSession();
+//        Transaction tx = session.beginTransaction();
+        Session session = sessionFactory.getCurrentSession();
         Query<MeanPrice> query = session.createNativeQuery("select * from mean_price where code = "+code+" order by date asc", MeanPrice.class);
         List<MeanPrice> result = query.list();
 
-        tx.commit();
-        session.close();
+//        tx.commit();
+//        session.close();
 
         return result;
 

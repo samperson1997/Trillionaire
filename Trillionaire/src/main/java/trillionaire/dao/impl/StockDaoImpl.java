@@ -10,7 +10,9 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 import trillionaire.model.Area;
 import trillionaire.model.Concept;
 import trillionaire.model.Industry;
@@ -20,9 +22,10 @@ import trillionaire.dao.StockDao;
 import javax.annotation.Resource;
 
 @Repository
+@Transactional
 public class StockDaoImpl implements StockDao{
 
-    @Resource
+    @Autowired
     SessionFactory sessionFactory ;
     private List<Stock> allStockList;
 
@@ -36,24 +39,24 @@ public class StockDaoImpl implements StockDao{
             return  allStockList;
         }
 
-        Session session = sessionFactory.openSession();
-        Transaction tx = session.beginTransaction();
-
+//        Session session = sessionFactory.openSession();
+//        Transaction tx = session.beginTransaction();
+        Session session = sessionFactory.getCurrentSession();
         Query<Stock> query = session.createQuery("from Stock");
 
         List<Stock> result = query.list();
         allStockList = result;
 
-        tx.commit();
-        session.close();
+//        tx.commit();
+//        session.close();
         return result;
     }
 
     public Set<Stock> getStocksByIndustry(String industryName) {
         // TODO Auto-generated method stub
-        Session session = sessionFactory.openSession();
-        Transaction tx = session.beginTransaction();
-
+//        Session session = sessionFactory.openSession();
+//        Transaction tx = session.beginTransaction();
+        Session session = sessionFactory.getCurrentSession();
         Query<Industry> query = session.createQuery("from Industry where name = ?",Industry.class);
         query.setParameter(0, industryName);
 
@@ -62,17 +65,17 @@ public class StockDaoImpl implements StockDao{
         Set<Stock> result = industry.getStocks();
         result.size();
 
-        tx.commit();
-        session.close();
+//        tx.commit();
+//        session.close();
 
         return result;
     }
 
     public Set<Stock> getStocksByArea(String areaName) {
         // TODO Auto-generated method stub
-        Session session = sessionFactory.openSession();
-        Transaction tx = session.beginTransaction();
-
+//        Session session = sessionFactory.openSession();
+//        Transaction tx = session.beginTransaction();
+        Session session = sessionFactory.getCurrentSession();
         Query<Area> query = session.createQuery("from Area where name = ?");
         query.setParameter(0, areaName);
 
@@ -85,17 +88,17 @@ public class StockDaoImpl implements StockDao{
         Set<Stock> result = area.getStocks();
         result.size();
 
-        tx.commit();
-        session.close();
+//        tx.commit();
+//        session.close();
 
         return result;
     }
 
     public Set<Stock> getStocksByConcept(String conceptName) {
         // TODO Auto-generated method stub
-        Session session = sessionFactory.openSession();
-        Transaction tx = session.beginTransaction();
-
+//        Session session = sessionFactory.openSession();
+//        Transaction tx = session.beginTransaction();
+        Session session = sessionFactory.getCurrentSession();
         Query<Concept> query = session.createQuery("from Concept where name = ?");
         query.setParameter(0, conceptName);
 
@@ -104,8 +107,8 @@ public class StockDaoImpl implements StockDao{
         Set<Stock> result = concept.getStocks();
         result.size();
 
-        tx.commit();
-        session.close();
+//        tx.commit();
+//        session.close();
 
         return result;
     }
@@ -122,14 +125,15 @@ public class StockDaoImpl implements StockDao{
         Map<String, String> codeNameMap = new HashMap<>();
 
 
-        Session session = sessionFactory.openSession();
-        Transaction tx = session.beginTransaction();
+//        Session session = sessionFactory.openSession();
+//        Transaction tx = session.beginTransaction();
+        Session session = sessionFactory.getCurrentSession();
 
         Query<Stock> query = session.createQuery("from Stock");
 
         List<Stock> stocks = query.list();
-        tx.commit();
-        session.close();
+//        tx.commit();
+//        session.close();
 
         for(Stock stock:stocks){
 

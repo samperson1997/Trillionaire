@@ -6,6 +6,7 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 import trillionaire.dao.DayRecordDao;
 import trillionaire.dao.RealTimeStockDao;
 import trillionaire.model.DayRecord;
@@ -19,6 +20,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * Created by USER on 2017/5/17.
  */
 @Repository
+@Transactional
 public class RealTimeStockDaoImpl implements RealTimeStockDao{
 
     private Map<Integer, RealTimeStock> stockMap;

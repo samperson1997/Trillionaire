@@ -9,6 +9,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import trillionaire.dao.DayRecordDao;
 import trillionaire.dao.StockDao;
+import trillionaire.dao.impl.AbilityDaoImpl;
 import trillionaire.dao.impl.DayRecordDaoImpl;
 import trillionaire.dao.impl.StockDaoImpl;
 import trillionaire.model.DayRecord;
@@ -41,13 +42,15 @@ public class DTest {
     public void testDataSource() throws SQLException, ParseException {
         //检查spring配置
         ctx = new ClassPathXmlApplicationContext("applicationContext.xml");
+        System.out.println(ctx.getBean("transactionManager").toString());
+        System.out.println(ctx.getBean(AbilityDaoImpl.class).toString());
 
-        //检查数据库连接
-        DataSource dataSource = ctx.getBean(DataSource.class);
-
-        //检查hibernate配置
-        SessionFactory sessionFactory = ctx.getBean(SessionFactory.class);
-        System.out.println(sessionFactory);
+//        //检查数据库连接
+//        DataSource dataSource = ctx.getBean(DataSource.class);
+//
+//        //检查hibernate配置
+//        SessionFactory sessionFactory = ctx.getBean(SessionFactory.class);
+//        System.out.println(sessionFactory);
 
 //        Session session = sessionFactory.openSession();
 //        Transaction tx = session.beginTransaction();
@@ -66,22 +69,22 @@ public class DTest {
 //        sessionFactory.close();
 
 
-        MinutePriceDataService minutePriceDataService = ctx.getBean(MinutePriceDataServiceImpl.class);
-        Map<String, Object> map = minutePriceDataService.getMinutePriceDate("000001");
-
-        List<String> time = (List<String>) (map.get("time"));
-        List<Double> price = (List<Double>) (map.get("price"));
-        List<Double> meanPrice = (List<Double>) (map.get("meanPrice"));
-        List<Double> volume = (List<Double>) (map.get("volume"));
-
-        System.out.println(time.size() + " " + price.size() + " " + meanPrice.size() + " " + volume.size());
-
-        for(int i=0; i<time.size(); i++){
-            System.out.print(time.get(i) + " ");
-            System.out.print(price.get(i) + " ");
-            System.out.print(meanPrice.get(i) + " ");
-            System.out.println(volume.get(i) + " ");
-        }
+//        MinutePriceDataService minutePriceDataService = ctx.getBean(MinutePriceDataServiceImpl.class);
+//        Map<String, Object> map = minutePriceDataService.getMinutePriceDate("000001");
+//
+//        List<String> time = (List<String>) (map.get("time"));
+//        List<Double> price = (List<Double>) (map.get("price"));
+//        List<Double> meanPrice = (List<Double>) (map.get("meanPrice"));
+//        List<Double> volume = (List<Double>) (map.get("volume"));
+//
+//        System.out.println(time.size() + " " + price.size() + " " + meanPrice.size() + " " + volume.size());
+//
+//        for(int i=0; i<time.size(); i++){
+//            System.out.print(time.get(i) + " ");
+//            System.out.print(price.get(i) + " ");
+//            System.out.print(meanPrice.get(i) + " ");
+//            System.out.println(volume.get(i) + " ");
+//        }
 
 //        DataUpdateService dataUpdateService = ctx.getBean(DataUpdateServiceImpl.class);
 //        dataUpdateService.updateAllData();
