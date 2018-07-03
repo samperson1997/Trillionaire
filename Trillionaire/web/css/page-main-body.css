@@ -5,28 +5,19 @@
     padding: 1.4%;
     margin: 0 1%;
 
-    color: #0080ff;
+    color: #6699FF;
     width: 60%;
     outline: none;
 }
 
-.input-area {
-    margin: 1%;
-}
-
-.info-board {
-    top: 15%;
-    right: 2%;
-    position: fixed;
-    width: 30%;
-    padding: 1%;
-    margin-bottom: 2%;
-    background-color: #FFF;
-    box-shadow: 0 1px 10px grey;
+.title-box {
+    margin: 2% 18%;
+    position: relative;
+    /*display: inline-block;*/
+    /*border-right: 1px solid #AAA;*/
 }
 
 .stock-name {
-    margin-left: 1%;
     font-size: 150%;
     font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, "PingFang SC", sans-serif;
 }
@@ -36,14 +27,80 @@
     font-weight: 300;
     font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, "PingFang SC", sans-serif;
     margin-right: 1%;
+    color: #777;
+    text-align: center;
+}
+
+#follow-button {
+    color: #6699FF;
+    cursor: pointer;
+    font-size: 90%;
+    position: absolute;
+    right: 0;
+    top: 50%;
+}
+
+#follow-button:hover {
+    color: #6633FF;
+}
+
+.margin {
+    font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, "PingFang SC", sans-serif;
+    color: #777;
+    display: inline-block;
+    font-size: 100%;
+    position: absolute;
+    top: 30%;
+    margin-left: 2%;
+}
+
+#change {
+    vertical-align: top;
+}
+
+.stock-table {
+    text-align: center;
+    margin: 2% auto;
+    width: 65%;
+    font-size: 90%;
+    font-weight: 400;
+    border-collapse: collapse;
+    color: #595959;
+}
+
+.stock-table th {
+    border-top: 1px #AAA solid;
+    border-bottom: 1px #AAA solid;
+    padding: 0.5% 0.5%;
+    width: 10%;
+    color: #6699FF;
+    font-weight: 400;
+    text-align: right;
+}
+
+.stock-table td {
+    border-top: 1px #AAA solid;
+    border-bottom: 1px #AAA solid;
+    padding: 0.5% 0.5%;
+    text-align: left;
+}
+
+.input-area {
+    margin: 1%;
+}
+
+.info-board {
+    display: inline-block;
+    width: 40%;
+    float: right;
 }
 
 .stock-code a {
-    color: #0080ff;
+    color: #6699FF;
 }
 
 .stock-code a:hover {
-    color: #0080ff;
+    color: #6699FF;
     text-decoration: underline;
     cursor: pointer;
 }
@@ -56,7 +113,8 @@
     font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, "PingFang SC", sans-serif;
     font-size: 85%;
 
-    margin: 0 2%;
+    margin: 0.8%;
+    padding: 1%;
     text-align: center;
 }
 
@@ -67,6 +125,7 @@
 
 .spec-figure p,
 .index-spec-figure p {
+    margin-top: 10%;
     font-weight: 200;
 }
 
@@ -95,7 +154,7 @@
 }
 
 #main-figure {
-    margin: 0 auto;
+    margin: 5% auto;
 }
 
 .spec-func {
@@ -141,22 +200,6 @@
     transition: opacity 0.35s, transform 0.35s;
 }
 
-.hot-func {
-    background-color: rgb(255, 153, 51);
-}
-
-.indu-func {
-    background-color: rgb(153, 204, 153);
-}
-
-.board-func {
-    background-color: rgb(204, 153, 102);
-}
-
-.comp-func {
-    background-color: rgb(153, 153, 255);
-}
-
 .other-function {
     margin: 5% auto;
 }
@@ -174,15 +217,6 @@
 
 .spec-func a {
     color: #000;
-}
-
-.margin {
-    font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, "PingFang SC", sans-serif;
-    margin: 1% 1%;
-    padding: 3% 1%;
-
-    background-color: grey;
-    color: #FFF;
 }
 
 .reco-sum {
@@ -243,7 +277,7 @@
 }
 
 .index-spec-figure p {
-    color: red;
+    color: #CC6666;
     border-top: 1px solid #555;
     padding-top: 5%;
     font-size: 120%;
@@ -285,7 +319,6 @@
 }
 
 .rank-stock {
-
     font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, "PingFang SC", sans-serif;
     font-size: 100%;
     padding: 5% 15% 0% 15%;
@@ -303,11 +336,11 @@
 
     font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, "PingFang SC", sans-serif;
     cursor: pointer;
-    color: red;
+    color: #CC6666;
 }
 
 .rank-table-rise .rank-top:hover {
-    background-color: red;
+    background-color: #CC6666;
     color: white;
 }
 
@@ -319,7 +352,7 @@
 }
 
 .rank-table-rise .rank-bottom:hover {
-    background-color: red;
+    background-color: #CC6666;
     color: white;
 }
 
@@ -348,7 +381,6 @@
 }
 
 .whole-rank-div {
-
     font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, "PingFang SC", sans-serif;
     margin: 0 auto;
 }
@@ -393,7 +425,7 @@
 }
 
 .whole-table a:hover {
-    color: #0080ff;
+    color: #6699FF;
 }
 
 .page-content {
@@ -416,7 +448,7 @@
 }
 
 .page-content li:hover {
-    color: red;
+    color: #CC6666;
 }
 
 .page-content-fix {
@@ -435,7 +467,7 @@
 }
 
 .page-content-fix li a:hover {
-    color: red;
+    color: #CC6666;
 }
 
 .page-content-fix li a {
@@ -463,7 +495,7 @@
     transition: transform 0.35s;
     -webkit-transform: translate3d(0, -10px, 0);
     transform: translate3d(0, -10px, 0);
-    background-color: #0080ff;
+    background-color: #6699FF;
     color: #FFF;
 }
 

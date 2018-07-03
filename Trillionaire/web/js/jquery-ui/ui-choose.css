@@ -47,14 +47,14 @@ ul.ui-choose > li:last-child {
 
 ul.ui-choose > li:hover {
     z-index: 4;
-    border-color: #0080ff;
-    color: #0080ff;
+    border-color: #6699FF;
+    color: #6699FF;
 }
 
 ul.ui-choose > li.selected {
     z-index: 3;
-    border-color: #0080ff;
-    background-color: #0080ff;
+    border-color: #6699FF;
+    background-color: #6699FF;
     color: #fff;
 }
 
@@ -78,7 +78,7 @@ ul.ui-choose > li.selected.disabled {
 }
 
 ul.choose-type-right > li.selected {
-    color: #0080ff;
+    color: #6699FF;
     background: transparent url("./icon-selected.png") no-repeat right bottom;
 }
 

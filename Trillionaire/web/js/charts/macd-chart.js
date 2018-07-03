@@ -51,15 +51,15 @@ function loadMACD() {
                         type: 'inside',
                         start: 98,
                         end: 100
-        },
+                    },
                     {
                         show: true,
                         type: 'slider',
                         y: '90%',
                         start: 98,
                         end: 100
-        }
-    ],
+                    }
+                ],
                 visualMap: {
                     seriesIndex: 0,
                     show: false,
@@ -71,7 +71,7 @@ function loadMACD() {
                         color: 'green'
                     }]
                 },
-                color: ['dodgerblue', 'yellow'],
+                color: ['dodgerblue', '#CCCC33'],
                 series: [
                     {
                         name: 'MACD',

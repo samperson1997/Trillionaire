@@ -46,234 +46,159 @@
     </div>
 
     <div>
-        <div id="title" onselectstart="return false;" align="left" style="display:inline-block;">
-            <h1 class="page-main-title">个股信息<span class="page-sub-title">&nbsp;&nbsp;|&nbsp;&nbsp;轻松查看个股数据</span></h1>
+        <div class="title-box">
+            <div style="display: inline-block;">
+                <div id="name" class="stock-name">暂无</div>
+                <div id="code" class="stock-code">暂无</div>
+            </div>
+
+            <div class="margin">
+                <h2 id="change"></h2>
+            </div>
+
+            <div id="follow-button" onclick="follow()" style="display: inline-block;"><i class="fa fa-star-o"></i>
+                加入关注列表&nbsp;
+            </div>
         </div>
 
-        <!--<div class="input-area" onselectstart="return false;" style="display:inline-block;" ng-app="searchApp">-->
+        <table class="stock-table">
+            <tr>
+                <th>今开</th>
+                <td id="open">暂无</td>
+                <th>成交量</th>
+                <td id="volume">暂无</td>
+                <th>最高价</th>
+                <td id="high">暂无</td>
+                <th>市盈率</th>
+                <td id="per">暂无</td>
+                <th>所属地域</th>
+                <td id="spec-area">暂无</td>
 
-            <!--&lt;!&ndash; search box &ndash;&gt;-->
-            <!--<div style="display: inline-block;" ng-controller="StockController">-->
-                <!--<input style="display: inline-block;" id="searchBox" class="search-input" placeholder="输入股票名称或代码"-->
-                       <!--ng-keypress="associate($event)" ng-model="inputString"/>-->
-                <!--<div style="display: inline-block;" class="button-page" id="search-button" onclick="search()"><i-->
-                        <!--class="fa fa-search"></i>检索-->
-                <!--</div>-->
-            <!--</div>-->
-
-            <!--&lt;!&ndash;                <ul id="search-results" class="search-results"></ul>&ndash;&gt;-->
-
-        <!--</div>-->
+            </tr>
+            <tr>
+                <th>昨收</th>
+                <td id="settlement">暂无</td>
+                <th>成交额</th>
+                <td id="amount">暂无</td>
+                <th>最低价</th>
+                <td id="low">暂无</td>
+                <th>换手率</th>
+                <td id="turnoverrate">暂无</td>
+                <th>所属行业</th>
+                <td id="spec-industry">暂无</td>
+                <!--<th>市场热度</th>-->
+                <!--<td id="prevail">暂无</td>-->
+            </tr>
+            <tr>
+                <th>所属概念</th>
+                <td id="spec-concept" colspan="9">暂无</td>
+            </tr>
+        </table>
     </div>
 
-    <div onselectstart="return false;">
-        <div style="float: left; width: 65%; margin-bottom: 5%" align="center">
-            <div style="padding-top: 2%;">
-                <div class="button-group">
-                    <ul id="select-menu" onclick="set()">
-                        <!--<button type="button" id="realtime" class="button button-primary">分时</button>-->
-                        <button type="button" id="daily" class="button button-primary active">日K</button>
-                        <button type="button" id="weekly" class="button button-primary">周K</button>
-                        <button type="button" id="monthly" class="button button-primary">月K</button>
-                    </ul>
-                </div>
-                <div id="candle-spin">
-                    <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
-                    <span>加载中...</span>
-                </div>
-                <div id="k-chart" style="width:100%; height: 600%;"></div>
-                <div id="real-chart" style="width:100%; height: 600%;"></div>
+    <div onselectstart="return false;" align="center">
+        <div style="width: 80%">
+            <div>
+                <ul id="select-menu" onclick="set()">
+                    <!--<button type="button" id="realtime" class="button button-primary">分时</button>-->
+                    <button type="button" id="daily" class="select-menu-item-active">日K</button>
+                    <button type="button" id="weekly" class="select-menu-item">周K</button>
+                    <button type="button" id="monthly" class="select-menu-item">月K</button>
+                    <button type="button" id="KDJ" class="select-menu-item">KDJ</button>
+                    <button type="button" id="BIAS" class="select-menu-item">BIAS</button>
+                    <button type="button" id="MACD" class="select-menu-item">MACD</button>
+                </ul>
             </div>
-
-            <div class="other-function">
-                <a href="concern.html">
-                    <div data-scroll-reveal="enter from bottom over 1s" class="spec-func hot-func">
-                        <h2><i class="fa fa-fire"></i> 市场热度</h2>
-                        <p id="prevail">暂无</p>
-                        <h5>查看我关注的股票>></h5>
-                    </div>
-                </a>
-
-                <a href="industry.html?iid=85">
-                    <div data-scroll-reveal="enter from bottom over 1s" class="spec-func indu-func">
-                        <h2><i class="fa fa-industry"></i> 所属行业</h2>
-                        <p id="spec-industry">暂无</p>
-                        <h5>查看该行业股票信息>></h5>
-                    </div>
-                </a>
-
-                <a href="area.html?aid=26">
-                    <div data-scroll-reveal="enter from bottom over 1s" class="spec-func comp-func">
-                        <h2><i class="fa fa-balance-scale"></i> 所属地域</h2>
-                        <p id="spec-area">暂无</p>
-                        <h5>查看该地域股票信息>></h5>
-                    </div>
-                </a>
+            <div id="candle-spin">
+                <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+                <span>加载中...</span>
             </div>
-
-            <!--        chart area-->
-
-            <div style="padding-top: 2%;">
-                <div class="stock-name" style="display: inline;">KDJ</div>
-                <div class="stock-code" style="display: inline;">&nbsp;&nbsp;<a href="help.html#kdj" target="_blank">>>应该如何使用KDJ?</a>
-                </div>
-                <div id="kdj-chart" style="width:100%; height: 300%;"></div>
-                <div id="kdj-spin">
-                    <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
-                    <span>加载中...</span>
-                </div>
-            </div>
-
-            <div style="padding-top: 2%;">
-                <div class="stock-name" style="display: inline;">BIAS</div>
-                <div class="stock-code" style="display: inline;">&nbsp;&nbsp;<a href="help.html#bias" target=" _blank">>>应该如何使用BIAS?</a>
-                </div>
-                <div id="bias-chart" style="width:100%; height: 300%;"></div>
-                <div id="bias-spin">
-                    <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
-                    <span>加载中...</span>
-                </div>
-            </div>
-
-            <div style="padding-top: 2%;">
-                <div class="stock-name" style="display: inline;">MACD</div>
-                <div class="stock-code" style="display: inline;">&nbsp;&nbsp;<a href="help.html#macd" target=" _blank">>>应该如何使用MACD?</a>
-                </div>
-                <div id="macd-chart" style="width:100%; height: 300%;"></div>
-                <div id="macd-spin">
-                    <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
-                    <span>加载中...</span>
-                </div>
-            </div>
-
+            <div id="k-chart" style="width:100%; height: 500%;"></div>
+            <div id="kdj-chart" style="width:100%; height: 500%;"></div>
+            <div id="bias-chart" style="width:100%; height: 500%;"></div>
+            <div id="macd-chart" style="width:100%; height: 500%;"></div>
+            <!--<div id="real-chart" style="width:100%; height: 600%;"></div>-->
         </div>
-
-        <!--        figure area-->
-        <div class="info-board">
-            <div id="name" class="stock-name" style="display: inline;">暂无</div>
-            <div id="code" class="stock-code" style="display: inline;">&nbsp;|&nbsp;暂无</div>
-            <div id="follow-button" style="display: inline-block;" class="button-page" onclick="follow()"><i
-                    class="fa fa-plus"></i> 关注&nbsp;
-            </div>
-            <div align="center" class="margin">
-                <h2 id="change">...</h2>
-            </div>
-            <div align="center" id="main-figure">
-
-                <div class="spec-figure"><h2>今开</h2>
-                    <p id="open">暂无</p>
-                </div>
-
-                <div class="spec-figure"><h2>最高价</h2>
-                    <p id="high">暂无</p>
-                </div>
-
-                <div class="spec-figure"><h2>最低价</h2>
-                    <p id="low">暂无</p>
-                </div>
-                <div class="spec-figure"><h2>昨收</h2>
-                    <p id="settlement">暂无</p>
-                </div>
-                <div class="spec-figure"><h2>成交量</h2>
-                    <p id="volume">暂无</p>
-                </div>
-                <div class="spec-figure"><h2>成交额</h2>
-                    <p id="amount">暂无</p>
-                </div>
-                <div class="spec-figure"><h2>换手率</h2>
-                    <p id="turnoverrate">暂无</p>
-                </div>
-                <div class="spec-figure"><h2>市盈率</h2>
-                    <p id="per">暂无</p>
-                </div>
-            </div>
-
-            <div style="padding: 2%;">
-                <div style="display: inline;">所属概念: </div>
-                <div id="spec-concept" style="padding: 2%; display: inline;">暂无</div>
-            </div>
-
-            <!--<div style="border-top: 1px solid #AAA; padding-top: 5%;">-->
-            <!--<div class="stock-name" style="display: inline;">推荐趋势</div>-->
-            <!--<div class="stock-code" style="display: inline;">&nbsp;|&nbsp;Recommendation Trends</div>-->
-
-            <!--<div align="center" class="reco-sum">-->
-            <!--<h2 id="reco-sum-content"></h2>-->
-            <!--</div>-->
-
-            <!--<div id="reco-trend" style="width: 100%; height: 200%;"></div>-->
-
-            <!--<div align="center" id="trend-spin">-->
-            <!--<i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>-->
-            <!--<span>加载中...</span>-->
-            <!--</div>-->
-            <!--</div>-->
-        </div>
-        <div id="more" onselectstart="return false;" style="clear: both;">
-
-
-            <!--        figure area-->
-            <!--<div class="info-board" ng-controller="UserController">-->
-            <!--<div id="main-figure">-->
-            <!--<div class="stock-name" style="display: inline-block;">价格预测</div>-->
-            <!--<div class="stock-code" style="display: inline-block;">&nbsp;|&nbsp;Analyst Price Targets</div>-->
-            <!--<div style="clear:both"></div>-->
-            <!--<div data-scroll-reveal="enter from bottom over 0.5s" class="spec-figure">-->
-            <!--<h2>最高价</h2>-->
-            <!--<div id="max-tprice">-->
-            <!--<p>暂无</p>-->
-            <!--</div>-->
-            <!--</div>-->
-
-            <!--<div data-scroll-reveal="enter from bottom over 0.5s" class="spec-figure">-->
-            <!--<h2>最低价</h2>-->
-            <!--<div id="min-tprice">-->
-            <!--<p>暂无</p>-->
-            <!--</div>-->
-            <!--</div>-->
-
-            <!--<div data-scroll-reveal="enter from bottom over 0.5s" class="spec-figure">-->
-            <!--<h2>收盘价</h2>-->
-            <!--<div id="close-tprice">-->
-            <!--<p>暂无</p>-->
-            <!--</div>-->
-            <!--</div>-->
-
-            <!--<div align="center" id="target-spin">-->
-            <!--<i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>-->
-            <!--<span>加载中...</span>-->
-            <!--</div>-->
-            <!--</div>-->
-
-            <!--<div style="border-top: 1px solid #AAA; padding-top: 5%;">-->
-            <!--<div class="stock-name" style="display: inline;">能力比对</div>-->
-            <!--<div class="stock-code" style="display: inline;">&nbsp;|&nbsp;Ability Comparison</div>-->
-            <!--<div class="stock-code" style="margin-left: 15%;">&nbsp;&nbsp;<a href="help.html#ability-compare" target="_blank">>>能力对比参数</a></div>-->
-            <!--<div id="ability-chart" style="width: 100%; height: 400%;"></div>-->
-            <!--<div align="center" id="ability-spin">-->
-            <!--<i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>-->
-            <!--<span>加载中...</span>-->
-            <!--</div>-->
-            <!--</div>-->
-
-            <!--<div style="border-top: 1px solid #AAA; padding-top: 5%;">-->
-            <!--<div class="stock-name" style="display: inline;">相关股票</div>-->
-            <!--<div align="center" id="rel-spin" style="clear: both;">-->
-            <!--<i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>-->
-            <!--<span>加载中...</span>-->
-            <!--</div>-->
-            <!--<div id="subject" class="rel-figure">-->
-            <!--<h2>关联股票</h2>-->
-            <!--</div>-->
-            <!--<div id="object" class="rel-figure">-->
-            <!--<h2>被关联股票</h2>-->
-            <!--</div>-->
-
-            <!--</div>-->
-            <!--</div>-->
-        </div>
-
     </div>
+
+    <!--        figure area-->
+    <!--<div class="info-board">-->
+    <!--<div style="border-top: 1px solid #AAA; padding-top: 5%;">-->
+    <!--<div class="stock-name" style="display: inline;">推荐趋势</div>-->
+    <!--<div class="stock-code" style="display: inline;">&nbsp;|&nbsp;Recommendation Trends</div>-->
+
+    <!--<div align="center" class="reco-sum">-->
+    <!--<h2 id="reco-sum-content"></h2>-->
+    <!--</div>-->
+
+    <!--<div id="reco-trend" style="width: 100%; height: 200%;"></div>-->
+
+    <!--<div align="center" id="trend-spin">-->
+    <!--<i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>-->
+    <!--<span>加载中...</span>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+
+    <!--        figure area-->
+    <!--<div class="info-board" ng-controller="UserController">-->
+    <!--<div id="main-figure">-->
+    <!--<div class="stock-name" style="display: inline-block;">价格预测</div>-->
+    <!--<div class="stock-code" style="display: inline-block;">&nbsp;|&nbsp;Analyst Price Targets</div>-->
+    <!--<div style="clear:both"></div>-->
+    <!--<div data-scroll-reveal="enter from bottom over 0.5s" class="spec-figure">-->
+    <!--<h2>最高价</h2>-->
+    <!--<div id="max-tprice">-->
+    <!--<p>暂无</p>-->
+    <!--</div>-->
+    <!--</div>-->
+
+    <!--<div data-scroll-reveal="enter from bottom over 0.5s" class="spec-figure">-->
+    <!--<h2>最低价</h2>-->
+    <!--<div id="min-tprice">-->
+    <!--<p>暂无</p>-->
+    <!--</div>-->
+    <!--</div>-->
+
+    <!--<div data-scroll-reveal="enter from bottom over 0.5s" class="spec-figure">-->
+    <!--<h2>收盘价</h2>-->
+    <!--<div id="close-tprice">-->
+    <!--<p>暂无</p>-->
+    <!--</div>-->
+    <!--</div>-->
+
+    <!--<div align="center" id="target-spin">-->
+    <!--<i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>-->
+    <!--<span>加载中...</span>-->
+    <!--</div>-->
+    <!--</div>-->
+
+    <!--<div style="border-top: 1px solid #AAA; padding-top: 5%;">-->
+    <!--<div class="stock-name" style="display: inline;">能力比对</div>-->
+    <!--<div class="stock-code" style="display: inline;">&nbsp;|&nbsp;Ability Comparison</div>-->
+    <!--<div class="stock-code" style="margin-left: 15%;">&nbsp;&nbsp;<a href="help.html#ability-compare" target="_blank">>>能力对比参数</a></div>-->
+    <!--<div id="ability-chart" style="width: 100%; height: 400%;"></div>-->
+    <!--<div align="center" id="ability-spin">-->
+    <!--<i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>-->
+    <!--<span>加载中...</span>-->
+    <!--</div>-->
+    <!--</div>-->
+
+    <!--<div style="border-top: 1px solid #AAA; padding-top: 5%;">-->
+    <!--<div class="stock-name" style="display: inline;">相关股票</div>-->
+    <!--<div align="center" id="rel-spin" style="clear: both;">-->
+    <!--<i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>-->
+    <!--<span>加载中...</span>-->
+    <!--</div>-->
+    <!--<div id="subject" class="rel-figure">-->
+    <!--<h2>关联股票</h2>-->
+    <!--</div>-->
+    <!--<div id="object" class="rel-figure">-->
+    <!--<h2>被关联股票</h2>-->
+    <!--</div>-->
+
+    <!--</div>-->
+    <!--</div>-->
 
     <div id="stock-page-hint" class="page-hint">无此股，请重新选择</div>
 
@@ -354,13 +279,17 @@
         });
     })();
 
+    $("#kdj-chart").fadeOut();
+    $("#bias-chart").fadeOut();
+    $("#macd-chart").fadeOut();
+
 </script>
 
 <script>
     $(document).ready(loadCandle);
-    $(document).ready(loadKDJ);
-    $(document).ready(loadBIAS);
-    $(document).ready(loadMACD);
+//    $(document).ready(loadKDJ);
+//    $(document).ready(loadBIAS);
+//    $(document).ready(loadMACD);
     $(document).ready(loadTargetPrice);
     $(document).ready(loadPrevail);
     $(document).ready(updateInfo);

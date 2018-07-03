@@ -4,7 +4,6 @@ function loadCandle() {
     var code = getParam('code');
     var urll;
 
-
     if ($("#daily").attr('class').indexOf("active") >= 0) {
         urll = "/stock/" + code + "/daily";
     } else if ($("#weekly").attr('class').indexOf("active") >= 0) {
@@ -20,7 +19,7 @@ function loadCandle() {
         dataType: "json",
         success: function (data0) {
 
-            if (data0 == null) {
+            if (data0 === null) {
                 $("#stock-page-hint").fadeIn().delay(1000).fadeOut();
             }
 
@@ -113,7 +112,7 @@ function loadCandle() {
                                 formatter: function (params) {
                                     var seriesValue = (params.seriesData[0] || {}).value;
                                     return params.value +
-                                        (seriesValue != null ?
+                                        (seriesValue !== null ?
                                                 '\n' + echarts.format.addCommas(seriesValue) :
                                                 ''
                                         );
@@ -151,7 +150,7 @@ function loadCandle() {
                     {
                         type: 'inside',
                         xAxisIndex: [0, 1],
-                        start: 98,
+                        start: 90,
                         end: 100
                     },
                     {
@@ -160,7 +159,7 @@ function loadCandle() {
                         top: '90%',
                         type: 'slider',
                         y: '90%',
-                        start: 98,
+                        start: 90,
                         end: 100
                     }
                 ],
@@ -233,7 +232,7 @@ function loadCandle() {
             kChart.setOption(option, true);
         },
         error: function (request, status, err) {
-            if (status == "timeout") {
+            if (status === "timeout") {
                 load.abort();
             }
         }
