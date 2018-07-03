@@ -30,7 +30,8 @@ function loadCandle() {
                 animation: true,
                 legend: {
                     left: 'center',
-                    data: ['K', 'MA5', 'MA10', 'MA30']
+                    data: ['K', 'MA5', 'MA10', 'MA30'],
+                    top: '6%'
                 },
                 tooltip: {
                     trigger: 'axis',

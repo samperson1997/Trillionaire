@@ -27,12 +27,13 @@ function loadKDJ() {
                     extraCssText: 'width: 170px'
                 },
                 legend: {
-                    data: ['K', 'D', 'J']
+                    data: ['K', 'D', 'J'],
+                    top: '6%'
                 },
                 xAxis: {
                     type: 'category',
                     boundaryGap: false,
-                    data: data.categoryData,
+                    data: data.categoryData
                 },
                 yAxis: {
                     type: 'value',

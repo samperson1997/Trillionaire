@@ -26,7 +26,8 @@ function loadBIAS() {
                     extraCssText: 'width: 170px'
                 },
                 legend: {
-                    data: ['BIAS6', 'BIAS12', 'BIAS24']
+                    data: ['BIAS6', 'BIAS12', 'BIAS24'],
+                    top: '6%'
                 },
                 xAxis: {
                     type: 'category',
@@ -44,15 +45,15 @@ function loadBIAS() {
                         type: 'inside',
                         start: 98,
                         end: 100
-        },
+                    },
                     {
                         show: true,
                         type: 'slider',
                         y: '90%',
                         start: 98,
                         end: 100
-        }
-    ],
+                    }
+                ],
                 series: [
                     {
                         name: 'BIAS6',

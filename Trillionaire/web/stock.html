@@ -23,7 +23,7 @@
 <body>
 <header>
     <div id="top-bar" onselectstart="return false;">
-        <a href="index.html" >
+        <a href="index.html">
             <img src="img/logo.png" width="15%" style="transform:translateY(15px)">
         </a>
         <ul align="center">
@@ -108,8 +108,23 @@
                     <button type="button" id="weekly" class="select-menu-item">周K</button>
                     <button type="button" id="monthly" class="select-menu-item">月K</button>
                     <button type="button" id="KDJ" class="select-menu-item">KDJ</button>
+                    <a href="help.html#kdj" target="_blank">
+                        <i class="fa fa-info-circle tooltip">
+                            <span class="tooltiptext">如何使用KDJ？</span>
+                        </i>
+                    </a>
                     <button type="button" id="BIAS" class="select-menu-item">BIAS</button>
+                    <a href="help.html#bias" target="_blank">
+                        <i class="fa fa-info-circle tooltip">
+                            <span class="tooltiptext">如何使用BIAS？</span>
+                        </i>
+                    </a>
                     <button type="button" id="MACD" class="select-menu-item">MACD</button>
+                    <a href="help.html#macd" target="_blank">
+                        <i class="fa fa-info-circle tooltip">
+                            <span class="tooltiptext">如何使用MACD？</span>
+                        </i>
+                    </a>
                 </ul>
             </div>
             <div id="candle-spin">
@@ -290,9 +305,9 @@
 
 <script>
     $(document).ready(loadCandle);
-//    $(document).ready(loadKDJ);
-//    $(document).ready(loadBIAS);
-//    $(document).ready(loadMACD);
+    //    $(document).ready(loadKDJ);
+    //    $(document).ready(loadBIAS);
+    //    $(document).ready(loadMACD);
     $(document).ready(loadTargetPrice);
     $(document).ready(loadPrevail);
     $(document).ready(updateInfo);

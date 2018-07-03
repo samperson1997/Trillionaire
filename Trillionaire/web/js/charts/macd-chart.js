@@ -12,7 +12,8 @@ function loadMACD() {
             $("#macd-spin").html('');
             option = {
                 legend: {
-                    data: ['MACD', 'DIFF', 'DEA']
+                    data: ['MACD', 'DIFF', 'DEA'],
+                    top: '6%'
                 },
                 tooltip: {
                     trigger: 'axis',
@@ -76,7 +77,7 @@ function loadMACD() {
                     {
                         name: 'MACD',
                         type: 'bar',
-                        data: data0.macd,
+                        data: data0.macd
                     },
                     {
                         name: 'DIFF',
@@ -108,7 +109,7 @@ function loadMACD() {
             macdChart.setOption(option);
         },
         error: function (request, status, err) {
-            if (status == "timeout") {
+            if (status === "timeout") {
                 load.abort();
             }
         }
