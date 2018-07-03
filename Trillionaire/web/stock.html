@@ -53,20 +53,20 @@
             <h1 class="page-main-title">个股信息<span class="page-sub-title">&nbsp;&nbsp;|&nbsp;&nbsp;轻松查看个股数据</span></h1>
         </div>
 
-        <div class="input-area" onselectstart="return false;" style="display:inline-block;" ng-app="searchApp">
+        <!--<div class="input-area" onselectstart="return false;" style="display:inline-block;" ng-app="searchApp">-->
 
-            <!-- search box -->
-            <div style="display: inline-block;" ng-controller="StockController">
-                <input style="display: inline-block;" id="searchBox" class="search-input" placeholder="输入股票名称或代码"
-                       ng-keypress="associate($event)" ng-model="inputString"/>
-                <div style="display: inline-block;" class="button-page" id="search-button" onclick="search()"><i
-                        class="fa fa-search"></i>检索
-                </div>
-            </div>
+            <!--&lt;!&ndash; search box &ndash;&gt;-->
+            <!--<div style="display: inline-block;" ng-controller="StockController">-->
+                <!--<input style="display: inline-block;" id="searchBox" class="search-input" placeholder="输入股票名称或代码"-->
+                       <!--ng-keypress="associate($event)" ng-model="inputString"/>-->
+                <!--<div style="display: inline-block;" class="button-page" id="search-button" onclick="search()"><i-->
+                        <!--class="fa fa-search"></i>检索-->
+                <!--</div>-->
+            <!--</div>-->
 
-            <!--                <ul id="search-results" class="search-results"></ul>-->
+            <!--&lt;!&ndash;                <ul id="search-results" class="search-results"></ul>&ndash;&gt;-->
 
-        </div>
+        <!--</div>-->
     </div>
 
     <div onselectstart="return false;">
@@ -344,7 +344,7 @@
 <script src="js/stock/stockChooseBoard.js"></script>
 <script src="js/user/follow.js"></script>
 <script src="js/stock/show.js"></script>
-<script src="js/stock/search.js"></script>
+<!--<script src="js/stock/search.js"></script>-->
 <script src="js/stock/stock.js"></script>
 <script src="js/header/index.js"></script>
 <script src="js/header/search.js"></script>
