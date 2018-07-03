@@ -28,7 +28,7 @@
 
 .stra-table tr td:first-child:hover,
 .stra-table tr td:first-child a:hover {
-    color: #0080ff;
+    color: #99CCFF;
 }
 
 #new-stra-item {
@@ -63,9 +63,9 @@
 
 #new-stra-item li:hover {
     transition: transform 0.35s;
-    -webkit-transform: translate3d(0, -30px, 0);
-    transform: translate3d(0, -30px, 0);
-    background-color: #0080ff;
+    /*-webkit-transform: translate3d(0, -30px, 0);*/
+    /*transform: translate3d(0, -30px, 0);*/
+    background-color: #6699FF;
     color: #FFF;
 }
 
@@ -76,7 +76,7 @@
     float: right;
     border: 1px solid #DDD;
     font-size: 90%;
-    margin: 0% 5% 0 0;
+    margin: 0 5% 0 0;
 }
 
 .log-title {
@@ -99,7 +99,7 @@
     border-radius: 5px;
     padding: 0.5% 1%;
 
-    color: #0080ff;
+    color: #6699FF;
     width: 9%;
     outline: none;
 }
@@ -110,7 +110,7 @@
     border-radius: 5px;
     padding: 0.5% 1%;
 
-    color: #0080ff;
+    color: #6699FF;
     width: 1%;
     outline: none;
 }
@@ -150,7 +150,7 @@
 select {
     border: solid 1px #000;
     border-radius: 5px;
-    color: #0080ff;
+    color: #6699FF;
 
     outline: none;
     font-size: 90%;

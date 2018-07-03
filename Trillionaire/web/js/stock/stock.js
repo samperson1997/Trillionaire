@@ -16,7 +16,7 @@ function loadTargetPrice() {
             $("#close-tprice").html('<p>' + String(data0.close) + '</p>');
         },
         error: function (request, status, err) {
-            if (status == "timeout") {
+            if (status === "timeout") {
                 load.abort();
             }
         }
@@ -35,13 +35,13 @@ function loadPrevail() {
         },
         dataType: "json",
         success: function (data0) {
-            $("#prevail").text("热度" + data0.vr);
+            $("#prevail").text(data0.vr);
             $("#spec-concept").text(data0.concept);
             $("#spec-industry").text(data0.industry);
             $("#spec-area").text(data0.area);
         },
         error: function (request, status, err) {
-            if (status == "timeout") {
+            if (status === "timeout") {
                 load.abort();
             }
         }
@@ -61,16 +61,16 @@ function updateInfo() {
         dataType: "json",
         success: function (data0) {
             $("#name").text(String(data0.name));
-            $("#code").text(' | ' + String(data0.code));
+            $("#code").text('(' + String(data0.code) + ')');
             if (data0.changepercent > 0) {
-                $(".margin").css('backgroundColor', 'red');
-                $("#change").html('<i class=\"fa fa-arrow-up\"></i>' + " +" + String(data0.changepercent) + "%");
-            } else if (data0.changepercent == 0) {
-                $(".margin").css('backgroundColor', '#777');
+                $(".margin").css('color', '#CC6666');
+                $("#change").html("+" + String(data0.changepercent) + "% <i class=\"fa fa-arrow-up\"></i>");
+            } else if (data0.changepercent === 0) {
+                $(".margin").css('color', '#777');
                 $("#change").html("0");
             } else if (data0.changepercent < 0) {
-                $(".margin").css('backgroundColor', 'green');
-                $("#change").html('<i class=\"fa fa-arrow-down\"></i>' + " " + String(data0.changepercent) + "%");
+                $(".margin").css('color', '#99CC99');
+                $("#change").html(String(data0.changepercent) + "% <i class=\"fa fa-arrow-down\"></i>");
             }
             $("#high").html('<p>' + String(data0.high) + '</p>');
             $("#low").html('<p>' + String(data0.low) + '</p>');
@@ -82,7 +82,7 @@ function updateInfo() {
             $("#amount").html('<p>' + String(data0.amount) + '</p>');
         },
         error: function (request, status, err) {
-            if (status == "timeout") {
+            if (status === "timeout") {
                 load.abort();
                 updateInfo();
             }
@@ -104,7 +104,7 @@ function loadSimilarStock() {
         timeout: 180000,
         success: function (data) {
             $("#rel-spin").html('');
-            if (data.subject.length == 0) {
+            if (data.subject.length === 0) {
                 $("#subject").append('<p>无关联股票</p>');
             } else {
                 $.each(data.subject, function (i, value) {
@@ -112,7 +112,7 @@ function loadSimilarStock() {
                 })
             }
 
-            if (data.object.length == 0) {
+            if (data.object.length === 0) {
                 $("#object").append('<p>无被关联股票</p>');
             } else {
                 $.each(data.object, function (i, value) {
@@ -121,7 +121,7 @@ function loadSimilarStock() {
             }
         },
         error: function (request, status, err) {
-            if (status == "timeout") {
+            if (status === "timeout") {
                 load.abort();
             }
             $("#subject").append('<p>无关联股票</p>');

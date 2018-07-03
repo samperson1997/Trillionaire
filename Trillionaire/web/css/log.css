@@ -1,11 +1,10 @@
 #whole-page {
-    background-image: url("../img/background3.png");
     font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, "PingFang SC", sans-serif;
     text-align: center;
     padding: 3% 2%;
     color: #FFF;
     background-size: 110% 110%;
-    background-position: 30% 50%;
+    background: url("../img/background3.png") 30% 50%;
 }
 
 #whole-page p {
@@ -40,8 +39,7 @@
     font-size: 90%;
     width: 50%;
     border-radius: 5px;
-    border-color: #FFF;
-    border-width: 2px;
+    border: 2px #FFF;
 
     padding: 1.5%;
     margin: 2%;
@@ -63,7 +61,7 @@
 
 #log-tip,
 #reg-tip {
-    color: red;
+    color: #CC6666;
     font-size: 80%;
-    font-weight: 350;
+    font-weight: 300;
 }

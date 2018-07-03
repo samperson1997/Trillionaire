@@ -9,11 +9,11 @@
 }
 
 #help-page a {
-    color: #0080ff;
+    color: #6699FF;
 }
 
 #help-page a:hover {
-    color: #0080ff;
+    color: #6699FF;
     text-decoration: underline;
 }
 
@@ -36,12 +36,12 @@
 }
 
 .page-content-long li:hover {
-    color: red;
+    color: #CC6666;
 }
 
 code {
     background-color: rgba(255, 204, 204, 0.3);
-    color: red;
+    color: #CC6666;
     font-family: monospace;
     border-radius: 5px;
     padding: 0.2% 0.5%;
@@ -51,7 +51,7 @@ code {
 
 h3 code {
     background-color: #FFF;
-    color: red;
+    color: #CC6666;
     font-family: monospace;
     border-radius: 5px;
     padding: 0.2% 0.5%;

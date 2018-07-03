@@ -7,9 +7,7 @@
     margin: 10px;
     padding: 5px 10px;
     border-radius: 5px;
-    border-color: #FFF;
-    border-width: 1px;
-    border-style: solid;
+    border: 1px solid #FFF;
 
     font-size: 110%;
 }
@@ -49,15 +47,13 @@
 .button-blue {
     font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, "PingFang SC", sans-serif;
     color: #FFF;
-    background-color: #0080ff;
+    background-color: #6699FF;
     cursor: pointer;
     display: inline-block;
     margin: 10px;
     padding: 5px 10px;
     border-radius: 5px;
-    border-color: #FFF;
-    border-width: 1px;
-    border-style: solid;
+    border: 1px solid #FFF;
 
     font-size: 110%;
 }
@@ -67,23 +63,23 @@
 }
 
 .button-blue:hover {
-    color: #0080ff;
+    color: #6699FF;
     background-color: #FFF;
-    border-color: #0080ff;
+    border-color: #6699FF;
 }
 
 .button-blue:active {
     color: #FFF;
-    background-color: #0080ff;
+    background-color: #6699FF;
 }
 
 .button-page {
     cursor: pointer;
     font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, "PingFang SC", sans-serif;
     color: #FFF;
-    border: 1px solid #0080ff;
+    border: 1px solid #6699FF;
     border-radius: 5px;
-    background-color: #0080ff;
+    background-color: #6699FF;
     display: inline-block;
     margin: 1%;
     padding: 0.8% 1.2%;
@@ -96,24 +92,24 @@
 }
 
 .button-page:hover {
-    color: #0080ff;
+    color: #6699FF;
     background-color: #FFF;
-    border: 1px solid #0080ff;
+    border: 1px solid #6699FF;
 }
 
 .button-page:active {
     color: #FFF;
-    background-color: #0080ff;
-    border: 1px solid #0080ff;
+    background-color: #6699FF;
+    border: 1px solid #6699FF;
 }
 
 .button-red {
     cursor: pointer;
     font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, "PingFang SC", sans-serif;
     color: #FFF;
-    border: 1px solid #cc0000;
+    border: 1px solid #CC6666;
     border-radius: 5px;
-    background-color: #cc0000;
+    background-color: #CC6666;
     display: inline-block;
     margin: 1%;
     padding: 0.8% 1.2%;
@@ -126,24 +122,24 @@
 }
 
 .button-red:hover {
-    color: #cc0000;
+    color: #CC6666;
     background-color: #FFF;
-    border: 1px solid #cc0000;
+    border: 1px solid #CC6666;
 }
 
 .button-red:active {
     color: #FFF;
-    background-color: #cc0000;
-    border: 1px solid #cc0000;
+    background-color: #CC6666;
+    border: 1px solid #CC6666;
 }
 
 .button-green {
     cursor: pointer;
     font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, "PingFang SC", sans-serif;
     color: #FFF;
-    border: 1px solid #00cc00;
+    border: 1px solid #99CC99;
     border-radius: 5px;
-    background-color: #00cc00;
+    background-color: #99CC99;
     display: inline-block;
     margin: 1%;
     padding: 0.8% 1.2%;
@@ -156,15 +152,15 @@
 }
 
 .button-green:hover {
-    color: #00cc00;
+    color: #99CC99;
     background-color: #FFF;
-    border: 1px solid #00cc00;
+    border: 1px solid #99CC99;
 }
 
 .button-green:active {
     color: #FFF;
-    background-color: #00cc00;
-    border: 1px solid #00cc00;
+    background-color: #99CC99;
+    border: 1px solid #99CC99;
 }
 
 #save-already {
@@ -174,4 +170,39 @@
     margin: 10px;
     padding: 6px 11px;
     font-size: 110%;
+}
+
+.select-menu-item {
+    display: inline-block;
+    cursor: pointer;
+    color: #777;
+    font-size: 100%;
+    border: none;
+    padding: 0 0.5%;
+}
+
+.select-menu-item:hover {
+    color: #6633FF;
+}
+
+.select-menu-item:focus {
+    outline: none;
+}
+
+.select-menu-item-active {
+    display: inline-block;
+    color: #FFF;
+    font-size: 100%;
+    background-color: #6699FF;
+    border-radius: 5px;
+    border-color: transparent;
+    padding: 0 0.5%;
+}
+
+.select-menu-item-active:hover {
+    color: #FFF;
+}
+
+.select-menu-item-active:focus {
+    outline: none;
 }
