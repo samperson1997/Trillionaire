@@ -35,7 +35,7 @@ public class UserServiceImpl implements UserService {
     public Map<String, Object> login(String email, String password) {
         User user = userDao.getUserByEmail(email);
         Map<String, Object> map = new HashMap<>();
-        if (password.equals(user.getPassword())) {
+        if (user != null && password.equals(user.getPassword())) {
             map.put("msg", UserState.SUCCESS.toString());
             map.put("id", user.getId());
             map.put("email", user.getEmail());
