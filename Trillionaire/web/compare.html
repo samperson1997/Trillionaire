@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css/button.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/page-main-body.css">
+    <link rel="stylesheet" href="css/header.css">
 
     <link href="css/font-awesome.css" rel="stylesheet" type="text/css">
 
@@ -26,8 +27,9 @@
 <body>
     <header>
         <div id="top-bar" onselectstart="return false;">
-            <a href="index.html">
-                <img src="img/logo.png" width="15%"></a>
+            <a href="index.html" >
+                <img src="img/logo.png" width="15%" style="transform:translateY(15px)">
+            </a>
             <ul align="center">
                 <a href="stock.html?code=600000">
                     <li id="spec-button" class="head-button">个股信息</li>
@@ -41,8 +43,11 @@
                 <a href="market.html">
                     <li id="market-button" class="head-button">市场行情</li>
                 </a>
+                <div id="search-area">
+                    <input id="search-input" placeholder="请输入需要查询的股票代码">
+                </div>
                 <a href="login.html">
-                    <li id="log-button" class="head-button" class="button-blue">用户登录</li>
+                    <li id="log-button" class="log-button">用户登录</li>
                 </a>
             </ul>
         </div>
@@ -192,6 +197,8 @@
 <script src="js/charts/compare-line.js"></script>
 <script src="js/charts/compare-ability-chart.js"></script>
 <script src="js/user/log_state.js"></script>
+<script src="js/header/index.js"></script>
+<script src="js/header/search.js"></script>
 
 <script>
     (function() {

@@ -62,6 +62,8 @@ angular.module("mainapp", [])
 
                             sessionStorage.setItem("log_state", "true");
                             sessionStorage.setItem("userId", data.id);
+                            sessionStorage.setItem("username", this.username);
+                            HEADER_OBJECT.showLogoutButton()
                         } else if (data.msg == "fail") {
                             $scope.inputPassword = "";
                             tip.innerHTML = "用户名不存在或密码错误";

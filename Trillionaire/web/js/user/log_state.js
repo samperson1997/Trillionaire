@@ -1,6 +1,6 @@
-if (sessionStorage.getItem("log_state") == "true") {
-    document.getElementById("log-button").style.display = "none";
-}
+// if (sessionStorage.getItem("log_state") == "true") {
+//     document.getElementById("log-button").style.display = "none";
+// }
 
 var getParam = function (name) {
     var search = document.location.search;
