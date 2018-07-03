@@ -72,3 +72,8 @@
     left: 5%;
     cursor: pointer;
 }
+
+.item-active {
+    background-color: #FFF;
+    color: rgb(25, 44, 72);
+}
