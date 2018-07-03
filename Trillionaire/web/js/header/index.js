@@ -14,6 +14,15 @@ var HEADER_OBJECT = {};
         }
     }
 
+    var pathName = document.location.pathname
+    if (pathName.startsWith('/stock')) {
+        menuItemList.querySelectorAll("li")[0].classList.add('item-active')
+    } else if (pathName.startsWith('/concern')) {
+        menuItemList.querySelectorAll("li")[1].classList.add('item-active')
+    } else if (pathName.startsWith('/strategy')) {
+        menuItemList.querySelectorAll("li")[2].classList.add('item-active')
+    }
+
     function showLoginButton() {
         var aElement = document.createElement("a")
         aElement.setAttribute("href", "login.html")
@@ -23,7 +32,7 @@ var HEADER_OBJECT = {};
         ulElement.appendChild(document.createTextNode("用户登录"))
         aElement.appendChild(ulElement)
 
-        menuItemList.removeChild(menuItemList.querySelectorAll("a")[4]);
+        menuItemList.removeChild(menuItemList.querySelectorAll("a")[3]);
         menuItemList.appendChild(aElement)
     }
 
@@ -52,7 +61,7 @@ var HEADER_OBJECT = {};
             logoutButton.style.visibility = "hidden"
         })
 
-        menuItemList.removeChild(menuItemList.querySelectorAll("a")[4]);
+        menuItemList.removeChild(menuItemList.querySelectorAll("a")[3]);
         menuItemList.appendChild(aElement)
     }
 
@@ -62,6 +71,7 @@ var HEADER_OBJECT = {};
         sessionStorage.removeItem("username")
         showLoginButton()
     }
+
 
     HEADER_OBJECT.showLogoutButton = showLogoutButton
 })()
