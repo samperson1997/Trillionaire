@@ -21,146 +21,126 @@
 </head>
 
 <body>
-    <header>
-        <div id="top-bar" onselectstart="return false;">
-            <a href="index.html" >
-                <img src="img/logo.png" width="15%" style="transform:translateY(15px)">
+<header>
+    <div id="top-bar" onselectstart="return false;">
+        <a href="index.html">
+            <img src="img/logo.png" width="15%" style="transform:translateY(15px)">
+        </a>
+        <ul align="center">
+            <a href="stock.html?code=600000">
+                <li id="spec-button" class="head-button">个股信息</li>
             </a>
-            <ul align="center">
-                <a href="stock.html?code=600000">
-                    <li id="spec-button" class="head-button">个股信息</li>
-                </a>
-                <a href="concern.html">
-                    <li id="star-button" class="head-button">关注股票</li>
-                </a>
-                <a href="strategy-content.html">
-                    <li id="strategy-button" class="head-button">策略回测</li>
-                </a>
-                <div id="search-area">
-                    <input id="search-input" placeholder="请输入需要查询的股票代码">
-                </div>
-                <a href="login.html">
-                    <li id="log-button" class="log-button">用户登录</li>
-                </a>
-            </ul>
-        </div>
+            <a href="concern.html">
+                <li id="star-button" class="head-button">关注股票</li>
+            </a>
+            <a href="strategy-content.html">
+                <li id="strategy-button" class="head-button">策略回测</li>
+            </a>
+            <div id="search-area">
+                <input id="search-input" placeholder="请输入需要查询的股票代码">
+            </div>
+            <a href="login.html">
+                <li id="log-button" class="log-button">用户登录</li>
+            </a>
+        </ul>
+    </div>
 
+    <div>
         <div>
-            <div id="title" onselectstart="return false;" align="left" style="display:inline-block;">
-                <h1 class="page-main-title">策略回测<span class="page-sub-title">&nbsp;&nbsp;|&nbsp;&nbsp;强大而精准的在线研究平台</span></h1>
+            <div align="center">
+                <table id="stra-table" class="stra-table">
+                </table>
+
+                <table class="stra-table">
+                    <caption>
+                        <p>新手入门</p>
+                    </caption>
+                    <tr>
+                        <th>策略</th>
+                        <th>标签</th>
+                        <th>最新修改时间</th>
+                    </tr>
+                    <tr>
+                        <td><a href="strategy-edit.html?sid=-2">买入与持有策略</a></td>
+                        <td><i class="fa fa-tag"></i> 新手入门1</td>
+                        <td>2017-06-04 22:18</td>
+                    </tr>
+                    <tr>
+                        <td><a href="strategy-edit.html?sid=-3">MACD均线入门策略</a></td>
+                        <td><i class="fa fa-tag"></i> 新手入门2</td>
+                        <td>2017-06-04 22:18</td>
+                    </tr>
+                    <tr>
+                        <td><a href="strategy-edit.html?sid=-4">二八轮动简单版策略</a></td>
+                        <td><i class="fa fa-tag"></i> 新手入门3</td>
+                        <td>2017-06-04 22:18</td>
+                    </tr>
+                    <tr>
+                        <td><a href="strategy-edit.html?sid=-5">黄金交叉点策略</a></td>
+                        <td><i class="fa fa-tag"></i> 新手入门4</td>
+                        <td>2017-06-04 22:18</td>
+                    </tr>
+                </table>
             </div>
         </div>
 
-        <div style="margin-left:5%;">
+    </div>
+</header>
+
+<footer>
+    <div id="footer" onselectstart="return false;">
+        <div id="footer-div">
             <div>
-                <div class="stock-name" style="display: inline;">我的策略</div>
-                <a href="strategy-edit.html?sid=-1">
-                    <div class="button-blue"><i class="fa fa-plus"></i> 新增策略</div>
-                </a>
-                <div align="center">
-                    <table id="stra-table" class="stra-table"></table>
+                <div class="big-li">
+                    <h4>关于</h4>
+                    <p>
+                        <a href="mailto:feedback@trillionaire.me?subject=[FeedBack]">
+                            <i class="fa fa-envelope"></i> 联系我们
+                        </a>
+                    </p>
+
+                    <p>
+                        <a href="log.html">
+                            <i class="fa fa-file-text-o"></i> 系统更新日志
+                        </a>
+                    </p>
                 </div>
 
-                <div id="new-stra">
-                    <div class="stock-name" style="display: inline;">新手入门</div>
+                <div class="big-li">
+                    <h4>帮助</h4>
+                    <p>
+                        <a href="api.html">
+                            <i class="fa fa-file-o"></i> API文档
+                        </a>
+                    </p>
 
-                    <div id="new-stra-item">
-                        <ul data-scroll-reveal="enter from bottom over 0.5s">
-                            <a href="strategy-edit.html?sid=-2">
-                                <li>
-                                    <h1><i class="fa fa-lightbulb-o"></i></h1>
-                                    <h4>新手入门1</h4>
-                                    <p>买入与持有策略</p>
-                                </li>
-                            </a>
+                    <p>
+                        <a href="help.html">
+                            <i class="fa fa-file"></i> 帮助文档
+                        </a>
+                    </p>
 
-                            <a href="strategy-edit.html?sid=-3">
-                                <li>
-                                    <h1><i class="fa fa-lightbulb-o"></i></h1>
-                                    <h4>新手入门2</h4>
-                                    <p>MACD均线入门策略</p>
-                                </li>
-                            </a>
+                </div>
 
-                            <a href="strategy-edit.html?sid=-4">
-                                <li>
-                                    <h1><i class="fa fa-lightbulb-o"></i></h1>
-                                    <h4>新手入门3</h4>
-                                    <p>黄金交叉点策略</p>
-                                </li>
-                            </a>
+                <div class="big-li">
+                    <h4>反馈</h4>
+                    <p>
+                        <a href="mailto:feedback@trillionaire.me?subject=[FeedBack]">
+                            <i class="fa fa-comments-o"></i> 反馈
+                        </a>
+                    </p>
 
-                            <a href="strategy-edit.html?sid=-5">
-                                <li>
-                                    <h1><i class="fa fa-lightbulb-o"></i></h1>
-                                    <h4>新手入门4</h4>
-                                    <p>二八轮动简单版策略</p>
-                                </li>
-                            </a>
-                        </ul>
-
-
-                    </div>
                 </div>
             </div>
-
         </div>
-    </header>
 
-    <footer>
-        <div id="footer" onselectstart="return false;">
-            <div id="footer-div">
-                <div>
-                    <div class="big-li">
-                        <h4>关于</h4>
-                        <p>
-                            <a href="mailto:feedback@trillionaire.me?subject=[FeedBack]">
-                                <i class="fa fa-envelope"></i> 联系我们
-                            </a>
-                        </p>
-
-                        <p>
-                            <a href="log.html">
-                                <p><i class="fa fa-file-text-o"></i> 系统更新日志</p>
-                            </a>
-                        </p>
-                    </div>
-
-                    <div class="big-li">
-                        <h4>帮助</h4>
-                        <p>
-                            <a href="api.html">
-                                <i class="fa fa-file-o"></i> API文档
-                            </a>
-                        </p>
-
-                        <p>
-                            <a href="help.html">
-                                <i class="fa fa-file"></i> 帮助文档
-                            </a>
-                        </p>
-
-                    </div>
-
-                    <div class="big-li">
-                        <h4>反馈</h4>
-                        <p>
-                            <a href="mailto:feedback@trillionaire.me?subject=[FeedBack]">
-                                <i class="fa fa-comments-o"></i> 反馈
-                            </a>
-                        </p>
-
-                    </div>
-                </div>
-            </div>
-
-            <div id="cr">Copyright &copy; 2017 All Rights Reserved</div>
-        </div>
-    </footer>
+        <div id="cr">Copyright &copy; 2017 All Rights Reserved</div>
+    </div>
+</footer>
 </body>
 
 <script>
-    (function() {
+    (function () {
         window.scrollReveal = new scrollReveal({
             reset: false,
             move: '50px'

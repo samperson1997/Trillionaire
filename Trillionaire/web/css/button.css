@@ -186,13 +186,29 @@
     color: #6633FF;
 }
 
+.stra-button {
+    display: inline-block;
+    cursor: pointer;
+    color: #6699FF;
+    font-size: 80%;
+    border: none;
+    padding: 0.5% 2%;
+    margin: 1% 2%;
+    background-color: #fff;
+    border-radius: 20px;
+}
+
+.stra-button:hover {
+    color: #6633FF;
+}
+
 .select-menu-item:focus {
     outline: none;
 }
 
 .select-menu-item-active {
     display: inline-block;
-    color: #FFF;
+    color: #fff;
     font-size: 100%;
     background-color: #6699FF;
     border-radius: 5px;

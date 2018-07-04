@@ -387,10 +387,10 @@
 
 .whole-rank-table {
     margin: 0.5%;
-    width: 40%;
     display: inline-table;
     border-collapse: collapse;
     text-align: center;
+    width: 65%;
 }
 
 .whole-rank-table th {
@@ -400,8 +400,8 @@
 }
 
 .whole-table {
-    margin: 0.5%;
-    width: 95%;
+    margin: 5%;
+    width: 65%;
     display: inline-table;
     border-collapse: collapse;
     text-align: center;
@@ -429,13 +429,12 @@
 }
 
 .page-content {
-
     font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, "PingFang SC", sans-serif;
     position: fixed;
     top: 26%;
-    background-color: rgb(25, 44, 72);
+    background-color: #6699FF;
     padding: 3% 3%;
-    border: 1px solid rgb(25, 44, 72);
+    border: 1px solid #6699FF;
     border-top-right-radius: 8%;
     border-bottom-right-radius: 8%;
     color: #FFF;
@@ -497,26 +496,6 @@
     transform: translate3d(0, -10px, 0);
     background-color: #6699FF;
     color: #FFF;
-}
-
-#show-more-button {
-    clear: both;
-    cursor: pointer;
-    border: 1px solid #DDD;
-    border-radius: 10px;
-    background-color: #DDD;
-
-    padding: 1%;
-    margin: 1% 40%;
-}
-
-#show-more-button:hover {
-    color: #FFF;
-    background-color: #555;
-}
-
-#show-more-button:active {
-    background-color: #DDD;
 }
 
 .page-hint {

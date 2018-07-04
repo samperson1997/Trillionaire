@@ -1,23 +1,38 @@
-.stra-table {
-
+.stra-table, #follow-table {
     font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, "PingFang SC", sans-serif;
     margin: 3%;
-    width: 90%;
+    width: 65%;
     display: inline-table;
-    border-collapse: collapse;
+    border-collapse: separate;
     text-align: center;
+    border: 2px solid #6699FF;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
 
-.stra-table th {
+.stra-table caption, #follow-table caption {
+    background-color: #6699FF;
+    text-align: center;
+    padding: 3%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.stra-table caption p, #follow-table caption p {
+    font-size: 120%;
+    color: #fff;
+    letter-spacing: 5px;
+}
+
+.stra-table th, #follow-table th {
     color: #AAA;
-    font-size: 80%;
     font-weight: 400;
 }
 
-.stra-table td {
-    border-bottom: 1px solid #AAA;
-    border-top: 1px solid #AAA;
+.stra-table td, #follow-table td {
+    border-top: 1px dashed #AAA;
     padding: 0.5% 0;
+    font-size: 90%;
 }
 
 .stra-table tr td:first-child,
@@ -28,11 +43,20 @@
 
 .stra-table tr td:first-child:hover,
 .stra-table tr td:first-child a:hover {
-    color: #99CCFF;
+    color: #6699FF;
+}
+
+.stra-delete-button, #follow-table a {
+    cursor: pointer;
+    display: inline-block;
+    color: #6699FF;
+}
+
+.stra-delete-button:hover, #follow-table a:hover {
+    color: #6633FF;
 }
 
 #new-stra-item {
-
     font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, "PingFang SC", sans-serif;
     margin: 0 auto;
     text-align: center;
@@ -63,8 +87,6 @@
 
 #new-stra-item li:hover {
     transition: transform 0.35s;
-    /*-webkit-transform: translate3d(0, -30px, 0);*/
-    /*transform: translate3d(0, -30px, 0);*/
     background-color: #6699FF;
     color: #FFF;
 }
@@ -157,7 +179,6 @@ select {
     font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, "PingFang SC", sans-serif;
 
     /*很关键：将默认的select选择框样式清除*/
-    appearance: none;
     -moz-appearance: none;
     -webkit-appearance: none;
 

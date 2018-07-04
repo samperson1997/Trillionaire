@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="css/page-main-body.css">
     <link rel="stylesheet" href="css/pagination.css">
     <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/strategy.css">
 
     <link rel="stylesheet" href="js/jquery-ui/jquery-ui.min.css">
     <link rel="stylesheet" href="js/jquery-ui/jquery-ui.theme.css">
@@ -30,125 +31,118 @@
 </head>
 
 <body>
-    <header>
-        <div id="top-bar" onselectstart="return false;">
-            <a href="index.html" >
-                <img src="img/logo.png" width="15%" style="transform:translateY(15px)">
+<header>
+    <div id="top-bar" onselectstart="return false;">
+        <a href="index.html">
+            <img src="img/logo.png" width="15%" style="transform:translateY(15px)">
+        </a>
+        <ul align="center">
+            <a href="stock.html?code=600000">
+                <li id="spec-button" class="head-button">个股信息</li>
             </a>
-            <ul align="center">
-                <a href="stock.html?code=600000">
-                    <li id="spec-button" class="head-button">个股信息</li>
-                </a>
-                <a href="concern.html">
-                    <li id="star-button" class="head-button">关注股票</li>
-                </a>
-                <a href="strategy-content.html">
-                    <li id="strategy-button" class="head-button">策略回测</li>
-                </a>
-                <div id="search-area">
-                    <input id="search-input" placeholder="请输入需要查询的股票代码">
+            <a href="concern.html">
+                <li id="star-button" class="head-button">关注股票</li>
+            </a>
+            <a href="strategy-content.html">
+                <li id="strategy-button" class="head-button">策略回测</li>
+            </a>
+            <div id="search-area">
+                <input id="search-input" placeholder="请输入需要查询的股票代码">
+            </div>
+            <a href="login.html">
+                <li id="log-button" class="log-button">用户登录</li>
+            </a>
+        </ul>
+    </div>
+
+    <div>
+        <div align="center">
+            <table id="follow-table">
+                <caption>
+                    <p>关注列表</p>
+                </caption>
+                <tr>
+                    <th>股票代码</th>
+                    <th>股票名称</th>
+                    <th>涨跌幅</th>
+                    <th>开盘价</th>
+                    <th>昨日收盘价</th>
+                    <th>最高价</th>
+                    <th>最低价</th>
+                    <th>成交量</th>
+                    <th>成交额</th>
+                    <th></th>
+                </tr>
+            </table>
+        </div>
+
+        <div id="pagiDiv" align="center" style="width: 100%;">
+            <span id="spanFirst"><p>第一页</p></span>
+            <span id="spanPre">上一页</span> 第<span id="spanPageNum"></span>页，共<span id="spanTotalPage"></span>页
+            <span id="spanNext">下一页</span>
+            <span id="spanLast">最后一页</span>
+        </div>
+
+        <div style="margin-bottom: 10%;">
+        </div>
+    </div>
+
+</header>
+
+<footer>
+    <div id="footer" onselectstart="return false;">
+        <div id="footer-div">
+            <div>
+                <div class="big-li">
+                    <h4>关于</h4>
+                    <p>
+                        <a href="mailto:feedback@trillionaire.me?subject=[FeedBack]">
+                            <i class="fa fa-envelope"></i> 联系我们
+                        </a>
+                    </p>
+
+                    <p>
+                        <a href="log.html">
+                    <p><i class="fa fa-file-text-o"></i> 系统更新日志</p>
+                    </a>
+                    </p>
                 </div>
-                <a href="login.html">
-                    <li id="log-button" class="log-button">用户登录</li>
-                </a>
-            </ul>
-        </div>
 
-        <div>
-            <div id="title" onselectstart="return false;" align="left" style="display:inline-block;">
-                <h1 class="page-main-title"><a href="market.html">我的关注</a><span class="page-sub-title">&nbsp;&nbsp;|&nbsp;&nbsp;想看的股票，一览无余</span></h1>
-            </div>
-        </div>
+                <div class="big-li">
+                    <h4>帮助</h4>
+                    <p>
+                        <a href="api.html">
+                            <i class="fa fa-file-o"></i> API文档
+                        </a>
+                    </p>
 
-        <div>
-            <div class="whole-rank-div" align="center">
-                <table class="whole-table" id="follow-table">
-                    <tr>
-                        <th>股票代码</th>
-                        <th>股票名称</th>
-                        <th>涨跌幅</th>
-                        <th>开盘价</th>
-                        <th>昨日收盘价</th>
-                        <th>最高价</th>
-                        <th>最低价</th>
-                        <th>成交量</th>
-                        <th>成交额</th>
-                        <th>换手率</th>
-                        <th>市盈率</th>
-                        <th>市净率</th>
-                        <th>总市值(亿)</th>
-                        <th>流通市值(亿)</th>
-                    </tr>
-                </table>
-            </div>
+                    <p>
+                        <a href="help.html">
+                            <i class="fa fa-file"></i> 帮助文档
+                        </a>
+                    </p>
 
-            <div id="pagiDiv" align="center" style="width: 100%;">
-                <span id="spanFirst"><p>第一页</p></span>
-                <span id="spanPre">上一页</span> 第<span id="spanPageNum"></span>页，共<span id="spanTotalPage"></span>页
-                <span id="spanNext">下一页</span>
-                <span id="spanLast">最后一页</span>
-            </div>
+                </div>
 
-            <div style="margin-bottom: 10%;">
-            </div>
-        </div>
+                <div class="big-li">
+                    <h4>反馈</h4>
+                    <p>
+                        <a href="mailto:feedback@trillionaire.me?subject=[FeedBack]">
+                            <i class="fa fa-comments-o"></i> 反馈
+                        </a>
+                    </p>
 
-    </header>
-
-    <footer>
-        <div id="footer" onselectstart="return false;">
-            <div id="footer-div">
-                <div>
-                    <div class="big-li">
-                        <h4>关于</h4>
-                        <p>
-                            <a href="mailto:feedback@trillionaire.me?subject=[FeedBack]">
-                                <i class="fa fa-envelope"></i> 联系我们
-                            </a>
-                        </p>
-
-                        <p>
-                            <a href="log.html">
-                                <p><i class="fa fa-file-text-o"></i> 系统更新日志</p>
-                            </a>
-                        </p>
-                    </div>
-
-                    <div class="big-li">
-                        <h4>帮助</h4>
-                        <p>
-                            <a href="api.html">
-                                <i class="fa fa-file-o"></i> API文档
-                            </a>
-                        </p>
-
-                        <p>
-                            <a href="help.html">
-                                <i class="fa fa-file"></i> 帮助文档
-                            </a>
-                        </p>
-
-                    </div>
-
-                    <div class="big-li">
-                        <h4>反馈</h4>
-                        <p>
-                            <a href="mailto:feedback@trillionaire.me?subject=[FeedBack]">
-                                <i class="fa fa-comments-o"></i> 反馈
-                            </a>
-                        </p>
-
-                    </div>
                 </div>
             </div>
-
-            <div id="cr">Copyright &copy; 2017 All Rights Reserved</div>
         </div>
-    </footer>
+
+        <div id="cr">Copyright &copy; 2017 All Rights Reserved</div>
+    </div>
+</footer>
 </body>
 
 <script>
-    (function() {
+    (function () {
         window.scrollReveal = new scrollReveal({
             reset: false,
             move: '50px'
