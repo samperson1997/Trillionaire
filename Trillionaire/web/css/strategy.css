@@ -116,13 +116,24 @@
 }
 
 .input-box {
-    font-size: 90%;
-    border: 1px solid #000;
+    font-size: 120%;
+    border: 1px solid #AAA;
     border-radius: 5px;
-    padding: 0.5% 1%;
+    padding: 2% 1%;
 
     color: #6699FF;
-    width: 9%;
+    width: 80%;
+    outline: none;
+}
+
+.stock-input-box {
+    font-size: 90%;
+    border: none;
+    border-bottom: 1px solid #DDD;
+    padding-top: 1%;
+
+    color: #6699FF;
+    width: 10%;
     outline: none;
 }
 
@@ -137,8 +148,37 @@
     outline: none;
 }
 
+.editor-wrapper {
+    width: 30%;
+    float: left;
+    margin-left: 15.5%;
+}
+
+.stra-button-group {
+    border-top: 1px solid #AAA;
+    border-left: 1px solid #AAA;
+    border-right: 1px solid #AAA;
+    text-align: right;
+    font-size: 90%;
+}
+
+.res-button-group {
+    border-top: 1px solid #AAA;
+    border-left: 1px solid #AAA;
+    border-right: 1px solid #AAA;
+    font-size: 90%;
+    padding: 0.5% 2%;
+}
+
 #code {
-    border: 1px solid #DDD;
+    border: 1px solid #AAA;
+}
+
+.result-wrapper {
+    width: 38.5%;
+    float: right;
+    display: inline-block;
+    margin-right: 15.5%;
 }
 
 #result-figure {

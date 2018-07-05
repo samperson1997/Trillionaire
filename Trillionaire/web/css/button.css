@@ -76,15 +76,15 @@
 .button-page {
     cursor: pointer;
     font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, "PingFang SC", sans-serif;
-    color: #FFF;
+    color: #6699FF;
     border: 1px solid #6699FF;
-    border-radius: 5px;
-    background-color: #6699FF;
+    border-radius: 10px;
+    background-color: #FFF;
     display: inline-block;
     margin: 1%;
-    padding: 0.8% 1.2%;
+    padding: 0.1% 1.5%;
 
-    font-size: 90%;
+    font-size: 80%;
 }
 
 .button-page:focus {
@@ -92,29 +92,29 @@
 }
 
 .button-page:hover {
-    color: #6699FF;
-    background-color: #FFF;
+    color: #FFF;
+    background-color: #6699FF;
     border: 1px solid #6699FF;
 }
 
 .button-page:active {
     color: #FFF;
-    background-color: #6699FF;
+    background-color: #FFF;
     border: 1px solid #6699FF;
 }
 
 .button-red {
     cursor: pointer;
     font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, "PingFang SC", sans-serif;
-    color: #FFF;
+    color: #CC6666;
     border: 1px solid #CC6666;
-    border-radius: 5px;
-    background-color: #CC6666;
+    border-radius: 10px;
+    background-color: #FFF;
     display: inline-block;
     margin: 1%;
-    padding: 0.8% 1.2%;
+    padding: 0.1% 1.5%;
 
-    font-size: 90%;
+    font-size: 80%;
 }
 
 .button-red:focus {
@@ -122,8 +122,8 @@
 }
 
 .button-red:hover {
-    color: #CC6666;
-    background-color: #FFF;
+    color: #FFF;
+    background-color: #CC6666;
     border: 1px solid #CC6666;
 }
 
@@ -136,15 +136,16 @@
 .button-green {
     cursor: pointer;
     font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, "PingFang SC", sans-serif;
-    color: #FFF;
+    color: #99CC99;
     border: 1px solid #99CC99;
-    border-radius: 5px;
-    background-color: #99CC99;
+    border-radius: 10px;
+    background-color: #fff;
+
     display: inline-block;
     margin: 1%;
-    padding: 0.8% 1.2%;
+    padding: 0.1% 1.5%;
 
-    font-size: 90%;
+    font-size: 80%;
 }
 
 .button-green:focus {
@@ -152,8 +153,8 @@
 }
 
 .button-green:hover {
-    color: #99CC99;
-    background-color: #FFF;
+    color: #FFF;
+    background-color: #99CC99;
     border: 1px solid #99CC99;
 }
 
@@ -166,10 +167,14 @@
 #save-already {
     font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, "PingFang SC", sans-serif;
     color: lightseagreen;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    background-color: transparent;
     display: inline-block;
-    margin: 10px;
-    padding: 6px 11px;
-    font-size: 110%;
+    margin: 1%;
+    padding: 0.1% 1.5%;
+
+    font-size: 80%;
 }
 
 .select-menu-item {
@@ -237,7 +242,6 @@
     visibility: hidden;
     width: 120px;
     color: #fff;
-    text-align: center;
     padding: 5px 0;
     border-radius: 6px;
 

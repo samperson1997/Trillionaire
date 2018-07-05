@@ -11,7 +11,7 @@ function init() {
     editor.session.setMode("ace/mode/" + language);
 
     //字体大小
-    editor.setFontSize("90%");
+    editor.setFontSize("50%");
 
     //设置只读（true时只读，用于展示代码）
     editor.setReadOnly(false);
@@ -25,7 +25,6 @@ function init() {
         enableBasicAutocompletion: true,
         enableSnippets: true,
         enableLiveAutocompletion: true
-
     });
 }
 
@@ -41,6 +40,5 @@ function switchTheme() {
     } else if ($("#switch-theme-button").text().indexOf("浅色模式") >= 0) {
         $("#switch-theme-button").html("<i class=\"fa fa-eye\"></i> 护眼模式");
         editor.setTheme("ace/theme/xcode");
-
     }
 }

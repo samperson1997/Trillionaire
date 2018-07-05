@@ -24,7 +24,7 @@ function loadCandle() {
             }
 
             dataK = splitData(data0);
-            $("#candle-spin").html('');
+            $("#candle-spin").fadeOut();
             var option = {
                 backgroundColor: '#FFF',
                 animation: true,

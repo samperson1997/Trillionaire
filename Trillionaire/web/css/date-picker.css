@@ -1,12 +1,11 @@
 .date-picker {
     font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, "PingFang SC", sans-serif;
     font-size: 85%;
-    padding: 0.6% 1%;
-    border: 1px #000;
-    border-radius: 5px;
-    margin: 0 1%;
+    padding-top: 0.4%;
+    border: none;
+    border-bottom: 1px solid #DDD;
 
     color: #6699FF;
-    width: 7%;
+    width: 16%;
     outline: none;
 }

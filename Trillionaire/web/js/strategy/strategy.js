@@ -2,7 +2,6 @@ var retChart = echarts.init(document.getElementById('return-chart'));
 var overretChart = echarts.init(document.getElementById('overreturn-chart'));
 var winChart = echarts.init(document.getElementById('win-chart'));
 var sid = getParam('sid');
-var headerfade = 0;
 
 angular.module("mainapp", [])
     .controller("BackTestController", function ($scope) {
@@ -27,7 +26,7 @@ angular.module("mainapp", [])
                 if (namefade == 1) {
                     saveStra_ajax(sid, $("#stra-name-input").val(), editor.getValue(), sessionStorage.getItem("userId"));
                 } else {
-                    saveStra_ajax(sid, $("#stra-name").text().substr(7), editor.getValue(), sessionStorage.getItem("userId"));
+                    saveStra_ajax(sid, $("#stra-name").text(), editor.getValue(), sessionStorage.getItem("userId"));
                 }
             }
         };
@@ -51,23 +50,26 @@ angular.module("mainapp", [])
                 contentType: "application/x-www-form-urlencoded",
                 dataType: "json",
                 success: function (result) {
+                    console.log('save.');
                     $("#save-button").fadeOut(function () {
                         $("#save-already").fadeIn().delay(1000).fadeOut(function () {
                             $("#save-button").fadeIn();
                             $("#stra-name").fadeIn(function () {
                                 namefade = 0;
                             });
-                            $("#stra-name").text("策略名称 | " + strategyName);
+                            $("#stra-name").text(strategyName);
                         });
                     });
-                    sid = result.sid;
-                    window.location.href = "strategy-edit.html?sid=" + sid;
+                    if (sid < 0) {
+                        sid = result.sid;
+                        window.location.href = "strategy-edit.html?sid=" + sid;
+                    }
                 },
                 error: function (request, status, err) {
                     load.abort();
                 }
             });
-        };
+        }
 
         //运行回测1:点击“运行回测”，保存并加载第一个图片
         $scope.loadReturnLine = function () {
@@ -120,7 +122,7 @@ angular.module("mainapp", [])
                             $("#stra-name").fadeIn(function () {
                                 namefade = 0;
                             });
-                            $("#stra-name").text("策略名称 | " + strategyName);
+                            $("#stra-name").text(strategyName);
                         });
                     });
                     sid = result.sid;
@@ -202,7 +204,7 @@ angular.module("mainapp", [])
                     'matchingType': this.matchingType,
                     'benchmark': this.benchmark,
                     'commissionMultiplier': this.commissionMultiplier,
-                    'slippage': this.slippage,
+                    'slippage': this.slippage
                 },
                 contentType: "application/x-www-form-urlencoded",
                 dataType: "json",
@@ -311,7 +313,7 @@ angular.module("mainapp", [])
                             $("#stra-name").fadeIn(function () {
                                 namefade = 0;
                             });
-                            $("#stra-name").text("策略名称 | " + strategyName);
+                            $("#stra-name").text(strategyName);
                         });
                     });
                     sid = result.sid;
@@ -461,6 +463,6 @@ angular.module("mainapp", [])
                     load.abort();
                 }
             });
-        };
+        }
 
-    })
+    });

@@ -1,7 +1,7 @@
 function loadStraList() {
     $("#stra-table").html("<caption><p>策略列表</p>" +
         "<a href=\"strategy-edit.html?sid=-1\">\n" +
-        "                <div class=\"stra-button\"><i class='fa fa-lightbulb-o'></i> 创建新策略</div>\n" +
+        "                <div class=\"stra-button\"><i class='fas fa-lightbulb'></i> 创建新策略</div>\n" +
         "            </a>" +
         "<a href=\"api.html\">\n" +
         "                <div class=\"stra-button\"><i class=\"fa fa-book\"></i> API文档</div>\n" +
