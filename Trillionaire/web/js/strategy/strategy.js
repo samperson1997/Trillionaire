@@ -1,6 +1,6 @@
 var retChart = echarts.init(document.getElementById('return-chart'));
-var overretChart = echarts.init(document.getElementById('overreturn-chart'));
-var winChart = echarts.init(document.getElementById('win-chart'));
+// var overretChart = echarts.init(document.getElementById('overreturn-chart'));
+// var winChart = echarts.init(document.getElementById('win-chart'));
 var sid = getParam('sid');
 
 angular.module("mainapp", [])
@@ -20,8 +20,8 @@ angular.module("mainapp", [])
             if (sid < 0 && $("#stra-name-input").val() == "") {
                 $("#stra-name-input").fadeIn();
             } else {
-                $("#stra-name-input").fadeOut();
-                $("#save-button").fadeOut();
+                $("#stra-name-input").hide();
+                $("#save-button").hide();
 
                 if (namefade == 1) {
                     saveStra_ajax(sid, $("#stra-name-input").val(), editor.getValue(), sessionStorage.getItem("userId"));
@@ -83,7 +83,7 @@ angular.module("mainapp", [])
                 if (namefade == 1) {
                     saveAndLoad_ajax(sid, $("#stra-name-input").val(), editor.getValue(), sessionStorage.getItem("userId"));
                 } else {
-                    saveAndLoad_ajax(sid, $("#stra-name").text().substr(7), editor.getValue(), sessionStorage.getItem("userId"));
+                    saveAndLoad_ajax(sid, $("#stra-name").text(), editor.getValue(), sessionStorage.getItem("userId"));
                 }
             }
 
@@ -116,6 +116,10 @@ angular.module("mainapp", [])
                 contentType: "application/x-www-form-urlencoded",
                 dataType: "json",
                 success: function (result) {
+                    $("#more-res-buttons").fadeOut(function () {
+                        $("#res-figure-area").show();
+                    });
+
                     $("#save-button").fadeOut(function () {
                         $("#save-already").fadeIn().delay(1000).fadeOut(function () {
                             $("#save-button").fadeIn();
@@ -177,7 +181,7 @@ angular.module("mainapp", [])
                     load.abort();
                 }
             });
-        };
+        }
 
         //运行回测3:加载第一个图片ajax方法，会调用echart的js方法
         function loadReturnLine_ajax(sid, cash, sDate, eDate, frequency, matchingType, benchmark, commissionMultiplier, slippage) {
@@ -231,11 +235,10 @@ angular.module("mainapp", [])
                         $("#trackingError").text(result.summary.trackingError);
                         $("#downsideRisk").text(result.summary.downsideRisk);
 
-                        $("#result-area").fadeIn();
-                        $("#return-area").fadeIn();
-                        $("#return-chart").fadeIn();
+                        // $("#result-area").fadeIn();
+                        // $("#return-area").show();
+                        $("#return-chart").show();
                     } else {
-
                         if (result.msg == "error6") {
                             $("#log-content").html('<p>代码有语法错误 <i class="fa fa-frown-o"></i><br>' + result.errorLog + '</p>');
                         } else {
@@ -273,7 +276,7 @@ angular.module("mainapp", [])
                 if (namefade == 1) {
                     saveAndLoadOver_ajax(sid, $("#stra-name-input").val(), editor.getValue(), sessionStorage.getItem("userId"));
                 } else {
-                    saveAndLoadOver_ajax(sid, $("#stra-name").text().substr(7), editor.getValue(), sessionStorage.getItem("userId"));
+                    saveAndLoadOver_ajax(sid, $("#stra-name").text(), editor.getValue(), sessionStorage.getItem("userId"));
                 }
             }
 
@@ -427,9 +430,9 @@ angular.module("mainapp", [])
 
                     if (result.msg == "success") {
                         overop = getOverOP(result.paramList, result.winRateList);
-                        overretChart.setOption(overop);
+                        // overretChart.setOption(overop);
                         winop = getWinOP(result.paramList, result.overReturnsList);
-                        winChart.setOption(winop);
+                        // winChart.setOption(winop);
 
                         $("#log-content").html('<p>暂无错误 <i class="fa fa-smile-o"></i></p>');
 
@@ -466,3 +469,18 @@ angular.module("mainapp", [])
         }
 
     });
+
+function showMoreButtons() {
+    if ($("#show-more-buttons").html().indexOf("更多") >= 0) {
+        $("#res-figure-area").fadeOut(function () {
+            $("#more-res-buttons").fadeIn();
+        });
+        $("#show-more-buttons").html("<i class=\"fa fa-caret-up\"></i> 隐藏");
+    } else {
+        $("#more-res-buttons").fadeOut(function () {
+            $("#res-figure-area").show();
+        });
+        $("#show-more-buttons").html("<i class=\"fa fa-caret-down\"></i> 更多");
+    }
+
+}

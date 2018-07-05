@@ -525,6 +525,6 @@
     display: none;
 }
 
-#candle-spin {
+#candle-spin, #return-spin {
     padding: 20%;
 }

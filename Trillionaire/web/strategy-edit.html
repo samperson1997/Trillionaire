@@ -74,224 +74,150 @@
         </div>
     </div>
 
-    <div style="margin: 0 3%;" ng-app="mainapp" ng-controller="BackTestController">
-        <form method="post">
-            <div class="editor-wrapper">
-                <div class="stra-button-group">
-                    <div id="save-button" class="button-page" ng-click="saveStra()"><i class="fas fa-save"></i> 保存代码
+    <div ng-app="mainapp">
+        <div ng-controller="BackTestController">
+            <form method="post">
+                <div class="editor-wrapper">
+                    <div class="stra-button-group">
+                        <div id="save-button" class="button-page" ng-click="saveStra()"><i class="fas fa-save"></i> 保存代码
+                        </div>
+                        <div id="save-already"><i class="fas fa-check-circle"></i> 保存成功</div>
+                        <div class="button-page" onclick="switchTheme()" id="switch-theme-button"><i
+                                class="fas fa-eye"></i> 护眼模式
+                        </div>
+                        <div id="remove-all" class="button-red" onclick="remove()"><i class="fas fa-eraser"></i> 清空面板
+                        </div>
                     </div>
-                    <div id="save-already"><i class="fas fa-check-circle"></i> 保存成功</div>
-                    <div class="button-green" onclick="switchTheme()" id="switch-theme-button"><i
-                            class="fas fa-eye"></i> 护眼模式
-                    </div>
-                    <div id="remove-all" class="button-red" onclick="remove()"><i class="fas fa-eraser"></i> 清空面板
-                    </div>
-                </div>
-                <div>
+                    <div>
                     <pre id="code" class="ace_editor" style="min-height: 500px;"><textarea class="ace_text-input"
                                                                                            id="code-area"
                                                                                            spellcheck="false"
                                                                                            ng-model="content"></textarea></pre>
-                </div>
-            </div>
-            <div class="result-wrapper">
-                <div class="res-button-group">
-                    股票¥ <input type="text" class="stock-input-box" ng-model="cash"/>
-                    日期
-                    <input class="date-picker" type="text" id="start-filter"
-                           placeholder="开始日期" ng-model="sDate"/> 至
-                    <input class="date-picker" type="text" id="end-filter"
-                           placeholder="截止日期" ng-model="eDate"/>
-                    <div class="button-green" ng-click="loadReturnLine()"><i class="fa fa-forward"></i> 编译运行</div>
-                    <div class="button-page" ng-click="loadReturnLine()"><i class="fa fa-caret-down"></i> 更多</div>
-                    <a href="help.html#stra-setting" target="_blank">
-                        <i class="fas fa-info-circle tooltip">
-                            <span class="tooltiptext">回测设置秘笈</span>
-                        </i>
-                    </a>
-                </div>
-                <div class="res-button-group">
-                    <div class="">
-                        撮合方式 <select ng-model="matchingType">
-                        <option value="current_bar">当前bar收盘</option>
-                        <option value="next_bar">下一bar开盘</option>
-                    </select>
-                        基准合约 <input class="stock-input-box" ng-model="benchmark"/> 佣金倍率
-                        <input class="num-box" ng-model="commissionMultiplier"/> 滑点
-                        <input class="num-box" ng-model="slippage"/>
                     </div>
-                    <div>
-                        <div class="button-green" ng-click="loadOverReturnLine()">
-                            <i class="fa fa-leaf"></i> 参数调优
+                </div>
+                <div class="result-wrapper">
+                    <div class="res-button-group">
+                        股票¥ <input type="text" class="stock-input-box" ng-model="cash"/>
+                        日期
+                        <input class="date-picker" type="text" id="start-filter"
+                               placeholder="开始日期" ng-model="sDate"/> ~
+                        <input class="date-picker" type="text" id="end-filter"
+                               placeholder="截止日期" ng-model="eDate"/>
+                        <div class="button-page" ng-click="loadReturnLine()"><i class="fa fa-forward"></i> 编译运行</div>
+                        <div class="button-page" id="show-more-buttons" onclick="showMoreButtons()"><i
+                                class="fa fa-caret-down"></i> 更多
                         </div>
-                        <i class="fas fa-info-circle tooltip">
-                            <span class="tooltiptext">注意: 选择"参数调优"功能必须设置参数上限和参数下限，且可能导致回测速度变慢。</span>
-                        </i>
-                        参数下限 <input class="num-box" ng-model="lowp"/> 参数上限 <input
-                            class="num-box" ng-model="highp"/>
+                        <a href="help.html#stra-setting" target="_blank">
+                            <i class="fas fa-info-circle tooltip">
+                                <span class="tooltiptext">回测设置秘笈</span>
+                            </i>
+                        </a>
+                    </div>
+                    <div class="res-button-group" id="more-res-button-group">
+                        <div id="more-res-buttons">
+                            <div>
+                                撮合方式 <select ng-model="matchingType">
+                                <option value="current_bar">当前bar收盘</option>
+                                <option value="next_bar">下一bar开盘</option>
+                            </select>
+                                &nbsp;&nbsp;&nbsp;&nbsp;佣金倍率<input class="num-box" ng-model="commissionMultiplier"/>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;滑点<input class="num-box" ng-model="slippage"/>
+                            </div>
+                            <div>
+                                <!--<div class="button-green" ng-click="loadOverReturnLine()">-->
+                                <!--<i class="fa fa-leaf"></i> 参数调优-->
+                                <!--</div>-->
+                                基准合约 <input class="benchmark-input-box" ng-model="benchmark"/>
+                                &nbsp;&nbsp;&nbsp;&nbsp;参数调优&nbsp;<input type="checkbox"/>：
+                                <input class="num-box" ng-model="lowp"/> ~ <input
+                                    class="num-box" ng-model="highp"/>
+                                <i class="fas fa-exclamation-circle tooltip">
+                                    <span class="tooltiptext">注意: 选择"参数调优"功能必须设置参数上限和参数下限，且可能导致回测速度变慢。</span>
+                                </i>
+                            </div>
+                        </div>
+                        <table id="res-figure-area" class="stra-res-table">
+                            <tr>
+                                <th>回测收益</th>
+                                <td id="backtestReturns">--</td>
+                                <th>回测年化收益</th>
+                                <td id="backtestAnnualizedReturns">--</td>
+                                <th>基准收益</th>
+                                <td id="benchReturns">--</td>
+                                <th>基准年化收益</th>
+                                <td id="benchAnnualizedReturns">--</td>
+                            </tr>
+                            <tr>
+                                <th>Alpha</th>
+                                <td id="alpha">--</td>
+                                <th>Beta</th>
+                                <td id="beta">--</td>
+                                <th>Sharpe</th>
+                                <td id="sharpe">--</td>
+                                <th>Sortino</th>
+                                <td id="sortino">--</td>
+                            </tr>
+                            <tr>
+                                <th>Info Ratio</th>
+                                <td id="infoRatio">--</td>
+                                <th>Volatility</th>
+                                <td id="volatility">--</td>
+                                <th>最大回撤</th>
+                                <td id="maxDrawdown">--</td>
+                                <th>跟踪误差</th>
+                                <td id="trackingError">--</td>
+                                <!--<th>下行风险</th>-->
+                                <!--<td id="downsideRisk">暂无</td>-->
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="stra-chart-area">
+                        <div id="return-spin">
+                            <i class="fas fa-spinner fa-pulse"></i>
+                            <span>加载中...</span>
+                        </div>
+                        <div id="return-chart" style="weight: 100%; height: 100%;"></div>
+                    </div>
+
+                    <div class="log-title">
+                        <i class="fa fa-file-alt"></i> 错误日志
+                    </div>
+                    <div class="log-area">
+                        <div id="log-content">
+                            <p>暂无错误 :) </p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <!--<table class="stock-table">-->
-            <!--<tr>-->
-            <!--<th>今开</th>-->
-            <!--<td id="open">暂无</td>-->
-            <!--<th>成交量</th>-->
-            <!--<td id="volume">暂无</td>-->
-            <!--<th>最高价</th>-->
-            <!--<td id="high">暂无</td>-->
-            <!--<th>市盈率</th>-->
-            <!--<td id="per">暂无</td>-->
-            <!--<th>所属地域</th>-->
-            <!--<td id="spec-area">暂无</td>-->
-
-            <!--</tr>-->
-            <!--<tr>-->
-            <!--<th>昨收</th>-->
-            <!--<td id="settlement">暂无</td>-->
-            <!--<th>成交额</th>-->
-            <!--<td id="amount">暂无</td>-->
-            <!--<th>最低价</th>-->
-            <!--<td id="low">暂无</td>-->
-            <!--<th>换手率</th>-->
-            <!--<td id="turnoverrate">暂无</td>-->
-            <!--<th>所属行业</th>-->
-            <!--<td id="spec-industry">暂无</td>-->
-            <!--&lt;!&ndash;<th>市场热度</th>&ndash;&gt;-->
-            <!--&lt;!&ndash;<td id="prevail">暂无</td>&ndash;&gt;-->
-            <!--</tr>-->
-            <!--<tr>-->
-            <!--<th>所属概念</th>-->
-            <!--<td id="spec-concept" colspan="9">暂无</td>-->
-            <!--</tr>-->
-            <!--</table>-->
-
-        </form>
-    </div>
-
-    <div class="log-area">
-        <div class="log-title">
-            <i class="fa fa-file-text"></i> 错误日志&nbsp;Error Log
-        </div>
-        <div id="log-content">
-            <p>暂无错误 <i class="fa fa-smile-o"></i></p>
+            </form>
         </div>
     </div>
 
-    <div style="margin-bottom: 40%;"></div>
+    <div style="clear:both; margin-bottom: 100px;"></div>
 
-    <div style="clear: both;" onselectstart="return false;">
-        <div id="result-area">
-            <div class="stock-name" style="display: inline;">回测结果</div>
-            <div class="stock-code" style="display: inline-block;">&nbsp;&nbsp;|&nbsp;&nbsp;Back Test Result
-            </div>
+    <!--<div style="clear: both;" onselectstart="return false;">-->
+    <!--<div align="center">-->
+    <!--<div style="padding-top: 5%;">-->
+    <!--<div class="stock-name" id="overreturn-area">超额收益率</div>-->
+    <!--<div id="overreturn-spin">-->
+    <!--<i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>-->
+    <!--<span>加载中...</span>-->
+    <!--</div>-->
 
-            <div align="center" id="result-figure">
+    <!--<div id="overreturn-chart" style="weight: 100%; height: 400%;"></div>-->
+    <!--</div>-->
 
-                <div class="res-spec-figure">
-                    <h2>回测收益</h2>
-                    <p id="backtestReturns">...</p>
-                </div>
+    <!--<div style="padding-top: 5%;">-->
+    <!--<div class="stock-name" id="win-area">策略胜率</div>-->
+    <!--<div id="win-spin">-->
+    <!--<i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>-->
+    <!--<span>加载中...</span>-->
+    <!--</div>-->
 
-                <div class="res-spec-figure">
-                    <h2>回测年化收益</h2>
-                    <p id="backtestAnnualizedReturns">...</p>
-                </div>
-
-                <div class="res-spec-figure">
-                    <h2>基准收益</h2>
-                    <p id="benchReturns">...</p>
-                </div>
-
-                <div class="res-spec-figure">
-                    <h2>基准年化收益</h2>
-                    <p id="benchAnnualizedReturns">...</p>
-                </div>
-
-                <div class="res-spec-figure">
-                    <h2>Alpha</h2>
-                    <p id="alpha">...</p>
-                </div>
-
-                <div class="res-spec-figure">
-                    <h2>Beta</h2>
-                    <p id="beta">...</p>
-                </div>
-
-                <div class="res-spec-figure">
-                    <h2>Sharpe</h2>
-                    <p id="sharpe">...</p>
-                </div>
-
-                <div class="res-spec-figure">
-                    <h2>Sortino</h2>
-                    <p id="sortino">...</p>
-                </div>
-
-                <div class="res-spec-figure">
-                    <h2>Info Ratio</h2>
-                    <p id="infoRatio">...</p>
-                </div>
-
-                <div class="res-spec-figure">
-                    <h2>Volatility</h2>
-                    <p id="volatility">...</p>
-                </div>
-
-                <div class="res-spec-figure">
-                    <h2>最大回撤</h2>
-                    <p id="maxDrawdown">...</p>
-                </div>
-
-                <div class="res-spec-figure">
-                    <h2>跟踪误差</h2>
-                    <p id="trackingError">...</p>
-                </div>
-
-                <div class="res-spec-figure">
-                    <h2>下行风险</h2>
-                    <p id="downsideRisk">...</p>
-                </div>
-            </div>
-        </div>
-        <div align="center">
-            <div style="padding-top: 5%;">
-                <div class="stock-name" id="return-area">累计收益率与基准收益率</div>
-                <div id="return-spin">
-                    <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
-                    <span>加载中...</span>
-                </div>
-
-                <div id="return-chart" style="weight: 100%; height: 400%;"></div>
-            </div>
-
-            <div style="padding-top: 5%;">
-                <div class="stock-name" id="overreturn-area">超额收益率</div>
-                <div id="overreturn-spin">
-                    <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
-                    <span>加载中...</span>
-                </div>
-
-                <div id="overreturn-chart" style="weight: 100%; height: 400%;"></div>
-            </div>
-
-            <div style="padding-top: 5%;">
-                <div class="stock-name" id="win-area">策略胜率</div>
-                <div id="win-spin">
-                    <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
-                    <span>加载中...</span>
-                </div>
-
-                <div id="win-chart" style="weight: 100%; height: 400%;"></div>
-            </div>
-        </div>
-
-    </div>
-    </div>
-    <div style="margin-bottom: 10%;"></div>
-
-
-    </div>
+    <!--<div id="win-chart" style="weight: 100%; height: 400%;"></div>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
     <div id="stra-page-hint" class="page-hint">提示</div>
 </header>
 
@@ -363,23 +289,23 @@
 <script src="js/date-picker.js"></script>
 
 <script>
-    $("#result-area").fadeOut();
-    $("#return-area").fadeOut();
-    $("#return-chart").fadeOut();
-    $("#overreturn-area").fadeOut();
-    $("#win-area").fadeOut();
-    $("#overreturn-chart").fadeOut();
-    $("#win-chart").fadeOut();
+    $("#result-area").hide();
+    $("#return-area").hide();
+    $("#overreturn-area").hide();
+    $("#win-area").hide();
+    $("#overreturn-chart").hide();
+    $("#win-chart").hide();
 
-    $("#save-spin").fadeOut();
-    $("#save-already").fadeOut();
-    $("#stra-name-input").fadeOut();
-    $("#stra-name").fadeOut(function () {
+    $("#save-spin").hide();
+    $("#save-already").hide();
+    $("#stra-name-input").hide();
+    $("#stra-name").hide(function () {
         namefade = 1;
     });
-    $("#return-spin").fadeOut();
-    $("#overreturn-spin").fadeOut();
-    $("#win-spin").fadeOut();
+    $("#return-spin").hide();
+    $("#overreturn-spin").hide();
+    $("#win-spin").hide();
+    $("#more-res-buttons").hide();
 
 </script>
 
