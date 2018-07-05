@@ -27,7 +27,7 @@
     }
 
     function pullAssociatedStock(event) {
-        console.log('ajax.js')
+
         $.ajax({
             type: "GET",
             url: "/stock/associate",

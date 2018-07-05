@@ -250,7 +250,7 @@ function splitData(rawData) {
     var ma30 = rawData.ma30;
     var array = rawData.candle;
     for (var i = 0; i < array.length; i++) {
-        categoryData.push(array[i].date);
+        categoryData.push(new Date(array[i].date).toLocaleDateString());
         candle = [array[i].open, array[i].adjClose, array[i].low, array[i].high];
         values.push(candle);
         volumns.push(array[i].volume);

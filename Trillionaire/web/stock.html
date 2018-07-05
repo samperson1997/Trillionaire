@@ -301,16 +301,48 @@
 </script>
 
 <script>
-    $(document).ready(loadCandle);
+    // $(document).ready(loadCandle);
     //    $(document).ready(loadKDJ);
     //    $(document).ready(loadBIAS);
     //    $(document).ready(loadMACD);
-    $(document).ready(loadTargetPrice);
-    $(document).ready(loadPrevail);
-    $(document).ready(updateInfo);
-    $(document).ready(loadSimilarStock);
+    // $(document).ready(loadTargetPrice);
+    // $(document).ready(loadPrevail);
+    // $(document).ready(updateInfo);
+    // $(document).ready(loadSimilarStock);
 //    $(document).ready(loadTrends);
     //    $(document).ready(loadRealTimeChart);
+
+    (function (){
+        var code = getParam('code');
+
+        $.ajax({
+            type: "GET",
+            url: "/stock/associate",
+            contentType: "application/x-www-form-urlencoded",
+            data: {
+                "input": code
+            },
+            dataType: "json",
+            success: function (data) {
+                if(data.length === 1) {
+                    loadCandle()
+                    loadTargetPrice()
+                    loadPrevail()
+                    updateInfo()
+                    // loadSimilarStock()
+                } else {
+                    // length不等于1说明这个code不是确切的一个股票代码
+                    $("#select-menu").fadeOut()
+                    $("#stock-page-hint").fadeIn().delay(1000).fadeOut()
+                    $("#candle-spin").text('无此股票')
+                }
+            },
+            error: function (request, status, err) {
+                console.log(err)
+
+            }
+        })
+    })()
 
 </script>
 
