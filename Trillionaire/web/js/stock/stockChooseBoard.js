@@ -42,7 +42,7 @@ function set() {
             $("#bias-chart").resize();
             break;
         case 5:
-            loadMACD();w
+            loadMACD();
             $("#k-chart").fadeOut();
             $("#kdj-chart").fadeOut();
             $("#bias-chart").fadeOut();

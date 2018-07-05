@@ -30,242 +30,256 @@
 </head>
 
 <body>
-    <header>
-        <div id="top-bar" onselectstart="return false;">
-            <a href="index.html" >
-                <img src="img/logo.png" width="15%" style="transform:translateY(15px)">
+<header>
+    <div id="top-bar" onselectstart="return false;">
+        <a href="index.html">
+            <img src="img/logo.png" width="15%" style="transform:translateY(15px)">
+        </a>
+        <ul align="center">
+            <a href="stock.html?code=600000">
+                <li id="spec-button" class="head-button">个股信息</li>
             </a>
-            <ul align="center">
-                <a href="stock.html?code=600000">
-                    <li id="spec-button" class="head-button">个股信息</li>
-                </a>
-                <a href="concern.html">
-                    <li id="star-button" class="head-button">关注股票</li>
-                </a>
-                <a href="strategy-content.html">
-                    <li id="strategy-button" class="head-button">策略回测</li>
-                </a>
-                <div id="search-area">
-                    <input id="search-input" placeholder="请输入需要查询的股票代码">
-                </div>
-                <a href="login.html">
-                    <li id="log-button" class="log-button">用户登录</li>
-                </a>
-            </ul>
-        </div>
+            <a href="concern.html">
+                <li id="star-button" class="head-button">关注股票</li>
+            </a>
+            <a href="strategy-content.html">
+                <li id="strategy-button" class="head-button">策略回测</li>
+            </a>
+            <div id="search-area">
+                <input id="search-input" placeholder="请输入需要查询的股票代码">
+            </div>
+            <a href="login.html">
+                <li id="log-button" class="log-button">用户登录</li>
+            </a>
+        </ul>
+    </div>
 
+    <div class="title-box">
+        <div style="display: inline-block;">
+            <div id="name" class="stock-name">关于Trillionaire</div>
+            <div id="code" class="stock-code">用最易懂的语言带你了解量化交易</div>
+        </div>
+    </div>
+
+    <div class="page-content-long">
+        <ul>
+            <a href="#kdj">
+                <li>KDJ</li>
+            </a>
+            <a href="#bias">
+                <li>BIAS</li>
+            </a>
+            <a href="#macd">
+                <li>MACD</li>
+            </a>
+            <a href="#stra-setting">
+                <li>回测设置</li>
+            </a>
+            <a href="#stra-setting-1">
+                <li>撮合机制</li>
+            </a>
+            <a href="#stra-setting-2">
+                <li>滑点</li>
+            </a>
+            <a href="#stra-setting-3">
+                <li>基准合约</li>
+            </a>
+            <a href="#stra-setting-4">
+                <li>保证金倍率</li>
+            </a>
+            <a href="#ability-compare">
+                <li>能力比对参数</li>
+            </a>
+        </ul>
+    </div>
+
+    <div id="help-page" style="float: right; width: 85%; padding-top: 4%;">
         <div>
-            <div id="title" onselectstart="return false;" align="left" style="display:inline-block;">
-                <h1 class="page-main-title">关于Trillionaire<span class="page-sub-title">&nbsp;&nbsp;|&nbsp;&nbsp;用最易懂的语言带你了解量化交易</span></h1>
-            </div>
-        </div>
-
-        <div class="page-content-long">
+            <div class="stock-name" style="display: inline;">了解量化交易</div>
             <ul>
-                <a href="#kdj">
-                    <li>KDJ</li>
-                </a>
-                <a href="#bias">
-                    <li>BIAS</li>
-                </a>
-                <a href="#macd">
-                    <li>MACD</li>
-                </a>
-                <a href="#stra-setting">
-                    <li>回测设置</li>
-                </a>
-                <a href="#stra-setting-1">
-                    <li>撮合机制</li>
-                </a>
-                <a href="#stra-setting-2">
-                    <li>滑点</li>
-                </a>
-                <a href="#stra-setting-3">
-                    <li>基准合约</li>
-                </a>
-                <a href="#stra-setting-4">
-                    <li>保证金倍率</li>
-                </a>
-                <a href="#ability-compare">
-                    <li>能力比对参数</li>
-                </a>
+                <li>量化交易是利用大量金融数据和数学模型去实现投资理念、投资策略的方法。长久以来，量化策略交易系统都是华尔街大投行基金砸重金制造的秘密武器，而今天借助于<a href="index.html">Trillionaire的平台</a>，您将轻松获得这一强大杀器。
+                </li>
+                <li>在<a href="index.html">Trillionaire的平台</a>上编写测试量化策略，您可以随心所欲的调用庞大的金融数据库和数学模型，减少冲动投资的人为错误，而强大的回测功能可以让您在真金白银的实战前模拟测试，避免为错误的策略付出昂贵的代价。
+                </li>
             </ul>
         </div>
 
-        <div id="help-page" style="float: right; width: 85%; padding-top: 4%;">
-            <div>
-                <div class="stock-name" style="display: inline;">了解量化交易</div>
-                <ul>
-                    <li>量化交易是利用大量金融数据和数学模型去实现投资理念、投资策略的方法。长久以来，量化策略交易系统都是华尔街大投行基金砸重金制造的秘密武器，而今天借助于<a href="index.html">Trillionaire的平台</a>，您将轻松获得这一强大杀器。</li>
-                    <li>在<a href="index.html">Trillionaire的平台</a>上编写测试量化策略，您可以随心所欲的调用庞大的金融数据库和数学模型，减少冲动投资的人为错误，而强大的回测功能可以让您在真金白银的实战前模拟测试，避免为错误的策略付出昂贵的代价。</li>
-                </ul>
-            </div>
+        <div id="kdj">
+            <div class="stock-name" style="display: inline;">KDJ</div>
+            <div class="stock-code" style="display: inline;">&nbsp;|&nbsp;随机指标</div>
+            <ul>
+                <li>KDJ是一种相当新颖、实用的技术分析指标。<br>它起先用于期货市场的分析，后被广泛用于股市的中短期趋势分析，是期货和股票市场上最常用的技术分析工具。</li>
+                <li>我如何得知买入时机？<br>K、D、J三值在20以下，K线向上突破D线。</li>
+                <li>我如何得知卖出时机？<br>K、D、J三值在80以上，K线向下跌破D线。</li>
+                <li>此类数据线应当何时使用？<br>中短线趋势分析，建议与<a href="#macd">MACD线</a>一起使用。<br>由RSV可知，其是当前股价在最近周期内股价所处位置的体现。<br>当K线向上突破D线时，说明目前趋势是向上的；当K线向下突破D线时，说明目前趋势是向下的;
+                    <br>但是股票持续稳定上涨或下跌都会出现钝化现象，KDJ线持平，此时可以综合MACD线来判断。
+                </li>
+            </ul>
 
-            <div id="kdj">
-                <div class="stock-name" style="display: inline;">KDJ</div>
-                <div class="stock-code" style="display: inline;">&nbsp;|&nbsp;随机指标</div>
-                <ul>
-                    <li>KDJ是一种相当新颖、实用的技术分析指标。<br>它起先用于期货市场的分析，后被广泛用于股市的中短期趋势分析，是期货和股票市场上最常用的技术分析工具。</li>
-                    <li>我如何得知买入时机？<br>K、D、J三值在20以下，K线向上突破D线。</li>
-                    <li>我如何得知卖出时机？<br>K、D、J三值在80以上，K线向下跌破D线。</li>
-                    <li>此类数据线应当何时使用？<br>中短线趋势分析，建议与<a href="#macd">MACD线</a>一起使用。<br>由RSV可知，其是当前股价在最近周期内股价所处位置的体现。<br>当K线向上突破D线时，说明目前趋势是向上的；当K线向下突破D线时，说明目前趋势是向下的; <br>但是股票持续稳定上涨或下跌都会出现钝化现象，KDJ线持平，此时可以综合MACD线来判断。
-                    </li>
-                </ul>
-
-            </div>
-
-            <div id="bias">
-                <div class="stock-name" style="display: inline;">BIAS</div>
-                <div class="stock-code" style="display: inline;">&nbsp;|&nbsp;乖离率</div>
-                <ul>
-                    <li>BIAS是测量股价偏离均线大小程度的指标。<br>当股价偏离市场平均成本太大时，都有一个回归的过程，即所谓的“物极必反”。</li>
-                    <li>我如何得知买入时机？<br>一般来说，负乖离率降至某一百分比时，为买入信号。<br>其他情况有：<br>1、当短期BIAS曲线开始在底部向上突破长期BIAS曲线时，说明股价的弱势整理格局可能被打破，股价短期将向上运动，投资者可以考虑少量长线建仓。<br>2、当短期BIAS曲线向上突破长期BIAS曲线并迅速向上运动，同时中期BIAS曲线也向上突破长期BIAS曲线，说明股价的中长期上涨行情已经开始，投资者可以加大买入股票的力度。<br>3、当短、中、长期BIAS曲线开始摆脱前期窄幅盘整的区间并同时向上快速运动时，说明股价已经进入短线强势拉升行情，投资者应坚决持股待涨。
-                    </li>
-                    <li>我如何得知卖出时机？<br>一般来说，正乖离率涨至某一百分比时，为卖出信号。<br>其他情况有：<br>1、当短期BIAS曲线经过一段快速向上运动的过程后开始在高位向下掉头时，说明股价短期上涨过快，将开始短线调整，投资者可以短线卖出股票。<br>2、当中期BIAS曲线也开始在高位向下掉头时，说明股价的短期上涨行情可能结束，投资者应中线卖出股票。<br>3、当长期BIAS曲线也开始在高位向下掉头时，说明股价的中短期上涨行情已经结束，投资者应全部清仓离场。
-                    </li>
-                    <li>此类数据线应当何时使用？<br>在分析和预测股价走势时，可以结合乖离率与布林线或其他数据图表进行分析。<br>但如果仅单一适用乖离率作为研判依据，有时会出现偏差，尤其是在极端行情中，乖离率所给出的逆势操作幸好可能会丢失机会或作出错误决策。<br>所以，通过乖离率洞察股市冷暖，符合常规思路：涨多了要跌，跌多了要涨。
-                    </li>
-                </ul>
-
-            </div>
-
-            <div id="macd">
-                <div class="stock-name" style="display: inline;">MACD</div>
-                <div class="stock-code" style="display: inline;">&nbsp;|&nbsp;指数平滑异同平均线</div>
-                <ul>
-                    <li>MACD是在使用MACD指标时在图表上看到的MACD柱状线，常用于分析股票的买入、卖出时机。DIFF指白色的线，一般统称MACD线。</li>
-                    <li>我如何得知买入时机？<br>MACD线翻红，即由负变正；DIF由下向上突破DEA。
-                    </li>
-                    <li>我如何得知卖出时机？<br>MACD线翻绿，即由正变负；DIF由上向下突破DEA。
-                    </li>
-                    <li>此类数据线应当何时使用？<br>适用于中线趋势分析，建议与<a href="#kdj">KDJ线</a>一起使用。
-                    </li>
-                </ul>
-
-            </div>
-
-            <div id="stra-setting">
-                <div class="stock-name" style="display: inline;">回测设置</div>
-                <ul>
-                    您可以在策略编辑页面中进行以下参数的设置： <br>
-                    <li> 基础参数：<br> 开始日期：回测期间的开始日期
-                        <br> 结束日期：回测期间的结束日期 - 如果回测结束日期在今天之后，将会自动使用最后一天的历史数据<br> 起始资金：回测的起始资金 - 您将使用多少钱去投资策略<br> 回测频率：可以选择日回测以及分钟回测
-                    </li>
-                    <li>高阶设置：<br> <a href="#stra-setting-3">基准合约</a>：设置策略表现的对照基准
-                        <br> 佣金倍率：设置策略佣金在默认佣金基础上的倍数
-                        <br> <a href="#stra-setting-4">保证金倍率</a>：设置策略保证金在默认保证金率基础上的倍数
-                        <br> <a href="#stra-setting-1">撮合方式</a>：可以选择'当前bar收盘'或'下一bar开盘'
-                        <br> <a href="#stra-setting-2">滑点</a>：交易中理想成交价和实际成交价的差异。在进行策略回测时，用户可以设置一个滑点参数，来提高买入价或降低卖出价，模拟实际交易中出现的滑点。该参数取值在 [0, 1) 之间。例如，当股票市价为10元，参数设为0.1，则回测时买入价为$10 + 10 * 0.1 = 11$元)
-                    </li>
-                </ul>
-            </div>
-
-            <div id="stra-setting-1">
-                <div class="stock-name" style="display: inline;">撮合机制</div>
-                <ul>
-                    <li>我们允许用户自定义撮合机制的功能，您可以在策略编辑页面"更多"选项下选择不同的撮合机制。目前提供的撮合方式有以下两种： <br> 当前收盘价：当前bar发单，以当前bar收盘价作为参考价撮合
-                        <br> 下一开盘价：当前bar发单，以下一bar开盘价作为参考价撮合
-                    </li>
-                    <li>限价单（LimitOrder）如果买单价格不小于参考价，或卖单价格 不超过参考价，以参考价加入滑点影响成交（买得更高，卖得更低）。市价单（MarketOrder）直接以以参考价加入滑点影响成交。成交数量都不超过当前bar成交量的25%。一旦超过，市价单会在部分成交之后被自动撤单；限价单会一直在订单队列中等待下一个bar数据撮合成交，直到当日收盘。当日收盘后，所有未成交限价单都将被系统自动撤单。<br> 分钟回测及实盘模拟：在一个handle_bar内下单，在该handle_bar结束时统一撮合成交（成交价取决于撮合机制以及滑点设置）<br>日回测：在一个handelbar内下单，下单时立刻撮合成交（成交价取决于撮合机制以及滑点设置）</li>
-                    <li>所以在分钟回测以及实盘模拟中handle_bar内发单之后立刻通过cancel_order对该订单进行撤单操作，是一定会撤单成功的。但在日回测中则很可能撤单失败，因为日回测中下单之后立刻撮合成交。 需要注意，在当前的分钟回测撮合模式下，用户在回测中无法通过在<a href="api.html#api-5" target="_blank">scheduler</a>调用的函数中一次性实现“卖出 -> 资金释放 -> 买入”这种先卖后买的逻辑的。因为在分钟回测中，卖出并不能立刻成交。</li>
-                </ul>
-            </div>
-
-            <div id="stra-setting-2">
-                <div class="stock-name" style="display: inline;">滑点</div>
-                <ul>
-                    <li>为了更好模拟实际交易中订单对市场的冲击，我们引入滑点的设置，允许设置的范围是[0, 1)。该设置将在一定程度上使最后的成交价"恶化"，也就是买得更贵，卖得更便宜。我们的滑点方式是按照最后成交价的一定比例进行恶化。例如，设置滑点为0.1，那么如果原本买入交易的成交价为10元，则设置之后成交价将变成11元，即买得更贵。</li>
-                    <li>注意，滑点默认为0，原有的默认0.246%的滑点值以及通过context.slippage设置的方式被废弃。</li>
-
-                </ul>
-            </div>
-
-            <div id="stra-setting-3">
-                <div class="stock-name" style="display: inline;">基准合约</div>
-                <ul>
-                    <li>通过引入基准合约，您可以将策略的表现与基准进行对比，以衡量一定时间内策略的超额表现以及相关风险调整收益指标。</li>
-                    <li>基准合约可以设置为空；在初次创建策略的时候，包含股票的策略默认基准合约都是沪深300指数000300.XSHG；单独期货策略默认没有基准合约。</li>
-                </ul>
-            </div>
-
-            <div id="stra-setting-4">
-                <div class="stock-name" style="display: inline;">保证金倍率</div>
-                <ul>
-                    <li>在进行期货交易时，您可以通过设置保证金倍率来进行保证金的调整，这一倍率不能小于1。</li>
-                    <li>调整依据基准是交易所规定的最低保证金比例，可以通过<a href="api.html#instrument" target="_blank">instruments</a>这一方法查询到。</li>
-                </ul>
-            </div>
-
-            <div id="ability-compare">
-                <div class="stock-name" style="display: inline;">能力比对参数</div>
-                <ul>
-                    <li>盈利能力：净资产收益率、净利率、毛利率、净利润、每股收益、营业收入、每股主营业务收入。</li>
-                    <li>成长能力：主营业务收入增长率、净利润增长率、净资产增长率、总资产增长率、每股收益增长率、股东权益增长率。</li>
-                    <li>营运能力：应收账款周转率、应收账款周转天数、存货周转率、存货周转天数、流动资产周转率、流动资产周转天数。</li>
-                    <li>偿债能力：流动比率、速动比率、现金比率、利息支付倍数、股东权益比率、股东权益增长率。</li>
-                </ul>
-            </div>
-
-            <div style="margin-bottom: 10%;"></div>
         </div>
 
+        <div id="bias">
+            <div class="stock-name" style="display: inline;">BIAS</div>
+            <div class="stock-code" style="display: inline;">&nbsp;|&nbsp;乖离率</div>
+            <ul>
+                <li>BIAS是测量股价偏离均线大小程度的指标。<br>当股价偏离市场平均成本太大时，都有一个回归的过程，即所谓的“物极必反”。</li>
+                <li>我如何得知买入时机？<br>一般来说，负乖离率降至某一百分比时，为买入信号。<br>其他情况有：<br>1、当短期BIAS曲线开始在底部向上突破长期BIAS曲线时，说明股价的弱势整理格局可能被打破，股价短期将向上运动，投资者可以考虑少量长线建仓。<br>2、当短期BIAS曲线向上突破长期BIAS曲线并迅速向上运动，同时中期BIAS曲线也向上突破长期BIAS曲线，说明股价的中长期上涨行情已经开始，投资者可以加大买入股票的力度。<br>3、当短、中、长期BIAS曲线开始摆脱前期窄幅盘整的区间并同时向上快速运动时，说明股价已经进入短线强势拉升行情，投资者应坚决持股待涨。
+                </li>
+                <li>我如何得知卖出时机？<br>一般来说，正乖离率涨至某一百分比时，为卖出信号。<br>其他情况有：<br>1、当短期BIAS曲线经过一段快速向上运动的过程后开始在高位向下掉头时，说明股价短期上涨过快，将开始短线调整，投资者可以短线卖出股票。<br>2、当中期BIAS曲线也开始在高位向下掉头时，说明股价的短期上涨行情可能结束，投资者应中线卖出股票。<br>3、当长期BIAS曲线也开始在高位向下掉头时，说明股价的中短期上涨行情已经结束，投资者应全部清仓离场。
+                </li>
+                <li>此类数据线应当何时使用？<br>在分析和预测股价走势时，可以结合乖离率与布林线或其他数据图表进行分析。<br>但如果仅单一适用乖离率作为研判依据，有时会出现偏差，尤其是在极端行情中，乖离率所给出的逆势操作幸好可能会丢失机会或作出错误决策。<br>所以，通过乖离率洞察股市冷暖，符合常规思路：涨多了要跌，跌多了要涨。
+                </li>
+            </ul>
 
-    </header>
+        </div>
 
-    <footer>
-        <div id="footer" onselectstart="return false;">
-            <div id="footer-div">
-                <div>
-                    <div class="big-li">
-                        <h4>关于</h4>
-                        <p>
-                            <a href="mailto:feedback@trillionaire.me?subject=[FeedBack]">
-                                <i class="fa fa-envelope"></i> 联系我们
-                            </a>
-                        </p>
+        <div id="macd">
+            <div class="stock-name" style="display: inline;">MACD</div>
+            <div class="stock-code" style="display: inline;">&nbsp;|&nbsp;指数平滑异同平均线</div>
+            <ul>
+                <li>MACD是在使用MACD指标时在图表上看到的MACD柱状线，常用于分析股票的买入、卖出时机。DIFF指白色的线，一般统称MACD线。</li>
+                <li>我如何得知买入时机？<br>MACD线翻红，即由负变正；DIF由下向上突破DEA。
+                </li>
+                <li>我如何得知卖出时机？<br>MACD线翻绿，即由正变负；DIF由上向下突破DEA。
+                </li>
+                <li>此类数据线应当何时使用？<br>适用于中线趋势分析，建议与<a href="#kdj">KDJ线</a>一起使用。
+                </li>
+            </ul>
 
-                        <p>
-                            <a href="log.html">
-                                <p><i class="fa fa-file-text-o"></i> 系统更新日志</p>
-                            </a>
-                        </p>
-                    </div>
+        </div>
 
-                    <div class="big-li">
-                        <h4>帮助</h4>
-                        <p>
-                            <a href="api.html">
-                                <i class="fa fa-file-o"></i> API文档
-                            </a>
-                        </p>
+        <div id="stra-setting">
+            <div class="stock-name" style="display: inline;">回测设置</div>
+            <ul>
+                您可以在策略编辑页面中进行以下参数的设置： <br>
+                <li> 基础参数：<br> 开始日期：回测期间的开始日期
+                    <br> 结束日期：回测期间的结束日期 - 如果回测结束日期在今天之后，将会自动使用最后一天的历史数据<br> 起始资金：回测的起始资金 - 您将使用多少钱去投资策略<br>
+                    回测频率：可以选择日回测以及分钟回测
+                </li>
+                <li>高阶设置：<br> <a href="#stra-setting-3">基准合约</a>：设置策略表现的对照基准
+                    <br> 佣金倍率：设置策略佣金在默认佣金基础上的倍数
+                    <br> <a href="#stra-setting-4">保证金倍率</a>：设置策略保证金在默认保证金率基础上的倍数
+                    <br> <a href="#stra-setting-1">撮合方式</a>：可以选择'当前bar收盘'或'下一bar开盘'
+                    <br> <a href="#stra-setting-2">滑点</a>：交易中理想成交价和实际成交价的差异。在进行策略回测时，用户可以设置一个滑点参数，来提高买入价或降低卖出价，模拟实际交易中出现的滑点。该参数取值在
+                    [0, 1) 之间。例如，当股票市价为10元，参数设为0.1，则回测时买入价为$10 + 10 * 0.1 = 11$元)
+                </li>
+            </ul>
+        </div>
 
-                        <p>
-                            <a href="help.html">
-                                <i class="fa fa-file"></i> 帮助文档
-                            </a>
-                        </p>
+        <div id="stra-setting-1">
+            <div class="stock-name" style="display: inline;">撮合机制</div>
+            <ul>
+                <li>我们允许用户自定义撮合机制的功能，您可以在策略编辑页面"更多"选项下选择不同的撮合机制。目前提供的撮合方式有以下两种： <br> 当前收盘价：当前bar发单，以当前bar收盘价作为参考价撮合
+                    <br> 下一开盘价：当前bar发单，以下一bar开盘价作为参考价撮合
+                </li>
+                <li>限价单（LimitOrder）如果买单价格不小于参考价，或卖单价格
+                    不超过参考价，以参考价加入滑点影响成交（买得更高，卖得更低）。市价单（MarketOrder）直接以以参考价加入滑点影响成交。成交数量都不超过当前bar成交量的25%。一旦超过，市价单会在部分成交之后被自动撤单；限价单会一直在订单队列中等待下一个bar数据撮合成交，直到当日收盘。当日收盘后，所有未成交限价单都将被系统自动撤单。<br>
+                    分钟回测及实盘模拟：在一个handle_bar内下单，在该handle_bar结束时统一撮合成交（成交价取决于撮合机制以及滑点设置）<br>日回测：在一个handelbar内下单，下单时立刻撮合成交（成交价取决于撮合机制以及滑点设置）
+                </li>
+                <li>所以在分钟回测以及实盘模拟中handle_bar内发单之后立刻通过cancel_order对该订单进行撤单操作，是一定会撤单成功的。但在日回测中则很可能撤单失败，因为日回测中下单之后立刻撮合成交。
+                    需要注意，在当前的分钟回测撮合模式下，用户在回测中无法通过在<a href="api.html#api-5" target="_blank">scheduler</a>调用的函数中一次性实现“卖出
+                    -> 资金释放 -> 买入”这种先卖后买的逻辑的。因为在分钟回测中，卖出并不能立刻成交。
+                </li>
+            </ul>
+        </div>
 
-                    </div>
+        <div id="stra-setting-2">
+            <div class="stock-name" style="display: inline;">滑点</div>
+            <ul>
+                <li>为了更好模拟实际交易中订单对市场的冲击，我们引入滑点的设置，允许设置的范围是[0,
+                    1)。该设置将在一定程度上使最后的成交价"恶化"，也就是买得更贵，卖得更便宜。我们的滑点方式是按照最后成交价的一定比例进行恶化。例如，设置滑点为0.1，那么如果原本买入交易的成交价为10元，则设置之后成交价将变成11元，即买得更贵。
+                </li>
+                <li>注意，滑点默认为0，原有的默认0.246%的滑点值以及通过context.slippage设置的方式被废弃。</li>
 
-                    <div class="big-li">
-                        <h4>反馈</h4>
-                        <p>
-                            <a href="mailto:feedback@trillionaire.me?subject=[FeedBack]">
-                                <i class="fa fa-comments-o"></i> 反馈
-                            </a>
-                        </p>
+            </ul>
+        </div>
 
-                    </div>
+        <div id="stra-setting-3">
+            <div class="stock-name" style="display: inline;">基准合约</div>
+            <ul>
+                <li>通过引入基准合约，您可以将策略的表现与基准进行对比，以衡量一定时间内策略的超额表现以及相关风险调整收益指标。</li>
+                <li>基准合约可以设置为空；在初次创建策略的时候，包含股票的策略默认基准合约都是沪深300指数000300.XSHG；单独期货策略默认没有基准合约。</li>
+            </ul>
+        </div>
+
+        <div id="stra-setting-4">
+            <div class="stock-name" style="display: inline;">保证金倍率</div>
+            <ul>
+                <li>在进行期货交易时，您可以通过设置保证金倍率来进行保证金的调整，这一倍率不能小于1。</li>
+                <li>调整依据基准是交易所规定的最低保证金比例，可以通过<a href="api.html#instrument" target="_blank">instruments</a>这一方法查询到。</li>
+            </ul>
+        </div>
+
+        <div id="ability-compare">
+            <div class="stock-name" style="display: inline;">能力比对参数</div>
+            <ul>
+                <li>盈利能力：净资产收益率、净利率、毛利率、净利润、每股收益、营业收入、每股主营业务收入。</li>
+                <li>成长能力：主营业务收入增长率、净利润增长率、净资产增长率、总资产增长率、每股收益增长率、股东权益增长率。</li>
+                <li>营运能力：应收账款周转率、应收账款周转天数、存货周转率、存货周转天数、流动资产周转率、流动资产周转天数。</li>
+                <li>偿债能力：流动比率、速动比率、现金比率、利息支付倍数、股东权益比率、股东权益增长率。</li>
+            </ul>
+        </div>
+
+        <div style="margin-bottom: 10%;"></div>
+    </div>
+
+
+</header>
+
+<footer>
+    <div id="footer" onselectstart="return false;">
+        <div id="footer-div">
+            <div>
+                <div class="big-li">
+                    <h4>关于</h4>
+                    <p>
+                        <a href="mailto:feedback@trillionaire.me?subject=[FeedBack]">
+                            <i class="fa fa-envelope"></i> 联系我们
+                        </a>
+                    </p>
+
+                    <p>
+                        <a href="log.html">
+                    <p><i class="fa fa-file-text-o"></i> 系统更新日志</p>
+                    </a>
+                    </p>
+                </div>
+
+                <div class="big-li">
+                    <h4>帮助</h4>
+                    <p>
+                        <a href="api.html">
+                            <i class="fa fa-file-o"></i> API文档
+                        </a>
+                    </p>
+
+                    <p>
+                        <a href="help.html">
+                            <i class="fa fa-file"></i> 帮助文档
+                        </a>
+                    </p>
+
+                </div>
+
+                <div class="big-li">
+                    <h4>反馈</h4>
+                    <p>
+                        <a href="mailto:feedback@trillionaire.me?subject=[FeedBack]">
+                            <i class="fa fa-comments-o"></i> 反馈
+                        </a>
+                    </p>
+
                 </div>
             </div>
-
-            <div id="cr">Copyright &copy; 2017 All Rights Reserved</div>
         </div>
-    </footer>
+
+        <div id="cr">Copyright &copy; 2017 All Rights Reserved</div>
+    </div>
+</footer>
 </body>
 
 <script>
-    (function() {
+    (function () {
         window.scrollReveal = new scrollReveal({
             reset: false,
             move: '50px'

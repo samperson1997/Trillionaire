@@ -27,764 +27,909 @@
 </head>
 
 <body>
-    <header>
-        <div id="top-bar" onselectstart="return false;">
-            <a href="index.html" >
-                <img src="img/logo.png" width="15%" style="transform:translateY(15px)">
+<header>
+    <div id="top-bar" onselectstart="return false;">
+        <a href="index.html">
+            <img src="img/logo.png" width="15%" style="transform:translateY(15px)">
+        </a>
+        <ul align="center">
+            <a href="stock.html?code=600000">
+                <li id="spec-button" class="head-button">个股信息</li>
             </a>
-            <ul align="center">
-                <a href="stock.html?code=600000">
-                    <li id="spec-button" class="head-button">个股信息</li>
-                </a>
-                <a href="concern.html">
-                    <li id="star-button" class="head-button">关注股票</li>
-                </a>
-                <a href="strategy-content.html">
-                    <li id="strategy-button" class="head-button">策略回测</li>
-                </a>
-                <div id="search-area">
-                    <input id="search-input" placeholder="请输入需要查询的股票代码">
-                </div>
-                <a href="login.html">
-                    <li id="log-button" class="log-button">用户登录</li>
-                </a>
-            </ul>
-        </div>
-
-        <div>
-            <div id="title" onselectstart="return false;" align="left" style="display:inline-block;">
-                <h1 class="page-main-title">API文档<span class="page-sub-title">&nbsp;&nbsp;|&nbsp;&nbsp;分分钟学会Python策略</span></h1>
+            <a href="concern.html">
+                <li id="star-button" class="head-button">关注股票</li>
+            </a>
+            <a href="strategy-content.html">
+                <li id="strategy-button" class="head-button">策略回测</li>
+            </a>
+            <div id="search-area">
+                <input id="search-input" placeholder="请输入需要查询的股票代码">
             </div>
-        </div>
+            <a href="login.html">
+                <li id="log-button" class="log-button">用户登录</li>
+            </a>
+        </ul>
+    </div>
 
-        <div class="page-content-long">
+    <div class="title-box">
+        <div style="display: inline-block;">
+            <div id="name" class="stock-name">API文档</div>
+            <div id="code" class="stock-code">分分钟学会Python策略</div>
+        </div>
+    </div>
+
+    <div class="page-content-long">
+        <ul>
+            <a href="#api-1">
+                <li>如何使用本文档</li>
+            </a>
+            <a href="#api-2">
+                <li>基本方法</li>
+            </a>
+            <a href="#api-3">
+                <li>交易相关函数</li>
+            </a>
+            <a href="#api-4">
+                <li>context属性</li>
+            </a>
+            <a href="#api-5">
+                <li>scheduler定时器</li>
+            </a>
+            <a href="#api-6">
+                <li>数据查询相关函数</li>
+            </a>
+            <a href="#api-7">
+                <li>重要对象</li>
+            </a>
+            <a href="#api-8">
+                <li>枚举常量</li>
+            </a>
+            <a href="#api-9">
+                <li>外部数据源Tushare</li>
+            </a>
+            <a href="#api-10">
+                <li>目前支持的Python模块</li>
+            </a>
+        </ul>
+    </div>
+
+    <div id="help-page" style="float: right; width: 80%; padding-top: 2%;">
+        <div id="api-1">
+            <div class="stock-name" style="display: inline;">如何使用本文档</div>
             <ul>
-                <a href="#api-1">
-                    <li>如何使用本文档</li>
-                </a>
-                <a href="#api-2">
-                    <li>基本方法</li>
-                </a>
-                <a href="#api-3">
-                    <li>交易相关函数</li>
-                </a>
-                <a href="#api-4">
-                    <li>context属性</li>
-                </a>
-                <a href="#api-5">
-                    <li>scheduler定时器</li>
-                </a>
-                <a href="#api-6">
-                    <li>数据查询相关函数</li>
-                </a>
-                <a href="#api-7">
-                    <li>重要对象</li>
-                </a>
-                <a href="#api-8">
-                    <li>枚举常量</li>
-                </a>
-                <a href="#api-9">
-                    <li>外部数据源Tushare</li>
-                </a>
-                <a href="#api-10">
-                    <li>目前支持的Python模块</li>
-                </a>
+                <li>
+                    在本文档中，我们详细介绍策略回测过程中，您可能用到的API。由于内容较多，在浏览本文档的时候，我们建议您使用左侧导航栏以及<code>Ctrl+F</code>或<code>Command+F</code>快捷键，快速定位到感兴趣的内容上。
+                </li>
+                <li>希望通过我们的文档和平台，您能够逐步成长为一个优秀的量化策略开发者。如果您对我们文档或平台有任何建议，欢迎随时联系我们。</li>
+
             </ul>
         </div>
 
-        <div id="help-page" style="float: right; width: 80%; padding-top: 2%;">
-            <div id="api-1">
-                <div class="stock-name" style="display: inline;">如何使用本文档</div>
-                <ul>
-                    <li>在本文档中，我们详细介绍策略回测过程中，您可能用到的API。由于内容较多，在浏览本文档的时候，我们建议您使用左侧导航栏以及<code>Ctrl+F</code>或<code>Command+F</code>快捷键，快速定位到感兴趣的内容上。</li>
-                    <li>希望通过我们的文档和平台，您能够逐步成长为一个优秀的量化策略开发者。如果您对我们文档或平台有任何建议，欢迎随时联系我们。</li>
-
-                </ul>
-            </div>
-
-            <div id="api-2">
-                <div class="stock-name" s tyle="display: inline;">基本方法</div>
-                <ul>
-                    <h3><code>init(context)</code></h3>
-                    <li>初始化方法，必须实现。在回测和实时模拟交易只会在启动的时候触发一次。你的算法会使用这个方法来设置你需要的各种初始化配置。</li>
-                    <li>参数：<code>context</code>将会在整个算法中当做一个全局变量来使用。属性通过点标记（"."）来取到。</li>
-                    <li>返回：无。</li>
-
-                    <h3><code>handle_bar(context, bar_dict)</code></h3>
-                    <li>必须实现。bar数据的更新会自动触发该方法的调用。策略具体逻辑可在该方法内实现，包括交易信号的产生、订单的创建等。在实时模拟交易中，该函数在交易时间内会每分钟被触发一次。</li>
-                    <li>参数：<code>context</code>储存策略自定义参数、设置、仓位、投资组合信息的全局变量，属性通过点标记（"."）来取到。<br><code>bar_dict</code>为dict类型，key为order_book_id，value为bar数据。当前合约池内所有合约的bar数据信息都会更新在bar_dict里面。</li>
-                    <li>返回：无。</li>
-
-                    <h3><code>before_trading(context)</code></h3>
-                    <li>可选择实现的函数。每天在策略开始交易前会被调用。不能在这个函数中发送订单。需要注意，该函数的触发时间取决于用户当前所订阅合约的交易时间。<br>举例来说，如果用户订阅的合约中存在有夜盘交易的期货合约，则该函数可能会在前一日的20:00触发，而不是早晨08:00</li>
-                    <li>参数：<code>context</code>储存策略自定义参数、设置、仓位、投资组合信息的全局变量，属性通过点标记（"."）来取到。</li>
-                    <li>返回：无。</li>
-
-                    <h3><code>after_trading(context)</code></h3>
-                    <li>可选择实现的函数。每天在收盘后被调用。不能在这个函数中发送订单。您可以在该函数中进行当日收盘后的一些计算。</li>
-                    <li>参数：<code>context</code>储存策略自定义参数、设置、仓位、投资组合信息的全局变量，属性通过点标记（"."）来取到。</li>
-                    <li>返回：无。</li>
-                </ul>
-            </div>
-
-            <div id="api-3">
-                <div class="stock-name" s tyle="display: inline;">交易相关函数</div>
-                <ul>
-                    <h3><code>order_shares(id_or_ins, amount, style=MarketOrder())</code></h3>
-                    <li>落指定股数的买/卖单，最常见的落单方式之一。如有需要落单类型当做一个参量传入，如果忽略掉落单类型，那么默认是市价单（market order）。</li>
-                    <li>参数：<code>id_or_ins</code>str或instrument对象类型，order_book_id或symbol或instrument对象，用户必须指定。<br>
-                        <code>amount</code>float类型，需要落单的股数。正数代表买入，负数代表卖出。将会根据一手xx股来向下调整到一手的倍数，比如中国A股就是调整成100股的倍数。<br>
-                        <code>style</code>OrderType对象类型，订单类型，默认是市价单。目前支持的订单类型有：<code>style=MarketOrder()</code>、<code>style=LimitOrder(limit_price)</code>
-                    </li>
-                    <li>返回：Order对象。</li>
-
-                    <h3><code>order_lots(id_or_ins, amount, style=OrderType)</code></h3>
-                    <li>指定手数发送买/卖单。如有需要落单类型当做一个参量传入，如果忽略掉落单类型，那么默认是市价单（market order）。</li>
-                    <li>参数：<code>id_or_ins</code>str或instrument对象类型，order_book_id或symbol或instrument对象，用户必须指定。<br>
-                        <code>amount</code>float类型，多少手的数目。正数表示买入，负数表示卖出，用户必须指定<br>
-                        <code>style</code>OrderType对象类型，订单类型，默认是市价单。目前支持的订单类型有：<code>style=MarketOrder()</code>、<code>style=LimitOrder(limit_price)</code>
-                    </li>
-                    <li>返回：Order对象。</li>
-
-                    <h3><code>order_value(id_or_ins, cash_amount, style=OrderType)</code></h3>
-                    <li>使用想要花费的金钱买入/卖出股票，而不是买入/卖出想要的股数，正数代表买入，负数代表卖出。股票的股数总是会被调整成对应的100的倍数（在A中国A股市场1手是100股）。当您提交一个卖单时，该方法代表的意义是您希望通过卖出该股票套现的金额。如果金额超出了您所持有股票的价值，那么您将卖出所有股票。需要注意，如果资金不足，该API将不会创建发送订单。</li>
-                    <li>参数：<code>id_or_ins</code>str或instrument对象类型，order_book_id或symbol或instrument对象，用户必须指定。<br>
-                        <code>cash_amount</code>float类型，需要花费现金购买/卖出证券的数目。正数代表买入，负数代表卖出，用户必须指定<br>
-                        <code>style</code>OrderType对象类型，订单类型，默认是市价单。目前支持的订单类型有：<code>style=MarketOrder()</code>、<code>style=LimitOrder(limit_price)</code>
-                    </li>
-                    <li>返回：Order对象。</li>
-
-                    <h3><code>order_percent(id_or_ins, percent, style=OrderType)</code></h3>
-                    <li>发送一个等于目前投资组合价值（市场价值和目前现金的总和）一定百分比的买/卖单，正数代表买，负数代表卖。股票的股数总是会被调整成对应的一手的股票数的倍数（1手是100股）。百分比是一个小数，并且小于或等于1，0.5表示的是50%.需要注意，如果资金不足，该API将不会创建发送订单。</li>
-                    <li>参数：<code>id_or_ins</code>str或instrument对象类型，order_book_id或symbol或instrument对象，用户必须指定。<br>
-                        <code>percent</code>float类型，占有现有的投资组合价值的百分比。正数表示买入，负数表示卖出。用户必须指定<br>
-                        <code>style</code>OrderType对象类型，订单类型，默认是市价单。目前支持的订单类型有：<code>style=MarketOrder()</code>、<code>style=LimitOrder(limit_price)</code>
-                    </li>
-                    <li>返回：Order对象。</li>
-
-                    <h3><code>order_target_value(id_or_ins, cash_amount, style=OrderType)</code></h3>
-                    <li>买入/卖出并且自动调整该证券的仓位到一个目标价值。如果还没有任何该证券的仓位，那么会买入全部目标价值的证券。如果已经有了该证券的仓位，则会买入/卖出调整该证券的现在仓位和目标仓位的价值差值的数目的证券。需要注意，如果资金不足，该API将不会创建发送订单。</li>
-                    <li>参数：<code>id_or_ins</code>str或instrument对象类型，order_book_id或symbol或instrument对象，用户必须指定。<br>
-                        <code>cash_amount</code>float类型，最终的该证券的仓位目标价值<br>
-                        <code>style</code>OrderType对象类型，订单类型，默认是市价单。目前支持的订单类型有：<code>style=MarketOrder()</code>、<code>style=LimitOrder(limit_price)</code>
-                    </li>
-                    <li>返回：Order对象。</li>
-
-                    <h3><code>order_target_percent(id_or_ins, percent, style=OrderType)</code></h3>
-                    <li>买入/卖出证券以自动调整该证券的仓位到占有一个指定的投资组合的目标百分比。如果投资组合中没有任何该证券的仓位，那么会买入等于现在投资组合总价值的目标百分比的数目的证券；如果投资组合中已经拥有该证券的仓位，那么会买入/卖出目标百分比和现有百分比的差额数目的证券，最终调整该证券的仓位占据投资组合的比例至目标百分比。</li>
-                    <li>其实我们需要计算一个position_to_adjust (即应该调整的仓位):<code>position_to_adjust = target_position - current_position</code>，投资组合价值等于所有已有仓位的价值和剩余现金的总和。买/卖单会被下舍入一手股数（A股是100的倍数）的倍数。目标百分比应该是一个小数，并且最大值应该不超过1，比如0.5表示50%。如果<code>position_to_adjust</code>计算之后是正的，那么会买入该证券，否则会卖出该证券。 需要注意，如果资金不足，该API将不会创建发送订单。</li>
-                    <li>参数：<code>id_or_ins</code>str或instrument对象类型，order_book_id或symbol或instrument对象，用户必须指定。<br>
-                        <code>percent</code>float类型，仓位最终所占投资组合总价值的目标百分比。<br>
-                        <code>style</code>OrderType对象类型，订单类型，默认是市价单。目前支持的订单类型有：<code>style=MarketOrder()</code>、<code>style=LimitOrder(limit_price)</code>
-                    </li>
-                    <li>返回：Order对象。</li>
-
-                    <h3><code>cancel_order(order)</code></h3>
-                    <li>撤单。</li>
-                    <li>参数：<code>order</code>需要撤销的order对象，用户必须指定</li>
-                    <li>返回：无。</li>
-
-                    <h3><code>get_open_orders()</code></h3>
-                    <li>获取一个由order_id到order对象映射的dict，凡在此dict中的order都未被完全成交或取消。</li>
-                    <li>参数：无。</li>
-                    <li>返回：dict， 当前所有活跃的订单（未全部成交，未被撤单）。key为order_id，value为对应的Order对象</li>
-                </ul>
-
-            </div>
-
-            <div id="api-4">
-                <div class="stock-name" s tyle="display: inline;">context属性</div>
-                <ul>
-                    <h3><code>context.now</code></h3>
-                    <li>使用以上的方式就可以在handle_bar中拿到当前的bar的时间，比如day bar的话就是那天的时间，minute bar的话就是这一分钟的时间点。</li>
-                    <li>返回：datetime.datetime</li>
-
-                    <h3><code>context.portfolio</code></h3>
-                    <li>该投资组合在单一股票或期货策略中分别为股票投资组合和期货投资组合。在股票+期货的混合策略中代表汇总之后的总投资组合。请参考<a href="#portfolio">portfolio</a></li>
-
-                    <h3><code>context.stock_account</code></h3>
-                    <li>获取股票资金账户信息。请参考<a href="#account">account</a></li>
-
-                    <h3><code>context.future_account</code></h3>
-                    <li>获取期货资金账户信息。请参考<a href="#account">account</a></li>
-
-                    <h3><code>context.run_info</code></h3>
-                    <li>run_id str 标识策略每次运行的唯一id<br>
-                        <code>run_type</code> RUN_TYPE类型， RUN_TYPE.BACKTEST表示当前策略在进行回测，RUN_TYPE.PAPER_TRADING表示当前策略在进行实盘模拟<br>
-                        <code>start_date</code> datetime.date类型， 策略的开始日期<br>
-                        <code>end_date</code> datetime.date类型， 策略的结束日期<br>
-                        <code>frequency</code> str类型， 策略频率，'1d'或'1m'<br>
-                        <code>stock_starting_cash</code> float类型， 股票账户初始资金<br>
-                        <code>future_starting_cash</code> float类型， 期货账户初始资金<br>
-                        <code>slippage</code> float类型， 滑点水平<br>
-                        <code>margin_multiplier</code> float类型， 保证金倍率<br>
-                        <code>commission_multiplier</code> float类型， 佣金倍率<br>
-                        <code>benchmark</code> str类型， 基准合约代码<br>
-                        <code>matching_type</code> MATCHING_TYPE类型， 撮合方式，MATCHING_TYPE.NEXT_BAR_OPEN代表以下一bar开盘价撮合，MATCHING_TYPE.CURRENT_BAR_CLOSE代表以当前bar收盘价撮合</li>
-
-                    <h3><code>context.universe</code></h3>
-                    <li>在运行update_universe，subscribe或者unsubscribe的时候，合约池会被更新。</li>
-                    <li>需要注意，合约池内合约的交易时间（包含股票的策略默认会在股票交易时段触发）是handle_bar被触发的依据。</li>
-                </ul>
-            </div>
-
-            <div id="api-5">
-                <div class="stock-name" s tyle="display: inline;">scheduler定时器</div>
-                <ul>
-                    <h3><code>scheduler.run_daily(function)</code></h3>
-                    <li>每日运行一次指定的函数，只能在init内使用。注意，schedule一定在其对应时间点的handle_bar之后执行，如果定时运行函数运行时间较长，则中间的handle_bar事件将会被略过。</li>
-                    <li>参数：<code>function</code>函数一定要包含（并且只能包含）<code>context</code>, <code>bar_dict</code>两个输入参数</li>
-                    <li>返回：无</li>
-
-                    <h3><code>scheduler.run_weekly(function, weekday=x, tradingday=t)</code></h3>
-                    <li>每周运行一次指定的函数，只能在init内使用。 注意：<code>tradingday</code>中的负数表示倒数。<code>tradingday</code>表示交易日。如某周只有四个交易日，则此周的<code>tradingday=4</code>与<code>tradingday=-1</code>表示同一天。<code>weekday</code>和<code>tradingday</code>不能同时使用。
-                    </li>
-                    <li>参数：<code>function</code>函数一定要包含（并且只能包含）<code>context</code>, <code>bar_dict</code>两个输入参数<br><code>weekday</code>int类型， 1~5 分别代表周一至周五，用户必须指定<br>
-                        <code>tradingday</code> int类型， 范围为[-5,1],[1,5] 例如，1代表每周第一个交易日，-1代表每周倒数第一个交易日，用户可以不填写</li>
-                    <li>返回：无</li>
-
-                    <h3><code>scheduler.run_monthly(function,tradingday=t)</code></h3>
-                    <li>每月运行一次指定的函数，只能在init内使用。 注意：<code>tradingday</code>中的负数表示倒数。<code>tradingday</code>如某月只有三个交易日，则此月的<code>tradingday=3</code>与<code>tradingday=-1</code>表示同一天。</li>
-                    <li>参数：<code>function</code>函数一定要包含（并且只能包含）<code>context</code>, <code>bar_dict</code>两个输入参数<br>
-                        <code>tradingday</code> int类型，范围为[-23,1], [1,23] ，例如，1代表每月第一个交易日，-1代表每月倒数第一个交易日，用户必须指定</li>
-                    <li>返回：无</li>
-
-                    <h3><code>time_rule</code></h3>
-                    <li><code>scheduler</code>还可以用来做定时间运行，比如在每天开盘后的一小时后或一分钟后定时运行，这里有很多种组合可以让您达到各种自己想要达到的定时运行的目的。 使用的方法是和上面的<code>scheduler.run_daily</code>，<code>scheduler.run_weekly</code>和<code>scheduler.run_monthly</code>进行组合加入time_rule来一起使用。
-                    </li>
-                    <li>注意：<code>market_open</code>与<code>market_close</code>都跟随中国A股交易时间进行设置，即09:31~15:00。<br> 使用time_rule定时运行只会在分钟级别回测和实时模拟交易中有定义的效果，在日回测中只会默认依然在该天运行，并不能在固定的时间运行。
-                        <br> 在分钟回测中如未指定time_rule,则默认在开盘后一分钟运行,即09:31。
-                        <br> 如果两个schedule，分别使用
-                        <code>market_open</code> 与<code>market_close</code>规则，但规则触发时间在同一时刻，则<code>market_open</code>的<code>handle</code>一定在<code>market_close</code>的<code>handle</code>前执行。<br> 目前暂不支持开盘交易(即 09:30分交易) ,所以<code>time_rule(minute=0)</code>和<code>time_rule(hour=0)</code>将不会触发任何事件。<br> market_open(minute=120)将在11:30执行， market_open(minute=121)在13:01执行，中午休市的区间会被忽略。<br> time_rule='before_trading'表示在开市交易前运行scheduler函数。该函数运行时间将在before_trading函数运行完毕之后handle_bar运行之前。
-                        <br></li>
-                    <li>参数：<code>time_rule</code>market_open, market_close, str类型，定时具体几点几分运行某个函数。time_rule='before_trading' 表示开始交易前运行；market_open(hour=x, minute=y)表示A股市场开市后x小时y分钟运行，market_close(hour=x, minute=y)表示A股市场收市前x小时y分钟运行。如果不设置time_rule默认的值是中国A股市场开市后一分钟运行。<br>
-                        <code>hour</code>int - option [1,4] ，具体在market_open/market_close后/前第多少小时执行, 股票的交易时间为[9:31 - 11:30],[13:01 - 15:00]共240分钟，所以hour的范围为 [1,4]<br>
-                        <code>minute</code>int - option [1,240] ，具体在market_open/market_close的后/前第多少分钟执行，同上，股票每天交易时间240分钟，所以minute的范围为 [1,240]，中午休市的时间区间会被忽略。
-                    </li>
-                    <li>返回：无</li>
-                </ul>
-            </div>
-
-            <div id="api-6">
-                <div class="stock-name" s tyle="display: inline;">数据查询相关函数</div>
-                <ul>
-                    <h3><code>get_fundamentals(query, entry_date=None, interval='1d', report_quarter=False)</code></h3>
-                    <li>获取历史财务数据表格。目前支持中国市场超过400个指标。目前仅支持中国市场。需要注意，一次查询过多股票的财务数据会导致系统运行缓慢。</li>
-                    <li>参数：<code>query</code>SQLAlchemyQueryObject，SQLAlchmey的Query对象。其中可在'query'内填写需要查询的指标，'filter'内填写数据过滤条件。具体可参考<a href="http://docs.sqlalchemy.org/en/rel_1_0/orm/tutorial.html#querying" target="_blank">sqlalchemy's query documentation</a>学习使用更多的方便的查询语句。从数据科学家的观点来看，sqlalchemy的使用比sql更加简单和强大<br>
-                        <code>entry_date</code> str, datetime.date, datetime.datetime, pandasTimestamp 类型，查询财务数据的基准日期，应早于策略当前日期。默认为策略当前日期前一天。 <br>
-                        <code>interval</code> str类型， 查询财务数据的间隔，默认为'1d'。例如，填写'5y'，则代表从entry_date开始（包括entry_date）回溯5年，返回数据时间以年为间隔。'd' - 天，'m' - 月， 'q' - 季，'y' - 年。<br>
-                        <code>report_quarter</code> bool类型， 是否显示报告期，默认为False，不显示。'Q1' - 一季报，'Q2' - 半年报，'Q3' - 三季报，'Q4' - 年报。
-                    </li>
-                    <li>返回：pandas DataPanel。如果查询结果为空，返回空pandas DataFrame；如果给定间隔为1d, 1m, 1q, 1y，返回pandas DataFrame。</li>
-
-                    <h3><code>all_instruments(type=None)</code></h3>
-                    <li>获取某个国家市场的所有合约信息。使用者可以通过这一方法很快地对合约信息有一个快速了解，目前仅支持中国市场。</li>
-                    <li>参数：<code>type</code>str类型，需要查询合约类型。默认是所有类型。类型包括：<br>
-                        <code>CS</code> Common Stock, 即股票<br>
-                        <code>ETF</code> Exchange Traded Fund, 即交易所交易基金<br>
-                        <code>LOF</code> Listed Open-Ended Fund，即上市型开放式基金<br>
-                        <code>FenjiMu</code> Fenji Mu Fund, 即分级母基金<br>
-                        <code>FenjiA</code> Fenji A Fund, 即分级A类基金<br>
-                        <code>FenjiB</code> Fenji B Funds, 即分级B类基金<br>
-                        <code>INDX</code> Index, 即指数<br>
-                        <code>Future</code> Futures，即期货，包含股指、国债和商品期货
-                    </li>
-                    <li>返回:pandas DataFrame。所有合约的基本信息。</li>
-
-                    <h3><code>instruments(id_or_symbols)</code></h3>
-                    <li>获取某个国家市场内一个或多个合约的详细信息。目前仅支持中国市场。</li>
-                    <li>参数：<code>id_or_symbols</code>str OR str list类型，合约代码或合约代码列表，可传入order_book_id, order_book_id list。中国市场的order_book_id通常类似'000001.XSHE'。需要注意，国内股票、ETF、指数合约代码分别应当以'.XSHG'或'.XSHE'结尾，前者代表上证，后者代表深证。期货则无此要求。</li>
-                    <li>返回：一个Instrument对象，或一个instrument list。目前系统并不支持跨国家市场的同时调用。传入<code>order_book_id list</code>必须属于同一国家市场，不能混合着中美两个国家市场的<code>order_book_id</code>。</li>
-
-                    <h3><code>history_bars(order_book_id, bar_count, frequency, fields=None, skip_suspended=True, include_now=False)</code></h3>
-                    <li>获取指定合约的历史行情，同时支持日以及分钟历史数据。不能在init中调用。</li>
-                    <li>参数：<code>order_book_id</code> str类型， 合约代码，必填项<br>
-                        <code>bar_count</code> int类型， 获取的历史数据数量，必填项<br>
-                        <code>frequency</code> str类型， 获取数据什么样的频率进行。'1d'或'1m'分别表示每日和每分钟，必填项。您可以指定不同的分钟频率，例如'5m'代表5分钟线<br>
-                        <code>fields</code> str OR str list类型， 返回数据字段。必填项<br>
-                        <code>skip_suspended</code> bool类型， 是否跳过停牌，默认True，跳过停牌<br>
-                        <code>include_now</code> bool类型， 是否包括不完整的bar数据。默认为False，不包括。举例来说，在09:39的时候获取上一个5分钟线，默认将获取到<br>09:31~09:35合成的5分钟线。如果设置为True，则将获取到09:36~09:39之间合成的"不完整"5分钟线<br></li>
-                    <li>其中<code>fields</code>包括：<br>
-                        <code>datetime</code> 时间戳<br>
-                        <code>open</code> 开盘价<br>
-                        <code>high</code> 最高价<br>
-                        <code>low</code> 最低价<br>
-                        <code>close</code> 收盘价<br>
-                        <code>volume</code> 成交量<br>
-                        <code>total_turnover</code> 成交额<br>
-                        <code>datetime</code> int类型时间戳<br>
-                        <code>open_interest</code> 持仓量（期货专用）<br>
-                        <code>basis_spread</code> 期现差（股指期货专用）<br>
-                        <code>settlement</code> 结算价（期货日线专用）<br>
-                        <code>prev_settlement</code> 结算价（期货日线专用）<br></li>
-                    <li>返回：ndarray ，方便直接与talib等计算库对接，效率较history返回的DataFrame更高</li>
-
-                    <h3><code>get_price(order_book_ids, start_date, end_date=None, frequency='1d', fields=None, adjust_type='pre', skip_suspended=False)</code></h3>
-                    <li>获取指定合约或合约列表的历史行情（包含起止日期，日线或分钟线），不能在'handle_bar'函数中进行调用。注意，这一函数主要是为满足在研究平台编写策略习惯而引入。在编写策略中，使用history_bars进行数据获取会更方便。</li>
-                    <li>参数：<code>order_book_ids</code> str OR str list类型， 合约代码，合约代码，可传入order_book_id, order_book_id list<br>
-                        <code>start_date</code> str, datetime.date, datetime.datetime, pandasTimestamp类型， 开始日期，用户必须指定<br>
-                        <code>end_date</code> str, datetime.date, datetime.datetime, pandasTimestamp类型， 结束日期，默认为策略当前日期前一天<br>
-                        <code>frequency</code> str类型， 历史数据的频率。 现在支持日/分钟级别的历史数据，默认为'1d'。使用者可自由选取不同频率，例如'5m'代表5分钟线<br>
-                        <code>fields</code> str OR str list类型， 返回字段名称<br>
-                        <code>adjust_type</code> str类型， 权息修复方案。前复权 - <code>pre</code>，后复权 - <code>post</code>，不复权 - <code>none</code>，回测使用 - <code>internal</code> 需要注意，<code>internal</code>数据与回测所使用数据保持一致，仅就拆分事件对价格以及成交量进行了前复权处理，并未考虑分红派息对于股价的影响。所以在分红前后，价格会出现跳跃<br>
-                        <code>skip_suspended</code> bool类型， 是否跳过停牌数据。默认为False，不跳过，用停牌前数据进行补齐。True则为跳过停牌期。注意，当设置为True时，函数order_book_id只支持单个合约传入<br>
-                    </li>
-                    <li>返回：pandas Panel/DataFrame/Series<br> 传入一个order_book_id，多个fields，函数会返回一个pandas DataFrame<br> 传入一个order_book_id，一个field，函数会返回pandas Series<br> 传入多个order_book_id，一个field，函数会返回一个pandas DataFrame<br> 传入多个order_book_id，函数会返回一个pandas Panel</li>
-
-                    <h3><code>current_snapshot(id_or_symbol)</code></h3>
-                    <li>获得当前<a href="#snapshot">市场快照</a>数据。只能在日内交易阶段调用，获取当日调用时点的市场快照数据。市场快照数据记录了每日从开盘到当前的数据信息，可以理解为一个动态的day bar数据。在目前分钟回测中，快照数据为当日所有分钟线累积而成，一般情况下，最后一个分钟线获取到的快照数据应当与当日的日线行情保持一致。需要注意，在实盘模拟中，该函数返回的是调用当时的市场快照情况，所以在同一个handle_bar中不同时点调用可能返回的数据不同。如果当日截止到调用时候对应股票没有任何成交，那么snapshot中的close, high, low, last几个价格水平都将以0表示。</li>
-                    <li>参数：<code>id_or_symbol</code> str类型， 合约代码或简称</li>
-                    <li>返回：调用时点的<a href="#snapshot">市场快照snapshot</a></li>
-
-                    <h3><code>get_dominant_future(underlying_symbol)</code></h3>
-                    <li>获取某一期货品种策略当前日期的主力合约代码。 合约首次上市时，以当日收盘同品种持仓量最大者作为从第二个交易日开始的主力合约。当同品种其他合约持仓量在收盘后超过当前主力合约1.1倍时，从第二个交易日开始进行主力合约的切换。日内不会进行主力合约的切换。</li>
-                    <li>参数：<code>underlying_symbol</code> str类型， 期货合约品种，例如沪深300股指期货为'IF'</li>
-                    <li>返回：str，主力合约<code>order_book_id</code></li>
-
-                    <h3><code>get_future_contracts(underlying_symbol)</code></h3>
-                    <li>获取某一期货品种在策略当前日期的可交易合约order_book_id列表。按照到期月份，下标从小到大排列，返回列表中第一个合约对应的就是该品种的近月合约。</li>
-                    <li>参数：<code>underlying_symbol</code> str类型， 期货合约品种，例如沪深300股指期货为'IF'</li>
-                    <li>返回：str list，当日可交易的<code>order_book_id list</code></li>
-
-                    <h3><code>get_securities_margin(id_or_symbols, count=1, fields=None)</code></h3>
-                    <li>获取融资融券信息。包括深证融资融券数据以及上证融资融券数据情况。既包括个股数据，也包括市场整体数据。需要注意，T日的数据将在T+1日上午09:00左右更新，所以可能无法在before_trading阶段获取到上一交易日的最新数据。融资融券的开始日期为2010年3月31日。</li>
-                    <li>参数：<code>id_or_symbols</code> str or str list 可输入order_book_id, order_book_id list。另外，输入'XSHG'或'sh'代表整个上证整体情况；'XSHE'或'sz'代表深证整体情况<br>
-                        <code>count	int</code> 回溯获取的数据个数。默认为当前能够获取到的最近的数据<br>
-                        <code>fields</code> str OR str list 默认为所有字段<br></li>
-                    <li>其中field包括：<code>margin_balance</code> 融资余额<br>
-                        <code>buy_on_margin_value</code> 融资买入额<br>
-                        <code>margin_repayment</code> 融资偿还额<br>
-                        <code>short_balance</code> 融券余额<br>
-                        <code>short_balance_quantity</code> 融券余量<br>
-                        <code>short_sell_value</code> 融券卖出额<br>
-                        <code>short_sell_quantity</code> 融券卖出量
-                        <code>short_repayment_quantity</code> 融券偿还量<br>
-                        <code>total_balance</code> 融资融券余额<br></li>
-                    <li>返回：<br>多个order_book_id，单个field的时候返回pandas DataFrame，index为date，column为order_book_id<br> 单个order_book_id，多个fields的时候返回pandas DataFrame，index为date，column为fields<br> 单个order_book_id，单个field返回pandas Series<br> 多个order_book_id，多个fields的时候返回pandas Panel Items axis为fields Major_axis axis为时间戳 Minor_axis axis为order_book_id</li>
-
-                    <h3><code>get_shares(id_or_symbols, count=1, fields=None)</code></h3>
-                    <li>获取某只股票在一段时间内的流通情况。</li>
-                    <li>参数：<code>id_or_symbols</code> str 可输入order_book_id, order_book_id list<br>
-                        <code>count</code> int 回溯获取的数据个数。默认为当前能够获取到的最近的数据<br>
-                        <code>fields</code> str oR str list 默认为所字段。见下方列表<br></li>
-                    <li>其中field包括：<code>total</code> 总股本<br>
-                        <code>circulation_a</code> 流通A股<br>
-                        <code>management_circulation</code> 已流通高管持股<br>
-                        <code>non_circulation_a</code> 非流通A股合计<br>
-                        <code>total_a</code> A股总股本</li>
-                    <li>返回：多个order_book_id，多个fields的时候返回pandas Panel<br> 单个order_book_id，多个fields的时候返回pandas DataFrame<br> 单个order_book_id，单个field返回pandas Series</li>
-
-                    <h3><code>get_turnover_rate(id_or_symbols, count=1, fields=None)</code></h3>
-                    <li>历史换手率。</li>
-                    <li>参数：<code>id_or_symbols</code> str or str list 可输入order_book_id, order_book_id list<br>
-                        <code>count</code> int 回溯获取的数据个数。默认为当前能够获取到的最近的数据<br>
-                        <code>fields</code> str OR str list 默认为所有字段。见下方列表</li>
-                    <li>其中field包括：<code>today</code> 当天换手率<br>
-                        <code>week</code> 过去一周平均换手率<br>
-                        <code>month</code> 过去一个月平均换手率<br>
-                        <code>three_month</code> 过去三个月平均换手率<br>
-                        <code>six_month</code> 过去六个月平均换手率<br>
-                        <code>year</code> 过去一年平均换手率<br>
-                        <code>current_year</code> 当年平均换手率<br>
-                        <code>total</code> 上市以来平均换手率</li>
-                    <li>返回：如果只传入一个order_book_id，多个fields，返回pandas DataFrame<br> 如果传入order_book_id list，并指定单个field，函数会返回一个pandas DataFrame<br> 如果传入order_book_id list，并指定多个fields，函数会返回一个pandas Panel</li>
-
-                    <h3><code>industry(code)</code></h3>
-                    <li>获得属于某一行业的所有股票列表。我们目前使用的行业分类来自于中国国家统计局的<a href="http://www.stats.gov.cn/tjsj/tjbz/hyflbz/" target="_blank">国民经济行业分类</a>，可以使用这里的任何一个行业代码来调用行业的股票列表</li>
-                    <li>参数：<code>code</code> str OR industry_code item 行业名称或行业代码。例如，农业可填写industry_code.A01 或 'A01'</li>
-                    <li>返回：获得属于某一行业的所有股票的<code>order_book_id list</code>。</li>
-
-                    <h3><code>sector(code)</code></h3>
-                    <li>获得属于某一板块的所有股票列表。目前支持的板块分类取值参考自MSCI发布的<a href="https://en.wikipedia.org/wiki/Global_Industry_Classification_Standard" target="_blank">全球行业标准分类</a>。</li>
-                    <li>参数：<code>code</code> str OR industry_code item 板块名称或板块代码。例如，能源板块可填写'Energy'、'能源'或sector_code.Energy</li>
-                    <li>返回：获得属于该板块的所有股票的<code>order_book_id</code>或<code>order_book_id list</code>。</li>
-
-                    <h3><code>concept(concept_name1, concept_name2, ...)</code></h3>
-                    <li>获取属于某个或某几个概念的股票列表。</li>
-                    <li>参数：<code>concept_names</code> str OR 多个str item 概念名称。可以从概念列表中选择一个或多个概念填写</li>
-                    <li>返回：属于该概念的股票<code>order_book_id</code>或<code>order_book_id list</code>。</li>
-
-                    <h3><code>index_components(order_book_id, date=None)</code></h3>
-                    <li>获取某一指数的股票构成列表，也支持指数的历史构成查询。</li>
-                    <li>参数：<code>order_book_id</code> str 指数代码，可传入order_book_id<br>
-                        <code>date</code> str, date, datetime, pandas Timestamp 查询日期，默认为策略当前日期。如指定，则应保证该日期不晚于策略当前日期</li>
-                    <li>返回：构成该指数股票的<code>order_book_id list</code>。</li>
-
-                    <h3><code>get_dividend(order_book_id,  start_date, adjusted=True)</code></h3>
-                    <li>获取某只股票到策略当前日期前一天的分红情况（包含起止日期，并且进行了前复权处理）。</li>
-                    <li>参数：<code>order_book_id	str</code> 可输入order_book_id或symbol<br>
-                        <code>start_date</code> str, date, datetime, pandasTimestamp 开始日期，用户必须指定，需要早于策略当前日期<br>
-                        <code>adjusted</code> bool 默认为True，代表经过前复权处理之后的分红数值；False代表未经任何复权处理的原始分红数值</li>
-                    <li>返回：pandas DataFrame，查询时间段内某个股票的分红数据<br>
-                        <code>declaration_announcement_date</code>: 分红宣布日，上市公司一般会提前一段时间公布未来的分红派息事件<br>
-                        <code>book_closure_date</code>: 股权登记日<br>
-                        <code>dividend_cash_before_tax</code>: 税前分红<br>
-                        <code>ex_dividend_date</code>: 除权除息日，该天股票的价格会因为分红而进行调整<br>
-                        <code>payable_date</code>: 分红到帐日，这一天最终分红的现金会到账<br>
-                        <code>round_lot</code>: 分红最小单位，例如：10代表每10股派发dividend_cash_before_tax单位的税前现金</li>
-
-                    <h3><code>get_split(order_book_id,  start_date)</code></h3>
-                    <li>获取某只股票到策略当前日期前一天的拆分情况（包含起止日期）。</li>
-                    <li>参数：<code>order_book_id</code> str 指数代码，证券代码，证券的独特的标识符，例如：'000001.XSHE'<br>
-                        <code>start_date</code> str, date, datetime, pandasTimestamp 开始日期，用户必须指定，需要早于策略当前日期</li>
-                    <li>返回：pandas DataFrame，查询时间段内的某个股票的拆分数据<br>
-                        <code>ex_dividend_date</code>: 除权除息日，该天股票的价格会因为拆分而进行调整<br>
-                        <code>book_closure_date</code>: 股权登记日<br>
-                        <code>split_coefficient_from</code>: 拆分因子（拆分前）<br>
-                        <code>split_coefficient_to</code>: 拆分因子（拆分后）<br>
-                    </li>
-
-                    <h3><code>get_trading_dates(start_date, end_date)</code></h3>
-                    <li>获取中国市场的交易日列表（起止日期加入判断）</li>
-                    <li>参数：<code>start_date</code> str, date, datetime, pandasTimestamp 开始日期，用户必须指定<br>
-                        <code>end_date</code> str, date, datetime, pandasTimestamp 结束日期，用户必须指定<br> </li>
-                    <li>返回：datetime.date list</li>
-
-                    <h3><code>get_previous_trading_date(date)</code></h3>
-                    <li>获取指定日期的上一交易日</li>
-                    <li>参数：<code>date</code> str, date, datetime, pandasTimestamp 指定日期，用户必须指定</li>
-                    <li>返回：datetime.date list</li>
-
-                    <h3><code>get_next_trading_date(date)</code></h3>
-                    <li>获取指定日期的下一交易日</li>
-                    <li>参数：<code>date</code> str, date, datetime, pandasTimestamp 指定日期，用户必须指定</li>
-                    <li>返回：datetime.date list</li>
-
-                    <h3><code>get_price_change_rate(id_or_symbols, count=1)</code></h3>
-                    <li>获取股票或指数的历史涨跌幅。注意目前只支持股票与指数两类合约，基金、期货等目前并不支持。</li>
-                    <li>参数：<code>id_or_symbols</code> str or str list 可输入order_book_id, order_book_id list<br>
-                        <code>count</code> int 回溯获取的数据个数。默认为当前能够获取到的最近的数据
-                    </li>
-                    <li>返回：传入多个order_book_id，函数会返回pandas DataFrame<br> 传入一个order_book_id，函数会返回pandas Series</li>
-
-                    <h3><code>get_yield_curve(date=None, tenor=None)</code></h3>
-                    <li>获取某个国家市场指定日期的收益率曲线水平。数据为2002年至今的中债国债收益率曲线，来源于中央国债登记结算有限责任公司。</li>
-                    <li>参数：<code>date</code> str, date, datetime, pandasTimestamp 查询日期，默认为策略当前日期前一天<br>
-                        <code>tenor</code> str 标准期限，'0S' - 隔夜，'1M' - 1个月，'1Y' - 1年，默认为全部期限
-                    </li>
-                    <li>返回：pandas DataFrame，查询时间段内无风险收益率曲线</li>
-
-                    <h3><code>is_suspended(order_book_id, count=1)</code></h3>
-                    <li>获取某个国家市场指定日期的收益率曲线水平。数据为2002年至今的中债国债收益率曲线，来源于中央国债登记结算有限责任公司。</li>
-                    <li>参数：<code>order_book_id</code> str 某只股票的代码，可传入单只股票的order_book_id, symbol<br>
-                        <code>count</code> int 回溯获取的数据个数。默认为当前能够获取到的最近的数据
-                    </li>
-                    <li>返回：count为1时 bool；count>1时 pandas Series</li>
-
-                    <h3><code>is_st_stock(order_book_id, count=1)</code></h3>
-                    <li>判断一只或多只股票在一段时间内是否为ST股（包括ST与*ST）。ST股是有退市风险因此风险比较大的股票，很多时候您也会希望判断自己使用的股票是否是'ST'股来避开这些风险大的股票。另外，我们目前的策略比赛也禁止了使用'ST'股。</li>
-                    <li>参数：<code>order_book_id</code> str 股票的代码，可传入order_book_id, symbol<br>
-                        <code>count</code> int 回溯获取的数据个数。默认为当前能够获取到的最近的数据
-                    </li>
-                    <li>返回：count为1时 bool；count>1时 pandas DataFrame</li>
-
-                    <h3><code>fenji.get_a_by_yield(current_yield, listing=True)</code></h3>
-                    <li>通过传入当前的本期利率拿到对应的分级A的order_book_id list</li>
-                    <li>参数：<code>current_yield</code> float 本期利率，用户必须指定<br>
-                        <code>listing</code> bool 默认为True，该分级基金是否在交易所可交易
-                    </li>
-                    <li>返回：符合当前利率水平的分级A基金的order_book_id list；如果无符合内容，则返回空列表。</li>
-
-                    <h3><code>fenji.get_a_by_interest_rule(interest_rule)</code></h3>
-                    <li>通过传入当前的利率规则拿到对应的分级A的order_book_id list</li>
-                    <li>参数：<code>interest_rule</code> str 利率规则，例如："+3.5%", "+4%", "=7%", "*1.4+0.55%", "利差" etc. 您也可以在研究平台使用fenji.get_all来进行查询所有的组合可能。用户必须填写<br>
-                        <code>listing</code> bool 默认为True，该分级基金是否在交易所可交易
-                    </li>
-                    <li>返回：符合当前利率规则的分级A基金的order_book_id list</li>
-
-                    <h3><code>fenji.get_all(field_list)</code></h3>
-                    <li>获取所有分级基金信息</li>
-                    <li>参数：<code>ifield_list</code> str list 希望输出的数据字段名（见下表），默认为所有字段</li>
-                    <li><code>a_b_propotion</code> 分级A：分级B的比例<br>
-                        <code>conversion_date</code> 下次定折日<br>
-                        <code>creation_date</code> 创立日期<br>
-                        <code>current_yield</code> 本期利率<br>
-                        <code>expire_date</code> 到期日，可能为NaN - 即不存在<br>
-                        <code>fenji_a_order_book_id</code> A基代码<br>
-                        <code>fenji_a_symbol</code> A基名称<br>
-                        <code>fenji_b_order_book_id</code> B基代码<br>
-                        <code>fenji_b_symbol</code> B基名称<br>
-                        <code>fenji_mu_orderbook_id</code> 母基代码<br>
-                        <code>fenji_mu_symbol</code> 母基名称<br>
-                        <code>interest_rule</code> 利率规则<br>
-                        <code>next_yield</code> 下期利率<br>
-                        <code>track_index_symbol</code> 跟踪指数</li>
-                    <li>返回：pandas DataFrame，分级基金各项数据</li>
-
-                    <h3><code>xueqiu.top_stocks(field, date=None, frequency='1d', count=10)</code></h3>
-                    <li>获取每日、每周或每月的某个指标的雪球数据的股票排名情况以及它的对应的统计数值</li>
-                    <li>参数：<code>field</code> str 目前支持的雪球数据统计指标有: 昨日新增评论 - new_comments，总评论 - total_comments，昨日新增关注者 - new_followers，总关注者数目 - total_followers，卖出行为 - sell_actions，买入行为 - buy_actions<br>
-                        <code>date</code> str, datetime.date, datetime.datetime, pandasTimestamp 查询日期。默认为策略当前日期前一天。如指定，则该日期应早于策略当前日期。注意：我们最早支持的雪球数据只到2015年4月23日，之后的数据我们都会保持更新<br>
-                        <code>frequency</code> str 默认是1d，即每日的数据统计。也支持每周 - 1w和每月 - 1M的统计<br>
-                        <code>count	integer</code> 指定返回多少个结果，默认是10个<br></li>
-                    <li>返回：pandas DataFrame，各项舆情数据</li>
-
-                </ul>
-            </div>
-
-            <div id="api-7">
-                <div class="stock-name" s tyle="display: inline;">重要对象</div>
-                <ul>
-                    <h3 id="bar"><code>Bar对象</code></h3>
-                    <li><code>order_book_id</code> str 合约代码</li>
-                    <li><code>symbol</code> str 合约简称</li>
-                    <li><code>datetime</code> datetime.datetime 时间戳</li>
-                    <li><code>open</code> float 开盘价</li>
-                    <li><code>close</code> float 收盘价</li>
-                    <li><code>high</code> float 最高价</li>
-                    <li><code>low</code> float 最低价</li>
-                    <li><code>volume</code> float 成交量</li>
-                    <li><code>total_turnover</code> float 成交额</li>
-                    <li><code>prev_close</code> float 昨日收盘价</li>
-                    <li><code>limit_up</code> float 涨停价</li>
-                    <li><code>limit_down</code> float 跌停价</li>
-                    <li><code>isnan	</code>bool 当前bar数据是否有行情。例如，获取已经到期的合约数据，isnan此时为True</li>
-                    <li><code>suspended	</code>bool 是否全天停牌</li>
-                    <li><code>prev_settlement</code> float 昨结算（期货日线数据专用）</li>
-                    <li><code>settlement</code> float 结算（期货日线数据专用）</li>
-
-                    <h3 id="snapshot"><code>Snapshot对象</code></h3>
-                    <li><code> order_book_id</code> str 股票代码</li>
-                    <li><code>datetime	</code>datetime.datetime 当前快照数据的时间戳</li>
-                    <li><code>open</code> float 当日开盘价</li>
-                    <li><code>last</code>float 当前最新价</li>
-                    <li><code>high</code> float 截止到当前的最高价</li>
-                    <li><code>low</code> float 截止到当前的最低价</li>
-                    <li><code>prev_close</code>float 昨日收盘价</li>
-                    <li><code>volume</code> float 截止到当前的成交量</li>
-                    <li><code>total_turnover</code> float 截止到当前的成交额</li>
-                    <li><code>open_interest	</code>float 截止到当前的持仓量（期货专用）</li>
-                    <li><code>prev_settlement</code>float 昨日结算价（期货专用）</li>
-                    <li>需要注意，在回测中通过snapshot获取prev_close以及prev_settlement较为低效，推荐通过<a href="#bar">bar数据</a>进行获取。</li>
-
-                    <h3 id="portfolio"><code>Portfolio对象</code></h3>
-                    <li><code>cash</code> float 可用资金，为子账户可用资金的加总</li>
-                    <li><code>frozen_cash</code> float 冻结资金，为子账户冻结资金加总</li>
-                    <li><code>total_returns</code> float 投资组合至今的累积收益率</li>
-                    <li><code>daily_returns</code> float 投资组合每日收益率</li>
-                    <li><code>daily_pnl</code> float 当日盈亏，子账户当日盈亏的加总</li>
-                    <li><code>market_value</code> float 投资组合当前的市场价值，为子账户市场价值的加总</li>
-                    <li><code>total_value</code> float 总权益，为子账户总权益加总</li>
-                    <li><code>units</code> float 份额。在没有出入金的情况下，策略的初始资金</li>
-                    <li><code>unit_net_value</code> float 单位净值</li>
-                    <li><code>static_unit_net_value</code> float 静态单位权益</li>
-                    <li><code>transaction_cost</code> float 当日费用</li>
-                    <li><code>pnl</code> float 当前投资组合的累计盈亏</li>
-                    <li><code>start_date</code> datetime.datetime 策略投资组合的回测/实时模拟交易的开始日期</li>
-                    <li><code>annualized_returns</code> float 投资组合的年化收益率</li>
-                    <li><code>positions</code> dict 一个包含所有仓位的字典，以order_book_id作为键，<a href="#position">position对象</a>作为值</li>
-
-                    <h3 id="order"><code>Order对象</code></h3>
-                    <li><code>order_id</code> int 唯一标识订单的id</li>
-                    <li><code>order_book_id</code> str 合约代码</li>
-                    <li><code>datetime</code> datetime.datetime 订单创建时间</li>
-                    <li><code>side</code> SIDE 订单方向</li>
-                    <li><code>price</code> float 订单价格，只有在订单类型为'限价单'的时候才有意义</li>
-                    <li><code>quantity</code> int 订单数量</li>
-                    <li><code>filled_quantity</code> int 订单已成交数量</li>
-                    <li><code>unfilled_quantity</code> int 订单未成交数量</li>
-                    <li><code>type</code> ORDER_TYPE 订单类型</li>
-                    <li><code>transaction_cost</code> float 费用</li>
-                    <li><code>avg_price	float</code> 成交均价</li>
-                    <li><code>status</code> ORDER_STATUS 订单状态</li>
-                    <li><code>message</code> str 信息。比如拒单时候此处会提示拒单原因</li>
-                    <li><code>trading_datetime</code> datetime.datetime 订单的交易日期（对应期货夜盘）</li>
-                    <li><code>position_effect</code> POSITION_EFFECT 订单开平（期货专用）</li>
-
-                    <h3 id="account"><code>Account对象</code></h3>
-                    <li><code>cash</code> float 可用资金</li>
-                    <li><code>frozen_cash</code> float 冻结资金</li>
-                    <li><code>daily_pnl</code> float 当日盈亏，当日投资组合总权益-昨日投资组合总权益</li>
-                    <li><code>market_value</code> float 投资组合当前所有证券仓位的市值的加总</li>
-                    <li><code>total_value</code> float 总权益</li>
-                    <li><code>transaction_cost</code> float 当日费用</li>
-                    <li><code>positions</code> dict 一个包含股票子组合仓位的字典，以order_book_id作为键，<a href="#position">position对象</a>作为值</li>
-                    <li><code>dividend_receivable</code> float 投资组合在分红现金收到账面之前的应收分红部分</li>
-
-                    <h3 id="position"><code>Position对象</code></h3>
-                    <li><code>order_book_id</code> str 合约代码</li>
-                    <li><code>quantity</code> int 当前持仓股数</li>
-                    <li><code>pnl</code> float 持仓累计盈亏</li>
-                    <li><code>sellable</code> int 该仓位可卖出股数。T＋1的市场中sellable = 所有持仓-今日买入的仓位</li>
-                    <li><code>market_value</code> float 获得该持仓的实时市场价值</li>
-                    <li><code>value_percent</code> float 获得该持仓的实时市场价值在总投资组合价值中所占比例，取值范围[0, 1]</li>
-                    <li><code>avg_price</code> float 平均建仓成本</li>
-
-                    <h3 id="instrument"><code>Instrument对象</code></h3>
-                    <li><code> order_book_id</code> str 证券代码，证券的独特的标识符。应以'.XSHG'或'.XSHE'结尾，前者代表上证，后者代表深证</li>
-                    <li><code>symbol</code> str 证券的简称，例如'平安银行'</li>
-                    <li><code>abbrev_symbol</code> str 证券的名称缩写，在中国A股就是股票的拼音缩写。例如：'PAYH'就是平安银行股票的证券名缩写</li>
-                    <li><code>round_lot</code> int 一手对应多少股，中国A股一手是100股</li>
-                    <li><code>sector_code</code> str 板块缩写代码，全球通用标准定义</li>
-                    <li><code>sector_code_name</code> str 以当地语言为标准的板块代码名</li>
-                    <li><code>industry_code</code> str 国民经济行业分类代码</li>
-                    <li><code>industry_name</code> str 国民经济行业分类名称</li>
-                    <li><code>listed_date</code> str 该证券上市日期</li>
-                    <li><code>de_listed_date</code> str 退市日期</li>
-                    <li><code>type</code> str 合约类型，目前支持的类型有: 'CS', 'INDX', 'LOF', 'ETF', 'FenjiMu', 'FenjiA', 'FenjiB', 'Future'</li>
-                    <li><code>concept_names</code> str 概念股分类，例如：'铁路基建'，'基金重仓'等</li>
-                    <li><code>exchange</code> str 交易所，'XSHE' - 深交所, 'XSHG' - 上交所</li>
-                    <li><code>board_type</code> str 板块类别，'MainBoard' - 主板,'GEM' - 创业板</li>
-                    <li><code>status</code> str 合约状态。'Active' - 正常上市, 'Delisted' - 终止上市, 'TemporarySuspended' - 暂停上市, 'PreIPO' - 发行配售期间, 'FailIPO' - 发行失败</li>
-                    <li><code>special_type</code> str 特别处理状态。'Normal' - 正常上市, 'ST' - ST处理, 'StarST' - *ST代表该股票正在接受退市警告, 'PT' - 代表该股票连续3年收入为负，将被暂停交易, 'Other' - 其他</li>
-                </ul>
-            </div>
-
-            <div id="api-8">
-                <div class="stock-name" s tyle="display: inline;">枚举常量</div>
-                <ul>
-                    <h3><code>ORDER_STATUS - 订单状态</code></h3>
-                    <li>PENDING_NEW 待报</li>
-                    <li>ACTIVE 可撤</li>
-                    <li>FILLED 全成</li>
-                    <li>CANCELLED 已撤</li>
-                    <li>REJECTED 拒单</li>
-
-                    <h3><code>SIDE - 买卖方向</code></h3>
-                    <li>BUY 买</li>
-                    <li>SELL 卖</li>
-
-                    <h3><code>POSITION_EFFECT - 开平</code></h3>
-                    <li>OPEN 开仓</li>
-                    <li>CLOSE 平仓</li>
-
-                    <h3><code>ORDER_TYPE - 订单类型</code></h3>
-                    <li>MARKET 市价单</li>
-                    <li>LIMIT 限价单</li>
-
-                    <h3><code>RUN_TYPE - 策略运行类型</code></h3>
-                    <li>BACKTEST 回测</li>
-                    <li>PAPER_TRADING 实盘模拟</li>
-
-                    <h3><code>MATCHING_TYPE - 撮合方式</code></h3>
-                    <li>CURRENT_BAR_CLOSE 以当前bar收盘价撮合</li>
-                    <li>NEXT_BAR_OPEN 以下一bar数据开盘价撮合</li>
-                </ul>
-            </div>
-
-            <div id="api-9">
-                <div class="stock-name" s tyle="display: inline;">外部数据源Tushare</div>
-                <ul>
-                    <li><a href="http://tushare.org/" target="_blank">Tushare</a>是一个国内很流行的爬虫数据源，支持的数据种类挺丰富的，API设计也是围绕着pandas来做的，因此也非常适合Trillionaire的用户上手。只需要简单的<code>import tushare as ts</code>就可以在Trillionaire的研究环境中使用了。</li>
-                    <li>重要的是目前使用<a href="http://tushare.org/" target="_blank">Tushare</a>可以支持一些Trillionaire暂时没有的数据，具体的使用方法和文档可以去<a href="http://tushare.org/" target="_blank">Tushare</a>上面寻找，比如<a href="http://tushare.org/reference.html" target="_blank">投资参考数据</a>、<a href="http://tushare.org/macro.html" target="_blank">宏观经济数据</a>、<a href="http://tushare.org/newsevent.html" target="_blank">新闻事件数据</a>、<a href="http://tushare.org/billboard.html" target="_blank">龙虎榜数据</a>、<a href="http://tushare.org/shibor.html" target="_blank">银行间同业拆放利率</a>等等。</li>
-                </ul>
-            </div>
-
-            <div id="api-10">
-                <div class="stock-name" s tyle="display: inline;">目前支持的Python模块</div>
-                <ul>
-                    <li>我们现在支持如下表格所列的多种强大的Python模块，您需要手动自己引入，比如可以打入<code>import pandas as pd</code>来支持引入pandas模块。您可以引入我们目前支持的Python模块来做各种神奇的数据处理。</li>
-                    <li>下面的列表是现在Trillionaire已经支持的Python模块：
-                        <ol>
-                            <li>talib TA-Lib 是一个被交易员/程序员常用的金融数据技术分析库。包含了超过150+的技术指标比如ADX,MACD,RSI,Stochastic,Bollinger Bands等 <a href="http://mrjbq7.github.io/ta-lib/funcs.html" target="_blank">>>TA-Lib官网</a></li>
-                            <li>pandas 最流行的Python数据分析库 <a href="http://pandas.pydata.org/" target="_blank">>>pandas文档</a></li>
-                            <li>numpy numpy是一个Python的科学计算基础库。 <a href="http://www.numpy.org/" target="_blank">>>numpy文档</a></li>
-                            <li>scipy SciPy是一个Python的数学、科学和工程计算的生态系统库。 <a href="https://www.scipy.org/" target="_blank">>>scipy文档</a></li>
-                            <li>statsmodels Statsmodels是一个Python的模块可以让您研究数据，构架统计模型和进行统计测试。功能包括：线性回归模型（Linear regression models）等 <a href="http://www.statsmodels.org/stable/index.html" target="_blank">>>statsmodels文档</a></li>
-                            <li>bisect Python的排序模块 <a href="https://docs.python.org/2/library/bisect.html" target="_blank">>>bisect文档</a></li>
-                            <li>cmath 提供可以对复数计算的数学模块 <a href="https://docs.python.org/2/library/cmath.html" target="_blank">>>cmath文档</a></li>
-                            <li>collections 提供除了Python内嵌的容器之外的容器种类选择 - dict, list, set 和 tuple <a href="https://docs.python.org/2/library/collections.html" target="_blank">>>collections文档</a></li>
-                            <li>sklearn Python的机器学习模块（machine learning） <a href="http://scikit-learn.org/stable/" target="_blank">>>sklearn文档</a></li>
-                            <li>hmmlearn Python的隐马尔可夫模型（Hidden Markov Models）模块，类似scikit-learn的API <a href="http://hmmlearn.readthedocs.org/en/latest/" target="_blank">>>hmmlearn文档</a></li>
-                            <li>pykalman 超级简单的卡尔曼滤波（Kalman Filter）, Kalman Smoother和EM模块 <a href="https://pykalman.github.io/" target="_blank">>>pykalman文档</a></li>
-                            <li>cvxopt cvxopt提供了凸优化（convex optimization）的解的python库。 <a href="http://cvxopt.org/" target="_blank">>>cvxopt文档</a></li>
-                            <li>arch arch提供了Univariate volatility模型，Bootstrapping和Multiple comparison procedures <a href="http://arch.readthedocs.org/en/latest/" target="_blank">>>arch文档</a></li>
-                            <li>dateutil dateutil模块提供了对标准的datetime模块的强大的拓展 <a href="https://labix.org/python-dateutil" target="_blank">>>dateutil文档</a></li>
-                            <li>datetime <a href="https://docs.python.org/3.5/library/datetime.html" target="_blank">>>datetime文档</a></li>
-                            <li>functools <a href="https://docs.python.org/3.5/library/functools.html" target="_blank">>>functools文档</a></li>
-                            <li>heapq <a href="https://docs.python.org/3.5/library/heapq.html" target="_blank">>>heapq文档</a></li>
-                            <li>pywt PyWavelets是一个Python的小波变换的库 <a href="http://www.pybytes.com/pywavelets/" target="_blank">>>pywt文档</a></li>
-                            <li>tensorflow Tensor flow is an open source software library for machine intelligence. <a href="https://www.tensorflow.org/" target="_blank">>>tensorflow文档</a></li>
-                            <li>tushare 国内流行的开源数据库，燥起来吧，各种数据。 <a href="http://tushare.org/" target="_blank">>>tushare网站</a></li>
-                            <li>pybrain pybrain是一个流行的机器学习库。PyBrain is a modular Machine Learning Library for Python. <a href="http://pybrain.org/" target="_blank">>>pybrain文档</a></li>
-                            <li>nltk 一个流行的人类语言分析库。 <a href="http://www.nltk.org/" target="_blank">>>nltk文档</a></li>
-                            <li>keras Theano和Tensorflow的深度学习库。 <a href="https://keras.io/" target="_blank">>>keras文档</a></li>
-                            <li>requests 易用的HTTP库 <a href="http://docs.python-requests.org/en/master/" target="_blank">>>requests文档</a></li>
-                            <li>bs4 beautifulsoup是网页爬取数据的利器！ <a href="https://www.crummy.com/software/BeautifulSoup/" target="_blank">>>beautifulsoupd文档</a></li>
-                            <li>lxml 处理XML和HTML的最好用的python库 <a href="http://lxml.de/" target="_blank">>>lxml中文文档</a></li>
-                            <li>urllib python自带的url处理库 <a href="https://docs.python.org/2/library/urllib.html" target="_blank">>>urllib文档</a></li>
-                            <li>xgboost 速度快效果好的boosting模型 <a href="http://xgboost.readthedocs.io/en/latest/" target="_blank">>>xgboost文档</a></li>
-                            <li>plotly 强大优美的图表库，支持三种不同类型的图表，包括地图，箱形图和密度图，以及更常见的产品如，条状和线形图 <a href="https://plot.ly/" target="_blank">>>plotly文档</a></li>
-                            <li>fbprophet 简单强大的数据预测工具包 <a href="https://facebookincubator.github.io/prophet/docs/quick_start.html" target="_blank">>>Prophet使用指南</a></li>
-                            <li>itertools <a href="https://docs.python.org/3.5/library/itertools.html" target="_blank">>>itertools文档</a></li>
-                            <li>math <a href="https://docs.python.org/3.5/library/math.html" target="_blank">>>math文档</a></li>
-                            <li>pytz <a href="https://pypi.python.org/pypi/pytz/2015.2" target="_blank">>>pytz文档</a></li>
-                            <li>queue <a href="https://docs.python.org/3.5/library/queue.html" target="_blank">>>queue文档</a></li>
-                            <li>random <a href="https://docs.python.org/3.5/library/random.html" target="_blank">>>random文档</a></li>
-                            <li>re <a href="https://docs.python.org/3.5/library/re.html" target="_blank">>>re文档</a></li>
-                            <li>time <a href="https://docs.python.org/3.5/library/time.html" target="_blank">>>time文档</a></li>
-                            <li>array <a href="https://docs.python.org/3/library/array.html" target="_blank">>>array文档</a></li>
-                            <li>copy <a href="https://docs.python.org/3/library/copy.html" target="_blank">>>copy文档</a></li>
-                            <li>json <a href="https://docs.python.org/3/library/json.html" target="_blank">>>json文档</a></li>
-                            <li>operator <a href="https://docs.python.org/3/library/operator.html" target="_blank">>>operator文档</a></li>
-                            <li>xml <a href="https://docs.python.org/3/library/xml.html" target="_blank">>>xml文档</a></li>
-                        </ol>
-                    </li>
-                </ul>
-            </div>
-
-            <div style="margin-bottom: 20%;"></div>
+        <div id="api-2">
+            <div class="stock-name" s tyle="display: inline;">基本方法</div>
+            <ul>
+                <h3><code>init(context)</code></h3>
+                <li>初始化方法，必须实现。在回测和实时模拟交易只会在启动的时候触发一次。你的算法会使用这个方法来设置你需要的各种初始化配置。</li>
+                <li>参数：<code>context</code>将会在整个算法中当做一个全局变量来使用。属性通过点标记（"."）来取到。</li>
+                <li>返回：无。</li>
+
+                <h3><code>handle_bar(context, bar_dict)</code></h3>
+                <li>必须实现。bar数据的更新会自动触发该方法的调用。策略具体逻辑可在该方法内实现，包括交易信号的产生、订单的创建等。在实时模拟交易中，该函数在交易时间内会每分钟被触发一次。</li>
+                <li>参数：<code>context</code>储存策略自定义参数、设置、仓位、投资组合信息的全局变量，属性通过点标记（"."）来取到。<br><code>bar_dict</code>为dict类型，key为order_book_id，value为bar数据。当前合约池内所有合约的bar数据信息都会更新在bar_dict里面。
+                </li>
+                <li>返回：无。</li>
+
+                <h3><code>before_trading(context)</code></h3>
+                <li>可选择实现的函数。每天在策略开始交易前会被调用。不能在这个函数中发送订单。需要注意，该函数的触发时间取决于用户当前所订阅合约的交易时间。<br>举例来说，如果用户订阅的合约中存在有夜盘交易的期货合约，则该函数可能会在前一日的20:00触发，而不是早晨08:00
+                </li>
+                <li>参数：<code>context</code>储存策略自定义参数、设置、仓位、投资组合信息的全局变量，属性通过点标记（"."）来取到。</li>
+                <li>返回：无。</li>
+
+                <h3><code>after_trading(context)</code></h3>
+                <li>可选择实现的函数。每天在收盘后被调用。不能在这个函数中发送订单。您可以在该函数中进行当日收盘后的一些计算。</li>
+                <li>参数：<code>context</code>储存策略自定义参数、设置、仓位、投资组合信息的全局变量，属性通过点标记（"."）来取到。</li>
+                <li>返回：无。</li>
+            </ul>
         </div>
 
+        <div id="api-3">
+            <div class="stock-name" s tyle="display: inline;">交易相关函数</div>
+            <ul>
+                <h3><code>order_shares(id_or_ins, amount, style=MarketOrder())</code></h3>
+                <li>落指定股数的买/卖单，最常见的落单方式之一。如有需要落单类型当做一个参量传入，如果忽略掉落单类型，那么默认是市价单（market order）。</li>
+                <li>参数：<code>id_or_ins</code>str或instrument对象类型，order_book_id或symbol或instrument对象，用户必须指定。<br>
+                    <code>amount</code>float类型，需要落单的股数。正数代表买入，负数代表卖出。将会根据一手xx股来向下调整到一手的倍数，比如中国A股就是调整成100股的倍数。<br>
+                    <code>style</code>OrderType对象类型，订单类型，默认是市价单。目前支持的订单类型有：<code>style=MarketOrder()</code>、<code>style=LimitOrder(limit_price)</code>
+                </li>
+                <li>返回：Order对象。</li>
 
-    </header>
+                <h3><code>order_lots(id_or_ins, amount, style=OrderType)</code></h3>
+                <li>指定手数发送买/卖单。如有需要落单类型当做一个参量传入，如果忽略掉落单类型，那么默认是市价单（market order）。</li>
+                <li>参数：<code>id_or_ins</code>str或instrument对象类型，order_book_id或symbol或instrument对象，用户必须指定。<br>
+                    <code>amount</code>float类型，多少手的数目。正数表示买入，负数表示卖出，用户必须指定<br>
+                    <code>style</code>OrderType对象类型，订单类型，默认是市价单。目前支持的订单类型有：<code>style=MarketOrder()</code>、<code>style=LimitOrder(limit_price)</code>
+                </li>
+                <li>返回：Order对象。</li>
 
-    <footer>
-        <div id="footer" onselectstart="return false;">
-            <div id="footer-div">
-                <div>
-                    <div class="big-li">
-                        <h4>关于</h4>
-                        <p>
-                            <a href="mailto:feedback@trillionaire.me?subject=[FeedBack]">
-                                <i class="fa fa-envelope"></i> 联系我们
-                            </a>
-                        </p>
+                <h3><code>order_value(id_or_ins, cash_amount, style=OrderType)</code></h3>
+                <li>
+                    使用想要花费的金钱买入/卖出股票，而不是买入/卖出想要的股数，正数代表买入，负数代表卖出。股票的股数总是会被调整成对应的100的倍数（在A中国A股市场1手是100股）。当您提交一个卖单时，该方法代表的意义是您希望通过卖出该股票套现的金额。如果金额超出了您所持有股票的价值，那么您将卖出所有股票。需要注意，如果资金不足，该API将不会创建发送订单。
+                </li>
+                <li>参数：<code>id_or_ins</code>str或instrument对象类型，order_book_id或symbol或instrument对象，用户必须指定。<br>
+                    <code>cash_amount</code>float类型，需要花费现金购买/卖出证券的数目。正数代表买入，负数代表卖出，用户必须指定<br>
+                    <code>style</code>OrderType对象类型，订单类型，默认是市价单。目前支持的订单类型有：<code>style=MarketOrder()</code>、<code>style=LimitOrder(limit_price)</code>
+                </li>
+                <li>返回：Order对象。</li>
 
-                        <p>
-                            <a href="log.html">
-                                <p><i class="fa fa-file-text-o"></i> 系统更新日志</p>
-                            </a>
-                        </p>
-                    </div>
+                <h3><code>order_percent(id_or_ins, percent, style=OrderType)</code></h3>
+                <li>
+                    发送一个等于目前投资组合价值（市场价值和目前现金的总和）一定百分比的买/卖单，正数代表买，负数代表卖。股票的股数总是会被调整成对应的一手的股票数的倍数（1手是100股）。百分比是一个小数，并且小于或等于1，0.5表示的是50%.需要注意，如果资金不足，该API将不会创建发送订单。
+                </li>
+                <li>参数：<code>id_or_ins</code>str或instrument对象类型，order_book_id或symbol或instrument对象，用户必须指定。<br>
+                    <code>percent</code>float类型，占有现有的投资组合价值的百分比。正数表示买入，负数表示卖出。用户必须指定<br>
+                    <code>style</code>OrderType对象类型，订单类型，默认是市价单。目前支持的订单类型有：<code>style=MarketOrder()</code>、<code>style=LimitOrder(limit_price)</code>
+                </li>
+                <li>返回：Order对象。</li>
 
-                    <div class="big-li">
-                        <h4>帮助</h4>
-                        <p>
-                            <a href="api.html">
-                                <i class="fa fa-file-o"></i> API文档
-                            </a>
-                        </p>
+                <h3><code>order_target_value(id_or_ins, cash_amount, style=OrderType)</code></h3>
+                <li>
+                    买入/卖出并且自动调整该证券的仓位到一个目标价值。如果还没有任何该证券的仓位，那么会买入全部目标价值的证券。如果已经有了该证券的仓位，则会买入/卖出调整该证券的现在仓位和目标仓位的价值差值的数目的证券。需要注意，如果资金不足，该API将不会创建发送订单。
+                </li>
+                <li>参数：<code>id_or_ins</code>str或instrument对象类型，order_book_id或symbol或instrument对象，用户必须指定。<br>
+                    <code>cash_amount</code>float类型，最终的该证券的仓位目标价值<br>
+                    <code>style</code>OrderType对象类型，订单类型，默认是市价单。目前支持的订单类型有：<code>style=MarketOrder()</code>、<code>style=LimitOrder(limit_price)</code>
+                </li>
+                <li>返回：Order对象。</li>
 
-                        <p>
-                            <a href="help.html">
-                                <i class="fa fa-file"></i> 帮助文档
-                            </a>
-                        </p>
+                <h3><code>order_target_percent(id_or_ins, percent, style=OrderType)</code></h3>
+                <li>
+                    买入/卖出证券以自动调整该证券的仓位到占有一个指定的投资组合的目标百分比。如果投资组合中没有任何该证券的仓位，那么会买入等于现在投资组合总价值的目标百分比的数目的证券；如果投资组合中已经拥有该证券的仓位，那么会买入/卖出目标百分比和现有百分比的差额数目的证券，最终调整该证券的仓位占据投资组合的比例至目标百分比。
+                </li>
+                <li>其实我们需要计算一个position_to_adjust (即应该调整的仓位):<code>position_to_adjust = target_position -
+                    current_position</code>，投资组合价值等于所有已有仓位的价值和剩余现金的总和。买/卖单会被下舍入一手股数（A股是100的倍数）的倍数。目标百分比应该是一个小数，并且最大值应该不超过1，比如0.5表示50%。如果<code>position_to_adjust</code>计算之后是正的，那么会买入该证券，否则会卖出该证券。
+                    需要注意，如果资金不足，该API将不会创建发送订单。
+                </li>
+                <li>参数：<code>id_or_ins</code>str或instrument对象类型，order_book_id或symbol或instrument对象，用户必须指定。<br>
+                    <code>percent</code>float类型，仓位最终所占投资组合总价值的目标百分比。<br>
+                    <code>style</code>OrderType对象类型，订单类型，默认是市价单。目前支持的订单类型有：<code>style=MarketOrder()</code>、<code>style=LimitOrder(limit_price)</code>
+                </li>
+                <li>返回：Order对象。</li>
 
-                    </div>
+                <h3><code>cancel_order(order)</code></h3>
+                <li>撤单。</li>
+                <li>参数：<code>order</code>需要撤销的order对象，用户必须指定</li>
+                <li>返回：无。</li>
 
-                    <div class="big-li">
-                        <h4>反馈</h4>
-                        <p>
-                            <a href="mailto:feedback@trillionaire.me?subject=[FeedBack]">
-                                <i class="fa fa-comments-o"></i> 反馈
-                            </a>
-                        </p>
+                <h3><code>get_open_orders()</code></h3>
+                <li>获取一个由order_id到order对象映射的dict，凡在此dict中的order都未被完全成交或取消。</li>
+                <li>参数：无。</li>
+                <li>返回：dict， 当前所有活跃的订单（未全部成交，未被撤单）。key为order_id，value为对应的Order对象</li>
+            </ul>
 
-                    </div>
+        </div>
+
+        <div id="api-4">
+            <div class="stock-name" s tyle="display: inline;">context属性</div>
+            <ul>
+                <h3><code>context.now</code></h3>
+                <li>使用以上的方式就可以在handle_bar中拿到当前的bar的时间，比如day bar的话就是那天的时间，minute bar的话就是这一分钟的时间点。</li>
+                <li>返回：datetime.datetime</li>
+
+                <h3><code>context.portfolio</code></h3>
+                <li>该投资组合在单一股票或期货策略中分别为股票投资组合和期货投资组合。在股票+期货的混合策略中代表汇总之后的总投资组合。请参考<a href="#portfolio">portfolio</a></li>
+
+                <h3><code>context.stock_account</code></h3>
+                <li>获取股票资金账户信息。请参考<a href="#account">account</a></li>
+
+                <h3><code>context.future_account</code></h3>
+                <li>获取期货资金账户信息。请参考<a href="#account">account</a></li>
+
+                <h3><code>context.run_info</code></h3>
+                <li>run_id str 标识策略每次运行的唯一id<br>
+                    <code>run_type</code> RUN_TYPE类型，
+                    RUN_TYPE.BACKTEST表示当前策略在进行回测，RUN_TYPE.PAPER_TRADING表示当前策略在进行实盘模拟<br>
+                    <code>start_date</code> datetime.date类型， 策略的开始日期<br>
+                    <code>end_date</code> datetime.date类型， 策略的结束日期<br>
+                    <code>frequency</code> str类型， 策略频率，'1d'或'1m'<br>
+                    <code>stock_starting_cash</code> float类型， 股票账户初始资金<br>
+                    <code>future_starting_cash</code> float类型， 期货账户初始资金<br>
+                    <code>slippage</code> float类型， 滑点水平<br>
+                    <code>margin_multiplier</code> float类型， 保证金倍率<br>
+                    <code>commission_multiplier</code> float类型， 佣金倍率<br>
+                    <code>benchmark</code> str类型， 基准合约代码<br>
+                    <code>matching_type</code> MATCHING_TYPE类型，
+                    撮合方式，MATCHING_TYPE.NEXT_BAR_OPEN代表以下一bar开盘价撮合，MATCHING_TYPE.CURRENT_BAR_CLOSE代表以当前bar收盘价撮合
+                </li>
+
+                <h3><code>context.universe</code></h3>
+                <li>在运行update_universe，subscribe或者unsubscribe的时候，合约池会被更新。</li>
+                <li>需要注意，合约池内合约的交易时间（包含股票的策略默认会在股票交易时段触发）是handle_bar被触发的依据。</li>
+            </ul>
+        </div>
+
+        <div id="api-5">
+            <div class="stock-name" s tyle="display: inline;">scheduler定时器</div>
+            <ul>
+                <h3><code>scheduler.run_daily(function)</code></h3>
+                <li>每日运行一次指定的函数，只能在init内使用。注意，schedule一定在其对应时间点的handle_bar之后执行，如果定时运行函数运行时间较长，则中间的handle_bar事件将会被略过。
+                </li>
+                <li>参数：<code>function</code>函数一定要包含（并且只能包含）<code>context</code>, <code>bar_dict</code>两个输入参数</li>
+                <li>返回：无</li>
+
+                <h3><code>scheduler.run_weekly(function, weekday=x, tradingday=t)</code></h3>
+                <li>每周运行一次指定的函数，只能在init内使用。 注意：<code>tradingday</code>中的负数表示倒数。<code>tradingday</code>表示交易日。如某周只有四个交易日，则此周的<code>tradingday=4</code>与<code>tradingday=-1</code>表示同一天。<code>weekday</code>和<code>tradingday</code>不能同时使用。
+                </li>
+                <li>参数：<code>function</code>函数一定要包含（并且只能包含）<code>context</code>, <code>bar_dict</code>两个输入参数<br><code>weekday</code>int类型，
+                    1~5 分别代表周一至周五，用户必须指定<br>
+                    <code>tradingday</code> int类型， 范围为[-5,1],[1,5] 例如，1代表每周第一个交易日，-1代表每周倒数第一个交易日，用户可以不填写
+                </li>
+                <li>返回：无</li>
+
+                <h3><code>scheduler.run_monthly(function,tradingday=t)</code></h3>
+                <li>每月运行一次指定的函数，只能在init内使用。
+                    注意：<code>tradingday</code>中的负数表示倒数。<code>tradingday</code>如某月只有三个交易日，则此月的<code>tradingday=3</code>与<code>tradingday=-1</code>表示同一天。
+                </li>
+                <li>参数：<code>function</code>函数一定要包含（并且只能包含）<code>context</code>, <code>bar_dict</code>两个输入参数<br>
+                    <code>tradingday</code> int类型，范围为[-23,1], [1,23] ，例如，1代表每月第一个交易日，-1代表每月倒数第一个交易日，用户必须指定
+                </li>
+                <li>返回：无</li>
+
+                <h3><code>time_rule</code></h3>
+                <li><code>scheduler</code>还可以用来做定时间运行，比如在每天开盘后的一小时后或一分钟后定时运行，这里有很多种组合可以让您达到各种自己想要达到的定时运行的目的。
+                    使用的方法是和上面的<code>scheduler.run_daily</code>，<code>scheduler.run_weekly</code>和<code>scheduler.run_monthly</code>进行组合加入time_rule来一起使用。
+                </li>
+                <li>注意：<code>market_open</code>与<code>market_close</code>都跟随中国A股交易时间进行设置，即09:31~15:00。<br>
+                    使用time_rule定时运行只会在分钟级别回测和实时模拟交易中有定义的效果，在日回测中只会默认依然在该天运行，并不能在固定的时间运行。
+                    <br> 在分钟回测中如未指定time_rule,则默认在开盘后一分钟运行,即09:31。
+                    <br> 如果两个schedule，分别使用
+                    <code>market_open</code> 与<code>market_close</code>规则，但规则触发时间在同一时刻，则<code>market_open</code>的<code>handle</code>一定在<code>market_close</code>的<code>handle</code>前执行。<br>
+                    目前暂不支持开盘交易(即 09:30分交易)
+                    ,所以<code>time_rule(minute=0)</code>和<code>time_rule(hour=0)</code>将不会触发任何事件。<br>
+                    market_open(minute=120)将在11:30执行， market_open(minute=121)在13:01执行，中午休市的区间会被忽略。<br>
+                    time_rule='before_trading'表示在开市交易前运行scheduler函数。该函数运行时间将在before_trading函数运行完毕之后handle_bar运行之前。
+                    <br></li>
+                <li>参数：<code>time_rule</code>market_open, market_close, str类型，定时具体几点几分运行某个函数。time_rule='before_trading'
+                    表示开始交易前运行；market_open(hour=x, minute=y)表示A股市场开市后x小时y分钟运行，market_close(hour=x,
+                    minute=y)表示A股市场收市前x小时y分钟运行。如果不设置time_rule默认的值是中国A股市场开市后一分钟运行。<br>
+                    <code>hour</code>int - option [1,4] ，具体在market_open/market_close后/前第多少小时执行, 股票的交易时间为[9:31 -
+                    11:30],[13:01 - 15:00]共240分钟，所以hour的范围为 [1,4]<br>
+                    <code>minute</code>int - option [1,240]
+                    ，具体在market_open/market_close的后/前第多少分钟执行，同上，股票每天交易时间240分钟，所以minute的范围为 [1,240]，中午休市的时间区间会被忽略。
+                </li>
+                <li>返回：无</li>
+            </ul>
+        </div>
+
+        <div id="api-6">
+            <div class="stock-name" s tyle="display: inline;">数据查询相关函数</div>
+            <ul>
+                <h3><code>get_fundamentals(query, entry_date=None, interval='1d', report_quarter=False)</code></h3>
+                <li>获取历史财务数据表格。目前支持中国市场超过400个指标。目前仅支持中国市场。需要注意，一次查询过多股票的财务数据会导致系统运行缓慢。</li>
+                <li>参数：<code>query</code>SQLAlchemyQueryObject，SQLAlchmey的Query对象。其中可在'query'内填写需要查询的指标，'filter'内填写数据过滤条件。具体可参考<a
+                        href="http://docs.sqlalchemy.org/en/rel_1_0/orm/tutorial.html#querying" target="_blank">sqlalchemy's
+                    query documentation</a>学习使用更多的方便的查询语句。从数据科学家的观点来看，sqlalchemy的使用比sql更加简单和强大<br>
+                    <code>entry_date</code> str, datetime.date, datetime.datetime, pandasTimestamp
+                    类型，查询财务数据的基准日期，应早于策略当前日期。默认为策略当前日期前一天。 <br>
+                    <code>interval</code> str类型，
+                    查询财务数据的间隔，默认为'1d'。例如，填写'5y'，则代表从entry_date开始（包括entry_date）回溯5年，返回数据时间以年为间隔。'd' - 天，'m' - 月， 'q' -
+                    季，'y' - 年。<br>
+                    <code>report_quarter</code> bool类型， 是否显示报告期，默认为False，不显示。'Q1' - 一季报，'Q2' - 半年报，'Q3' - 三季报，'Q4' - 年报。
+                </li>
+                <li>返回：pandas DataPanel。如果查询结果为空，返回空pandas DataFrame；如果给定间隔为1d, 1m, 1q, 1y，返回pandas DataFrame。</li>
+
+                <h3><code>all_instruments(type=None)</code></h3>
+                <li>获取某个国家市场的所有合约信息。使用者可以通过这一方法很快地对合约信息有一个快速了解，目前仅支持中国市场。</li>
+                <li>参数：<code>type</code>str类型，需要查询合约类型。默认是所有类型。类型包括：<br>
+                    <code>CS</code> Common Stock, 即股票<br>
+                    <code>ETF</code> Exchange Traded Fund, 即交易所交易基金<br>
+                    <code>LOF</code> Listed Open-Ended Fund，即上市型开放式基金<br>
+                    <code>FenjiMu</code> Fenji Mu Fund, 即分级母基金<br>
+                    <code>FenjiA</code> Fenji A Fund, 即分级A类基金<br>
+                    <code>FenjiB</code> Fenji B Funds, 即分级B类基金<br>
+                    <code>INDX</code> Index, 即指数<br>
+                    <code>Future</code> Futures，即期货，包含股指、国债和商品期货
+                </li>
+                <li>返回:pandas DataFrame。所有合约的基本信息。</li>
+
+                <h3><code>instruments(id_or_symbols)</code></h3>
+                <li>获取某个国家市场内一个或多个合约的详细信息。目前仅支持中国市场。</li>
+                <li>参数：<code>id_or_symbols</code>str OR str list类型，合约代码或合约代码列表，可传入order_book_id, order_book_id
+                    list。中国市场的order_book_id通常类似'000001.XSHE'。需要注意，国内股票、ETF、指数合约代码分别应当以'.XSHG'或'.XSHE'结尾，前者代表上证，后者代表深证。期货则无此要求。
+                </li>
+                <li>返回：一个Instrument对象，或一个instrument list。目前系统并不支持跨国家市场的同时调用。传入<code>order_book_id list</code>必须属于同一国家市场，不能混合着中美两个国家市场的<code>order_book_id</code>。
+                </li>
+
+                <h3><code>history_bars(order_book_id, bar_count, frequency, fields=None, skip_suspended=True,
+                    include_now=False)</code></h3>
+                <li>获取指定合约的历史行情，同时支持日以及分钟历史数据。不能在init中调用。</li>
+                <li>参数：<code>order_book_id</code> str类型， 合约代码，必填项<br>
+                    <code>bar_count</code> int类型， 获取的历史数据数量，必填项<br>
+                    <code>frequency</code> str类型， 获取数据什么样的频率进行。'1d'或'1m'分别表示每日和每分钟，必填项。您可以指定不同的分钟频率，例如'5m'代表5分钟线<br>
+                    <code>fields</code> str OR str list类型， 返回数据字段。必填项<br>
+                    <code>skip_suspended</code> bool类型， 是否跳过停牌，默认True，跳过停牌<br>
+                    <code>include_now</code> bool类型， 是否包括不完整的bar数据。默认为False，不包括。举例来说，在09:39的时候获取上一个5分钟线，默认将获取到<br>09:31~09:35合成的5分钟线。如果设置为True，则将获取到09:36~09:39之间合成的"不完整"5分钟线<br>
+                </li>
+                <li>其中<code>fields</code>包括：<br>
+                    <code>datetime</code> 时间戳<br>
+                    <code>open</code> 开盘价<br>
+                    <code>high</code> 最高价<br>
+                    <code>low</code> 最低价<br>
+                    <code>close</code> 收盘价<br>
+                    <code>volume</code> 成交量<br>
+                    <code>total_turnover</code> 成交额<br>
+                    <code>datetime</code> int类型时间戳<br>
+                    <code>open_interest</code> 持仓量（期货专用）<br>
+                    <code>basis_spread</code> 期现差（股指期货专用）<br>
+                    <code>settlement</code> 结算价（期货日线专用）<br>
+                    <code>prev_settlement</code> 结算价（期货日线专用）<br></li>
+                <li>返回：ndarray ，方便直接与talib等计算库对接，效率较history返回的DataFrame更高</li>
+
+                <h3><code>get_price(order_book_ids, start_date, end_date=None, frequency='1d', fields=None,
+                    adjust_type='pre', skip_suspended=False)</code></h3>
+                <li>
+                    获取指定合约或合约列表的历史行情（包含起止日期，日线或分钟线），不能在'handle_bar'函数中进行调用。注意，这一函数主要是为满足在研究平台编写策略习惯而引入。在编写策略中，使用history_bars进行数据获取会更方便。
+                </li>
+                <li>参数：<code>order_book_ids</code> str OR str list类型， 合约代码，合约代码，可传入order_book_id, order_book_id list<br>
+                    <code>start_date</code> str, datetime.date, datetime.datetime, pandasTimestamp类型， 开始日期，用户必须指定<br>
+                    <code>end_date</code> str, datetime.date, datetime.datetime, pandasTimestamp类型，
+                    结束日期，默认为策略当前日期前一天<br>
+                    <code>frequency</code> str类型， 历史数据的频率。 现在支持日/分钟级别的历史数据，默认为'1d'。使用者可自由选取不同频率，例如'5m'代表5分钟线<br>
+                    <code>fields</code> str OR str list类型， 返回字段名称<br>
+                    <code>adjust_type</code> str类型， 权息修复方案。前复权 - <code>pre</code>，后复权 - <code>post</code>，不复权 - <code>none</code>，回测使用
+                    - <code>internal</code> 需要注意，<code>internal</code>数据与回测所使用数据保持一致，仅就拆分事件对价格以及成交量进行了前复权处理，并未考虑分红派息对于股价的影响。所以在分红前后，价格会出现跳跃<br>
+                    <code>skip_suspended</code> bool类型，
+                    是否跳过停牌数据。默认为False，不跳过，用停牌前数据进行补齐。True则为跳过停牌期。注意，当设置为True时，函数order_book_id只支持单个合约传入<br>
+                </li>
+                <li>返回：pandas Panel/DataFrame/Series<br> 传入一个order_book_id，多个fields，函数会返回一个pandas DataFrame<br>
+                    传入一个order_book_id，一个field，函数会返回pandas Series<br> 传入多个order_book_id，一个field，函数会返回一个pandas
+                    DataFrame<br> 传入多个order_book_id，函数会返回一个pandas Panel
+                </li>
+
+                <h3><code>current_snapshot(id_or_symbol)</code></h3>
+                <li>获得当前<a href="#snapshot">市场快照</a>数据。只能在日内交易阶段调用，获取当日调用时点的市场快照数据。市场快照数据记录了每日从开盘到当前的数据信息，可以理解为一个动态的day
+                    bar数据。在目前分钟回测中，快照数据为当日所有分钟线累积而成，一般情况下，最后一个分钟线获取到的快照数据应当与当日的日线行情保持一致。需要注意，在实盘模拟中，该函数返回的是调用当时的市场快照情况，所以在同一个handle_bar中不同时点调用可能返回的数据不同。如果当日截止到调用时候对应股票没有任何成交，那么snapshot中的close,
+                    high, low, last几个价格水平都将以0表示。
+                </li>
+                <li>参数：<code>id_or_symbol</code> str类型， 合约代码或简称</li>
+                <li>返回：调用时点的<a href="#snapshot">市场快照snapshot</a></li>
+
+                <h3><code>get_dominant_future(underlying_symbol)</code></h3>
+                <li>获取某一期货品种策略当前日期的主力合约代码。
+                    合约首次上市时，以当日收盘同品种持仓量最大者作为从第二个交易日开始的主力合约。当同品种其他合约持仓量在收盘后超过当前主力合约1.1倍时，从第二个交易日开始进行主力合约的切换。日内不会进行主力合约的切换。
+                </li>
+                <li>参数：<code>underlying_symbol</code> str类型， 期货合约品种，例如沪深300股指期货为'IF'</li>
+                <li>返回：str，主力合约<code>order_book_id</code></li>
+
+                <h3><code>get_future_contracts(underlying_symbol)</code></h3>
+                <li>获取某一期货品种在策略当前日期的可交易合约order_book_id列表。按照到期月份，下标从小到大排列，返回列表中第一个合约对应的就是该品种的近月合约。</li>
+                <li>参数：<code>underlying_symbol</code> str类型， 期货合约品种，例如沪深300股指期货为'IF'</li>
+                <li>返回：str list，当日可交易的<code>order_book_id list</code></li>
+
+                <h3><code>get_securities_margin(id_or_symbols, count=1, fields=None)</code></h3>
+                <li>
+                    获取融资融券信息。包括深证融资融券数据以及上证融资融券数据情况。既包括个股数据，也包括市场整体数据。需要注意，T日的数据将在T+1日上午09:00左右更新，所以可能无法在before_trading阶段获取到上一交易日的最新数据。融资融券的开始日期为2010年3月31日。
+                </li>
+                <li>参数：<code>id_or_symbols</code> str or str list 可输入order_book_id, order_book_id
+                    list。另外，输入'XSHG'或'sh'代表整个上证整体情况；'XSHE'或'sz'代表深证整体情况<br>
+                    <code>count int</code> 回溯获取的数据个数。默认为当前能够获取到的最近的数据<br>
+                    <code>fields</code> str OR str list 默认为所有字段<br></li>
+                <li>其中field包括：<code>margin_balance</code> 融资余额<br>
+                    <code>buy_on_margin_value</code> 融资买入额<br>
+                    <code>margin_repayment</code> 融资偿还额<br>
+                    <code>short_balance</code> 融券余额<br>
+                    <code>short_balance_quantity</code> 融券余量<br>
+                    <code>short_sell_value</code> 融券卖出额<br>
+                    <code>short_sell_quantity</code> 融券卖出量
+                    <code>short_repayment_quantity</code> 融券偿还量<br>
+                    <code>total_balance</code> 融资融券余额<br></li>
+                <li>返回：<br>多个order_book_id，单个field的时候返回pandas DataFrame，index为date，column为order_book_id<br>
+                    单个order_book_id，多个fields的时候返回pandas DataFrame，index为date，column为fields<br>
+                    单个order_book_id，单个field返回pandas Series<br> 多个order_book_id，多个fields的时候返回pandas Panel Items
+                    axis为fields Major_axis axis为时间戳 Minor_axis axis为order_book_id
+                </li>
+
+                <h3><code>get_shares(id_or_symbols, count=1, fields=None)</code></h3>
+                <li>获取某只股票在一段时间内的流通情况。</li>
+                <li>参数：<code>id_or_symbols</code> str 可输入order_book_id, order_book_id list<br>
+                    <code>count</code> int 回溯获取的数据个数。默认为当前能够获取到的最近的数据<br>
+                    <code>fields</code> str oR str list 默认为所字段。见下方列表<br></li>
+                <li>其中field包括：<code>total</code> 总股本<br>
+                    <code>circulation_a</code> 流通A股<br>
+                    <code>management_circulation</code> 已流通高管持股<br>
+                    <code>non_circulation_a</code> 非流通A股合计<br>
+                    <code>total_a</code> A股总股本
+                </li>
+                <li>返回：多个order_book_id，多个fields的时候返回pandas Panel<br> 单个order_book_id，多个fields的时候返回pandas DataFrame<br>
+                    单个order_book_id，单个field返回pandas Series
+                </li>
+
+                <h3><code>get_turnover_rate(id_or_symbols, count=1, fields=None)</code></h3>
+                <li>历史换手率。</li>
+                <li>参数：<code>id_or_symbols</code> str or str list 可输入order_book_id, order_book_id list<br>
+                    <code>count</code> int 回溯获取的数据个数。默认为当前能够获取到的最近的数据<br>
+                    <code>fields</code> str OR str list 默认为所有字段。见下方列表
+                </li>
+                <li>其中field包括：<code>today</code> 当天换手率<br>
+                    <code>week</code> 过去一周平均换手率<br>
+                    <code>month</code> 过去一个月平均换手率<br>
+                    <code>three_month</code> 过去三个月平均换手率<br>
+                    <code>six_month</code> 过去六个月平均换手率<br>
+                    <code>year</code> 过去一年平均换手率<br>
+                    <code>current_year</code> 当年平均换手率<br>
+                    <code>total</code> 上市以来平均换手率
+                </li>
+                <li>返回：如果只传入一个order_book_id，多个fields，返回pandas DataFrame<br> 如果传入order_book_id
+                    list，并指定单个field，函数会返回一个pandas DataFrame<br> 如果传入order_book_id list，并指定多个fields，函数会返回一个pandas Panel
+                </li>
+
+                <h3><code>industry(code)</code></h3>
+                <li>获得属于某一行业的所有股票列表。我们目前使用的行业分类来自于中国国家统计局的<a href="http://www.stats.gov.cn/tjsj/tjbz/hyflbz/"
+                                                             target="_blank">国民经济行业分类</a>，可以使用这里的任何一个行业代码来调用行业的股票列表
+                </li>
+                <li>参数：<code>code</code> str OR industry_code item 行业名称或行业代码。例如，农业可填写industry_code.A01 或 'A01'</li>
+                <li>返回：获得属于某一行业的所有股票的<code>order_book_id list</code>。</li>
+
+                <h3><code>sector(code)</code></h3>
+                <li>获得属于某一板块的所有股票列表。目前支持的板块分类取值参考自MSCI发布的<a
+                        href="https://en.wikipedia.org/wiki/Global_Industry_Classification_Standard" target="_blank">全球行业标准分类</a>。
+                </li>
+                <li>参数：<code>code</code> str OR industry_code item 板块名称或板块代码。例如，能源板块可填写'Energy'、'能源'或sector_code.Energy
+                </li>
+                <li>返回：获得属于该板块的所有股票的<code>order_book_id</code>或<code>order_book_id list</code>。</li>
+
+                <h3><code>concept(concept_name1, concept_name2, ...)</code></h3>
+                <li>获取属于某个或某几个概念的股票列表。</li>
+                <li>参数：<code>concept_names</code> str OR 多个str item 概念名称。可以从概念列表中选择一个或多个概念填写</li>
+                <li>返回：属于该概念的股票<code>order_book_id</code>或<code>order_book_id list</code>。</li>
+
+                <h3><code>index_components(order_book_id, date=None)</code></h3>
+                <li>获取某一指数的股票构成列表，也支持指数的历史构成查询。</li>
+                <li>参数：<code>order_book_id</code> str 指数代码，可传入order_book_id<br>
+                    <code>date</code> str, date, datetime, pandas Timestamp 查询日期，默认为策略当前日期。如指定，则应保证该日期不晚于策略当前日期
+                </li>
+                <li>返回：构成该指数股票的<code>order_book_id list</code>。</li>
+
+                <h3><code>get_dividend(order_book_id, start_date, adjusted=True)</code></h3>
+                <li>获取某只股票到策略当前日期前一天的分红情况（包含起止日期，并且进行了前复权处理）。</li>
+                <li>参数：<code>order_book_id str</code> 可输入order_book_id或symbol<br>
+                    <code>start_date</code> str, date, datetime, pandasTimestamp 开始日期，用户必须指定，需要早于策略当前日期<br>
+                    <code>adjusted</code> bool 默认为True，代表经过前复权处理之后的分红数值；False代表未经任何复权处理的原始分红数值
+                </li>
+                <li>返回：pandas DataFrame，查询时间段内某个股票的分红数据<br>
+                    <code>declaration_announcement_date</code>: 分红宣布日，上市公司一般会提前一段时间公布未来的分红派息事件<br>
+                    <code>book_closure_date</code>: 股权登记日<br>
+                    <code>dividend_cash_before_tax</code>: 税前分红<br>
+                    <code>ex_dividend_date</code>: 除权除息日，该天股票的价格会因为分红而进行调整<br>
+                    <code>payable_date</code>: 分红到帐日，这一天最终分红的现金会到账<br>
+                    <code>round_lot</code>: 分红最小单位，例如：10代表每10股派发dividend_cash_before_tax单位的税前现金
+                </li>
+
+                <h3><code>get_split(order_book_id, start_date)</code></h3>
+                <li>获取某只股票到策略当前日期前一天的拆分情况（包含起止日期）。</li>
+                <li>参数：<code>order_book_id</code> str 指数代码，证券代码，证券的独特的标识符，例如：'000001.XSHE'<br>
+                    <code>start_date</code> str, date, datetime, pandasTimestamp 开始日期，用户必须指定，需要早于策略当前日期
+                </li>
+                <li>返回：pandas DataFrame，查询时间段内的某个股票的拆分数据<br>
+                    <code>ex_dividend_date</code>: 除权除息日，该天股票的价格会因为拆分而进行调整<br>
+                    <code>book_closure_date</code>: 股权登记日<br>
+                    <code>split_coefficient_from</code>: 拆分因子（拆分前）<br>
+                    <code>split_coefficient_to</code>: 拆分因子（拆分后）<br>
+                </li>
+
+                <h3><code>get_trading_dates(start_date, end_date)</code></h3>
+                <li>获取中国市场的交易日列表（起止日期加入判断）</li>
+                <li>参数：<code>start_date</code> str, date, datetime, pandasTimestamp 开始日期，用户必须指定<br>
+                    <code>end_date</code> str, date, datetime, pandasTimestamp 结束日期，用户必须指定<br></li>
+                <li>返回：datetime.date list</li>
+
+                <h3><code>get_previous_trading_date(date)</code></h3>
+                <li>获取指定日期的上一交易日</li>
+                <li>参数：<code>date</code> str, date, datetime, pandasTimestamp 指定日期，用户必须指定</li>
+                <li>返回：datetime.date list</li>
+
+                <h3><code>get_next_trading_date(date)</code></h3>
+                <li>获取指定日期的下一交易日</li>
+                <li>参数：<code>date</code> str, date, datetime, pandasTimestamp 指定日期，用户必须指定</li>
+                <li>返回：datetime.date list</li>
+
+                <h3><code>get_price_change_rate(id_or_symbols, count=1)</code></h3>
+                <li>获取股票或指数的历史涨跌幅。注意目前只支持股票与指数两类合约，基金、期货等目前并不支持。</li>
+                <li>参数：<code>id_or_symbols</code> str or str list 可输入order_book_id, order_book_id list<br>
+                    <code>count</code> int 回溯获取的数据个数。默认为当前能够获取到的最近的数据
+                </li>
+                <li>返回：传入多个order_book_id，函数会返回pandas DataFrame<br> 传入一个order_book_id，函数会返回pandas Series</li>
+
+                <h3><code>get_yield_curve(date=None, tenor=None)</code></h3>
+                <li>获取某个国家市场指定日期的收益率曲线水平。数据为2002年至今的中债国债收益率曲线，来源于中央国债登记结算有限责任公司。</li>
+                <li>参数：<code>date</code> str, date, datetime, pandasTimestamp 查询日期，默认为策略当前日期前一天<br>
+                    <code>tenor</code> str 标准期限，'0S' - 隔夜，'1M' - 1个月，'1Y' - 1年，默认为全部期限
+                </li>
+                <li>返回：pandas DataFrame，查询时间段内无风险收益率曲线</li>
+
+                <h3><code>is_suspended(order_book_id, count=1)</code></h3>
+                <li>获取某个国家市场指定日期的收益率曲线水平。数据为2002年至今的中债国债收益率曲线，来源于中央国债登记结算有限责任公司。</li>
+                <li>参数：<code>order_book_id</code> str 某只股票的代码，可传入单只股票的order_book_id, symbol<br>
+                    <code>count</code> int 回溯获取的数据个数。默认为当前能够获取到的最近的数据
+                </li>
+                <li>返回：count为1时 bool；count>1时 pandas Series</li>
+
+                <h3><code>is_st_stock(order_book_id, count=1)</code></h3>
+                <li>
+                    判断一只或多只股票在一段时间内是否为ST股（包括ST与*ST）。ST股是有退市风险因此风险比较大的股票，很多时候您也会希望判断自己使用的股票是否是'ST'股来避开这些风险大的股票。另外，我们目前的策略比赛也禁止了使用'ST'股。
+                </li>
+                <li>参数：<code>order_book_id</code> str 股票的代码，可传入order_book_id, symbol<br>
+                    <code>count</code> int 回溯获取的数据个数。默认为当前能够获取到的最近的数据
+                </li>
+                <li>返回：count为1时 bool；count>1时 pandas DataFrame</li>
+
+                <h3><code>fenji.get_a_by_yield(current_yield, listing=True)</code></h3>
+                <li>通过传入当前的本期利率拿到对应的分级A的order_book_id list</li>
+                <li>参数：<code>current_yield</code> float 本期利率，用户必须指定<br>
+                    <code>listing</code> bool 默认为True，该分级基金是否在交易所可交易
+                </li>
+                <li>返回：符合当前利率水平的分级A基金的order_book_id list；如果无符合内容，则返回空列表。</li>
+
+                <h3><code>fenji.get_a_by_interest_rule(interest_rule)</code></h3>
+                <li>通过传入当前的利率规则拿到对应的分级A的order_book_id list</li>
+                <li>参数：<code>interest_rule</code> str 利率规则，例如："+3.5%", "+4%", "=7%", "*1.4+0.55%", "利差" etc.
+                    您也可以在研究平台使用fenji.get_all来进行查询所有的组合可能。用户必须填写<br>
+                    <code>listing</code> bool 默认为True，该分级基金是否在交易所可交易
+                </li>
+                <li>返回：符合当前利率规则的分级A基金的order_book_id list</li>
+
+                <h3><code>fenji.get_all(field_list)</code></h3>
+                <li>获取所有分级基金信息</li>
+                <li>参数：<code>ifield_list</code> str list 希望输出的数据字段名（见下表），默认为所有字段</li>
+                <li><code>a_b_propotion</code> 分级A：分级B的比例<br>
+                    <code>conversion_date</code> 下次定折日<br>
+                    <code>creation_date</code> 创立日期<br>
+                    <code>current_yield</code> 本期利率<br>
+                    <code>expire_date</code> 到期日，可能为NaN - 即不存在<br>
+                    <code>fenji_a_order_book_id</code> A基代码<br>
+                    <code>fenji_a_symbol</code> A基名称<br>
+                    <code>fenji_b_order_book_id</code> B基代码<br>
+                    <code>fenji_b_symbol</code> B基名称<br>
+                    <code>fenji_mu_orderbook_id</code> 母基代码<br>
+                    <code>fenji_mu_symbol</code> 母基名称<br>
+                    <code>interest_rule</code> 利率规则<br>
+                    <code>next_yield</code> 下期利率<br>
+                    <code>track_index_symbol</code> 跟踪指数
+                </li>
+                <li>返回：pandas DataFrame，分级基金各项数据</li>
+
+                <h3><code>xueqiu.top_stocks(field, date=None, frequency='1d', count=10)</code></h3>
+                <li>获取每日、每周或每月的某个指标的雪球数据的股票排名情况以及它的对应的统计数值</li>
+                <li>参数：<code>field</code> str 目前支持的雪球数据统计指标有: 昨日新增评论 - new_comments，总评论 - total_comments，昨日新增关注者 -
+                    new_followers，总关注者数目 - total_followers，卖出行为 - sell_actions，买入行为 - buy_actions<br>
+                    <code>date</code> str, datetime.date, datetime.datetime, pandasTimestamp
+                    查询日期。默认为策略当前日期前一天。如指定，则该日期应早于策略当前日期。注意：我们最早支持的雪球数据只到2015年4月23日，之后的数据我们都会保持更新<br>
+                    <code>frequency</code> str 默认是1d，即每日的数据统计。也支持每周 - 1w和每月 - 1M的统计<br>
+                    <code>count integer</code> 指定返回多少个结果，默认是10个<br></li>
+                <li>返回：pandas DataFrame，各项舆情数据</li>
+
+            </ul>
+        </div>
+
+        <div id="api-7">
+            <div class="stock-name" s tyle="display: inline;">重要对象</div>
+            <ul>
+                <h3 id="bar"><code>Bar对象</code></h3>
+                <li><code>order_book_id</code> str 合约代码</li>
+                <li><code>symbol</code> str 合约简称</li>
+                <li><code>datetime</code> datetime.datetime 时间戳</li>
+                <li><code>open</code> float 开盘价</li>
+                <li><code>close</code> float 收盘价</li>
+                <li><code>high</code> float 最高价</li>
+                <li><code>low</code> float 最低价</li>
+                <li><code>volume</code> float 成交量</li>
+                <li><code>total_turnover</code> float 成交额</li>
+                <li><code>prev_close</code> float 昨日收盘价</li>
+                <li><code>limit_up</code> float 涨停价</li>
+                <li><code>limit_down</code> float 跌停价</li>
+                <li><code>isnan </code>bool 当前bar数据是否有行情。例如，获取已经到期的合约数据，isnan此时为True</li>
+                <li><code>suspended </code>bool 是否全天停牌</li>
+                <li><code>prev_settlement</code> float 昨结算（期货日线数据专用）</li>
+                <li><code>settlement</code> float 结算（期货日线数据专用）</li>
+
+                <h3 id="snapshot"><code>Snapshot对象</code></h3>
+                <li><code> order_book_id</code> str 股票代码</li>
+                <li><code>datetime </code>datetime.datetime 当前快照数据的时间戳</li>
+                <li><code>open</code> float 当日开盘价</li>
+                <li><code>last</code>float 当前最新价</li>
+                <li><code>high</code> float 截止到当前的最高价</li>
+                <li><code>low</code> float 截止到当前的最低价</li>
+                <li><code>prev_close</code>float 昨日收盘价</li>
+                <li><code>volume</code> float 截止到当前的成交量</li>
+                <li><code>total_turnover</code> float 截止到当前的成交额</li>
+                <li><code>open_interest </code>float 截止到当前的持仓量（期货专用）</li>
+                <li><code>prev_settlement</code>float 昨日结算价（期货专用）</li>
+                <li>需要注意，在回测中通过snapshot获取prev_close以及prev_settlement较为低效，推荐通过<a href="#bar">bar数据</a>进行获取。</li>
+
+                <h3 id="portfolio"><code>Portfolio对象</code></h3>
+                <li><code>cash</code> float 可用资金，为子账户可用资金的加总</li>
+                <li><code>frozen_cash</code> float 冻结资金，为子账户冻结资金加总</li>
+                <li><code>total_returns</code> float 投资组合至今的累积收益率</li>
+                <li><code>daily_returns</code> float 投资组合每日收益率</li>
+                <li><code>daily_pnl</code> float 当日盈亏，子账户当日盈亏的加总</li>
+                <li><code>market_value</code> float 投资组合当前的市场价值，为子账户市场价值的加总</li>
+                <li><code>total_value</code> float 总权益，为子账户总权益加总</li>
+                <li><code>units</code> float 份额。在没有出入金的情况下，策略的初始资金</li>
+                <li><code>unit_net_value</code> float 单位净值</li>
+                <li><code>static_unit_net_value</code> float 静态单位权益</li>
+                <li><code>transaction_cost</code> float 当日费用</li>
+                <li><code>pnl</code> float 当前投资组合的累计盈亏</li>
+                <li><code>start_date</code> datetime.datetime 策略投资组合的回测/实时模拟交易的开始日期</li>
+                <li><code>annualized_returns</code> float 投资组合的年化收益率</li>
+                <li><code>positions</code> dict 一个包含所有仓位的字典，以order_book_id作为键，<a href="#position">position对象</a>作为值</li>
+
+                <h3 id="order"><code>Order对象</code></h3>
+                <li><code>order_id</code> int 唯一标识订单的id</li>
+                <li><code>order_book_id</code> str 合约代码</li>
+                <li><code>datetime</code> datetime.datetime 订单创建时间</li>
+                <li><code>side</code> SIDE 订单方向</li>
+                <li><code>price</code> float 订单价格，只有在订单类型为'限价单'的时候才有意义</li>
+                <li><code>quantity</code> int 订单数量</li>
+                <li><code>filled_quantity</code> int 订单已成交数量</li>
+                <li><code>unfilled_quantity</code> int 订单未成交数量</li>
+                <li><code>type</code> ORDER_TYPE 订单类型</li>
+                <li><code>transaction_cost</code> float 费用</li>
+                <li><code>avg_price float</code> 成交均价</li>
+                <li><code>status</code> ORDER_STATUS 订单状态</li>
+                <li><code>message</code> str 信息。比如拒单时候此处会提示拒单原因</li>
+                <li><code>trading_datetime</code> datetime.datetime 订单的交易日期（对应期货夜盘）</li>
+                <li><code>position_effect</code> POSITION_EFFECT 订单开平（期货专用）</li>
+
+                <h3 id="account"><code>Account对象</code></h3>
+                <li><code>cash</code> float 可用资金</li>
+                <li><code>frozen_cash</code> float 冻结资金</li>
+                <li><code>daily_pnl</code> float 当日盈亏，当日投资组合总权益-昨日投资组合总权益</li>
+                <li><code>market_value</code> float 投资组合当前所有证券仓位的市值的加总</li>
+                <li><code>total_value</code> float 总权益</li>
+                <li><code>transaction_cost</code> float 当日费用</li>
+                <li><code>positions</code> dict 一个包含股票子组合仓位的字典，以order_book_id作为键，<a href="#position">position对象</a>作为值
+                </li>
+                <li><code>dividend_receivable</code> float 投资组合在分红现金收到账面之前的应收分红部分</li>
+
+                <h3 id="position"><code>Position对象</code></h3>
+                <li><code>order_book_id</code> str 合约代码</li>
+                <li><code>quantity</code> int 当前持仓股数</li>
+                <li><code>pnl</code> float 持仓累计盈亏</li>
+                <li><code>sellable</code> int 该仓位可卖出股数。T＋1的市场中sellable = 所有持仓-今日买入的仓位</li>
+                <li><code>market_value</code> float 获得该持仓的实时市场价值</li>
+                <li><code>value_percent</code> float 获得该持仓的实时市场价值在总投资组合价值中所占比例，取值范围[0, 1]</li>
+                <li><code>avg_price</code> float 平均建仓成本</li>
+
+                <h3 id="instrument"><code>Instrument对象</code></h3>
+                <li><code> order_book_id</code> str 证券代码，证券的独特的标识符。应以'.XSHG'或'.XSHE'结尾，前者代表上证，后者代表深证</li>
+                <li><code>symbol</code> str 证券的简称，例如'平安银行'</li>
+                <li><code>abbrev_symbol</code> str 证券的名称缩写，在中国A股就是股票的拼音缩写。例如：'PAYH'就是平安银行股票的证券名缩写</li>
+                <li><code>round_lot</code> int 一手对应多少股，中国A股一手是100股</li>
+                <li><code>sector_code</code> str 板块缩写代码，全球通用标准定义</li>
+                <li><code>sector_code_name</code> str 以当地语言为标准的板块代码名</li>
+                <li><code>industry_code</code> str 国民经济行业分类代码</li>
+                <li><code>industry_name</code> str 国民经济行业分类名称</li>
+                <li><code>listed_date</code> str 该证券上市日期</li>
+                <li><code>de_listed_date</code> str 退市日期</li>
+                <li><code>type</code> str 合约类型，目前支持的类型有: 'CS', 'INDX', 'LOF', 'ETF', 'FenjiMu', 'FenjiA', 'FenjiB',
+                    'Future'
+                </li>
+                <li><code>concept_names</code> str 概念股分类，例如：'铁路基建'，'基金重仓'等</li>
+                <li><code>exchange</code> str 交易所，'XSHE' - 深交所, 'XSHG' - 上交所</li>
+                <li><code>board_type</code> str 板块类别，'MainBoard' - 主板,'GEM' - 创业板</li>
+                <li><code>status</code> str 合约状态。'Active' - 正常上市, 'Delisted' - 终止上市, 'TemporarySuspended' - 暂停上市,
+                    'PreIPO' - 发行配售期间, 'FailIPO' - 发行失败
+                </li>
+                <li><code>special_type</code> str 特别处理状态。'Normal' - 正常上市, 'ST' - ST处理, 'StarST' - *ST代表该股票正在接受退市警告, 'PT'
+                    - 代表该股票连续3年收入为负，将被暂停交易, 'Other' - 其他
+                </li>
+            </ul>
+        </div>
+
+        <div id="api-8">
+            <div class="stock-name" s tyle="display: inline;">枚举常量</div>
+            <ul>
+                <h3><code>ORDER_STATUS - 订单状态</code></h3>
+                <li>PENDING_NEW 待报</li>
+                <li>ACTIVE 可撤</li>
+                <li>FILLED 全成</li>
+                <li>CANCELLED 已撤</li>
+                <li>REJECTED 拒单</li>
+
+                <h3><code>SIDE - 买卖方向</code></h3>
+                <li>BUY 买</li>
+                <li>SELL 卖</li>
+
+                <h3><code>POSITION_EFFECT - 开平</code></h3>
+                <li>OPEN 开仓</li>
+                <li>CLOSE 平仓</li>
+
+                <h3><code>ORDER_TYPE - 订单类型</code></h3>
+                <li>MARKET 市价单</li>
+                <li>LIMIT 限价单</li>
+
+                <h3><code>RUN_TYPE - 策略运行类型</code></h3>
+                <li>BACKTEST 回测</li>
+                <li>PAPER_TRADING 实盘模拟</li>
+
+                <h3><code>MATCHING_TYPE - 撮合方式</code></h3>
+                <li>CURRENT_BAR_CLOSE 以当前bar收盘价撮合</li>
+                <li>NEXT_BAR_OPEN 以下一bar数据开盘价撮合</li>
+            </ul>
+        </div>
+
+        <div id="api-9">
+            <div class="stock-name" s tyle="display: inline;">外部数据源Tushare</div>
+            <ul>
+                <li><a href="http://tushare.org/" target="_blank">Tushare</a>是一个国内很流行的爬虫数据源，支持的数据种类挺丰富的，API设计也是围绕着pandas来做的，因此也非常适合Trillionaire的用户上手。只需要简单的<code>import
+                    tushare as ts</code>就可以在Trillionaire的研究环境中使用了。
+                </li>
+                <li>重要的是目前使用<a href="http://tushare.org/" target="_blank">Tushare</a>可以支持一些Trillionaire暂时没有的数据，具体的使用方法和文档可以去<a
+                        href="http://tushare.org/" target="_blank">Tushare</a>上面寻找，比如<a
+                        href="http://tushare.org/reference.html" target="_blank">投资参考数据</a>、<a
+                        href="http://tushare.org/macro.html" target="_blank">宏观经济数据</a>、<a
+                        href="http://tushare.org/newsevent.html" target="_blank">新闻事件数据</a>、<a
+                        href="http://tushare.org/billboard.html" target="_blank">龙虎榜数据</a>、<a
+                        href="http://tushare.org/shibor.html" target="_blank">银行间同业拆放利率</a>等等。
+                </li>
+            </ul>
+        </div>
+
+        <div id="api-10">
+            <div class="stock-name" style="display: inline;">目前支持的Python模块</div>
+            <ul>
+                <li>我们现在支持如下表格所列的多种强大的Python模块，您需要手动自己引入，比如可以打入<code>import pandas as pd</code>来支持引入pandas模块。您可以引入我们目前支持的Python模块来做各种神奇的数据处理。
+                </li>
+                <li>下面的列表是现在Trillionaire已经支持的Python模块：
+                    <ol>
+                        <li>talib TA-Lib 是一个被交易员/程序员常用的金融数据技术分析库。包含了超过150+的技术指标比如ADX,MACD,RSI,Stochastic,Bollinger
+                            Bands等 <a href="http://mrjbq7.github.io/ta-lib/funcs.html" target="_blank">>>TA-Lib官网</a>
+                        </li>
+                        <li>pandas 最流行的Python数据分析库 <a href="http://pandas.pydata.org/" target="_blank">>>pandas文档</a>
+                        </li>
+                        <li>numpy numpy是一个Python的科学计算基础库。 <a href="http://www.numpy.org/" target="_blank">>>numpy文档</a>
+                        </li>
+                        <li>scipy SciPy是一个Python的数学、科学和工程计算的生态系统库。 <a href="https://www.scipy.org/" target="_blank">>>scipy文档</a>
+                        </li>
+                        <li>statsmodels Statsmodels是一个Python的模块可以让您研究数据，构架统计模型和进行统计测试。功能包括：线性回归模型（Linear regression
+                            models）等 <a href="http://www.statsmodels.org/stable/index.html" target="_blank">>>statsmodels文档</a>
+                        </li>
+                        <li>bisect Python的排序模块 <a href="https://docs.python.org/2/library/bisect.html" target="_blank">>>bisect文档</a>
+                        </li>
+                        <li>cmath 提供可以对复数计算的数学模块 <a href="https://docs.python.org/2/library/cmath.html" target="_blank">>>cmath文档</a>
+                        </li>
+                        <li>collections 提供除了Python内嵌的容器之外的容器种类选择 - dict, list, set 和 tuple <a
+                                href="https://docs.python.org/2/library/collections.html" target="_blank">>>collections文档</a>
+                        </li>
+                        <li>sklearn Python的机器学习模块（machine learning） <a href="http://scikit-learn.org/stable/"
+                                                                       target="_blank">>>sklearn文档</a></li>
+                        <li>hmmlearn Python的隐马尔可夫模型（Hidden Markov Models）模块，类似scikit-learn的API <a
+                                href="http://hmmlearn.readthedocs.org/en/latest/" target="_blank">>>hmmlearn文档</a></li>
+                        <li>pykalman 超级简单的卡尔曼滤波（Kalman Filter）, Kalman Smoother和EM模块 <a
+                                href="https://pykalman.github.io/" target="_blank">>>pykalman文档</a></li>
+                        <li>cvxopt cvxopt提供了凸优化（convex optimization）的解的python库。 <a href="http://cvxopt.org/"
+                                                                                   target="_blank">>>cvxopt文档</a></li>
+                        <li>arch arch提供了Univariate volatility模型，Bootstrapping和Multiple comparison procedures <a
+                                href="http://arch.readthedocs.org/en/latest/" target="_blank">>>arch文档</a></li>
+                        <li>dateutil dateutil模块提供了对标准的datetime模块的强大的拓展 <a href="https://labix.org/python-dateutil"
+                                                                          target="_blank">>>dateutil文档</a></li>
+                        <li>datetime <a href="https://docs.python.org/3.5/library/datetime.html" target="_blank">>>datetime文档</a>
+                        </li>
+                        <li>functools <a href="https://docs.python.org/3.5/library/functools.html" target="_blank">>>functools文档</a>
+                        </li>
+                        <li>heapq <a href="https://docs.python.org/3.5/library/heapq.html" target="_blank">>>heapq文档</a>
+                        </li>
+                        <li>pywt PyWavelets是一个Python的小波变换的库 <a href="http://www.pybytes.com/pywavelets/"
+                                                               target="_blank">>>pywt文档</a></li>
+                        <li>tensorflow Tensor flow is an open source software library for machine intelligence. <a
+                                href="https://www.tensorflow.org/" target="_blank">>>tensorflow文档</a></li>
+                        <li>tushare 国内流行的开源数据库，燥起来吧，各种数据。 <a href="http://tushare.org/" target="_blank">>>tushare网站</a>
+                        </li>
+                        <li>pybrain pybrain是一个流行的机器学习库。PyBrain is a modular Machine Learning Library for Python. <a
+                                href="http://pybrain.org/" target="_blank">>>pybrain文档</a></li>
+                        <li>nltk 一个流行的人类语言分析库。 <a href="http://www.nltk.org/" target="_blank">>>nltk文档</a></li>
+                        <li>keras Theano和Tensorflow的深度学习库。 <a href="https://keras.io/" target="_blank">>>keras文档</a>
+                        </li>
+                        <li>requests 易用的HTTP库 <a href="http://docs.python-requests.org/en/master/" target="_blank">>>requests文档</a>
+                        </li>
+                        <li>bs4 beautifulsoup是网页爬取数据的利器！ <a href="https://www.crummy.com/software/BeautifulSoup/"
+                                                            target="_blank">>>beautifulsoupd文档</a></li>
+                        <li>lxml 处理XML和HTML的最好用的python库 <a href="http://lxml.de/" target="_blank">>>lxml中文文档</a></li>
+                        <li>urllib python自带的url处理库 <a href="https://docs.python.org/2/library/urllib.html"
+                                                      target="_blank">>>urllib文档</a></li>
+                        <li>xgboost 速度快效果好的boosting模型 <a href="http://xgboost.readthedocs.io/en/latest/"
+                                                         target="_blank">>>xgboost文档</a></li>
+                        <li>plotly 强大优美的图表库，支持三种不同类型的图表，包括地图，箱形图和密度图，以及更常见的产品如，条状和线形图 <a href="https://plot.ly/"
+                                                                                         target="_blank">>>plotly文档</a>
+                        </li>
+                        <li>fbprophet 简单强大的数据预测工具包 <a
+                                href="https://facebookincubator.github.io/prophet/docs/quick_start.html"
+                                target="_blank">>>Prophet使用指南</a></li>
+                        <li>itertools <a href="https://docs.python.org/3.5/library/itertools.html" target="_blank">>>itertools文档</a>
+                        </li>
+                        <li>math <a href="https://docs.python.org/3.5/library/math.html" target="_blank">>>math文档</a>
+                        </li>
+                        <li>pytz <a href="https://pypi.python.org/pypi/pytz/2015.2" target="_blank">>>pytz文档</a></li>
+                        <li>queue <a href="https://docs.python.org/3.5/library/queue.html" target="_blank">>>queue文档</a>
+                        </li>
+                        <li>random <a href="https://docs.python.org/3.5/library/random.html"
+                                      target="_blank">>>random文档</a></li>
+                        <li>re <a href="https://docs.python.org/3.5/library/re.html" target="_blank">>>re文档</a></li>
+                        <li>time <a href="https://docs.python.org/3.5/library/time.html" target="_blank">>>time文档</a>
+                        </li>
+                        <li>array <a href="https://docs.python.org/3/library/array.html" target="_blank">>>array文档</a>
+                        </li>
+                        <li>copy <a href="https://docs.python.org/3/library/copy.html" target="_blank">>>copy文档</a></li>
+                        <li>json <a href="https://docs.python.org/3/library/json.html" target="_blank">>>json文档</a></li>
+                        <li>operator <a href="https://docs.python.org/3/library/operator.html" target="_blank">>>operator文档</a>
+                        </li>
+                        <li>xml <a href="https://docs.python.org/3/library/xml.html" target="_blank">>>xml文档</a></li>
+                    </ol>
+                </li>
+            </ul>
+        </div>
+
+        <div style="margin-bottom: 10%;"></div>
+    </div>
+
+
+</header>
+
+<footer>
+    <div id="footer" onselectstart="return false;">
+        <div id="footer-div">
+            <div>
+                <div class="big-li">
+                    <h4>关于</h4>
+                    <p>
+                        <a href="mailto:feedback@trillionaire.me?subject=[FeedBack]">
+                            <i class="fa fa-envelope"></i> 联系我们
+                        </a>
+                    </p>
+
+                    <p>
+                        <a href="log.html">
+                    <p><i class="fa fa-file-text-o"></i> 系统更新日志</p>
+                    </a>
+                    </p>
+                </div>
+
+                <div class="big-li">
+                    <h4>帮助</h4>
+                    <p>
+                        <a href="api.html">
+                            <i class="fa fa-file-o"></i> API文档
+                        </a>
+                    </p>
+
+                    <p>
+                        <a href="help.html">
+                            <i class="fa fa-file"></i> 帮助文档
+                        </a>
+                    </p>
+
+                </div>
+
+                <div class="big-li">
+                    <h4>反馈</h4>
+                    <p>
+                        <a href="mailto:feedback@trillionaire.me?subject=[FeedBack]">
+                            <i class="fa fa-comments-o"></i> 反馈
+                        </a>
+                    </p>
+
                 </div>
             </div>
-
-            <div id="cr">Copyright &copy; 2017 All Rights Reserved</div>
         </div>
-    </footer>
+
+        <div id="cr">Copyright &copy; 2017 All Rights Reserved</div>
+    </div>
+</footer>
 </body>
 <script src="js/user/log_state.js"></script>
 <script src="js/header/index.js"></script>
 <script src="js/header/search.js"></script>
 <script>
-    (function() {
+    (function () {
         window.scrollReveal = new scrollReveal({
             reset: false,
             move: '50px'

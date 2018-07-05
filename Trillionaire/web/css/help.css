@@ -1,11 +1,14 @@
 #help-page ul {
-    margin: 2.5%;
-    border-bottom: 1px solid #AAA;
+    /*border-bottom: 1px solid #DDD;*/
     font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, "PingFang SC", sans-serif;
+    font-size: 100%;
+    margin: 3% 30% 3% 3%;
 }
 
 #help-page li {
+    font-size: 90%;
     margin: 1%;
+    text-align: justify;
 }
 
 #help-page a {
@@ -13,30 +16,32 @@
 }
 
 #help-page a:hover {
-    color: #6699FF;
-    text-decoration: underline;
+    color: #6633FF;
 }
 
 .page-content-long {
     position: fixed;
-    top: 20%;
-    background-color: #6699FF;
+    top: 25%;
     padding: 1% 2%;
-    border: 1px solid #6699FF;
+    border-top: 2px solid #6699FF;
+    border-right: 2px solid #6699FF;
+    border-bottom: 2px solid #6699FF;
     border-top-right-radius: 5%;
     border-bottom-right-radius: 5%;
-    color: #FFF;
     font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, "PingFang SC", sans-serif;
 }
 
 .page-content-long li {
     list-style: square;
+    border-bottom: 1px dashed #AAA;
+    font-size: 90%;
     cursor: pointer;
-    margin: 5% 0;
+    margin: 2% 0;
+    color: #777;
 }
 
 .page-content-long li:hover {
-    color: #CC6666;
+    color: #6699FF;
 }
 
 code {
@@ -45,7 +50,7 @@ code {
     font-family: monospace;
     border-radius: 5px;
     padding: 0.2% 0.5%;
-    font-size: 100%;
+    font-size: 90%;
     font-weight: 300;
 }
 
@@ -55,6 +60,6 @@ h3 code {
     font-family: monospace;
     border-radius: 5px;
     padding: 0.2% 0.5%;
-    font-size: 130%;
+    font-size: 100%;
     line-height: 300%;
 }
