@@ -4,18 +4,42 @@
     margin: 10px;
 }
 
+.log-button {
+    font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, "PingFang SC", sans-serif;
+    color: #FFF;
+    background-color: #6699FF;
+    cursor: pointer;
+    display: inline-block;
+    margin: 10px;
+    padding: 5px 10px;
+    border-radius: 5px;
+
+    font-size: 15px;
+}
+
+.log-button:focus {
+    outline: none;
+}
+
+.log-button:hover {
+    color: #6699FF;
+    background-color: #FFF;
+    border-color: #6699FF;
+}
+
 #search-input {
     font-size: 90%;
-    border: 1px solid #000;
+    border: 1px solid #6699FF;
     border-radius: 5px;
     padding: 1.4%;
-    color: #0080ff;
+    color: #6699FF;
     width: 100%;
     outline: none;
 }
 
 .associate-board {
     position: absolute;
+    z-index: 10;
     border-radius: 5px;
     color: black;
     width: 100%;
@@ -30,33 +54,7 @@
 
 .associate-item:hover {
     color: white;
-    background-color: #1B9AF7;
-}
-
-.log-button {
-    font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, "PingFang SC", sans-serif;
-    color: #FFF;
-    background-color: #0080ff;
-    cursor: pointer;
-    display: inline-block;
-    margin: 10px;
-    padding: 5px 10px;
-    border-radius: 5px;
-    border-color: #FFF;
-    border-width: 1px;
-    border-style: solid;
-
-    font-size: 15px;
-}
-
-.log-button:focus {
-    outline: none;
-}
-
-.log-button:hover {
-    color: #0080ff;
-    background-color: #FFF;
-    border-color: #0080ff;
+    background-color: #6699FF;
 }
 
 .logout-extend {
@@ -75,5 +73,5 @@
 
 .item-active {
     background-color: #FFF;
-    color: rgb(25, 44, 72);
+    color: #6699FF;
 }

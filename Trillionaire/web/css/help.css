@@ -2,12 +2,12 @@
     /*border-bottom: 1px solid #DDD;*/
     font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, "PingFang SC", sans-serif;
     font-size: 100%;
-    margin: 3% 30% 3% 3%;
+    margin: 3% 30% 3% 0;
 }
 
 #help-page li {
     font-size: 90%;
-    margin: 1%;
+    margin: 1% 0;
     text-align: justify;
 }
 

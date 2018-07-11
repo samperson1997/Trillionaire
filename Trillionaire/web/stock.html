@@ -23,12 +23,12 @@
 <body>
 <header>
     <div id="top-bar" onselectstart="return false;">
-        <a href="index.html">
-            <img src="img/logo.png" width="15%" style="transform:translateY(15px)">
-        </a>
+
+        <img src="img/logo.png" width="15%" style="transform:translateY(15px)">
+
         <ul align="center">
             <a href="stock.html?code=600000">
-                <li id="spec-button" class="head-button">个股信息</li>
+                <li id="spec-button" class="head-button item-active">个股信息</li>
             </a>
             <a href="concern.html">
                 <li id="star-button" class="head-button">关注股票</li>
@@ -37,10 +37,10 @@
                 <li id="strategy-button" class="head-button">策略回测</li>
             </a>
             <div id="search-area">
-                <input id="search-input" placeholder="请输入需要查询的股票代码">
+                <input id="search-input" placeholder="输入股票代码...">
             </div>
             <a href="login.html">
-                <li id="log-button" class="log-button">用户登录</li>
+                <li id="log-button" class="log-button" style="margin-left: 20%;">登录</li>
             </a>
         </ul>
     </div>
@@ -56,7 +56,7 @@
                 <h2 id="change"></h2>
             </div>
 
-            <div id="follow-button" onclick="follow()" style="display: inline-block;"><i class="fas fa-star-o"></i>
+            <div id="follow-button" onclick="follow()" style="display: inline-block;"><i class="fas fa-star"></i>
                 加入关注列表&nbsp;
             </div>
         </div>
@@ -215,7 +215,7 @@
     <!--</div>-->
     <!--</div>-->
 
-    <div id="stock-page-hint" class="page-hint">无此股，请重新选择</div>
+    <!--<div id="stock-page-hint" class="page-hint">无此股，请重新选择</div>-->
 
 </header>
 
@@ -224,42 +224,27 @@
         <div id="footer-div">
             <div>
                 <div class="big-li">
-                    <h4>关于</h4>
                     <p>
                         <a href="mailto:feedback@trillionaire.me?subject=[FeedBack]">
                             <i class="fa fa-envelope"></i> 联系我们
                         </a>
                     </p>
-
-                    <p>
-                        <a href="log.html">
-                    <p><i class="fa fa-file-text-o"></i> 系统更新日志</p>
                 </div>
 
                 <div class="big-li">
-                    <h4>帮助</h4>
                     <p>
                         <a href="api.html">
-                            <i class="fa fa-file-o"></i> API文档
+                            <i class="fa fa-book"></i> API文档
                         </a>
                     </p>
-
-                    <p>
-                        <a href="help.html">
-                            <i class="fa fa-file"></i> 帮助文档
-                        </a>
-                    </p>
-
                 </div>
 
                 <div class="big-li">
-                    <h4>反馈</h4>
                     <p>
-                        <a href="mailto:feedback@trillionaire.me?subject=[FeedBack]">
-                            <i class="fa fa-comments-o"></i> 反馈
+                        <a href="help.html">
+                            <i class="fa fa-file-alt"></i> 帮助文档
                         </a>
                     </p>
-
                 </div>
             </div>
         </div>
@@ -309,10 +294,10 @@
     // $(document).ready(loadPrevail);
     // $(document).ready(updateInfo);
     // $(document).ready(loadSimilarStock);
-//    $(document).ready(loadTrends);
+    //    $(document).ready(loadTrends);
     //    $(document).ready(loadRealTimeChart);
 
-    (function (){
+    (function () {
         var code = getParam('code');
 
         $.ajax({
@@ -324,7 +309,7 @@
             },
             dataType: "json",
             success: function (data) {
-                if(data.length === 1) {
+                if (data.length === 1) {
                     loadCandle()
                     loadTargetPrice()
                     loadPrevail()
@@ -334,7 +319,7 @@
                     // length不等于1说明这个code不是确切的一个股票代码
                     $("#select-menu").fadeOut()
                     $("#stock-page-hint").fadeIn().delay(1000).fadeOut()
-                    $("#candle-spin").text('无此股票')
+                    $("#candle-spin").text('无此股, 请重新选择')
                 }
             },
             error: function (request, status, err) {

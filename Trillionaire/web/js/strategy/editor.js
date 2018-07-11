@@ -30,6 +30,8 @@ function init() {
 
 function remove() {
     editor.setValue("");
+    $("#stra-page-hint").html("可使用快捷键Ctrl+Z/Command+Z恢复");
+    $("#stra-page-hint").fadeIn().delay(1000).fadeOut();
 }
 
 function switchTheme() {

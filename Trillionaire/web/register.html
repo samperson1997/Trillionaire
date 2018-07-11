@@ -17,111 +17,99 @@
 </head>
 
 <body>
-    <header>
-        <div id="top-bar" onselectstart="return false;">
-            <a href="index.html" >
-                <img src="img/logo.png" width="15%" style="transform:translateY(15px)">
+<header>
+    <div id="top-bar" onselectstart="return false;">
+        <a href="index.html">
+            <img src="img/logo.png" width="15%" style="transform:translateY(15px)">
+        </a>
+        <ul align="center">
+            <a href="stock.html?code=600000">
+                <li id="spec-button" class="head-button">个股信息</li>
             </a>
-            <ul align="center">
-                <a href="stock.html?code=600000">
-                    <li id="spec-button" class="head-button">个股信息</li>
-                </a>
-                <a href="concern.html">
-                    <li id="star-button" class="head-button">关注股票</li>
-                </a>
-                <a href="strategy-content.html">
-                    <li id="strategy-button" class="head-button">策略回测</li>
-                </a>
-                <div id="search-area">
-                    <input id="search-input" placeholder="请输入需要查询的股票代码">
-                </div>
-                <a href="login.html">
-                    <li id="log-button" class="log-button">用户登录</li>
-                </a>
-            </ul>
-        </div>
-        <div id="whole-page" onselectstart="return false;" ng-app="mainapp">
-            <div id="register-part" ng-controller="UserController">
-                <h1 data-scroll-reveal="enter from the top over 1s">注册Trillionaire</h1>
-                <p data-scroll-reveal="enter from the top over 1s">与我们一起，成为夜幕下最闪亮的明灯</p>
-                <a href="login.html">
-                    <h5 id="register-label">已有账号？去登录>></h5>
-                </a>
-
-
-                <form method="post" data-scroll-reveal="enter from bottom over 1s but wait 0.5s">
-                    <p><input type="text" name="username" placeholder="用户邮箱" class="form-username form-control" id="reg-username" ng-model="inputEmail" onblur="emailIsValid()" ng-change="check()"></p>
-                    <p><input type="password" name="password" placeholder="密码" class="form-password form-control" id="reg-password" ng-model="inputPassword"></p>
-                    <p><input type="password" name="password2" placeholder="确认密码" class="form-password form-control" id="reg-password2" ng-model="inputPassword2" onblur="passwordIsSame()"></p>
-                    <div>
-                        <p id="reg-tip"></p>
-                    </div>
-                    <div>
-                        <div class="log-buttons">
-                            <button class="button-blue" id="register-button" type="button" ng-click="register()">注册</button>
-                            <a href="javascript: history.go(-1);"><button class="button-big" id="reg-back-button" type="button">取消</button></a>
-                        </div>
-                    </div>
-                </form>
+            <a href="concern.html">
+                <li id="star-button" class="head-button">关注股票</li>
+            </a>
+            <a href="strategy-content.html">
+                <li id="strategy-button" class="head-button">策略回测</li>
+            </a>
+            <div id="search-area">
+                <input id="search-input" placeholder="输入股票代码...">
             </div>
-        </div>
-    </header>
+            <a href="login.html">
+                <li id="log-button" class="head-button" style="margin-left: 20%;">用户登录</li>
+            </a>
+        </ul>
+    </div>
+    <div id="whole-page" onselectstart="return false;" ng-app="mainapp">
+        <div id="register-part" ng-controller="UserController">
+            <h1 data-scroll-reveal="enter from the top over 1s">注册Trillionaire</h1>
+            <p data-scroll-reveal="enter from the top over 1s">与我们一起，成为夜幕下最闪亮的明灯</p>
+            <a href="login.html">
+                <h5 id="register-label">已有账号？去登录>></h5>
+            </a>
 
-    <footer>
-        <div id="footer" onselectstart="return false;">
-            <div id="footer-div">
+
+            <form method="post" data-scroll-reveal="enter from bottom over 1s but wait 0.5s">
+                <p><input type="text" name="username" placeholder="用户邮箱" class="form-username form-control"
+                          id="reg-username" ng-model="inputEmail" onblur="emailIsValid()" ng-change="check()"></p>
+                <p><input type="password" name="password" placeholder="密码" class="form-password form-control"
+                          id="reg-password" ng-model="inputPassword"></p>
+                <p><input type="password" name="password2" placeholder="确认密码" class="form-password form-control"
+                          id="reg-password2" ng-model="inputPassword2" onblur="passwordIsSame()"></p>
                 <div>
-                    <div class="big-li">
-                        <h4>关于</h4>
-                        <p>
-                            <a href="mailto:feedback@trillionaire.me?subject=[FeedBack]">
-                                <i class="fa fa-envelope"></i> 联系我们
-                            </a>
-                        </p>
-
-                        <p>
-                            <a href="log.html">
-                                <p><i class="fa fa-file-text-o"></i> 系统更新日志</p>
-                            </a>
-                        </p>
-                    </div>
-
-                    <div class="big-li">
-                        <h4>帮助</h4>
-                        <p>
-                            <a href="api.html">
-                                <i class="fa fa-file-o"></i> API文档
-                            </a>
-                        </p>
-
-                        <p>
-                            <a href="help.html">
-                                <i class="fa fa-file"></i> 帮助文档
-                            </a>
-                        </p>
-
-                    </div>
-
-                    <div class="big-li">
-                        <h4>反馈</h4>
-                        <p>
-                            <a href="mailto:feedback@trillionaire.me?subject=[FeedBack]">
-                                <i class="fa fa-comments-o"></i> 反馈
-                            </a>
-                        </p>
-
+                    <p id="reg-tip"></p>
+                </div>
+                <div>
+                    <div class="log-buttons">
+                        <button class="button-blue" id="register-button" type="button" ng-click="register()">注册</button>
+                        <a href="javascript: history.go(-1);">
+                            <button class="button-big" id="reg-back-button" type="button">取消</button>
+                        </a>
                     </div>
                 </div>
-            </div>
-
-            <div id="cr">Copyright &copy; 2017 All Rights Reserved</div>
+            </form>
         </div>
-    </footer>
+    </div>
+</header>
+
+<footer>
+    <div id="footer" onselectstart="return false;">
+        <div id="footer-div">
+            <div>
+                <div class="big-li">
+                    <p>
+                        <a href="mailto:feedback@trillionaire.me?subject=[FeedBack]">
+                            <i class="fa fa-envelope"></i> 联系我们
+                        </a>
+                    </p>
+                </div>
+
+                <div class="big-li">
+                    <p>
+                        <a href="api.html">
+                            <i class="fa fa-book"></i> API文档
+                        </a>
+                    </p>
+                </div>
+
+                <div class="big-li">
+                    <p>
+                        <a href="help.html">
+                            <i class="fa fa-file-alt"></i> 帮助文档
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div id="cr">Copyright &copy; 2017 All Rights Reserved</div>
+    </div>
+</footer>
 </body>
 
 <script src="js/scrollReveal.js"></script>
 <script>
-    (function() {
+    (function () {
         window.scrollReveal = new scrollReveal({
             reset: false,
             move: '50px'

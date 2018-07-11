@@ -204,7 +204,7 @@
 }
 
 .stra-button:hover {
-    color: #6633FF;
+    color: #6699FF;
 }
 
 .select-menu-item:focus {
@@ -251,6 +251,10 @@
     /* 定位 */
     position: absolute;
     z-index: 1;
+}
+
+.tooltip:hover {
+    color: #6699FF;
 }
 
 /* 鼠标移动上去后显示提示框 */
