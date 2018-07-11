@@ -20,12 +20,12 @@
 <body>
 <header>
     <div id="top-bar" onselectstart="return false;">
-        <a href="index.html">
-            <img src="img/logo.png" width="15%" style="transform:translateY(15px)">
-        </a>
+
+        <img src="img/logo.png" width="15%" style="transform:translateY(15px)">
+
         <ul align="center">
             <a href="stock.html?code=600000">
-                <li id="spec-button" class="head-button">个股信息</li>
+                <li id="spec-button" class="head-button item-active">个股信息</li>
             </a>
             <a href="concern.html">
                 <li id="star-button" class="head-button">关注股票</li>
@@ -37,11 +37,10 @@
                 <input id="search-input" placeholder="输入股票代码...">
             </div>
             <a href="login.html">
-                <li id="log-button" class="head-button" style="margin-left: 20%;">用户登录</li>
+                <li id="log-button" class="log-button">登录</li>
             </a>
         </ul>
     </div>
-
     <div id="whole-page" onselectstart="return false;" ng-app="mainapp">
         <div id="log-part" ng-controller="UserController">
             <h1 data-scroll-reveal="enter from the top over 1s">登录Trillionaire</h1>
