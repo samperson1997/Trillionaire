@@ -5,11 +5,11 @@
     cursor: pointer;
     display: inline-block;
     margin: 10px;
-    padding: 5px 10px;
-    border-radius: 5px;
+    padding: 0 15px;
+    border-radius: 20px;
     border: 1px solid #FFF;
 
-    font-size: 110%;
+    font-size: 100%;
 }
 
 .button-big:focus {
@@ -17,13 +17,13 @@
 }
 
 .button-big:hover {
-    color: rgb(16, 32, 58);
+    color: #6699FF;
     background-color: #FFF;
 }
 
 .button-big:active {
     color: #FFF;
-    background-color: rgb(16, 32, 58);
+    background-color: #6699FF;
 }
 
 .button-big a:link {
@@ -33,7 +33,7 @@
 }
 
 .button-big a:hover {
-    color: rgb(16, 32, 58);
+    color: #6699FF;
     font-style: normal;
     text-decoration: none;
 }
@@ -51,11 +51,11 @@
     cursor: pointer;
     display: inline-block;
     margin: 10px;
-    padding: 5px 10px;
-    border-radius: 5px;
-    border: 1px solid #FFF;
+    padding: 0 10px;
+    border-radius: 20px;
+    border: 1px solid transparent;
 
-    font-size: 110%;
+    font-size: 100%;
 }
 
 .button-blue:focus {

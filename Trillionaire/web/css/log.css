@@ -1,15 +1,16 @@
 #whole-page {
     font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, "PingFang SC", sans-serif;
     text-align: center;
-    padding: 3% 2%;
+    padding: 8% 2%;
     color: #FFF;
-    background-size: 110% 110%;
-    background: url("../img/background3.png") 30% 50%;
+    background-size: 100% 100%;
+    background: url("../img/log.jpg") 10% 5%;
 }
 
 #whole-page p {
     font-weight: 300;
     font-size: 110%;
+    color: #FFF;
 }
 
 #whole-page fieldset {
@@ -20,16 +21,15 @@
 #register-part {
     margin: 0 30%;
     padding: 2% 1%;
-    border-color: #FFF;
-    border-style: solid;
     border-radius: 5px;
-    border-width: 2px;
+    border: 2px solid #6699FF;
 
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(112, 152, 248, 0.5);
     position: relative;
 }
 
 #whole-page h1 {
+    color: #FFF;
     margin: 5%;
     font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, "PingFang SC", sans-serif;
 }
@@ -38,10 +38,10 @@
     font-weight: 300;
     font-size: 90%;
     width: 50%;
-    border-radius: 5px;
+    border-radius: 20px;
     border: 2px #FFF;
 
-    padding: 1.5%;
+    padding: 1% 2%;
     margin: 2%;
 }
 
@@ -61,7 +61,9 @@
 
 #log-tip,
 #reg-tip {
-    color: #CC6666;
+    background-color: #CC6666;;
+    color: #FFF;
     font-size: 80%;
     font-weight: 300;
+    margin: 0 30%;
 }

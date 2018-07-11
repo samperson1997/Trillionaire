@@ -42,14 +42,11 @@
     </div>
     <div id="whole-page" onselectstart="return false;" ng-app="mainapp">
         <div id="register-part" ng-controller="UserController">
-            <h1 data-scroll-reveal="enter from the top over 1s">注册Trillionaire</h1>
-            <p data-scroll-reveal="enter from the top over 1s">与我们一起，成为夜幕下最闪亮的明灯</p>
-            <a href="login.html">
-                <h5 id="register-label">已有账号？去登录>></h5>
-            </a>
+            <h1>注&nbsp;&nbsp;册</h1>
+            <p>你好, Trillionaire</p>
 
 
-            <form method="post" data-scroll-reveal="enter from bottom over 1s but wait 0.5s">
+            <form method="post">
                 <p><input type="text" name="username" placeholder="用户邮箱" class="form-username form-control"
                           id="reg-username" ng-model="inputEmail" onblur="emailIsValid()" ng-change="check()"></p>
                 <p><input type="password" name="password" placeholder="密码" class="form-password form-control"
@@ -59,9 +56,12 @@
                 <div>
                     <p id="reg-tip"></p>
                 </div>
+                <a href="login.html">
+                    <h5 id="register-label">已有账号？去登录>></h5>
+                </a>
                 <div>
                     <div class="log-buttons">
-                        <button class="button-blue" id="register-button" type="button" ng-click="register()">注册</button>
+                        <button class="button-big" id="register-button" type="button" ng-click="register()">注册</button>
                         <a href="javascript: history.go(-1);">
                             <button class="button-big" id="reg-back-button" type="button">取消</button>
                         </a>
