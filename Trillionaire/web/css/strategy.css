@@ -130,9 +130,9 @@
 }
 
 .editor-wrapper {
-    width: 30%;
+    width: 42%;
     float: left;
-    margin-left: 15.5%;
+    margin-left: 2%;
 }
 
 .stra-button-group {
@@ -160,10 +160,10 @@
 }
 
 .result-wrapper {
-    width: 36.5%;
+    width: 52%;
     float: right;
     display: inline-block;
-    margin-right: 17.5%;
+    margin-right: 2%;
 }
 
 .stra-res-table {

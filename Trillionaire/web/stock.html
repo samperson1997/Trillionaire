@@ -40,7 +40,7 @@
                 <input id="search-input" placeholder="输入股票代码...">
             </div>
             <a href="login.html">
-                <li id="log-button" class="log-button">登录</li>
+                <li id="log-button" class="log-button">登录 | 注册</li>
             </a>
         </ul>
     </div>
@@ -56,8 +56,12 @@
                 <h2 id="change"></h2>
             </div>
 
-            <div id="follow-button" onclick="follow()" style="display: inline-block;"><i class="fas fa-star"></i>
-                加入关注列表&nbsp;
+
+
+            <div class="right-button" style="display: inline-block;">
+                <div id="follow-button" onclick="follow()" style="display: inline-block;"><i class="far fa-star"></i>
+                    加入关注列表&nbsp;
+                </div>|&nbsp;&nbsp;<a href="concern.html" target="_blank"><i class="fa fa-list-alt"></i> 查看关注列表</a>
             </div>
         </div>
 
@@ -221,35 +225,12 @@
 
 <footer>
     <div id="footer" onselectstart="return false;">
-        <div id="footer-div">
-            <div>
-                <div class="big-li">
-                    <p>
-                        <a href="mailto:feedback@trillionaire.me?subject=[FeedBack]">
-                            <i class="fa fa-envelope"></i> 联系我们
-                        </a>
-                    </p>
-                </div>
-
-                <div class="big-li">
-                    <p>
-                        <a href="api.html">
-                            <i class="fa fa-book"></i> API文档
-                        </a>
-                    </p>
-                </div>
-
-                <div class="big-li">
-                    <p>
-                        <a href="help.html">
-                            <i class="fa fa-file-alt"></i> 帮助文档
-                        </a>
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <div id="cr">Copyright &copy; 2017 All Rights Reserved</div>
+        <div class="cr"><a href="mailto:feedback@trillionaire.me?subject=[FeedBack]">
+            <i class="fa fa-envelope"></i> 联系我们</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="api.html"><i
+                class="fa fa-book"></i> API文档</a>
+            &nbsp;&nbsp;|&nbsp;&nbsp;<a href="help.html"><i class="fa fa-file-alt"></i> 帮助文档
+            </a></div>
+        <div class="cr">Copyright &copy; 2017 All Rights Reserved</div>
     </div>
 </footer>
 </body>

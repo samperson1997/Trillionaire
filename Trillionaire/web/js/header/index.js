@@ -1,13 +1,13 @@
 var HEADER_OBJECT = {};
 
-(function(){
+(function () {
 
     var menuItemList = document.querySelector("#top-bar ul")
-    if(menuItemList == null) {
+    if (menuItemList == null) {
         return
     } else {
         var islogin = sessionStorage.getItem("log_state") === "true"
-        if(islogin) {
+        if (islogin) {
             showLogoutButton()
         } else {
             showLoginButton()
@@ -29,7 +29,7 @@ var HEADER_OBJECT = {};
         var ulElement = document.createElement("li")
         ulElement.setAttribute("id", "log-button")
         ulElement.setAttribute("class", "log-button")
-        ulElement.appendChild(document.createTextNode("用户登录"))
+        ulElement.appendChild(document.createTextNode("登录 | 注册"))
         aElement.appendChild(ulElement)
 
         menuItemList.removeChild(menuItemList.querySelectorAll("a")[3]);
@@ -37,39 +37,43 @@ var HEADER_OBJECT = {};
     }
 
     function showLogoutButton() {
-        var aElement = document.createElement("a")
-        var divElement = document.createElement("div")
-        aElement.appendChild(divElement)
-        divElement.style.position = "relative"
-        divElement.style.display = "inline-block"
-        var ulElement = document.createElement("li")
-        ulElement.setAttribute("id", "log-button")
-        ulElement.setAttribute("class", "log-button")
-        var username = sessionStorage.getItem("username")
-        ulElement.appendChild(document.createTextNode(username))
-        divElement.appendChild(ulElement)
+        // var aElement = document.createElement("a")
+        // var divElement = document.createElement("div")
+        // aElement.appendChild(divElement)
+        // divElement.style.position = "relative"
+        // divElement.style.display = "inline-block"
+        // var ulElement = document.createElement("li")
+        // ulElement.setAttribute("id", "log-button")
+        // ulElement.setAttribute("class", "log-button")
+        // var username = sessionStorage.getItem("username")
+        // ulElement.appendChild(document.createTextNode(username))
+        // divElement.appendChild(ulElement)
+        //
+        // var logoutButton = document.createElement("div")
+        // logoutButton.appendChild(document.createTextNode("注销"))
+        // logoutButton.addEventListener("click", _simpleLogoutHandler)
+        // logoutButton.setAttribute("class", 'logout-extend')
+        // divElement.appendChild(logoutButton)
+        // divElement.addEventListener("mouseover", function(){
+        //     logoutButton.style.visibility = "visible"
+        // })
+        // divElement.addEventListener("mouseleave", function(){
+        //     logoutButton.style.visibility = "hidden"
+        // })
+        //
+        // menuItemList.removeChild(menuItemList.querySelectorAll("a")[3]);
+        // menuItemList.appendChild(aElement)
 
-        var logoutButton = document.createElement("div")
-        logoutButton.appendChild(document.createTextNode("注销"))
-        logoutButton.addEventListener("click", _simpleLogoutHandler)
-        logoutButton.setAttribute("class", 'logout-extend')
-        divElement.appendChild(logoutButton)
-        divElement.addEventListener("mouseover", function(){
-            logoutButton.style.visibility = "visible"
-        })
-        divElement.addEventListener("mouseleave", function(){
-            logoutButton.style.visibility = "hidden"
-        })
-
-        menuItemList.removeChild(menuItemList.querySelectorAll("a")[3]);
-        menuItemList.appendChild(aElement)
+        $("#log-button").text("注销");
+        document.getElementById("log-button").addEventListener("click", _simpleLogoutHandler);
     }
 
     function _simpleLogoutHandler(e) {
         sessionStorage.removeItem("log_state")
         sessionStorage.removeItem("userId")
         sessionStorage.removeItem("username")
-        showLoginButton()
+        // showLoginButton()
+        $("#log-button").text("登录 | 注册");
     }
 
 

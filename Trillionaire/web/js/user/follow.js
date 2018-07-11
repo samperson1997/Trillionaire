@@ -14,7 +14,7 @@ jQuery(function () {
             dataType: "json",
             success: function (data) {
                 if (data === true) {
-                    $("#follow-button").html("<i class=\"fa fa-star\"></i> 移出关注列表&nbsp;");
+                    $("#follow-button").html("<i class=\"fas fa-star\"></i> 移出关注列表&nbsp;");
                 }
             },
             error: function (request, status, err) {
@@ -52,7 +52,7 @@ function follow_ajax(username, code) {
         },
         contentType: "application/x-www-form-urlencoded",
         success: function (data) {
-            $("#follow-button").html("<i class=\"fa fa-star\"></i> 移出关注列表&nbsp;");
+            $("#follow-button").html("<i class=\"fas fa-star\"></i> 移出关注列表&nbsp;");
         }
     });
 }
@@ -70,7 +70,7 @@ function cancelfollow_ajax(username, code) {
         },
         contentType: "application/x-www-form-urlencoded",
         success: function (data) {
-            $("#follow-button").html("<i class=\"fa fa-star-o\"></i> 加入关注列表&nbsp;");
+            $("#follow-button").html("<i class=\"far fa-star\"></i> 加入关注列表&nbsp;");
             loadFollowList();
         }
     });

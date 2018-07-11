@@ -1,11 +1,10 @@
-
-(function(){
+(function () {
     // var searchArea = $('search-area')
     // var searchInput = $('search-input')
     var searchArea = document.querySelector('#search-area')
     var searchInput = document.querySelector('#search-input')
 
-    if(!(searchArea && searchInput)) {
+    if (!(searchArea && searchInput)) {
         return
     }
 
@@ -46,27 +45,37 @@
     }
 
     function createAssociatedBoard(data) {
-        var boardElement = document.createElement('div')
-        boardElement.setAttribute('class', 'associate-board')
-        for (let stockInfo of data) {
+        if (data.length > 0) {
+            var boardElement = document.createElement('div')
+            boardElement.setAttribute('class', 'associate-board')
+            for (let stockInfo of data) {
+                var itemElement = document.createElement('div')
+                itemElement.appendChild(document.createTextNode(stockInfo.name + ' ' + stockInfo.code))
+                itemElement.setAttribute('class', 'associate-item')
+                itemElement.setAttribute('data-code', stockInfo.code)
+                boardElement.appendChild(itemElement)
+            }
+
+            boardElement.addEventListener('click', function (e) {
+                var targetItem = e.target
+                window.location.href = "stock.html?code=" + targetItem.dataset.code;
+            })
+
+
+        } else {
+            var boardElement = document.createElement('div')
+            boardElement.setAttribute('class', 'associate-board')
             var itemElement = document.createElement('div')
-            itemElement.appendChild(document.createTextNode(stockInfo.name + ' ' + stockInfo.code))
+            itemElement.appendChild(document.createTextNode('暂无'))
             itemElement.setAttribute('class', 'associate-item')
-            itemElement.setAttribute('data-code', stockInfo.code)
             boardElement.appendChild(itemElement)
         }
-
-        boardElement.addEventListener('click', function(e){
-            var targetItem = e.target
-            window.location.href = "stock.html?code=" + targetItem.dataset.code;
-        })
 
         if (searchArea.querySelector('.associate-board')) {
             searchArea.replaceChild(boardElement, searchArea.querySelector('.associate-board'))
         } else {
             searchArea.appendChild(boardElement)
         }
-
     }
 
     document.body.addEventListener('click', function (e) {

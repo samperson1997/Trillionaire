@@ -118,6 +118,10 @@ angular.module("mainapp", [])
                 success: function (result) {
                     $("#more-res-buttons").fadeOut(function () {
                         $("#res-figure-area").show();
+                        $("#more-res-buttons").fadeOut(function () {
+                            $("#res-figure-area").show();
+                        });
+                        $("#show-more-buttons").html("<i class=\"fa fa-caret-down\"></i> 更多");
                     });
 
                     $("#save-button").fadeOut(function () {
@@ -219,7 +223,7 @@ angular.module("mainapp", [])
                         op = getOP(result.datelist, result.data1, result.data2);
                         retChart.setOption(op);
 
-                        $("#log-content").html('<p>暂无错误 <i class="fa fa-smile-o"></i></p>');
+                        $("#log-content").html('<p>暂无错误 :)</p>');
 
                         $("#backtestReturns").text(result.summary.backtestReturns);
                         $("#backtestAnnualizedReturns").text(result.summary.backtestAnnualizedReturns);
@@ -242,7 +246,7 @@ angular.module("mainapp", [])
                         if (result.msg == "error6") {
                             $("#log-content").html('<p>代码有语法错误 <i class="fa fa-frown-o"></i><br>' + result.errorLog + '</p>');
                         } else {
-                            $("#log-content").html('<p>代码有误，错误编码：' + result.msg + ' <i class="fa fa-frown-o"></i></p>');
+                            $("#log-content").html('<p>代码有误，错误编码：' + result.msg + ' :(</p>');
                         }
 
                         $("#result-area").fadeOut();
